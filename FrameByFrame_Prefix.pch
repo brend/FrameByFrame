@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'FrameByFrame' target in the 'FrameByFrame' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif

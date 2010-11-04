@@ -1,0 +1,333 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5F4D7351127A15DB00E49997 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D734D127A15DB00E49997 /* QTKit.framework */; };
+		5F4D7352127A15DB00E49997 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D734E127A15DB00E49997 /* Quartz.framework */; };
+		5F4D7353127A15DB00E49997 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D734F127A15DB00E49997 /* QuartzCore.framework */; };
+		5F4D7354127A15DB00E49997 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D7350127A15DB00E49997 /* QuickTime.framework */; };
+		5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9641A8127A12D3009E6FC1 /* Cocoa.framework */; };
+		5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */; };
+		5F9641B0127A12D3009E6FC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9641AF127A12D3009E6FC1 /* main.m */; };
+		5F9641B3127A12D3009E6FC1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641B1127A12D3009E6FC1 /* MainMenu.xib */; };
+		5F9641B6127A12D4009E6FC1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641B4127A12D4009E6FC1 /* Credits.rtf */; };
+		5F9641B9127A12D4009E6FC1 /* FBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9641B8127A12D4009E6FC1 /* FBDocument.m */; };
+		5F9641BC127A12D4009E6FC1 /* FBDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641BA127A12D4009E6FC1 /* FBDocument.xib */; };
+		5F9641C9127A138A009E6FC1 /* FBApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */; };
+		5FA58027127C25BD003C2B32 /* FBReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58026127C25BD003C2B32 /* FBReel.m */; };
+		5FA58030127C59E2003C2B32 /* FBDocumentCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */; };
+		5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58032127C5DB4003C2B32 /* FBCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5F4D734D127A15DB00E49997 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		5F4D734E127A15DB00E49997 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		5F4D734F127A15DB00E49997 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5F4D7350127A15DB00E49997 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameByFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F9641A8127A12D3009E6FC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FrameByFrame-Info.plist"; sourceTree = "<group>"; };
+		5F9641AB127A12D3009E6FC1 /* FrameByFrame_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameByFrame_Prefix.pch; sourceTree = "<group>"; };
+		5F9641AD127A12D3009E6FC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5F9641AF127A12D3009E6FC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5F9641B2127A12D3009E6FC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5F9641B5127A12D4009E6FC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		5F9641B7127A12D4009E6FC1 /* FBDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBDocument.h; sourceTree = "<group>"; };
+		5F9641B8127A12D4009E6FC1 /* FBDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBDocument.m; sourceTree = "<group>"; };
+		5F9641BB127A12D4009E6FC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FBDocument.xib; sourceTree = "<group>"; };
+		5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBApplicationDelegate.h; sourceTree = "<group>"; };
+		5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBApplicationDelegate.m; sourceTree = "<group>"; };
+		5FA58025127C25BD003C2B32 /* FBReel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReel.h; sourceTree = "<group>"; };
+		5FA58026127C25BD003C2B32 /* FBReel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReel.m; sourceTree = "<group>"; };
+		5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBDocumentCreator.xib; sourceTree = "<group>"; };
+		5FA58031127C5DB4003C2B32 /* FBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCell.h; sourceTree = "<group>"; };
+		5FA58032127C5DB4003C2B32 /* FBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F9641A2127A12D3009E6FC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F4D7351127A15DB00E49997 /* QTKit.framework in Frameworks */,
+				5F4D7352127A15DB00E49997 /* Quartz.framework in Frameworks */,
+				5F4D7353127A15DB00E49997 /* QuartzCore.framework in Frameworks */,
+				5F4D7354127A15DB00E49997 /* QuickTime.framework in Frameworks */,
+				5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F964196127A12D3009E6FC1 = {
+			isa = PBXGroup;
+			children = (
+				5F96419D127A12D3009E6FC1 /* Classes */,
+				5F96419E127A12D3009E6FC1 /* Other Sources */,
+				5F96419F127A12D3009E6FC1 /* Resources */,
+				5F9641A0127A12D3009E6FC1 /* Frameworks */,
+				5F9641A6127A12D3009E6FC1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5F96419D127A12D3009E6FC1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */,
+				5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */,
+				5FA58031127C5DB4003C2B32 /* FBCell.h */,
+				5FA58032127C5DB4003C2B32 /* FBCell.m */,
+				5F9641B7127A12D4009E6FC1 /* FBDocument.h */,
+				5F9641B8127A12D4009E6FC1 /* FBDocument.m */,
+				5FA58025127C25BD003C2B32 /* FBReel.h */,
+				5FA58026127C25BD003C2B32 /* FBReel.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5F96419E127A12D3009E6FC1 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5F9641AB127A12D3009E6FC1 /* FrameByFrame_Prefix.pch */,
+				5F9641AF127A12D3009E6FC1 /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		5F96419F127A12D3009E6FC1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */,
+				5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */,
+				5F9641B1127A12D3009E6FC1 /* MainMenu.xib */,
+				5F9641B4127A12D4009E6FC1 /* Credits.rtf */,
+				5F9641BA127A12D4009E6FC1 /* FBDocument.xib */,
+				5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5F9641A0127A12D3009E6FC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F4D734D127A15DB00E49997 /* QTKit.framework */,
+				5F4D734E127A15DB00E49997 /* Quartz.framework */,
+				5F4D734F127A15DB00E49997 /* QuartzCore.framework */,
+				5F4D7350127A15DB00E49997 /* QuickTime.framework */,
+				5F9641A8127A12D3009E6FC1 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5F9641A6127A12D3009E6FC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F9641A4127A12D3009E6FC1 /* FrameByFrame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F9641BF127A12D4009E6FC1 /* Build configuration list for PBXNativeTarget "FrameByFrame" */;
+			buildPhases = (
+				5F9641A1127A12D3009E6FC1 /* Sources */,
+				5F9641A2127A12D3009E6FC1 /* Frameworks */,
+				5F9641A3127A12D3009E6FC1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FrameByFrame;
+			productName = FrameByFrame;
+			productReference = 5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F964198127A12D3009E6FC1 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 5F96419B127A12D3009E6FC1 /* Build configuration list for PBXProject "FrameByFrame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5F964196127A12D3009E6FC1;
+			productRefGroup = 5F9641A6127A12D3009E6FC1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F9641A4127A12D3009E6FC1 /* FrameByFrame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5F9641A3127A12D3009E6FC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */,
+				5F9641B3127A12D3009E6FC1 /* MainMenu.xib in Resources */,
+				5F9641B6127A12D4009E6FC1 /* Credits.rtf in Resources */,
+				5F9641BC127A12D4009E6FC1 /* FBDocument.xib in Resources */,
+				5FA58030127C59E2003C2B32 /* FBDocumentCreator.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F9641A1127A12D3009E6FC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F9641B0127A12D3009E6FC1 /* main.m in Sources */,
+				5F9641B9127A12D4009E6FC1 /* FBDocument.m in Sources */,
+				5F9641C9127A138A009E6FC1 /* FBApplicationDelegate.m in Sources */,
+				5FA58027127C25BD003C2B32 /* FBReel.m in Sources */,
+				5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F9641AD127A12D3009E6FC1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5F9641B1127A12D3009E6FC1 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F9641B2127A12D3009E6FC1 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		5F9641B4127A12D4009E6FC1 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F9641B5127A12D4009E6FC1 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		5F9641BA127A12D4009E6FC1 /* FBDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F9641BB127A12D4009E6FC1 /* en */,
+			);
+			name = FBDocument.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5F9641BD127A12D4009E6FC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5F9641BE127A12D4009E6FC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5F9641C0127A12D4009E6FC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FrameByFrame_Prefix.pch;
+				INFOPLIST_FILE = "FrameByFrame-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5F9641C1127A12D4009E6FC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FrameByFrame_Prefix.pch;
+				INFOPLIST_FILE = "FrameByFrame-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F96419B127A12D3009E6FC1 /* Build configuration list for PBXProject "FrameByFrame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F9641BD127A12D4009E6FC1 /* Debug */,
+				5F9641BE127A12D4009E6FC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F9641BF127A12D4009E6FC1 /* Build configuration list for PBXNativeTarget "FrameByFrame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F9641C0127A12D4009E6FC1 /* Debug */,
+				5F9641C1127A12D4009E6FC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F964198127A12D3009E6FC1 /* Project object */;
+}
