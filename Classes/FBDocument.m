@@ -315,7 +315,7 @@
 	CIFilterGenerator *generator = [CIFilterGenerator filterGenerator];
 	CIFilter *penultimateBlend = nil;
 	
-	NSAssert(self.reel.count > 0, @"Pictures must be present");
+	NSAssert(self.reel.count > 1, @"Multiple pictures must be present");
 	
 	for (NSInteger i = 0; i < self.reel.count; ++i) {
 		CIFilter *fade = [CIFilter filterWithName: @"CIColorMatrix"];
