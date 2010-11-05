@@ -136,7 +136,7 @@
 	
 	NSError *error = nil;
 	
-	if ([[NSFileManager defaultManager] moveItemAtURL: temporaryStorageURL toURL: absoluteURL error: &error]) {
+	if ([[NSFileManager defaultManager] copyItemAtURL: temporaryStorageURL toURL: absoluteURL error: &error]) {
 		NSLog(@"Document has been successfully copied");
 		return YES;
 	} else {
