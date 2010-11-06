@@ -62,7 +62,7 @@
 							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{0, 204}, {400, 300}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
-							<reference key="NSNextKeyView" ref="940273296"/>
+							<reference key="NSNextKeyView" ref="487387358"/>
 							<object class="NSColor" key="kQTCaptureViewCoderFillColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MAA</bytes>
@@ -89,7 +89,7 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{77, 174}, {143, 26}}</string>
 												<reference key="NSSuperview" ref="995652149"/>
-												<reference key="NSNextKeyView" ref="487387358"/>
+												<reference key="NSNextKeyView" ref="316292785"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSPopUpButtonCell" key="NSCell" id="217393510">
 													<int key="NSCellFlags">-2076049856</int>
@@ -210,6 +210,7 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{22, 1}, {96, 32}}</string>
 									<reference key="NSSuperview" ref="487387358"/>
+									<reference key="NSNextKeyView" ref="940273296"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="448848431">
 										<int key="NSCellFlags">67239424</int>
@@ -236,7 +237,8 @@
 							<int key="NSvFlags">290</int>
 							<string key="NSFrameSize">{668, 148}</string>
 							<reference key="NSSuperview" ref="568628114"/>
-							<string key="NSClassName">NSView</string>
+							<reference key="NSNextKeyView"/>
+							<string key="NSClassName">FBReelNavigator</string>
 						</object>
 					</object>
 					<string key="NSFrame">{{7, 11}, {668, 504}}</string>
@@ -592,7 +594,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">100050</int>
+			<int key="maxID">100055</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

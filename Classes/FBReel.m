@@ -115,44 +115,48 @@
 }
 
 #pragma mark -
-#pragma mark Adding, Retrieving and Counting Pictures
-- (NSInteger) count
+#pragma mark Querying the Reel
+- (NSUInteger) count
 {
 	return self.cells.count;
 }
 
-- (void) addCellWithImage:(CIImage *) image
+#pragma mark -
+#pragma mark Adding, Retrieving and Counting Pictures
+- (void) insertCell: (FBCell *) cell
+			atIndex: (NSUInteger) i
 {
-	NSString *identifier = [self createUniqueCellIdentifier];
-	FBCell *cell = [FBCell cellWithIdentifier: identifier image: image];
-	
-	[self addCell: cell];
+	[self insertCells: [NSArray arrayWithObject: cell] atIndexes: [NSIndexSet indexSetWithIndex: i]];
 }
 
-- (void) addCell:(FBCell *)cell
+- (void) insertCells: (NSArray *) someCells
+		   atIndexes: (NSIndexSet *) indexes
 {
-	cell.documentURL = self.documentURL;
+	for (FBCell *cell in someCells)
+		cell.documentURL = self.documentURL;
 	
-	[self.cells addObject: cell];
+	[self.cells insertObjects: someCells atIndexes: indexes];
 	
 	if (self.documentURL) {
-		NSString *filename = [self.documentURL.path stringByAppendingPathComponent: cell.identifier];
-		NSError *error = nil;
+		// TODO Parallelize
 		
-		if (![cell writeToFile: filename error: &error]) {
-			NSLog(@"Cell could not be written to %@ due to error: %@", filename, error);
+		for (FBCell *cell in someCells) {
+			NSString *filename = [self.documentURL.path stringByAppendingPathComponent: cell.identifier];
+			NSError *error = nil;
+			
+			if (![cell writeToFile: filename error: &error]) {
+				NSLog(@"Cell could not be written to %@ due to error: %@", filename, error);
+			}
 		}
 	}
 }
 
-- (CIImage *) imageAtIndex: (NSInteger) i
+- (void) addCell:(FBCell *)cell
 {
-	FBCell *cell = [self cellAtIndex: i];
-	
-	return cell.image;
+	[self insertCell: cell atIndex: self.count];
 }
 
-- (FBCell *) cellAtIndex:(NSInteger)i
+- (FBCell *) cellAtIndex:(NSUInteger)i
 {
 	return [self.cells objectAtIndex: i];
 }
@@ -164,6 +168,71 @@
 	return [self.cells objectAtIndex: self.cells.count - 1];
 }
 
+#pragma mark -
+#pragma mark Removing Cells
+- (void) removeCellsAtIndexes: (NSIndexSet *) indexes
+{
+	[self.cells removeObjectsAtIndexes: indexes];
+}
+
+#pragma mark -
+#pragma mark Adding and Retrieving Images
+- (void) addCellWithImage:(CIImage *) image
+{
+	[self insertCellWithImage: image atIndex: self.count];
+}
+
+- (void) insertCellWithImage: (CIImage *) image
+					 atIndex: (NSUInteger) i
+{
+	[self insertCellsWithImages: [NSArray arrayWithObject: image] atIndexes: [NSIndexSet indexSetWithIndex: i]];
+}
+
+- (void) insertCellsWithImages: (NSArray *) images
+					 atIndexes: (NSIndexSet *) indexes
+{
+	NSAssert(indexes.count == images.count, @"Number of images doesn't fit number of indexes");
+	
+	NSMutableArray *imageCells = [NSMutableArray arrayWithCapacity: indexes.count];
+	
+	for (CIImage *image in images) {
+		NSString *identifier = [self createUniqueCellIdentifier];
+		FBCell *cell = [FBCell cellWithIdentifier: identifier image: image];
+		
+		[imageCells addObject: cell];
+	}
+	
+	[self insertCells: imageCells atIndexes: indexes];
+}
+
+- (CIImage *) imageAtIndex: (NSUInteger) i
+{
+	FBCell *cell = [self cellAtIndex: i];
+	
+	return cell.image;
+}
+
+- (NSArray *) imagesAtIndexes:(NSIndexSet *)indexes
+{
+	NSLog(@"DEBUG Denk dran, dass -imagesAtIndexes: ein Array aus CIImage liefert");
+	NSArray *addressedCells = [self.cells objectsAtIndexes: indexes];
+	NSMutableArray *images = [NSMutableArray arrayWithCapacity: indexes.count];
+	
+	for (FBCell *cell in addressedCells)
+		[images addObject: cell.image];
+	
+	return images;
+}
+
+#pragma mark -
+#pragma mark Removing Images
+- (void) removeImagesAtIndexes: (NSIndexSet *) indexes
+{
+	[self removeCellsAtIndexes: indexes];
+}
+
+#pragma mark -
+#pragma mark Creating Cell Identifiers
 - (NSString *) createUniqueCellIdentifier
 {
 	return [NSString stringWithFormat: @"%f", [NSDate timeIntervalSinceReferenceDate]];

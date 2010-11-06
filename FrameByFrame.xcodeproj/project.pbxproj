@@ -22,6 +22,7 @@
 		5FA58027127C25BD003C2B32 /* FBReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58026127C25BD003C2B32 /* FBReel.m */; };
 		5FA58030127C59E2003C2B32 /* FBDocumentCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */; };
 		5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58032127C5DB4003C2B32 /* FBCell.m */; };
+		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,9 @@
 		5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBDocumentCreator.xib; sourceTree = "<group>"; };
 		5FA58031127C5DB4003C2B32 /* FBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCell.h; sourceTree = "<group>"; };
 		5FA58032127C5DB4003C2B32 /* FBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCell.m; sourceTree = "<group>"; };
+		5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigator.h; sourceTree = "<group>"; };
+		5FABC130128572BA0084B0A1 /* FBReelNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReelNavigator.m; sourceTree = "<group>"; };
+		5FABC133128573520084B0A1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		5F96419D127A12D3009E6FC1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5FABC132128572C30084B0A1 /* Views */,
 				5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */,
 				5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */,
 				5FA58031127C5DB4003C2B32 /* FBCell.h */,
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				5F9641AB127A12D3009E6FC1 /* FrameByFrame_Prefix.pch */,
+				5FABC133128573520084B0A1 /* Constants.h */,
 				5F9641AF127A12D3009E6FC1 /* main.m */,
 			);
 			name = "Other Sources";
@@ -105,8 +111,8 @@
 			children = (
 				5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */,
 				5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */,
-				5F9641B1127A12D3009E6FC1 /* MainMenu.xib */,
 				5F9641B4127A12D4009E6FC1 /* Credits.rtf */,
+				5F9641B1127A12D3009E6FC1 /* MainMenu.xib */,
 				5F9641BA127A12D4009E6FC1 /* FBDocument.xib */,
 				5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */,
 			);
@@ -131,6 +137,15 @@
 				5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5FABC132128572C30084B0A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */,
+				5FABC130128572BA0084B0A1 /* FBReelNavigator.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +215,7 @@
 				5F9641C9127A138A009E6FC1 /* FBApplicationDelegate.m in Sources */,
 				5FA58027127C25BD003C2B32 /* FBReel.m in Sources */,
 				5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */,
+				5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,14 +27,40 @@
 - (BOOL) writeToURL: (NSURL *) url error: (NSError **) error;
 
 #pragma mark -
-#pragma mark Adding, Retrieving and Counting Images
-- (NSInteger) count;
-- (void) addCellWithImage: (CIImage *) picture;
-- (void) addCell: (FBCell *) cell;
-- (CIImage *) imageAtIndex: (NSInteger) i;
-- (FBCell *) cellAtIndex: (NSInteger) i;
-@property (readonly) FBCell *lastCell;
+#pragma mark Querying the Reel
+- (NSUInteger) count;
 
+#pragma mark -
+#pragma mark Adding and Retrieving Cells
+
+- (void) addCell: (FBCell *) cell;
+- (void) insertCell: (FBCell *) cell
+			atIndex: (NSUInteger) i;
+- (void) insertCells: (NSArray *) someCells
+		   atIndexes: (NSIndexSet *) indexes;
+- (FBCell *) cellAtIndex: (NSUInteger) i;
+- (FBCell *) lastCell;
+
+#pragma mark -
+#pragma mark Removing Cells
+- (void) removeCellsAtIndexes: (NSIndexSet *) indexes;
+
+#pragma mark -
+#pragma mark Adding and Retrieving Images
+- (void) addCellWithImage: (CIImage *) picture;
+- (void) insertCellWithImage: (CIImage *) image
+					 atIndex: (NSUInteger) i;
+- (void) insertCellsWithImages: (NSArray *) images
+					 atIndexes: (NSIndexSet *) indexes;
+- (CIImage *) imageAtIndex: (NSUInteger) i;
+- (NSArray *) imagesAtIndexes: (NSIndexSet *) indexes;
+
+#pragma mark -
+#pragma mark Removing Images
+- (void) removeImagesAtIndexes: (NSIndexSet *) indexes;
+
+#pragma mark -
+#pragma mark Creating Cell Identifiers
 - (NSString *) createUniqueCellIdentifier;
 
 @end
