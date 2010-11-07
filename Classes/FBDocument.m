@@ -162,6 +162,7 @@
 //		[self showLoadingPanel];
 		
 		self.reel = [FBReel reelWithContentsOfURL: absoluteURL error: &error];
+//		[self.reel readContentsOfURL: absoluteURL error: &error];
 		self.reel.documentURL = self.temporaryStorageURL;
 		
 		if (self.reel == nil) {
@@ -370,6 +371,13 @@
 - (void) createSnapshotFromImage:(CIImage *)image
 {
 	[self.reel addCellWithImage: image];
+}
+
+#pragma mark -
+#pragma mark Reel Navigator Delegate
+- (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *)strip
+{
+	NSLog(@"Snapshot required!");
 }
 
 @end

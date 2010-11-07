@@ -51,6 +51,7 @@
 		5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigator.h; sourceTree = "<group>"; };
 		5FABC130128572BA0084B0A1 /* FBReelNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReelNavigator.m; sourceTree = "<group>"; };
 		5FABC133128573520084B0A1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigatorDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +145,7 @@
 			children = (
 				5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */,
 				5FABC130128572BA0084B0A1 /* FBReelNavigator.m */,
+				5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";

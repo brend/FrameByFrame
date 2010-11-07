@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTKit.h>
 #import "FBReel.h"
+#import "FBReelNavigatorDelegate.h"
 
-@interface FBDocument : NSDocument 
+@interface FBDocument : NSDocument <FBReelNavigatorDelegate>
 {
 	QTCaptureSession *captureSession;
 	QTCaptureDeviceInput *captureDeviceInput;
@@ -54,6 +55,10 @@
 #pragma mark -
 #pragma mark Managing the Movie Reel
 @property (retain) IBOutlet FBReel *reel;
+
+#pragma mark -
+#pragma mark Reel Navigator Delegate
+- (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *)strip;
 
 #pragma mark -
 #pragma mark Interface Builder Actions

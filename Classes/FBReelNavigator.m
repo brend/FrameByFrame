@@ -568,7 +568,8 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 			NSMutableArray *pastedImages = [NSMutableArray arrayWithCapacity: [filenames count]];
 			
 			for (NSString *filename in filenames) {
-				NSImage *image = [[NSImage alloc] initWithContentsOfFile: filename];
+				NSData *data = [NSData dataWithContentsOfFile: filename];
+				CIImage *image = [[CIImage alloc] initWithData: data];
 				
 				if (image != nil) {
 					[pastedImages addObject: image];
@@ -617,7 +618,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 		NSUInteger selectionCount = [[self selectedIndexes] count];
 		NSImage *image = [self dragImageForCell: clickedCell numberOfImages: selectionCount];
 		NSPoint location = [self convertPoint: [e locationInWindow] fromView: nil];
-		NSSize imageSize = [image size];
+		NSSize imageSize = image.size;
 		
 		// Image position
 		location = NSMakePoint(location.x - imageSize.width / 2, location.y);
@@ -817,12 +818,12 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 	NSString *filename;
 	
 	while ((filename = [e nextObject])) {
-		NSImage *image = [[NSImage alloc] initWithContentsOfFile: filename];
+		CIImage *image = [CIImage imageWithData: [NSData dataWithContentsOfFile: filename]];
 		
 		if (image == nil)
 			[errors addObject: filename];
 		else
-			[images addObject: [image autorelease]];
+			[images addObject: image];
 	}
 	
 	if ([errors count] > 0) {
@@ -836,7 +837,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 - (void) requestSnapshot
 {
 	if ([delegate respondsToSelector: @selector(imageStripRequestsSnapshot:)])
-		[delegate imageStripRequestsSnapshot: self];
+		[delegate reelNavigatorRequestsSnapshot: self];
 	else
 		[self add: self];
 }
@@ -844,16 +845,25 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 #pragma mark Handling Resolution Issues
 + (void) adaptImageSizeToResolution: (NSArray *) images
 {
-	// Adapt image size to help QuickTime work correctly 
-	// with images of resolutions different from 72 dpi
-	for (NSImage *anImage in images) {
-		NSBitmapImageRep *r = (NSBitmapImageRep *) [anImage bestRepresentationForDevice: nil];
-		
-		if (([r pixelsWide] != (int) (double) round(((NSSize) [r size]).width))) {
-			[anImage setScalesWhenResized: YES];
-			[anImage setSize: NSMakeSize([r pixelsWide], [r pixelsHigh])];
-		}
-	}	
+	NSLog(@"TODO Figure out if -adaptImageSizeToResolution: is still needed - right now, it does nothing (still works with NSImage, so careful!)");
+//	// Adapt image size to help QuickTime work correctly 
+//	// with images of resolutions different from 72 dpi
+//	for (NSImage *anImage in images) {
+//		NSBitmapImageRep *r = (NSBitmapImageRep *) [anImage bestRepresentationForDevice: nil];
+//		
+//		if (([r pixelsWide] != (int) (double) round(((NSSize) [r size]).width))) {
+//			[anImage setScalesWhenResized: YES];
+//			[anImage setSize: NSMakeSize([r pixelsWide], [r pixelsHigh])];
+//		}
+//	}	
 }
+
+
+
+- (IBAction) foo: (id) sender
+{
+	
+}
+
 
 @end

@@ -24,6 +24,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FBReel.h"
+#import "FBReelNavigatorDelegate.h"
 
 extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 
@@ -111,9 +112,10 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 #pragma mark Handling Resolution Issues
 + (void) adaptImageSizeToResolution: (NSArray *) images;
 
-@end
 
-// Image Strip Delegate
-@interface NSObject (FBReelNavigatorDelegate)
-- (void) imageStripRequestsSnapshot: (FBReelNavigator *) strip;
+
+
+- (IBAction) foo: (id) sender;
+
+
 @end

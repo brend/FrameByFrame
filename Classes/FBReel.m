@@ -66,6 +66,18 @@
 	return reel;
 }
 
+- (BOOL) readContentsOfURL: (NSURL *) url error: (NSError **) error
+{
+	FBReel *reel = [FBReel reelWithContentsOfURL: url error: error];
+	
+	if (reel) {
+		self.cells = [NSMutableArray arrayWithArray: reel.cells];
+		self.documentURL = reel.documentURL;
+	}
+	
+	return reel != nil;
+}
+
 - (void)dealloc 
 {
 	self.cells = nil;

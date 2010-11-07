@@ -22,6 +22,10 @@
 + (id) reelWithContentsOfURL: (NSURL *) url error: (NSError **) error;
 
 #pragma mark -
+#pragma mark Replacing Reel Contents
+- (BOOL) readContentsOfURL: (NSURL *) url error: (NSError **) error;
+
+#pragma mark -
 #pragma mark Saving the Reel
 @property (retain) NSURL *documentURL;
 - (BOOL) writeToURL: (NSURL *) url error: (NSError **) error;
