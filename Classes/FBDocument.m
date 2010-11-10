@@ -7,9 +7,10 @@
 //
 
 #import "FBDocument.h"
+#import "FBReelNavigator.h"
 
 @implementation FBDocument
-@synthesize inputDevices, reel, inputFilter, temporaryStorageURL, originalDocumentURL;
+@synthesize inputDevices, reel, reelNavigator, inputFilter, temporaryStorageURL, originalDocumentURL;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -111,6 +112,9 @@
 	// NOTE If there are no pictures, the filter will be nil,
 	// and thus images will pass through the CICaptureView unfiltered.
 	self.inputFilter = [self generateFilter];
+	
+	// Set up the reel navigator
+	[self.reelNavigator bind: @"reel" toObject: self withKeyPath: @"reel" options: nil];
 }
 
 - (void) awakeFromNib
@@ -247,7 +251,18 @@
 #pragma mark Displaying Video Input
 - (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)image
 {
+#if DEBUG_FILTER	
+	// DEBUG
+	if (shouldTakeSnapshot) {
+		[self createSnapshotFromImage: image];
+		shouldTakeSnapshot = NO;
+	}
+	
+	return image;
+#else
 	BOOL computeFilter = shouldTakeSnapshot;
+	
+	[[NSString alloc] initWithString: @"hi"];
 	
 	if (shouldTakeSnapshot) {
 		[self createSnapshotFromImage: image];
@@ -263,11 +278,8 @@
 	
 	[self.inputFilter setDefaults];
 	
-	// TEST
 	for (NSInteger i = 0; i < self.reel.count; ++i) {
-//		CIImage *picture = [self.reel imageAtIndex: i];
-		FBCell *cell = [self.reel cellAtIndex: i];
-		CIImage *picture = cell.image;
+		CIImage *picture = [self.reel imageAtIndex: i];
 		
 		[self.inputFilter setValue: picture forKey: [NSString stringWithFormat: @"inputImage%d", i]];
 	}
@@ -277,6 +289,7 @@
 	CIImage *result = [self.inputFilter valueForKey: @"outputImage"];
 	
 	return result;
+#endif
 }
 
 - (CIFilter *) generateFilter
@@ -371,6 +384,7 @@
 - (void) createSnapshotFromImage:(CIImage *)image
 {
 	[self.reel addCellWithImage: image];
+	[self.reelNavigator reelHasChanged];
 }
 
 #pragma mark -

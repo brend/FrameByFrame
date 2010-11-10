@@ -123,10 +123,14 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 	
 	// Draw the images
 	for (i = 0; i < [self count]; ++i) {
-		CIImage *image = [self.reel imageAtIndex: i];
+//		CIImage *image = [self.reel imageAtIndex: i];
+		NSImage *image = [[self.reel cellAtIndex: i] thumbnail];
 		NSRect cellExterior = NSMakeRect(i * [self cellWidth], 0, [self cellWidth], [self cellHeight]);
-		CGSize imageSize = image.extent.size;
-		NSRect dest = NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
+//		CGSize imageSize = image.extent.size;
+		NSSize imageSize = image.size;
+		NSRect dest = 
+			// NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
+			NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
 		
 		if (NSIntersectsRect(rect, dest)) {
 			// Draw image
@@ -862,6 +866,14 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 
 - (IBAction) foo: (id) sender
 {
+	
+}
+
+- (void) reelHasChanged
+{
+	NSLog(@"There's something going on...");
+	[self resizeToFitImages];
+	[self setNeedsDisplay: YES];
 	
 }
 

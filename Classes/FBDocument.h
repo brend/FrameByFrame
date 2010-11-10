@@ -21,6 +21,7 @@
 	NSArray *inputDevices;
 	QTCaptureDeviceInput *videoDeviceInput;
 	
+	IBOutlet FBReelNavigator *reelNavigator;
 	FBReel *reel;
 	BOOL shouldTakeSnapshot;
 	
@@ -54,7 +55,8 @@
 
 #pragma mark -
 #pragma mark Managing the Movie Reel
-@property (retain) IBOutlet FBReel *reel;
+@property (retain) FBReel *reel;
+@property (readonly) FBReelNavigator *reelNavigator;
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate

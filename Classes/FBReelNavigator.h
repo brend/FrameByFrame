@@ -116,6 +116,6 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 
 
 - (IBAction) foo: (id) sender;
-
+- (void) reelHasChanged;
 
 @end

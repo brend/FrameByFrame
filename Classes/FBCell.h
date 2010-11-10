@@ -15,6 +15,7 @@
 	NSURL *documentURL;
 	NSString *identifier;
 	CIImage *image;
+	NSImage *thumbnail;
 }
 
 #pragma mark -
@@ -27,7 +28,7 @@
 #pragma mark Accessing Cell Data
 @property (copy) NSString *identifier;
 @property (retain) CIImage *image;
-@property (readonly) CIImage *thumbnail;
+@property (readonly) NSImage *thumbnail;
 
 #pragma mark -
 #pragma mark Saving the Cell

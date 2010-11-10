@@ -8,7 +8,6 @@
 
 #import "FBCell.h"
 
-
 @implementation FBCell
 
 #pragma mark -
@@ -53,6 +52,10 @@
 {
 	self.identifier = nil;
 	self.image = nil;
+	
+	[thumbnail release];
+	thumbnail = nil;
+	
     [super dealloc];
 }
 
@@ -78,9 +81,32 @@
 	image = [anImage retain];
 }
 
-- (CIImage *) thumbnail
+- (NSImage *) thumbnail
 {
-	@throw [NSException exceptionWithName: NSGenericException reason: @"Not implemented" userInfo:nil];
+	if (thumbnail == nil) {
+//		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: self.image];
+//		
+//		[[rep TIFFRepresentation] writeToFile: @"/Users/brph0000/Desktop/Zwischenspeicher.tiff" atomically: YES];
+//		[rep release];
+//		
+//		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: @"/Users/brph0000/Desktop/Zwischenspeicher.tiff"];
+		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: [self.documentURL.path stringByAppendingPathComponent: self.identifier]];
+		NSSize thumbnailSize = NSMakeSize(64, 64);
+		NSImage *thumb = [[NSImage alloc] initWithSize: thumbnailSize];
+		
+		[thumb lockFocus];
+		[[NSColor redColor] setFill];
+		NSRectFill(NSMakeRect(0, 0, thumbnailSize.width, thumbnailSize.height));
+		[fullsizedImage drawInRect: NSMakeRect(0, 0, thumbnailSize.width, thumbnailSize.height)
+						  fromRect: NSMakeRect(0, 0, fullsizedImage.size.width, fullsizedImage.size.height)
+						 operation: NSCompositeSourceOver fraction: 1.0f];
+		[thumb unlockFocus];
+		[fullsizedImage release];
+				
+		thumbnail = thumb;
+	}
+	
+	return thumbnail;
 }
 
 #pragma mark -

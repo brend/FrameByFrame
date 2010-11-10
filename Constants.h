@@ -3,7 +3,7 @@
 //  FrameByFrame
 //
 //  Created by Philipp Brendel on 06.11.10.
-//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2010 BrendCorp. All rights reserved.
 //
 
 #define FFUserDefaultSnapshotKey		@"FFUserDefaultSnapshotKey"
