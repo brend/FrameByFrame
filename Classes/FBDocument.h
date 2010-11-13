@@ -28,6 +28,8 @@
 	CIFilter *inputFilter;
 	
 	NSURL *originalDocumentURL, *temporaryStorageURL;
+	
+	NSInteger onionLayerCount;
 }
 
 #pragma mark -
@@ -57,6 +59,11 @@
 #pragma mark Managing the Movie Reel
 @property (retain) FBReel *reel;
 @property (readonly) FBReelNavigator *reelNavigator;
+
+#pragma mark -
+#pragma mark Onion Skinning
+@property (assign) NSInteger onionLayerCount;
+- (void) populateFilterWithVideoImage: (CIImage *) videoImage;
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate

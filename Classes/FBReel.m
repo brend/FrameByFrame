@@ -149,9 +149,7 @@
 	
 	[self.cells insertObjects: someCells atIndexes: indexes];
 	
-	if (self.documentURL) {
-		// TODO Parallelize
-		
+	if (self.documentURL) {		
 		for (FBCell *cell in someCells) {
 			NSString *filename = [self.documentURL.path stringByAppendingPathComponent: cell.identifier];
 			NSError *error = nil;

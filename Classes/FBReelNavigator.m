@@ -800,7 +800,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 }
 
 #pragma mark Insertion mark
-- (int) insertionMark
+- (NSInteger) insertionMark
 {
 	return insertionMark;
 }
@@ -808,7 +808,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 - (void) setInsertionMark: (NSInteger) index
 {
 	if (index < -1 || index > [self count] + 1)
-		NSLog(@"Suspicious insertion mark index: %d (strip has %d elements)", index, [self count]);
+		NSLog(@"Suspicious insertion mark index: %li (strip has %li elements)", index, [self count]);
 	
 	insertionMark = index;
 	[self setNeedsDisplay: YES];

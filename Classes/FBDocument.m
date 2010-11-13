@@ -10,7 +10,7 @@
 #import "FBReelNavigator.h"
 
 @implementation FBDocument
-@synthesize inputDevices, reel, reelNavigator, inputFilter, temporaryStorageURL, originalDocumentURL;
+@synthesize inputDevices, reel, reelNavigator, inputFilter, temporaryStorageURL, originalDocumentURL, onionLayerCount;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -21,6 +21,7 @@
 		// Add your subclass-specific initialization here.
 		// If an error occurs here, send a [self release] message and return nil.
 		
+		self.onionLayerCount = 2;
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
@@ -71,8 +72,6 @@
 {
 	[super windowControllerDidLoadNib:aController];
 	
-	NSLog(@"windowControllerDidLoadNib");
-	
 	// Create a capture session
 	if (!captureSession) {
         BOOL success;
@@ -117,11 +116,6 @@
 	[self.reelNavigator bind: @"reel" toObject: self withKeyPath: @"reel" options: nil];
 }
 
-- (void) awakeFromNib
-{
-	NSLog(@"awakeFromNib");
-}
-
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	NSError *intermediateError = nil;
@@ -136,7 +130,7 @@
 	}
 	
 	
-	NSLog(@"Trying to copy document from %@ to %@", temporaryStorageURL, absoluteURL);
+	NSLog(@"Attempting to copy document from %@ to %@", temporaryStorageURL, absoluteURL);
 	
 	NSError *error = nil;
 	
@@ -150,9 +144,7 @@
 }
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
-{
-	NSLog(@"readFromURL");
-	
+{	
 	NSError *error = nil;
 
 	self.originalDocumentURL = absoluteURL;	
@@ -249,42 +241,35 @@
 
 #pragma mark -
 #pragma mark Displaying Video Input
-- (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)image
+- (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)videoImage
 {
-#if DEBUG_FILTER	
+#ifdef DEBUG_FILTER	
 	// DEBUG
 	if (shouldTakeSnapshot) {
-		[self createSnapshotFromImage: image];
+		[self createSnapshotFromImage: videoImage];
 		shouldTakeSnapshot = NO;
 	}
 	
-	return image;
+	return videoImage;
 #else
 	BOOL computeFilter = shouldTakeSnapshot;
 	
 	[[NSString alloc] initWithString: @"hi"];
 	
 	if (shouldTakeSnapshot) {
-		[self createSnapshotFromImage: image];
+		[self createSnapshotFromImage: videoImage];
 		shouldTakeSnapshot = NO;
 	}
 	
-	if (self.reel.count == 0)
-		return image;
+	if (self.reel.count == 0 || self.onionLayerCount == 0)
+		return videoImage;
 	
 	if (computeFilter) {
 		self.inputFilter = [self generateFilter];
 	}
 	
 	[self.inputFilter setDefaults];
-	
-	for (NSInteger i = 0; i < self.reel.count; ++i) {
-		CIImage *picture = [self.reel imageAtIndex: i];
-		
-		[self.inputFilter setValue: picture forKey: [NSString stringWithFormat: @"inputImage%d", i]];
-	}
-	[self.inputFilter setValue: image forKey: @"videoImage"];
-	
+	[self populateFilterWithVideoImage: videoImage];
 	
 	CIImage *result = [self.inputFilter valueForKey: @"outputImage"];
 	
@@ -328,13 +313,14 @@
 {
 	CIFilterGenerator *generator = [CIFilterGenerator filterGenerator];
 	CIFilter *penultimateBlend = nil;
+	NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
 	
-	NSAssert(self.reel.count > 1, @"Multiple pictures must be present");
+	NSAssert(imageCount > 1, @"Multiple pictures must be present");
 	
-	for (NSInteger i = 0; i < self.reel.count; ++i) {
+	for (NSInteger i = 0; i < imageCount; ++i) {
 		CIFilter *fade = [CIFilter filterWithName: @"CIColorMatrix"];
 		CIFilter *blend = [CIFilter filterWithName: @"CISourceOverCompositing"];
-		float alpha = 1.0f / (float) self.reel.count;
+		float alpha = 1.0f / (float) imageCount;
 //		float alpha = 0.5f;
 		
 		[fade setDefaults];
@@ -370,6 +356,25 @@
 	//	[generator writeToURL: [NSURL fileURLWithPath: @"/Users/brph0000/Desktop/Threeway.plist"] atomically: YES];
 	
 	return [generator filter];
+}
+
+#pragma mark -
+#pragma mark Onion Skinning
+- (void) populateFilterWithVideoImage: (CIImage *) videoImage
+{
+	NSAssert(self.onionLayerCount > 0, @"Filter can only be populated with an onion layer count greater than zero");
+	
+	// For testing purposes, we always use the last images on the reel as onion skins
+	NSInteger referenceIndex = self.reel.count;
+	NSInteger startIndex = MAX(0, referenceIndex - self.onionLayerCount);
+	NSInteger imageCount = MIN((NSInteger) self.reel.count - startIndex, self.onionLayerCount);
+	
+	for (NSInteger i = 0; i < imageCount; ++i) {
+		CIImage *picture = [self.reel imageAtIndex: startIndex + i];
+		
+		[self.inputFilter setValue: picture forKey: [NSString stringWithFormat: @"inputImage%d", i]];
+	}
+	[self.inputFilter setValue: videoImage forKey: @"videoImage"];	
 }
 
 #pragma mark -
