@@ -22,6 +22,7 @@
 		5FA58027127C25BD003C2B32 /* FBReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58026127C25BD003C2B32 /* FBReel.m */; };
 		5FA58030127C59E2003C2B32 /* FBDocumentCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */; };
 		5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58032127C5DB4003C2B32 /* FBCell.m */; };
+		5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */; };
 		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,8 @@
 		5FA5802F127C59E2003C2B32 /* FBDocumentCreator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBDocumentCreator.xib; sourceTree = "<group>"; };
 		5FA58031127C5DB4003C2B32 /* FBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCell.h; sourceTree = "<group>"; };
 		5FA58032127C5DB4003C2B32 /* FBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCell.m; sourceTree = "<group>"; };
+		5FA85DDE1291C85600384AF5 /* FBFilterPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFilterPipeline.h; sourceTree = "<group>"; };
+		5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFilterPipeline.m; sourceTree = "<group>"; };
 		5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigator.h; sourceTree = "<group>"; };
 		5FABC130128572BA0084B0A1 /* FBReelNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReelNavigator.m; sourceTree = "<group>"; };
 		5FABC133128573520084B0A1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -84,15 +87,14 @@
 		5F96419D127A12D3009E6FC1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5FA85DD61291C80000384AF5 /* Reel */,
 				5FABC132128572C30084B0A1 /* Views */,
 				5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */,
 				5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */,
-				5FA58031127C5DB4003C2B32 /* FBCell.h */,
-				5FA58032127C5DB4003C2B32 /* FBCell.m */,
 				5F9641B7127A12D4009E6FC1 /* FBDocument.h */,
 				5F9641B8127A12D4009E6FC1 /* FBDocument.m */,
-				5FA58025127C25BD003C2B32 /* FBReel.h */,
-				5FA58026127C25BD003C2B32 /* FBReel.m */,
+				5FA85DDE1291C85600384AF5 /* FBFilterPipeline.h */,
+				5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -138,6 +140,17 @@
 				5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5FA85DD61291C80000384AF5 /* Reel */ = {
+			isa = PBXGroup;
+			children = (
+				5FA58031127C5DB4003C2B32 /* FBCell.h */,
+				5FA58032127C5DB4003C2B32 /* FBCell.m */,
+				5FA58025127C25BD003C2B32 /* FBReel.h */,
+				5FA58026127C25BD003C2B32 /* FBReel.m */,
+			);
+			name = Reel;
 			sourceTree = "<group>";
 		};
 		5FABC132128572C30084B0A1 /* Views */ = {
@@ -218,6 +231,7 @@
 				5FA58027127C25BD003C2B32 /* FBReel.m in Sources */,
 				5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */,
 				5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */,
+				5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

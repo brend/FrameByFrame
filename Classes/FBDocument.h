@@ -10,6 +10,7 @@
 #import <QTKit/QTKit.h>
 #import "FBReel.h"
 #import "FBReelNavigatorDelegate.h"
+#import "FBFilterPipeline.h"
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate>
 {
@@ -26,6 +27,7 @@
 	BOOL shouldTakeSnapshot;
 	
 	CIFilter *inputFilter;
+	NSInteger filterInputCount;
 	
 	NSURL *originalDocumentURL, *temporaryStorageURL;
 	
@@ -47,6 +49,7 @@
 #pragma mark Displaying Video Input
 - (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)image;
 @property (retain) CIFilter *inputFilter;
+@property NSInteger filterInputCount;
 - (CIFilter *) generateFilter;
 - (CIFilter *) generateFilterForSinglePicture;
 - (CIFilter *) generateFilterForMultiplePictures;
@@ -62,7 +65,7 @@
 
 #pragma mark -
 #pragma mark Onion Skinning
-@property (assign) NSInteger onionLayerCount;
+@property (nonatomic, assign) NSInteger onionLayerCount;
 - (void) populateFilterWithVideoImage: (CIImage *) videoImage;
 
 #pragma mark -

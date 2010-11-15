@@ -10,7 +10,7 @@
 #import "FBReelNavigator.h"
 
 @implementation FBDocument
-@synthesize inputDevices, reel, reelNavigator, inputFilter, temporaryStorageURL, originalDocumentURL, onionLayerCount;
+@synthesize inputDevices, reel, reelNavigator, inputFilter, filterInputCount, temporaryStorageURL, originalDocumentURL, onionLayerCount;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -253,9 +253,7 @@
 	return videoImage;
 #else
 	BOOL computeFilter = shouldTakeSnapshot;
-	
-	[[NSString alloc] initWithString: @"hi"];
-	
+		
 	if (shouldTakeSnapshot) {
 		[self createSnapshotFromImage: videoImage];
 		shouldTakeSnapshot = NO;
@@ -279,7 +277,13 @@
 
 - (CIFilter *) generateFilter
 {
-	switch (self.reel.count) {
+	NSLog(@"generateFilter");
+	
+	NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
+	
+	self.filterInputCount = imageCount;
+	
+	switch (imageCount) {
 		case 0:
 			return nil;
 		case 1:
@@ -360,19 +364,33 @@
 
 #pragma mark -
 #pragma mark Onion Skinning
+- (void) setOnionLayerCount: (NSInteger) skinCount
+{
+	if (skinCount != onionLayerCount) {
+		[self willChangeValueForKey: @"onionLayerCount"];
+		onionLayerCount = skinCount;
+		[self generateFilter];
+		[self didChangeValueForKey: @"onionLayerCount"];
+	}
+}
+
 - (void) populateFilterWithVideoImage: (CIImage *) videoImage
 {
-	NSAssert(self.onionLayerCount > 0, @"Filter can only be populated with an onion layer count greater than zero");
+	NSAssert(self.filterInputCount > 0, @"Filter can only be populated with a filter input count greater than zero");
 	
 	// For testing purposes, we always use the last images on the reel as onion skins
 	NSInteger referenceIndex = self.reel.count;
-	NSInteger startIndex = MAX(0, referenceIndex - self.onionLayerCount);
-	NSInteger imageCount = MIN((NSInteger) self.reel.count - startIndex, self.onionLayerCount);
+	NSInteger startIndex = MAX(0, referenceIndex - self.filterInputCount);
+	NSInteger imageCount = MIN((NSInteger) self.reel.count - startIndex, self.filterInputCount);
 	
 	for (NSInteger i = 0; i < imageCount; ++i) {
 		CIImage *picture = [self.reel imageAtIndex: startIndex + i];
 		
-		[self.inputFilter setValue: picture forKey: [NSString stringWithFormat: @"inputImage%d", i]];
+		@try {
+			[self.inputFilter setValue: picture forKey: [NSString stringWithFormat: @"inputImage%d", i]];
+		} @catch (NSException *e) {
+			NSLog(@"%@", e);
+		}
 	}
 	[self.inputFilter setValue: videoImage forKey: @"videoImage"];	
 }
