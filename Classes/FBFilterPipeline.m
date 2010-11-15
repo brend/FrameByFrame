@@ -149,4 +149,23 @@
 	return parameterNames.count;
 }
 
+#pragma mark -
+#pragma mark Piping Images Through the Pipeline
+- (CIImage *) pipeVideoImage: (CIImage *) videoImage
+				  skinImages: (NSArray *) skinImages
+{
+	if (skinImages.count != self.skinCount)
+		@throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Number of skin images doesn't match skin count" userInfo: nil];
+	
+	for (NSInteger i = 0; i < skinImages.count; ++i) {
+		CIImage *picture = [skinImages objectAtIndex: i];
+		
+		[self.filter setValue: picture forKey: [self.parameterNames objectAtIndex: i]];
+	}
+	
+	[self.filter setValue: videoImage forKey: @"videoImage"];	
+	
+	return [self.filter valueForKey: @"outputImage"];
+}
+
 @end

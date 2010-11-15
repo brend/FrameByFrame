@@ -26,6 +26,11 @@
 @property (readonly, copy) NSArray *parameterNames;
 
 #pragma mark -
+#pragma mark Piping Images Through the Pipeline
+- (CIImage *) pipeVideoImage: (CIImage *) videoImage
+				  skinImages: (NSArray *) skinImages;
+
+#pragma mark -
 #pragma mark Retrieving the Underlying Core Image Filter
 @property (readonly, retain) CIFilter *filter;
 
