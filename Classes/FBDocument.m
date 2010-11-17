@@ -10,7 +10,7 @@
 #import "FBReelNavigator.h"
 
 @implementation FBDocument
-@synthesize inputDevices, reel, reelNavigator, inputFilter, filterInputCount, temporaryStorageURL, originalDocumentURL, onionLayerCount;
+@synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, originalDocumentURL, onionLayerCount;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -45,6 +45,7 @@
 {
 	self.originalDocumentURL = nil;
 	self.temporaryStorageURL = nil;
+	self.filterPipeline = nil;
 	
 	[captureSession release];
 	captureSession = nil;
@@ -107,10 +108,8 @@
 	// Enumerate available video input devices
 	[self refreshInputDevices];
 	
-	// Create filter
-	// NOTE If there are no pictures, the filter will be nil,
-	// and thus images will pass through the CICaptureView unfiltered.
-	self.inputFilter = [self generateFilter];
+	// Create filter pipeline
+	[self createFilterPipeline];
 	
 	// Set up the reel navigator
 	[self.reelNavigator bind: @"reel" toObject: self withKeyPath: @"reel" options: nil];
@@ -262,104 +261,26 @@
 	if (self.reel.count == 0 || self.onionLayerCount == 0)
 		return videoImage;
 	
-	if (computeFilter) {
-		self.inputFilter = [self generateFilter];
-	}
+	if (computeFilter)
+		[self createFilterPipeline];
 	
-	[self.inputFilter setDefaults];
-	[self populateFilterWithVideoImage: videoImage];
-	
-	CIImage *result = [self.inputFilter valueForKey: @"outputImage"];
+	NSArray *skinImages = [self skinImages];
+	CIImage *result = [self.filterPipeline pipeVideoImage: videoImage skinImages: skinImages];
 	
 	return result;
 #endif
 }
 
-- (CIFilter *) generateFilter
-{
-	NSLog(@"generateFilter");
-	
-	NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
-	
-	self.filterInputCount = imageCount;
-	
-	switch (imageCount) {
-		case 0:
-			return nil;
-		case 1:
-			return [self generateFilterForSinglePicture];
-		default:
-			return [self generateFilterForMultiplePictures];
-	}
-}
+#pragma mark -
+#pragma mark Filter Pipeline
+@synthesize filterPipeline;
 
-- (CIFilter *) generateFilterForSinglePicture
+- (void) createFilterPipeline
 {
-	CIFilterGenerator *generator = [CIFilterGenerator filterGenerator];
-	CIFilter
-		*fade = [CIFilter filterWithName: @"CIColorMatrix"],
-		*blend = [CIFilter filterWithName: @"CISourceOverCompositing"];
-	
-	[fade setDefaults];
-	[fade setValue: [CIVector vectorWithX: 0.0f Y: 0.0f Z: 0.0f W: 0.5f] forKey: @"inputAVector"];
-	
-	[blend setDefaults];
-	
-	[generator connectObject: fade withKey: @"outputImage" toObject: blend withKey: @"inputImage"];
-	[generator exportKey: @"inputImage" fromObject: fade withName: @"inputImage0"];
-	[generator exportKey: @"inputBackgroundImage" fromObject: blend withName: @"videoImage"];
-	[generator exportKey: @"outputImage" fromObject: blend withName: @"outputImage"];
-	
-	return [generator filter];
-}
-
-- (CIFilter *) generateFilterForMultiplePictures
-{
-	CIFilterGenerator *generator = [CIFilterGenerator filterGenerator];
-	CIFilter *penultimateBlend = nil;
 	NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
+	FBFilterPipeline *fp = [FBFilterPipeline filterPipelineWithSkinCount: imageCount];
 	
-	NSAssert(imageCount > 1, @"Multiple pictures must be present");
-	
-	for (NSInteger i = 0; i < imageCount; ++i) {
-		CIFilter *fade = [CIFilter filterWithName: @"CIColorMatrix"];
-		CIFilter *blend = [CIFilter filterWithName: @"CISourceOverCompositing"];
-		float alpha = 1.0f / (float) imageCount;
-//		float alpha = 0.5f;
-		
-		[fade setDefaults];
-		[fade setValue: [CIVector vectorWithX: 0.0f Y: 0.0f Z: 0.0f W: alpha] forKey: @"inputAVector"];
-		
-		[blend setDefaults];
-		
-		NSString *exportedInput = [NSString stringWithFormat: @"inputImage%d", i];
-		
-		if (i == 0) {
-			[generator connectObject: fade withKey: @"outputImage" toObject: blend withKey: @"inputImage"];
-		} else {
-			[generator connectObject: fade withKey: @"outputImage" toObject: blend withKey: @"inputBackgroundImage"];
-			[generator connectObject: penultimateBlend withKey: @"outputImage" toObject: blend withKey: @"inputImage"];
-		}
-		
-		[generator exportKey: @"inputImage" fromObject: fade withName: exportedInput];
-		
-		penultimateBlend = blend;
-	}
-	
-	NSAssert(penultimateBlend != nil, @"There must be at least one picture thingy");
-	
-	CIFilter *finalBlend = [CIFilter filterWithName: @"CISourceOverCompositing"];
-	
-	[finalBlend setDefaults];
-	[generator connectObject: penultimateBlend withKey: @"outputImage" toObject: finalBlend withKey: @"inputImage"];
-	[generator exportKey: @"inputBackgroundImage" fromObject: finalBlend withName: @"videoImage"];
-	[generator exportKey: @"outputImage" fromObject: finalBlend withName: @"outputImage"];
-	
-	// So wird gespeichert
-	//	[generator setClassAttributes: [NSDictionary dictionary]];
-	//	[generator writeToURL: [NSURL fileURLWithPath: @"/Users/brph0000/Desktop/Threeway.plist"] atomically: YES];
-	
-	return [generator filter];
+	self.filterPipeline = fp;
 }
 
 #pragma mark -
@@ -369,30 +290,26 @@
 	if (skinCount != onionLayerCount) {
 		[self willChangeValueForKey: @"onionLayerCount"];
 		onionLayerCount = skinCount;
-		[self generateFilter];
+		[self createFilterPipeline];
 		[self didChangeValueForKey: @"onionLayerCount"];
 	}
 }
 
-- (void) populateFilterWithVideoImage: (CIImage *) videoImage
+- (NSArray *) skinImages
 {
-	NSAssert(self.filterInputCount > 0, @"Filter can only be populated with a filter input count greater than zero");
+	NSAssert(self.reel.count >= self.filterPipeline.skinCount, @"Not enough pictures on reel to fill the filter pipeline");
 	
-	// For testing purposes, we always use the last images on the reel as onion skins
-	NSInteger referenceIndex = self.reel.count;
-	NSInteger startIndex = MAX(0, referenceIndex - self.filterInputCount);
-	NSInteger imageCount = MIN((NSInteger) self.reel.count - startIndex, self.filterInputCount);
+	NSInteger imageCount = self.filterPipeline.skinCount;
+	NSInteger startIndex = self.reel.count - imageCount;
+	NSMutableArray *a = [NSMutableArray arrayWithCapacity: imageCount];
 	
 	for (NSInteger i = 0; i < imageCount; ++i) {
-		CIImage *picture = [self.reel imageAtIndex: startIndex + i];
+		CIImage *image = [self.reel imageAtIndex: startIndex + i];
 		
-		@try {
-			[self.inputFilter setValue: picture forKey: [NSString stringWithFormat: @"inputImage%d", i]];
-		} @catch (NSException *e) {
-			NSLog(@"%@", e);
-		}
+		[a addObject: image];
 	}
-	[self.inputFilter setValue: videoImage forKey: @"videoImage"];	
+	
+	return a;
 }
 
 #pragma mark -

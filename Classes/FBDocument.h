@@ -26,11 +26,9 @@
 	FBReel *reel;
 	BOOL shouldTakeSnapshot;
 	
-	CIFilter *inputFilter;
-	NSInteger filterInputCount;
-	
 	NSURL *originalDocumentURL, *temporaryStorageURL;
 	
+	FBFilterPipeline *filterPipeline;
 	NSInteger onionLayerCount;
 }
 
@@ -48,11 +46,6 @@
 #pragma mark -
 #pragma mark Displaying Video Input
 - (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)image;
-@property (retain) CIFilter *inputFilter;
-@property NSInteger filterInputCount;
-- (CIFilter *) generateFilter;
-- (CIFilter *) generateFilterForSinglePicture;
-- (CIFilter *) generateFilterForMultiplePictures;
 
 #pragma mark -
 #pragma mark Taking Pictures
@@ -66,7 +59,12 @@
 #pragma mark -
 #pragma mark Onion Skinning
 @property (nonatomic, assign) NSInteger onionLayerCount;
-- (void) populateFilterWithVideoImage: (CIImage *) videoImage;
+- (NSArray *) skinImages;
+
+#pragma mark -
+#pragma mark Filter Pipeline
+@property (retain) FBFilterPipeline *filterPipeline;
+- (void) createFilterPipeline;
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate

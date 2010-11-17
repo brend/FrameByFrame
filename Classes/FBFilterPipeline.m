@@ -66,6 +66,8 @@
 			[self generateFilterForMultiplePictures: skinCount];
 			break;
 	}
+	
+	// [self.filter setDefaults];
 }
 
 - (void) generateFilterForSinglePicture
@@ -156,6 +158,8 @@
 {
 	if (skinImages.count != self.skinCount)
 		@throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Number of skin images doesn't match skin count" userInfo: nil];
+	
+	[self.filter setDefaults];
 	
 	for (NSInteger i = 0; i < skinImages.count; ++i) {
 		CIImage *picture = [skinImages objectAtIndex: i];
