@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTKit.h>
 #import "FBReel.h"
-#import "FBReelNavigatorDelegate.h"
+#import "FBReelNavigator.h"
 #import "FBFilterPipeline.h"
 
-@interface FBDocument : NSDocument <FBReelNavigatorDelegate>
+@interface FBDocument : NSDocument <FBReelNavigatorDelegate, FBReelNavigatorDataSource>
 {
 	QTCaptureSession *captureSession;
 	QTCaptureDeviceInput *captureDeviceInput;

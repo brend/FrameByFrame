@@ -25,6 +25,7 @@
 #import <Cocoa/Cocoa.h>
 #import "FBReel.h"
 #import "FBReelNavigatorDelegate.h"
+#import "FBReelNavigatorDataSource.h"
 
 extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 
