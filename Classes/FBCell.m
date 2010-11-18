@@ -119,6 +119,8 @@
 	NSData *data = [imageRep TIFFRepresentation];
 	NSError *error = nil;
 	
+	[imageRep release];
+	
 	if ([data writeToFile: path options: 0 error: &error])
 		return YES;
 	else {
