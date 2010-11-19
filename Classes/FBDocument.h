@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "FBReel.h"
 #import "FBReelNavigator.h"
 #import "FBFilterPipeline.h"
@@ -65,6 +66,12 @@
 #pragma mark Filter Pipeline
 @property (retain) FBFilterPipeline *filterPipeline;
 - (void) createFilterPipeline;
+
+#pragma mark -
+#pragma mark Reel Navigator Data Source
+- (NSInteger) numberOfCellsForReelNavigator: (FBReelNavigator *) navigator;
+- (CIImage *) reelNavigator: (FBReelNavigator *) navigator imageForCellAtIndex:(NSInteger)index;
+- (NSImage *) reelNavigator: (FBReelNavigator *) navigator thumbnailForCellAtIndex:(NSInteger)index;
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate

@@ -40,7 +40,8 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 @implementation FBReelNavigator
 
 @synthesize currentImage, selectionColor, highlightColor;
-@synthesize reel;
+//@synthesize reel;
+@synthesize dataSource, delegate;
 @dynamic count, selectedIndexes, selectedIndex, selectedImage, framesPerSecond;
 
 #pragma mark Key-Value Coding
@@ -50,17 +51,6 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 		return [NSSet setWithObject: @"selectedIndexes"];
 	else
 		return [NSSet set];
-}
-
-#pragma mark Delegate
-- (id) delegate
-{
-	return delegate;
-}
-
-- (void) setDelegate: (id) anObject
-{
-	delegate = anObject;
 }
 
 #pragma mark Adding Representations to Images
@@ -93,7 +83,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 - (void) dealloc
 {
 	// NOTE "reel" is an Interface Builder Outlet; do not release
-	reel = nil;
+//	reel = nil;
 	[currentImage release];
 	currentImage = nil;
 	delegate = nil; // Delegate will not be retained upon assignment
@@ -107,7 +97,8 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 
 - (NSInteger) count
 {
-	return self.reel.count;
+//	return self.reel.count;
+	return [self.dataSource numberOfCellsForReelNavigator: self];
 }
 
 #pragma mark Drawing
@@ -124,7 +115,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 	// Draw the images
 	for (i = 0; i < [self count]; ++i) {
 //		CIImage *image = [self.reel imageAtIndex: i];
-		NSImage *image = [[self.reel cellAtIndex: i] thumbnail];
+		NSImage *image = [self.dataSource reelNavigator: self thumbnailForCellAtIndex: i];
 		NSRect cellExterior = NSMakeRect(i * [self cellWidth], 0, [self cellWidth], [self cellHeight]);
 //		CGSize imageSize = image.extent.size;
 		NSSize imageSize = image.size;
@@ -294,134 +285,170 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 #pragma mark Adding and Removing Images
 - (void) addObject: (CIImage *) image
 {
-	NSAssert(image, @"Image is nil");
-	
-	[self willChangeValueForKey: @"images"];
-	
-	[FBReelNavigator adaptImageSizeToResolution: [NSArray arrayWithObject: image]];
-	
-	// Add the image
-	[self.reel addCellWithImage: image];
-	
-	// Set up undo information
-	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: [NSIndexSet indexSetWithIndex: [self count] - 1]];
-	
-	// When resizing, allow for some extra space for drag and drop
-	[self resizeToFitImages];
-	[self didChangeValueForKey: @"images"];
-	[self setNeedsDisplay: YES];
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
 }
-
 - (void) insertObject: (CIImage *) image atIndex: (NSUInteger) index
 {
-	[self willChangeValueForKey: @"images"];
-	
-	[FBReelNavigator adaptImageSizeToResolution: [NSArray arrayWithObject: image]];
-	
-	// Insert the image
-	[self.reel insertCellWithImage: image atIndex: index];
-	[selectedIndexes shiftIndexesStartingAtIndex: index by: 1];
-	
-	// Resize the frame to make it visible
-	[self resizeToFitImages];
-	
-	// Set up undo information
-	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: [NSIndexSet indexSetWithIndex: index]];
-	
-	[self didChangeValueForKey: @"images"];
-	[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: index]];
-	[self setNeedsDisplay: YES];
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
 }
-
-- (void) insertObjects: (NSArray *) newImages atIndex: (NSUInteger) index
+- (void) insertObjects: (NSArray *) images atIndex: (NSUInteger) index
 {
-	[self willChangeValueForKey: @"images"];
-	
-	[FBReelNavigator adaptImageSizeToResolution: newImages];
-	
-	// Insert the images
-	NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(index, [newImages count])];
-
-	[self.reel insertCellsWithImages: newImages atIndexes: indexes];
-	
-	// Resize the frame to make them visible
-	[self resizeToFitImages];
-	
-	// Set up undo information
-	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: indexes];
-	
-	[self didChangeValueForKey: @"images"];
-	if ([self count] > 0)
-		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: MAX(0, (NSInteger) (index + [newImages count]) - 1)]];
-	[self setNeedsDisplay: YES];
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
 }
-
-- (void) insertObjects: (NSArray *) newImages atIndexes: (NSIndexSet *) indexes
+- (void) insertObjects: (NSArray *) images atIndexes: (NSIndexSet *) indexes
 {
-	[self willChangeValueForKey: @"images"];
-	[self willChangeValueForKey: @"selectedIndexes"];
-	
-	[FBReelNavigator adaptImageSizeToResolution: newImages];
-	
-	// Insert the images
-	[self.reel insertCellsWithImages: newImages atIndexes: indexes];
-	[selectedIndexes removeIndexesInRange: NSMakeRange(MIN(1, self.reel.count), MAX(0, (int) self.reel.count - 1))];
-	
-	// Resize the frame to make them visible
-	[self resizeToFitImages];
-	
-	// Set up undo information
-	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: indexes];
-	
-	[self didChangeValueForKey: @"images"];
-	[self didChangeValueForKey: @"selectedIndexes"];
-	[self setNeedsDisplay: YES];
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
 }
-
 - (void) removeObjectsAtIndexes: (NSIndexSet *) indexes
 {
-	[self willChangeValueForKey: @"images"];
-	
-	// Remove the images
-	NSInteger desiredIndex = (NSInteger) [selectedIndexes firstIndex] - 1;
-	NSArray *removedImages = [self.reel imagesAtIndexes: indexes];
-	
-	[self.reel removeImagesAtIndexes: indexes];
-	
-	// Resize the frame to make them visible
-	[self resizeToFitImages];	
-
-	// Set up undo information
-	[[self.window.undoManager prepareWithInvocationTarget: self] insertObjects: removedImages atIndexes: indexes];
-	
-	[self didChangeValueForKey: @"images"];
-	if (desiredIndex >= 0 && desiredIndex < [self count])
-		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: desiredIndex]];
-	[self setNeedsDisplay: YES];
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
 }
 
+
+//- (void) addObject: (CIImage *) image
+//{
+//	NSAssert(image, @"Image is nil");
+//	
+//	[self willChangeValueForKey: @"images"];
+//	
+//	[FBReelNavigator adaptImageSizeToResolution: [NSArray arrayWithObject: image]];
+//	
+//	// Add the image
+//	[self.reel addCellWithImage: image];
+//	
+//	// Set up undo information
+//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: [NSIndexSet indexSetWithIndex: [self count] - 1]];
+//	
+//	// When resizing, allow for some extra space for drag and drop
+//	[self resizeToFitImages];
+//	[self didChangeValueForKey: @"images"];
+//	[self setNeedsDisplay: YES];
+//}
+//
+//- (void) insertObject: (CIImage *) image atIndex: (NSUInteger) index
+//{
+//	[self willChangeValueForKey: @"images"];
+//	
+//	[FBReelNavigator adaptImageSizeToResolution: [NSArray arrayWithObject: image]];
+//	
+//	// Insert the image
+//	[self.reel insertCellWithImage: image atIndex: index];
+//	[selectedIndexes shiftIndexesStartingAtIndex: index by: 1];
+//	
+//	// Resize the frame to make it visible
+//	[self resizeToFitImages];
+//	
+//	// Set up undo information
+//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: [NSIndexSet indexSetWithIndex: index]];
+//	
+//	[self didChangeValueForKey: @"images"];
+//	[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: index]];
+//	[self setNeedsDisplay: YES];
+//}
+//
+//- (void) insertObjects: (NSArray *) newImages atIndex: (NSUInteger) index
+//{
+//	[self willChangeValueForKey: @"images"];
+//	
+//	[FBReelNavigator adaptImageSizeToResolution: newImages];
+//	
+//	// Insert the images
+//	NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(index, [newImages count])];
+//
+//	[self.reel insertCellsWithImages: newImages atIndexes: indexes];
+//	
+//	// Resize the frame to make them visible
+//	[self resizeToFitImages];
+//	
+//	// Set up undo information
+//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: indexes];
+//	
+//	[self didChangeValueForKey: @"images"];
+//	if ([self count] > 0)
+//		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: MAX(0, (NSInteger) (index + [newImages count]) - 1)]];
+//	[self setNeedsDisplay: YES];
+//}
+//
+//- (void) insertObjects: (NSArray *) newImages atIndexes: (NSIndexSet *) indexes
+//{
+//	[self willChangeValueForKey: @"images"];
+//	[self willChangeValueForKey: @"selectedIndexes"];
+//	
+//	[FBReelNavigator adaptImageSizeToResolution: newImages];
+//	
+//	// Insert the images
+//	[self.reel insertCellsWithImages: newImages atIndexes: indexes];
+//	[selectedIndexes removeIndexesInRange: NSMakeRange(MIN(1, self.reel.count), MAX(0, (int) self.reel.count - 1))];
+//	
+//	// Resize the frame to make them visible
+//	[self resizeToFitImages];
+//	
+//	// Set up undo information
+//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: indexes];
+//	
+//	[self didChangeValueForKey: @"images"];
+//	[self didChangeValueForKey: @"selectedIndexes"];
+//	[self setNeedsDisplay: YES];
+//}
+//
+//- (void) removeObjectsAtIndexes: (NSIndexSet *) indexes
+//{
+//	[self willChangeValueForKey: @"images"];
+//	
+//	// Remove the images
+//	NSInteger desiredIndex = (NSInteger) [selectedIndexes firstIndex] - 1;
+//	NSArray *removedImages = [self.reel imagesAtIndexes: indexes];
+//	
+//	[self.reel removeImagesAtIndexes: indexes];
+//	
+//	// Resize the frame to make them visible
+//	[self resizeToFitImages];	
+//
+//	// Set up undo information
+//	[[self.window.undoManager prepareWithInvocationTarget: self] insertObjects: removedImages atIndexes: indexes];
+//	
+//	[self didChangeValueForKey: @"images"];
+//	if (desiredIndex >= 0 && desiredIndex < [self count])
+//		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: desiredIndex]];
+//	[self setNeedsDisplay: YES];
+//}
+//
 #pragma mark Retrieving Images
-- (CIImage *) objectAtIndex: (NSUInteger) index
+//- (CIImage *) objectAtIndex: (NSUInteger) index
+//{
+//	return [self.reel imageAtIndex: index];
+//}
+
+- (NSArray *) imagesAtIndexes: (NSIndexSet *) indexes
 {
-	return [self.reel imageAtIndex: index];
+	NSMutableArray *a = [NSMutableArray arrayWithCapacity: indexes.count];
+	
+	[indexes enumerateIndexesUsingBlock:
+	 ^(NSUInteger i, BOOL *stop) {
+		 [a addObject: [self.dataSource reelNavigator: self imageForCellAtIndex: i]];
+	 }];
+	
+	return a;
 }
 
 #pragma mark IB Add, Remove
 - (IBAction) add: (id) sender
 {
-	if (currentImage) {
-		NSUInteger insertionIndex = [self selectedIndex];
-		
-		if (insertionIndex == NSNotFound)
-			[self.reel addCellWithImage: self.currentImage];
-		else
-			[self.reel insertCellWithImage: self.currentImage atIndex: insertionIndex + 1];
-	}
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
+//	if (currentImage) {
+//		NSUInteger insertionIndex = [self selectedIndex];
+//		
+//		if (insertionIndex == NSNotFound)
+//			[self.reel addCellWithImage: self.currentImage];
+//		else
+//			[self.reel insertCellWithImage: self.currentImage atIndex: insertionIndex + 1];
+//	}
 }
 
 - (IBAction) remove: (id) sender
 {
-	[self removeObjectsAtIndexes: selectedIndexes];
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
+//	[self removeObjectsAtIndexes: selectedIndexes];
 }
 
 #pragma mark Selection Indices and Selected Images
@@ -453,12 +480,13 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 {
 	NSUInteger selectedIndex = [self selectedIndex];
 	
-	return selectedIndex == NSNotFound ? nil : [self.reel imageAtIndex: selectedIndex];
+	// return selectedIndex == NSNotFound ? nil : [self.reel imageAtIndex: selectedIndex];
+	return selectedIndex == NSNotFound ? nil : [self.dataSource reelNavigator: self imageForCellAtIndex: selectedIndex];
 }
 
 - (NSArray *) selectedImages
 {
-	return [self.reel imagesAtIndexes: [self selectedIndexes]];
+	return [self imagesAtIndexes: [self selectedIndexes]];
 }
 
 - (void) shiftSelectionToRight
@@ -683,7 +711,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 	
 	NSRect destRect = NSMakeRect(0, 0, [self cellWidth], [self cellHeight]);
 	NSImage *dragImage = [[NSImage alloc] initWithSize: destRect.size];
-	CIImage *cellImage = [self objectAtIndex: cellIndex];
+	CIImage *cellImage = [self.dataSource reelNavigator: self imageForCellAtIndex: cellIndex];
 	CGSize cellImageSize = cellImage.extent.size;
 	
 	[dragImage lockFocus];

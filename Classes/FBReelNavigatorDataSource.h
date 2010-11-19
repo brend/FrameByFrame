@@ -7,12 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <QuartzCore/QuartzCore.h>
 
 @class FBReelNavigator;
 
 @protocol FBReelNavigatorDataSource <NSObject>
 
+- (NSInteger) numberOfCellsForReelNavigator: (FBReelNavigator *) navigator;
 - (NSImage *) reelNavigator: (FBReelNavigator *) navigator
 	thumbnailForCellAtIndex: (NSInteger) index;
+- (CIImage *) reelNavigator: (FBReelNavigator *) navigator
+		imageForCellAtIndex: (NSInteger) index;
 
 @end

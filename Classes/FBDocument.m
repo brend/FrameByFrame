@@ -64,8 +64,6 @@
 #pragma mark Document Implementation
 - (NSString *)windowNibName 
 {
-	// Override returning the nib file name of the document
-	// If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
 	return @"FBDocument";
 }
 
@@ -110,9 +108,6 @@
 	
 	// Create filter pipeline
 	[self createFilterPipeline];
-	
-	// Set up the reel navigator
-	[self.reelNavigator bind: @"reel" toObject: self withKeyPath: @"reel" options: nil];
 }
 
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
@@ -325,6 +320,23 @@
 {
 	[self.reel addCellWithImage: image];
 	[self.reelNavigator reelHasChanged];
+}
+
+#pragma mark -
+#pragma mark Reel Navigator Data Source
+- (NSInteger) numberOfCellsForReelNavigator: (FBReelNavigator *) navigator
+{
+	return self.reel.count;
+}
+
+- (CIImage *) reelNavigator: (FBReelNavigator *) navigator imageForCellAtIndex:(NSInteger)index
+{
+	return [[self.reel cellAtIndex: index] image];
+}
+
+- (NSImage *) reelNavigator: (FBReelNavigator *) navigator thumbnailForCellAtIndex:(NSInteger)index
+{
+	return [[self.reel cellAtIndex: index] thumbnail];
 }
 
 #pragma mark -

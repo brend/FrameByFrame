@@ -34,9 +34,10 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 @interface FBReelNavigator : NSView 
 {
 	IBOutlet NSScrollView *scrollView;
-	IBOutlet id delegate;
+	IBOutlet id<FBReelNavigatorDelegate> delegate;
+	IBOutlet id<FBReelNavigatorDataSource> dataSource;
 	
-	IBOutlet FBReel *reel;
+//	IBOutlet FBReel *reel;
 	
 	NSMutableIndexSet *selectedIndexes;
 	
@@ -50,7 +51,7 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 	NSInteger insertionMark;
 }
 
-@property (readonly) FBReel *reel;
+//@property (readonly) FBReel *reel;
 @property(readonly) NSInteger count;
 @property(copy) NSMutableIndexSet *selectedIndexes;
 @property(readonly) NSUInteger selectedIndex, framesPerSecond;
@@ -58,9 +59,9 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 @property(retain) CIImage *currentImage;
 @property(retain) NSColor *highlightColor, *selectionColor;
 
-#pragma mark Delegate
-- (id) delegate;
-- (void) setDelegate: (id) anObject;
+#pragma mark Delegate and Data Source
+@property (readonly) id<FBReelNavigatorDelegate> delegate;
+@property (readonly) id<FBReelNavigatorDataSource> dataSource;
 
 #pragma mark Adding Representations to Images
 + (NSArray *) addTIFFRepresentations: (NSArray *) images;
@@ -73,7 +74,8 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 - (void) removeObjectsAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark Retrieving Images
-- (CIImage *) objectAtIndex: (NSUInteger) index;
+//- (CIImage *) objectAtIndex: (NSUInteger) index;
+- (NSArray *) imagesAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark Cell Measures
 - (float) cellWidth;

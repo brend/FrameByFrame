@@ -10,7 +10,7 @@
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate
-@protocol FBReelNavigatorDelegate
+@protocol FBReelNavigatorDelegate <NSObject>
 
 - (void) reelNavigatorRequestsSnapshot: (FBReelNavigator *) strip;
 
