@@ -24,6 +24,8 @@
 		5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58032127C5DB4003C2B32 /* FBCell.m */; };
 		5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */; };
 		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
+		5FCECB311297F2DA008D2CCD /* FBMovieTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB2E1297F2DA008D2CCD /* FBMovieTools.m */; };
+		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,10 @@
 		5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigator.h; sourceTree = "<group>"; };
 		5FABC130128572BA0084B0A1 /* FBReelNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReelNavigator.m; sourceTree = "<group>"; };
 		5FABC133128573520084B0A1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		5FCECB2D1297F2DA008D2CCD /* FBMovieTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FBMovieTools.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		5FCECB2E1297F2DA008D2CCD /* FBMovieTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FBMovieTools.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTMovieExtensions.h; sourceTree = "<group>"; };
+		5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTMovieExtensions.m; sourceTree = "<group>"; };
 		5FCF2EBA12947A7100993D6D /* FBReelNavigatorDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigatorDataSource.h; sourceTree = "<group>"; };
 		5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FBReelNavigatorDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 /* End PBXFileReference section */
@@ -88,6 +94,7 @@
 		5F96419D127A12D3009E6FC1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5FCECB2C1297F2A1008D2CCD /* QuickTime Movies */,
 				5FA85DD61291C80000384AF5 /* Reel */,
 				5FABC132128572C30084B0A1 /* Views */,
 				5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */,
@@ -165,6 +172,17 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		5FCECB2C1297F2A1008D2CCD /* QuickTime Movies */ = {
+			isa = PBXGroup;
+			children = (
+				5FCECB2D1297F2DA008D2CCD /* FBMovieTools.h */,
+				5FCECB2E1297F2DA008D2CCD /* FBMovieTools.m */,
+				5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */,
+				5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */,
+			);
+			name = "QuickTime Movies";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -234,6 +252,8 @@
 				5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */,
 				5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */,
 				5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */,
+				5FCECB311297F2DA008D2CCD /* FBMovieTools.m in Sources */,
+				5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

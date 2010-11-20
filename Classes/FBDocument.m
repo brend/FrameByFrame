@@ -8,6 +8,7 @@
 
 #import "FBDocument.h"
 #import "FBReelNavigator.h"
+#import "FBMovieTools.h"
 
 @implementation FBDocument
 @synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, originalDocumentURL, onionLayerCount;
@@ -346,4 +347,34 @@
 	NSLog(@"Snapshot required!");
 }
 
+#pragma mark -
+#pragma mark Testing
+- (IBAction)foo:(id)sender 
+{
+	NSString *file = @"/Users/brph0000/Desktop/My Movie.mov";
+	NSMutableArray *images = [NSMutableArray arrayWithCapacity: self.reel.count];
+	NSInteger fps = 1;
+	CodecType codec = 0x61766331;
+	NSInteger quality = codecNormalQuality;
+	
+	for (NSInteger i = 0; i < self.reel.count; ++i) {
+		CIImage *coreImage = [self.reel imageAtIndex: i];
+		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: coreImage];
+		NSImage *image = [[NSImage alloc] init];
+		
+		[image addRepresentation: rep];
+		[images addObject: image];
+		[rep release];
+		[image release];
+	}
+	
+	NSLog(@"OK, got %d images", images.count);
+	
+	[FBMovieTools saveMovieWithImages: images 
+							   toFile: file
+					  framesPerSecond: fps
+								codec: codec
+						  compression: quality
+			   reportProgressDelegate: nil];
+}
 @end

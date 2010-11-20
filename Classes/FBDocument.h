@@ -33,6 +33,8 @@
 	NSInteger onionLayerCount;
 }
 
+- (IBAction)foo:(id)sender;
+
 #pragma mark -
 #pragma mark Handling Document Storage
 @property (retain) NSURL *originalDocumentURL, *temporaryStorageURL;
