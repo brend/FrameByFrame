@@ -28,12 +28,9 @@
 
 - (void)addImagesAsMPEG4:(NSArray *)imageFilesArray
 		 framesPerSecond: (NSUInteger) fps
-				   codec: (CodecType) codecType
-			 compression: (int) compression
+			  attributes: (NSDictionary *) codecAttributes
   reportProgressDelegate: (id<ReportProgressDelegate>) delegate;
 
 - (BOOL)flattenToFilePath:(NSString *)filePath;
-
-- (NSString *) nameForCodec: (CodecType) codec;
 
 @end

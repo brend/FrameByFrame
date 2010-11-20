@@ -37,25 +37,12 @@
 
 - (void)addImagesAsMPEG4: (NSArray *) images 
 		 framesPerSecond: (NSUInteger) fps
-				   codec: (CodecType) codecType
-			 compression: (int) compression
+			  attributes: (NSDictionary *) codecAttributes
   reportProgressDelegate: (id<ReportProgressDelegate>) delegate
 {
-	if (!images)
-		goto bail;
+	if (images == nil) @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"images is nil" userInfo: nil];
+	if (codecAttributes == nil) @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"codecAttributes is nil" userInfo: nil];
 	
-	// when adding images we must provide a dictionary
-	// specifying the codec attributes
-	NSDictionary *myDict = nil;
-	myDict = [NSDictionary dictionaryWithObjectsAndKeys: [self nameForCodec: codecType],
-														QTAddImageCodecType,
-														// [NSNumber numberWithLong:codecHighQuality],
-														[NSNumber numberWithLong: compression],
-														QTAddImageCodecQuality,
-														nil];
-	if (!myDict)
-		goto bail;
-
     // create a QTTime value to be used as a duration when adding 
     // the image to the movie
 	long timeScale      = 1000;
@@ -74,7 +61,7 @@
             // Adds an image for the specified duration to the QTMovie
             [self addImage:anImage 
                     forDuration:duration
-                    withAttributes:myDict];
+                    withAttributes: codecAttributes];
         }
 		
 		[delegate reportExportProgress: (double) (++imagesProcessed) / (double) imageCount];
@@ -84,9 +71,6 @@
 		if (time != lastReportedTime)
 			[delegate reportExportRemainingSeconds: lastReportedTime = time];
 	}
-
-bail:
-	return;
 }
 
 //
@@ -131,9 +115,5 @@ bail:
 	return success;
 }
 
-- (NSString *) nameForCodec: (CodecType) codec
-{
-	return [NSFileTypeForHFSTypeCode(codec) stringByReplacingOccurrencesOfString: @"'" withString: @""];
-}
 
 @end

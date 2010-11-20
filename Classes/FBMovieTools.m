@@ -70,8 +70,19 @@
 	// mark the movie as editable
 	[mMovie setAttribute:[NSNumber numberWithBool:YES] forKey:QTMovieEditableAttribute];
 	
+	// collect movie attributes
+	NSDictionary *movieAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [self nameForCodec: codecType],
+									 QTAddImageCodecType,
+									 // [NSNumber numberWithLong:codecHighQuality],
+									 [NSNumber numberWithLong: compression],
+									 QTAddImageCodecQuality,
+									 nil];
+	
 	// add all the images to our movie as MPEG-4 frames
-	[mMovie addImagesAsMPEG4: images framesPerSecond: fps codec: codecType compression: compression reportProgressDelegate: delegate];
+	[mMovie addImagesAsMPEG4: images 
+			 framesPerSecond: fps
+				  attributes: movieAttributes
+	  reportProgressDelegate: delegate];
 	[mMovie updateMovieFile];
 	
 bail:
@@ -122,6 +133,11 @@ nodataref:
 nostring:
 	
 	return nil;
+}
+
++ (NSString *) nameForCodec: (CodecType) codec
+{
+	return [NSFileTypeForHFSTypeCode(codec) stringByReplacingOccurrencesOfString: @"'" withString: @""];
 }
 
 @end

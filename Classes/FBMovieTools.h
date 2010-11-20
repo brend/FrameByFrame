@@ -39,4 +39,6 @@
 
 + (Movie)quicktimeMovieWithFilename: (NSString *) filename dataHandler:(DataHandler *)outDataHandler error:(OSErr *)outErr;
 
++ (NSString *) nameForCodec: (CodecType) codec;
+
 @end
