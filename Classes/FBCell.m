@@ -84,12 +84,6 @@
 - (NSImage *) thumbnail
 {
 	if (thumbnail == nil) {
-//		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: self.image];
-//		
-//		[[rep TIFFRepresentation] writeToFile: @"/Users/brph0000/Desktop/Zwischenspeicher.tiff" atomically: YES];
-//		[rep release];
-//		
-//		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: @"/Users/brph0000/Desktop/Zwischenspeicher.tiff"];
 		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: [self.documentURL.path stringByAppendingPathComponent: self.identifier]];
 		NSSize thumbnailSize = NSMakeSize(64, 64);
 		NSImage *thumb = [[NSImage alloc] initWithSize: thumbnailSize];
