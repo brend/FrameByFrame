@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F4D7351127A15DB00E49997 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D734D127A15DB00E49997 /* QTKit.framework */; };
-		5F4D7352127A15DB00E49997 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D734E127A15DB00E49997 /* Quartz.framework */; };
-		5F4D7353127A15DB00E49997 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D734F127A15DB00E49997 /* QuartzCore.framework */; };
-		5F4D7354127A15DB00E49997 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4D7350127A15DB00E49997 /* QuickTime.framework */; };
+		5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5234AC12987CF80007FCDB /* QuickTime.framework */; };
+		5F6A5B5C12987DF000BA6CD6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */; };
+		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
+		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
 		5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9641A8127A12D3009E6FC1 /* Cocoa.framework */; };
 		5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */; };
 		5F9641B0127A12D3009E6FC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9641AF127A12D3009E6FC1 /* main.m */; };
@@ -29,10 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F4D734D127A15DB00E49997 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
-		5F4D734E127A15DB00E49997 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		5F4D734F127A15DB00E49997 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		5F4D7350127A15DB00E49997 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		5F5234AC12987CF80007FCDB /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameByFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9641A8127A12D3009E6FC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FrameByFrame-Info.plist"; sourceTree = "<group>"; };
@@ -69,11 +69,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F4D7351127A15DB00E49997 /* QTKit.framework in Frameworks */,
-				5F4D7352127A15DB00E49997 /* Quartz.framework in Frameworks */,
-				5F4D7353127A15DB00E49997 /* QuartzCore.framework in Frameworks */,
-				5F4D7354127A15DB00E49997 /* QuickTime.framework in Frameworks */,
+				5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */,
+				5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */,
+				5F6A5B5C12987DF000BA6CD6 /* QTKit.framework in Frameworks */,
 				5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */,
+				5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,11 +133,11 @@
 		5F9641A0127A12D3009E6FC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5F4D734D127A15DB00E49997 /* QTKit.framework */,
-				5F4D734E127A15DB00E49997 /* Quartz.framework */,
-				5F4D734F127A15DB00E49997 /* QuartzCore.framework */,
-				5F4D7350127A15DB00E49997 /* QuickTime.framework */,
+				5F5234AC12987CF80007FCDB /* QuickTime.framework */,
 				5F9641A8127A12D3009E6FC1 /* Cocoa.framework */,
+				5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */,
+				5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */,
+				5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

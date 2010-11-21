@@ -36,6 +36,10 @@
 - (IBAction)foo:(id)sender;
 
 #pragma mark -
+#pragma mark Retrieving the Document Window
+@property (readonly) NSWindow *window;
+
+#pragma mark -
 #pragma mark Handling Document Storage
 @property (retain) NSURL *originalDocumentURL, *temporaryStorageURL;
 - (NSURL *) createTemporaryURL;
@@ -82,5 +86,6 @@
 #pragma mark -
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender;
+- (IBAction) exportMovie: (id) sender;
 
 @end

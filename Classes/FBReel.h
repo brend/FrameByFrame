@@ -67,4 +67,9 @@
 #pragma mark Creating Cell Identifiers
 - (NSString *) createUniqueCellIdentifier;
 
+#pragma mark -
+#pragma mark Exporting QuickTime Movies
+- (BOOL) exportMovieToURL: (NSURL *) url
+					error: (NSError **) outError;
+
 @end

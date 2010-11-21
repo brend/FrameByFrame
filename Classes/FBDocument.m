@@ -8,7 +8,6 @@
 
 #import "FBDocument.h"
 #import "FBReelNavigator.h"
-#import "FBMovieTools.h"
 
 @implementation FBDocument
 @synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, originalDocumentURL, onionLayerCount;
@@ -59,6 +58,13 @@
 	inputDevices = nil;
 
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Retrieving the Document Window
+- (NSWindow *) window
+{
+	return [[self.windowControllers objectAtIndex: 0] window];
 }
 
 #pragma mark -
@@ -315,6 +321,36 @@
 	shouldTakeSnapshot = YES;
 }
 
+- (IBAction) exportMovie: (id) sender
+{
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
+	
+//	if ([savePanel runModal] == NSFileHandlingPanelOKButton) {
+//		NSString *filename = [savePanel.filename stringByAppendingPathExtension: @"mov"];
+//		NSURL *fileURL = [NSURL fileURLWithPath: filename];
+//		NSError *error = nil;
+//		
+//		if (![self.reel exportMovieToURL: fileURL error: &error]) {
+//			NSRunAlertPanel
+//		}
+//	}
+	
+	[savePanel beginSheetModalForWindow: self.window completionHandler:
+	 ^(NSInteger result) {
+		 if (result == NSFileHandlingPanelOKButton) {
+			 NSString *filename = [savePanel.filename stringByAppendingPathExtension: @"mov"];
+			 NSURL *fileURL = [NSURL fileURLWithPath: filename];
+			 NSError *error = nil;
+			 
+			 if (![self.reel exportMovieToURL: fileURL error: &error]) {
+				 NSString *message = [NSString stringWithFormat: @"An error has occurred during export:\n%@", error];
+				 
+				 NSRunAlertPanel(@"Export error", message, @"OK", nil, nil);
+			 }
+		 }
+	 }];
+}
+
 #pragma mark -
 #pragma mark Taking Snapshots
 - (void) createSnapshotFromImage:(CIImage *)image
@@ -351,30 +387,7 @@
 #pragma mark Testing
 - (IBAction)foo:(id)sender 
 {
-	NSString *file = @"/Users/brph0000/Desktop/My Movie.mov";
-	NSMutableArray *images = [NSMutableArray arrayWithCapacity: self.reel.count];
-	NSInteger fps = 1;
-	CodecType codec = 0x61766331;
-	NSInteger quality = codecNormalQuality;
-	
-	for (NSInteger i = 0; i < self.reel.count; ++i) {
-		CIImage *coreImage = [self.reel imageAtIndex: i];
-		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: coreImage];
-		NSImage *image = [[NSImage alloc] init];
-		
-		[image addRepresentation: rep];
-		[images addObject: image];
-		[rep release];
-		[image release];
-	}
-	
-	NSLog(@"OK, got %d images", images.count);
-	
-	[FBMovieTools saveMovieWithImages: images 
-							   toFile: file
-					  framesPerSecond: fps
-								codec: codec
-						  compression: quality
-			   reportProgressDelegate: nil];
+	NSLog(@"No foo");
 }
+
 @end
