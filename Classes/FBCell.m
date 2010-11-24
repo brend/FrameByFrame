@@ -84,7 +84,8 @@
 - (NSImage *) thumbnail
 {
 	if (thumbnail == nil) {
-		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: [self.documentURL.path stringByAppendingPathComponent: self.identifier]];
+		NSString *fullsizedImageFilename = [self.documentURL.path stringByAppendingPathComponent: self.identifier];
+		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: fullsizedImageFilename];
 		NSSize thumbnailSize = NSMakeSize(64, 64);
 		NSImage *thumb = [[NSImage alloc] initWithSize: thumbnailSize];
 		

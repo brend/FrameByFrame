@@ -214,7 +214,7 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{15, 146}, {204, 25}}</string>
 												<reference key="NSSuperview" ref="995652149"/>
-												<reference key="NSNextKeyView" ref="531972533"/>
+												<reference key="NSNextKeyView"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSSliderCell" key="NSCell" id="777322823">
 													<int key="NSCellFlags">-2080244224</int>
@@ -330,7 +330,7 @@
 											<int key="NSvFlags">292</int>
 											<string key="NSFrameSize">{683, 148}</string>
 											<reference key="NSSuperview" ref="405800823"/>
-											<reference key="NSNextKeyView" ref="141696745"/>
+											<reference key="NSNextKeyView" ref="320935537"/>
 											<string key="NSClassName">FBReelNavigator</string>
 										</object>
 									</object>
@@ -357,6 +357,7 @@
 									<int key="NSvFlags">256</int>
 									<string key="NSFrame">{{1, 149}, {666, 15}}</string>
 									<reference key="NSSuperview" ref="531972533"/>
+									<reference key="NSNextKeyView"/>
 									<bool key="NSEnabled">YES</bool>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="531972533"/>
@@ -366,7 +367,7 @@
 							</object>
 							<string key="NSFrame">{{0, -1}, {668, 165}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
-							<reference key="NSNextKeyView" ref="405800823"/>
+							<reference key="NSNextKeyView" ref="141696745"/>
 							<int key="NSsFlags">162</int>
 							<reference key="NSVScroller" ref="141696745"/>
 							<reference key="NSHScroller" ref="320935537"/>
@@ -532,7 +533,7 @@
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="297029154"/>
 					</object>
-					<int key="connectionID">100076</int>
+					<int key="connectionID">100077</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -887,7 +888,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">100076</int>
+			<int key="maxID">100077</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -896,8 +897,19 @@
 					<string key="className">FBDocument</string>
 					<string key="superclassName">NSDocument</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">snapshot:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>exportMovie:</string>
+							<string>foo:</string>
+							<string>snapshot:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>

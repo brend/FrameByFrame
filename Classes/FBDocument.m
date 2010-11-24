@@ -388,6 +388,7 @@
 - (IBAction)foo:(id)sender 
 {
 	NSLog(@"No foo");
+	[reelNavigator setNeedsDisplay: YES];
 }
 
 @end
