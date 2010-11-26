@@ -12,6 +12,7 @@
 #import "FBReel.h"
 #import "FBReelNavigator.h"
 #import "FBFilterPipeline.h"
+#import "FBProgressSheetController.h"
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate, FBReelNavigatorDataSource>
 {
@@ -31,6 +32,9 @@
 	
 	FBFilterPipeline *filterPipeline;
 	NSInteger onionLayerCount;
+	
+	IBOutlet NSWindow *progressSheet;
+	IBOutlet FBProgressSheetController *progressSheetController;
 }
 
 - (IBAction)foo:(id)sender;

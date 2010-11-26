@@ -119,27 +119,21 @@
 
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-	NSError *intermediateError = nil;
-	
-	if (![self.reel writeToURL: self.temporaryStorageURL error: &intermediateError]) {
-		NSLog(@"Error saving reel at %@: %@", self.temporaryStorageURL, intermediateError);
-		
+	NSError *error = nil;
+
+	if (![self.reel writeToURL: self.temporaryStorageURL error: &error]) {
 		if (outError)
-			*outError = intermediateError;
+			*outError = error;
 		
 		return NO;
 	}
 	
-	
-	NSLog(@"Attempting to copy document from %@ to %@", temporaryStorageURL, absoluteURL);
-	
-	NSError *error = nil;
-	
 	if ([[NSFileManager defaultManager] copyItemAtURL: temporaryStorageURL toURL: absoluteURL error: &error]) {
-		NSLog(@"Document has been successfully copied");
 		return YES;
 	} else {
-		NSLog(@"Document could not be copied: %@", error);
+		if (outError)
+			*outError = error;
+		
 		return NO;
 	}
 }
@@ -154,23 +148,22 @@
 	
 	self.temporaryStorageURL = temporaryURL;
 	
-	if ([[NSFileManager defaultManager] copyItemAtURL: absoluteURL toURL: temporaryURL error: &error]) {
-		NSLog(@"Document successfully copied");
-//		[self showLoadingPanel];
-		
+	if ([[NSFileManager defaultManager] copyItemAtURL: absoluteURL toURL: temporaryURL error: &error]) {		
 		self.reel = [FBReel reelWithContentsOfURL: absoluteURL error: &error];
-//		[self.reel readContentsOfURL: absoluteURL error: &error];
 		self.reel.documentURL = self.temporaryStorageURL;
 		
 		if (self.reel == nil) {
-			NSLog(@"Reel could not be loaded from %@ due to error: %@", absoluteURL, error);
+			if (outError)
+				*outError = error;
 			
 			return NO;
 		}
 		
 		return YES;
 	} else {
-		NSLog(@"Error copying document: %@", error);
+		if (outError)
+			*outError = error;
+		
 		return NO;
 	}
 }
@@ -387,8 +380,31 @@
 #pragma mark Testing
 - (IBAction)foo:(id)sender 
 {
-	NSLog(@"No foo");
-	[reelNavigator setNeedsDisplay: YES];
+	// [NSApp beginSheet: progressSheet modalForWindow: self.window modalDelegate: nil didEndSelector: nil contextInfo: nil];
+	
+	[progressSheetController beginSheetModalForWindow: self.window];
+	[progressSheetController setValue: 0];
+	[progressSheetController setMaxValue: 9];
+	
+	[NSThread detachNewThreadSelector: @selector(bar:) toTarget: self withObject: nil];
+}
+
+- (void) bar: (id) data
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	[fileManager setDelegate: self];
+	[fileManager copyItemAtPath: @"/Users/brph0000/Desktop/x.ffm" toPath: @"/Users/brph0000/Desktop/Kopie von Untitled.ffm" error: NULL];
+	[pool release];
+}
+
+- (BOOL)fileManager:(NSFileManager *)fileManager shouldCopyItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
+{
+	NSLog(@"Ich kopiere %@", srcPath);
+	progressSheetController.value += 1;
+	
+	return YES;
 }
 
 @end
