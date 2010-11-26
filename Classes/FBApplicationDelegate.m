@@ -26,7 +26,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	NSLog(@"Up and running!");
 }
 
 @end

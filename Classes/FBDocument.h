@@ -28,7 +28,7 @@
 	FBReel *reel;
 	BOOL shouldTakeSnapshot;
 	
-	NSURL *originalDocumentURL, *temporaryStorageURL;
+	NSURL *temporaryStorageURL;
 	
 	FBFilterPipeline *filterPipeline;
 	NSInteger onionLayerCount;
@@ -45,7 +45,7 @@
 
 #pragma mark -
 #pragma mark Handling Document Storage
-@property (retain) NSURL *originalDocumentURL, *temporaryStorageURL;
+@property (retain) NSURL *temporaryStorageURL;
 - (NSURL *) createTemporaryURL;
 
 #pragma mark -

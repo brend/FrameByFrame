@@ -10,7 +10,7 @@
 #import "FBReelNavigator.h"
 
 @implementation FBDocument
-@synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, originalDocumentURL, onionLayerCount;
+@synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, onionLayerCount;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -35,15 +35,13 @@
 			[self release];
 			
 			return nil;
-		} else
-			NSLog(@"Temporary storage is at %@", self.temporaryStorageURL);
+		}
     }
     return self;
 }
 
 - (void)dealloc 
 {
-	self.originalDocumentURL = nil;
 	self.temporaryStorageURL = nil;
 	self.filterPipeline = nil;
 	
@@ -140,10 +138,7 @@
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {	
-	NSError *error = nil;
-
-	self.originalDocumentURL = absoluteURL;	
-	
+	NSError *error = nil;	
 	NSURL *temporaryURL = [self createTemporaryURL];
 	
 	self.temporaryStorageURL = temporaryURL;
