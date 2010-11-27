@@ -104,6 +104,11 @@
             return;
         }
 		
+		// TEST Set resolution to 640x480
+		[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+																			   [NSNumber numberWithInt:480], kCVPixelBufferHeightKey,
+																			   [NSNumber numberWithInt:640], kCVPixelBufferWidthKey, nil]];
+		
 		[captureView setCaptureSession:captureSession];
 		[captureSession startRunning];
     }
@@ -312,37 +317,68 @@
 - (IBAction) exportMovie: (id) sender
 {
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
-	
-//	if ([savePanel runModal] == NSFileHandlingPanelOKButton) {
-//		NSString *filename = [savePanel.filename stringByAppendingPathExtension: @"mov"];
-//		NSURL *fileURL = [NSURL fileURLWithPath: filename];
-//		NSError *error = nil;
-//		
-//		if (![self.reel exportMovieToURL: fileURL error: &error]) {
-//			NSRunAlertPanel
-//		}
-//	}
-	
+		
 	[savePanel beginSheetModalForWindow: self.window completionHandler:
 	 ^(NSInteger result) {
 		 if (result == NSFileHandlingPanelOKButton) {
 			 NSString *filename = [savePanel.filename stringByAppendingPathExtension: @"mov"];
 			 NSURL *fileURL = [NSURL fileURLWithPath: filename];
-			 NSError *error = nil;
 			 
-			 if (![self.reel exportMovieToURL: fileURL error: &error]) {
-				 NSString *message = [NSString stringWithFormat: @"An error has occurred during export:\n%@", error];
-				 
-				 NSRunAlertPanel(@"Export error", message, @"OK", nil, nil);
-			 }
+			 [NSThread detachNewThreadSelector: @selector(exportMovieToURL:) toTarget: self withObject: fileURL];
 		 }
 	 }];
 }
 
 #pragma mark -
+#pragma mark Exporting Movies
+- (void) initMovie
+{
+	[self.reel exportMovieToURL: [NSURL fileURLWithPath: @"/Users/brph0000/Desktop/foo-movie.mov"] error: NULL];
+}
+
+- (void) exportMovieToURL: (NSURL *) fileURL
+{
+	// TODO Weitermachen
+	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	[progressSheetController performSelectorOnMainThread: @selector(beginSheetModalForWindow:) withObject: self.window waitUntilDone: NO];
+	
+	[self performSelectorOnMainThread: @selector(initMovie) withObject: nil waitUntilDone: YES];
+	NSLog(@"OK");
+	
+//	NSError *error = nil;
+//	BOOL success = [self.reel exportMovieToURL: fileURL error: &error];
+//	
+//	if (success)
+//		NSLog(@"OK");
+//	else {
+//		NSLog(@"Not OK: %@", error);
+//	}
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 5]];
+	
+	[progressSheet performSelectorOnMainThread: @selector(orderOut:) withObject: self waitUntilDone: NO];
+	
+	[pool release];
+}
+
+- (BOOL) exportMovieToURL: (NSURL *) fileURL error: (NSError **) outError
+{
+	NSError *error = nil;
+	
+	BOOL success = [self.reel exportMovieToURL: fileURL error: &error];
+	
+	if (outError)
+		*outError = error;
+	
+	return success;
+}
+
+#pragma mark -
 #pragma mark Taking Snapshots
 - (void) createSnapshotFromImage:(CIImage *)image
-{
+{	
 	[self.reel addCellWithImage: image];
 	[self.reelNavigator reelHasChanged];
 }
