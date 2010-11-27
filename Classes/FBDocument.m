@@ -8,6 +8,7 @@
 
 #import "FBDocument.h"
 #import "FBReelNavigator.h"
+#import "FBQuickTimeExporter.h"
 
 @implementation FBDocument
 @synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, onionLayerCount;
@@ -331,48 +332,36 @@
 
 #pragma mark -
 #pragma mark Exporting Movies
-- (void) initMovie
-{
-	[self.reel exportMovieToURL: [NSURL fileURLWithPath: @"/Users/brph0000/Desktop/foo-movie.mov"] error: NULL];
-}
-
 - (void) exportMovieToURL: (NSURL *) fileURL
 {
 	// TODO Weitermachen
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	FBQuickTimeExporter *exporter = [[FBQuickTimeExporter alloc] initWithReel: self.reel destination: fileURL.path];
+	NSInteger chunkSize = 10;
+	NSInteger i = 0;
 	
-	[progressSheetController performSelectorOnMainThread: @selector(beginSheetModalForWindow:) withObject: self.window waitUntilDone: NO];
+	[progressSheetController setValue: 0];
+	[progressSheetController setMaxValue: self.reel.count];
+	[progressSheetController performSelectorOnMainThread: @selector(beginSheetModalForWindow:) withObject: self.window waitUntilDone: NO];	
 	
-	[self performSelectorOnMainThread: @selector(initMovie) withObject: nil waitUntilDone: YES];
+	while (i < self.reel.count) {
+		NSRange range = NSMakeRange(i, MIN(chunkSize, (NSInteger) self.reel.count - i));
+		NSImage *thumbnail = [[self.reel cellAtIndex: i] thumbnail];
+		
+		[progressSheetController setValue: i];
+		[progressSheetController performSelectorOnMainThread: @selector(setThumbnail:) withObject: thumbnail waitUntilDone: NO];
+		
+		[exporter exportImagesWithIndexes: [NSIndexSet indexSetWithIndexesInRange: range]];
+		i += range.length;
+	}
+	
+	// Done exporting
 	NSLog(@"OK");
-	
-//	NSError *error = nil;
-//	BOOL success = [self.reel exportMovieToURL: fileURL error: &error];
-//	
-//	if (success)
-//		NSLog(@"OK");
-//	else {
-//		NSLog(@"Not OK: %@", error);
-//	}
-	
-	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 5]];
 	
 	[progressSheet performSelectorOnMainThread: @selector(orderOut:) withObject: self waitUntilDone: NO];
 	
 	[pool release];
-}
-
-- (BOOL) exportMovieToURL: (NSURL *) fileURL error: (NSError **) outError
-{
-	NSError *error = nil;
-	
-	BOOL success = [self.reel exportMovieToURL: fileURL error: &error];
-	
-	if (outError)
-		*outError = error;
-	
-	return success;
 }
 
 #pragma mark -

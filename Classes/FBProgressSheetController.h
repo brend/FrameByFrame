@@ -13,10 +13,13 @@
 {
 	IBOutlet NSWindow *progressSheet;
 	IBOutlet NSProgressIndicator *progressBar;
+	IBOutlet NSImageView *thumbnailView;
 }
 
 @property NSInteger maxValue, value;
 
 - (void) beginSheetModalForWindow: (NSWindow *) window;
+
+- (void) setThumbnail: (NSImage *) anImage;
 
 @end

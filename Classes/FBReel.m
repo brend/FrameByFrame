@@ -7,7 +7,6 @@
 //
 
 #import "FBReel.h"
-#import "FBMovieTools.h"
 
 #pragma mark Private FBReel Interface
 @interface FBReel ()
@@ -235,6 +234,24 @@
 	return images;
 }
 
+- (NSArray *) NSImagesAtIndexes: (NSIndexSet *) indexes
+{
+	NSArray *ciImages = [self imagesAtIndexes: indexes];
+	NSMutableArray *nsImages = [NSMutableArray arrayWithCapacity: ciImages.count];
+	
+	for (CIImage *coreImage in ciImages) {
+		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: coreImage];
+		NSImage *image = [[NSImage alloc] init];
+		
+		[image addRepresentation: rep];
+		[nsImages addObject: image];
+		[rep release];
+		[image release];
+	}
+	
+	return nsImages;
+}
+
 #pragma mark -
 #pragma mark Removing Images
 - (void) removeImagesAtIndexes: (NSIndexSet *) indexes
@@ -247,42 +264,6 @@
 - (NSString *) createUniqueCellIdentifier
 {
 	return [NSString stringWithFormat: @"%f", [NSDate timeIntervalSinceReferenceDate]];
-}
-
-#pragma mark -
-#pragma mark Exporting QuickTime Movies
-- (BOOL) exportMovieToURL: (NSURL *) url
-					error: (NSError **) outError
-{
-	// HACK Seriously.
-	NSString *file = @"/Users/brph0000/Desktop/My Movie.mov";
-	NSMutableArray *images = [NSMutableArray arrayWithCapacity: self.count];
-	NSInteger fps = 1;
-	CodecType codec = 0x61766331;
-	NSInteger quality = codecNormalQuality;
-	
-	for (NSInteger i = 0; i < self.count; ++i) {
-		CIImage *coreImage = [self imageAtIndex: i];
-		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: coreImage];
-		NSImage *image = [[NSImage alloc] init];
-		
-		[image addRepresentation: rep];
-		[images addObject: image];
-		[rep release];
-		[image release];
-	}
-		
-	[FBMovieTools saveMovieWithImages: images 
-							   toFile: file
-					  framesPerSecond: fps
-								codec: codec
-						  compression: quality
-			   reportProgressDelegate: nil];
-	
-	if (outError)
-		*outError = nil;
-	
-	return YES;
 }
 
 @end

@@ -58,6 +58,7 @@
 					 atIndexes: (NSIndexSet *) indexes;
 - (CIImage *) imageAtIndex: (NSUInteger) i;
 - (NSArray *) imagesAtIndexes: (NSIndexSet *) indexes;
+- (NSArray *) NSImagesAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark -
 #pragma mark Removing Images
@@ -66,10 +67,5 @@
 #pragma mark -
 #pragma mark Creating Cell Identifiers
 - (NSString *) createUniqueCellIdentifier;
-
-#pragma mark -
-#pragma mark Exporting QuickTime Movies
-- (BOOL) exportMovieToURL: (NSURL *) url
-					error: (NSError **) outError;
 
 @end

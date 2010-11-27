@@ -64,7 +64,6 @@
 
 #pragma mark -
 #pragma mark Exporting Movies
-- (BOOL) exportMovieToURL: (NSURL *)fileURL error: (NSError **)outError;
 
 #pragma mark -
 #pragma mark Managing the Movie Reel

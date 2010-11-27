@@ -11,6 +11,7 @@
 		5F6A5B5C12987DF000BA6CD6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */; };
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
 		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
+		5F6D770E12A12C1B007CEA3D /* FBQuickTimeExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */; };
 		5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9641A8127A12D3009E6FC1 /* Cocoa.framework */; };
 		5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */; };
 		5F9641B0127A12D3009E6FC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9641AF127A12D3009E6FC1 /* main.m */; };
@@ -23,7 +24,6 @@
 		5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58032127C5DB4003C2B32 /* FBCell.m */; };
 		5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */; };
 		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
-		5FCECB311297F2DA008D2CCD /* FBMovieTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB2E1297F2DA008D2CCD /* FBMovieTools.m */; };
 		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
 		5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */; };
 /* End PBXBuildFile section */
@@ -33,6 +33,8 @@
 		5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5F6D770C12A12C1B007CEA3D /* FBQuickTimeExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBQuickTimeExporter.h; sourceTree = "<group>"; };
+		5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBQuickTimeExporter.m; sourceTree = "<group>"; };
 		5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameByFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9641A8127A12D3009E6FC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FrameByFrame-Info.plist"; sourceTree = "<group>"; };
@@ -55,8 +57,6 @@
 		5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigator.h; sourceTree = "<group>"; };
 		5FABC130128572BA0084B0A1 /* FBReelNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReelNavigator.m; sourceTree = "<group>"; };
 		5FABC133128573520084B0A1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		5FCECB2D1297F2DA008D2CCD /* FBMovieTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FBMovieTools.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		5FCECB2E1297F2DA008D2CCD /* FBMovieTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FBMovieTools.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTMovieExtensions.h; sourceTree = "<group>"; };
 		5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTMovieExtensions.m; sourceTree = "<group>"; };
 		5FCF2EBA12947A7100993D6D /* FBReelNavigatorDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigatorDataSource.h; sourceTree = "<group>"; };
@@ -175,10 +175,10 @@
 		5FCECB2C1297F2A1008D2CCD /* QuickTime Movies */ = {
 			isa = PBXGroup;
 			children = (
-				5FCECB2D1297F2DA008D2CCD /* FBMovieTools.h */,
-				5FCECB2E1297F2DA008D2CCD /* FBMovieTools.m */,
 				5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */,
 				5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */,
+				5F6D770C12A12C1B007CEA3D /* FBQuickTimeExporter.h */,
+				5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */,
 			);
 			name = "QuickTime Movies";
 			sourceTree = "<group>";
@@ -269,9 +269,9 @@
 				5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */,
 				5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */,
 				5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */,
-				5FCECB311297F2DA008D2CCD /* FBMovieTools.m in Sources */,
 				5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */,
 				5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */,
+				5F6D770E12A12C1B007CEA3D /* FBQuickTimeExporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
