@@ -11,7 +11,7 @@
 #import "FBQuickTimeExporter.h"
 
 @implementation FBDocument
-@synthesize inputDevices, reel, reelNavigator, temporaryStorageURL, onionLayerCount;
+@synthesize inputDevices, temporaryStorageURL, onionLayerCount;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -124,7 +124,8 @@
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	NSError *error = nil;
-
+	
+	// Save the reel
 	if (![self.reel writeToURL: self.temporaryStorageURL error: &error]) {
 		if (outError)
 			*outError = error;
@@ -132,6 +133,14 @@
 		return NO;
 	}
 	
+	// Save the movie settings
+	if (self.movieSettings) {
+		if (![self.movieSettings writeToURL: self.temporaryStorageURL atomically: YES]) {
+			NSLog(@"Couldn't write movie settings to url %@; continuing anyway", self.temporaryStorageURL);
+		}
+	}
+	
+	// Copy all the files to their destination
 	if ([[NSFileManager defaultManager] copyItemAtURL: temporaryStorageURL toURL: absoluteURL error: &error]) {
 		return YES;
 	} else {
@@ -168,6 +177,25 @@
 		return NO;
 	}
 }
+
+- (void) showWindows
+{
+	[super showWindows];
+	
+	// If this is a newly created document,
+	// ask for settings
+	if (self.movieSettings == nil) {
+		[movieSettingsController beginSheetModalForWindow: self.window];
+	}
+}
+
+#pragma mark -
+#pragma mark Managing the Movie Reel
+@synthesize reel, reelNavigator;
+
+#pragma mark -
+#pragma mark Managing Movie Settings
+@synthesize movieSettings;
 
 #pragma mark -
 #pragma mark Handling Document Storage
@@ -359,7 +387,7 @@
 	// Done exporting
 	NSLog(@"OK");
 	
-	[progressSheet performSelectorOnMainThread: @selector(orderOut:) withObject: self waitUntilDone: NO];
+	[progressSheetController performSelectorOnMainThread: @selector(endSheet) withObject: nil waitUntilDone: NO];
 	
 	[pool release];
 }

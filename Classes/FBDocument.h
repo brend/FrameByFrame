@@ -13,6 +13,7 @@
 #import "FBReelNavigator.h"
 #import "FBFilterPipeline.h"
 #import "FBProgressSheetController.h"
+#import "FBMovieSettingsController.h"
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate, FBReelNavigatorDataSource>
 {
@@ -25,16 +26,17 @@
 	QTCaptureDeviceInput *videoDeviceInput;
 	
 	IBOutlet FBReelNavigator *reelNavigator;
-	FBReel *reel;
 	BOOL shouldTakeSnapshot;
-	
+
+	FBReel *reel;
 	NSURL *temporaryStorageURL;
+	NSDictionary *movieSettings;
 	
 	FBFilterPipeline *filterPipeline;
 	NSInteger onionLayerCount;
 	
-	IBOutlet NSWindow *progressSheet;
 	IBOutlet FBProgressSheetController *progressSheetController;
+	IBOutlet FBMovieSettingsController *movieSettingsController;
 }
 
 - (IBAction)foo:(id)sender;
@@ -64,11 +66,16 @@
 
 #pragma mark -
 #pragma mark Exporting Movies
+- (void) exportMovieToURL: (NSURL *) fileURL;
 
 #pragma mark -
 #pragma mark Managing the Movie Reel
 @property (retain) FBReel *reel;
 @property (readonly) FBReelNavigator *reelNavigator;
+
+#pragma mark -
+#pragma mark Movie Settings
+@property (retain) NSDictionary *movieSettings;
 
 #pragma mark -
 #pragma mark Onion Skinning

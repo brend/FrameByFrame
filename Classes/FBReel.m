@@ -224,7 +224,6 @@
 
 - (NSArray *) imagesAtIndexes:(NSIndexSet *)indexes
 {
-	NSLog(@"DEBUG Denk dran, dass -imagesAtIndexes: ein Array aus CIImage liefert");
 	NSArray *addressedCells = [self.cells objectsAtIndexes: indexes];
 	NSMutableArray *images = [NSMutableArray arrayWithCapacity: indexes.count];
 	

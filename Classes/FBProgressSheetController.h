@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface FBProgressSheetController : NSViewController
+@interface FBProgressSheetController : NSObject
 {
 	IBOutlet NSWindow *progressSheet;
 	IBOutlet NSProgressIndicator *progressBar;
