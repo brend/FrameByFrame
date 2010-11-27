@@ -105,10 +105,16 @@
             return;
         }
 		
-		// TEST Set resolution to 640x480
-		[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-																			   [NSNumber numberWithInt:480], kCVPixelBufferHeightKey,
-																			   [NSNumber numberWithInt:640], kCVPixelBufferWidthKey, nil]];
+		if (self.movieSettings) {
+			NSSize resolution = self.movieSettings.resolution;
+			
+			if (resolution.width > 0 && resolution.height > 0) {
+				[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+																			   [NSNumber numberWithInt: (int) resolution.height], kCVPixelBufferHeightKey,
+																			   [NSNumber numberWithInt: (int) resolution.width], kCVPixelBufferWidthKey, nil]];
+			} else
+				NSLog(@"Invalid resolution: %@", NSStringFromSize(resolution));
+		}
 		
 		[captureView setCaptureSession:captureSession];
 		[captureSession startRunning];
@@ -181,12 +187,16 @@
 - (void) showWindows
 {
 	[super showWindows];
+
+	NSLog(@"TODO Find out why saving is impossible after showing settings sheet");
 	
-	// If this is a newly created document,
-	// ask for settings
-	if (self.movieSettings == nil) {
-		[movieSettingsController beginSheetModalForWindow: self.window];
-	}
+//	// If this is a newly created document,
+//	// ask for settings
+//	if (self.movieSettings == nil) {
+//		[movieSettingsController beginSheetModalForWindow: self.window];
+//	}
+//	
+//	[self updateChangeCount: NSChangeDone];
 }
 
 #pragma mark -
@@ -415,6 +425,23 @@
 - (NSImage *) reelNavigator: (FBReelNavigator *) navigator thumbnailForCellAtIndex:(NSInteger)index
 {
 	return [[self.reel cellAtIndex: index] thumbnail];
+}
+
+#pragma mark -
+#pragma mark Movie Settings Controller Delegate
+- (void) movieSettingsController: (FBMovieSettingsController *) controller
+				 didSaveSettings: (NSDictionary *) settings
+{
+	self.movieSettings = settings;
+	
+	NSSize resolution = self.movieSettings.resolution;
+	
+	if (resolution.width > 0 && resolution.height > 0) {
+		[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+																			   [NSNumber numberWithInt: (int) resolution.height], kCVPixelBufferHeightKey,
+																			   [NSNumber numberWithInt: (int) resolution.width], kCVPixelBufferWidthKey, nil]];
+	} else
+		NSLog(@"Invalid resolution: %@", NSStringFromSize(resolution));
 }
 
 #pragma mark -

@@ -7,14 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "FBMovieSettingsControllerDelegate.h"
 
 @interface FBMovieSettingsController : NSObject 
 {
 	IBOutlet NSWindow *settingsSheet;
+	IBOutlet id<FBMovieSettingsControllerDelegate> delegate;
 	
 	NSString *resolutionString;
 }
+
+@property (readonly) id<FBMovieSettingsControllerDelegate> delegate;
 
 - (void) beginSheetModalForWindow: (NSWindow *) window;
 

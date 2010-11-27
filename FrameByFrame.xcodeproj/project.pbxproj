@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5234AC12987CF80007FCDB /* QuickTime.framework */; };
 		5F57CDDA12A16A5500C94DF7 /* FBMovieSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */; };
+		5F57CE5612A1A0B900C94DF7 /* NSDictionary(FBAdditions).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */; };
 		5F6A5B5C12987DF000BA6CD6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */; };
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
 		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
@@ -34,6 +35,9 @@
 		5F57CDD812A16A5500C94DF7 /* FBMovieSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMovieSettingsController.h; sourceTree = "<group>"; };
 		5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMovieSettingsController.m; sourceTree = "<group>"; };
 		5F57CE2D12A175FB00C94DF7 /* SettingNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingNames.h; sourceTree = "<group>"; };
+		5F57CE5412A1A0B900C94DF7 /* NSDictionary(FBAdditions).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary(FBAdditions).h"; sourceTree = "<group>"; };
+		5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary(FBAdditions).m"; sourceTree = "<group>"; };
+		5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMovieSettingsControllerDelegate.h; sourceTree = "<group>"; };
 		5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -103,6 +107,15 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
+		5F57CE5212A1A09F00C94DF7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5F57CE5412A1A0B900C94DF7 /* NSDictionary(FBAdditions).h */,
+				5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		5F964196127A12D3009E6FC1 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				5F57CDEC12A16D4A00C94DF7 /* Application */,
+				5F57CE5212A1A09F00C94DF7 /* Categories */,
 				5FCECB2C1297F2A1008D2CCD /* QuickTime Movies */,
 				5FA85DD61291C80000384AF5 /* Reel */,
 				5F57CDEB12A16D3500C94DF7 /* Filtering */,
@@ -220,6 +234,7 @@
 				5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */,
 				5F57CDD812A16A5500C94DF7 /* FBMovieSettingsController.h */,
 				5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */,
+				5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -296,6 +311,7 @@
 				5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */,
 				5F6D770E12A12C1B007CEA3D /* FBQuickTimeExporter.m in Sources */,
 				5F57CDDA12A16A5500C94DF7 /* FBMovieSettingsController.m in Sources */,
+				5F57CE5612A1A0B900C94DF7 /* NSDictionary(FBAdditions).m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

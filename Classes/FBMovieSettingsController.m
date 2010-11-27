@@ -10,7 +10,14 @@
 
 
 @implementation FBMovieSettingsController
-@synthesize resolutionString;
+@synthesize resolutionString, delegate;
+
+- (void) dealloc
+{
+	delegate = nil;
+	[super dealloc];
+}
+
 
 - (void) beginSheetModalForWindow: (NSWindow *) window
 {
@@ -36,6 +43,8 @@
 {
 	if ([self settingsOK]) {
 		[settingsSheet orderOut: self];
+		
+		[self.delegate movieSettingsController: self didSaveSettings: [self composeMovieSettings]];
 	}
 }
 

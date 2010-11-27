@@ -6,4 +6,6 @@
 	#import <Cocoa/Cocoa.h>
 	#import "Constants.h"
 	#import "SettingNames.h"
+// Categories
+	#import "NSDictionary(FBAdditions).h"
 #endif

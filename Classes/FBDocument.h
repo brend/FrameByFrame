@@ -15,7 +15,9 @@
 #import "FBProgressSheetController.h"
 #import "FBMovieSettingsController.h"
 
-@interface FBDocument : NSDocument <FBReelNavigatorDelegate, FBReelNavigatorDataSource>
+@interface FBDocument : NSDocument <FBReelNavigatorDelegate, 
+									FBReelNavigatorDataSource, 
+									FBMovieSettingsControllerDelegate>
 {
 	QTCaptureSession *captureSession;
 	QTCaptureDeviceInput *captureDeviceInput;
@@ -96,6 +98,11 @@
 #pragma mark -
 #pragma mark Reel Navigator Delegate
 - (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *)strip;
+
+#pragma mark -
+#pragma mark Movie Settings Controller Delegate
+- (void) movieSettingsController: (FBMovieSettingsController *) controller
+				 didSaveSettings: (NSDictionary *) settings;
 
 #pragma mark -
 #pragma mark Interface Builder Actions
