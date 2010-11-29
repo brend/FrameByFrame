@@ -11,9 +11,14 @@
 
 @implementation NSDictionary (FBAdditions)
 
-- (NSSize) resolution
+- (NSInteger) horizontalResolution
 {
-	return [[self objectForKey: FBResolutionSettingName] sizeValue];
+	return [[self objectForKey: FBHorizontalResolutionSettingName] integerValue];
+}
+
+- (NSInteger) verticalResolution
+{
+	return [[self objectForKey: FBVerticalResolutionSettingName] integerValue];
 }
 
 @end

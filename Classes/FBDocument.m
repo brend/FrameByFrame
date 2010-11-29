@@ -106,14 +106,16 @@
         }
 		
 		if (self.movieSettings) {
-			NSSize resolution = self.movieSettings.resolution;
+			NSInteger
+				horizontalResolution = self.movieSettings.horizontalResolution,
+				verticalResolution = self.movieSettings.verticalResolution;
 			
-			if (resolution.width > 0 && resolution.height > 0) {
+			if (horizontalResolution > 0 && verticalResolution > 0) {
 				[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-																			   [NSNumber numberWithInt: (int) resolution.height], kCVPixelBufferHeightKey,
-																			   [NSNumber numberWithInt: (int) resolution.width], kCVPixelBufferWidthKey, nil]];
+																			   [NSNumber numberWithInt: (int) verticalResolution], kCVPixelBufferHeightKey,
+																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
 			} else
-				NSLog(@"Invalid resolution: %@", NSStringFromSize(resolution));
+				NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);
 		}
 		
 		[captureView setCaptureSession:captureSession];
@@ -374,17 +376,19 @@
 #pragma mark Exporting Movies
 - (void) exportMovieToURL: (NSURL *) fileURL
 {
-	// TODO Weitermachen
-	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	// Initialize movie exporter
+	// This will create a QTMovie on the main thread
 	FBQuickTimeExporter *exporter = [[FBQuickTimeExporter alloc] initWithReel: self.reel destination: fileURL.path];
 	NSInteger chunkSize = 10;
 	NSInteger i = 0;
 	
+	// Show progress
 	[progressSheetController setValue: 0];
 	[progressSheetController setMaxValue: self.reel.count];
 	[progressSheetController performSelectorOnMainThread: @selector(beginSheetModalForWindow:) withObject: self.window waitUntilDone: NO];	
 	
+	// Add images to the movie, chunk-wise
 	while (i < self.reel.count) {
 		NSRange range = NSMakeRange(i, MIN(chunkSize, (NSInteger) self.reel.count - i));
 		NSImage *thumbnail = [[self.reel cellAtIndex: i] thumbnail];
@@ -392,6 +396,7 @@
 		[progressSheetController setValue: i];
 		[progressSheetController performSelectorOnMainThread: @selector(setThumbnail:) withObject: thumbnail waitUntilDone: NO];
 		
+		// Update progress display
 		[exporter exportImagesWithIndexes: [NSIndexSet indexSetWithIndexesInRange: range]];
 		i += range.length;
 	}
@@ -437,14 +442,16 @@
 {
 	self.movieSettings = settings;
 	
-	NSSize resolution = self.movieSettings.resolution;
+	NSInteger
+		horizontalResolution = settings.horizontalResolution,
+		verticalResolution = settings.verticalResolution;
 	
-	if (resolution.width > 0 && resolution.height > 0) {
+	if (horizontalResolution > 0 && verticalResolution > 0) {
 		[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-																			   [NSNumber numberWithInt: (int) resolution.height], kCVPixelBufferHeightKey,
-																			   [NSNumber numberWithInt: (int) resolution.width], kCVPixelBufferWidthKey, nil]];
+																			   [NSNumber numberWithInt: (int) verticalResolution], kCVPixelBufferHeightKey,
+																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
 	} else
-		NSLog(@"Invalid resolution: %@", NSStringFromSize(resolution));
+		NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);
 	
 	[movieSettingsController endSheet];
 }

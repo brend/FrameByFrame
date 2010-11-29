@@ -39,7 +39,8 @@
 	NSAssert(resolution.width > 0 && resolution.height > 0, @"Invalid resolution");
 	
 	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSValue valueWithSize: resolution], FBResolutionSettingName,
+							  [NSNumber numberWithInteger: resolution.width], FBHorizontalResolutionSettingName,
+							  [NSNumber numberWithInteger: resolution.height], FBVerticalResolutionSettingName,
 							  nil];
 	
 	return settings;

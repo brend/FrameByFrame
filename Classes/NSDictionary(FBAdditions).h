@@ -11,6 +11,7 @@
 
 @interface NSDictionary (FBAdditions)
 
-- (NSSize) resolution;
+- (NSInteger) horizontalResolution;
+- (NSInteger) verticalResolution;
 
 @end

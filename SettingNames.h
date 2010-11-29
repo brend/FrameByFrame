@@ -7,4 +7,5 @@
  *
  */
 
-#define FBResolutionSettingName		@"FBResolutionSettingName"
+#define FBHorizontalResolutionSettingName		@"FBHorizonzalResolutionSettingName"
+#define FBVerticalResolutionSettingName			@"FBVerticalSettingName"
