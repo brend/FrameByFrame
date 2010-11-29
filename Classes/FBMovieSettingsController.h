@@ -20,6 +20,7 @@
 @property (readonly) id<FBMovieSettingsControllerDelegate> delegate;
 
 - (void) beginSheetModalForWindow: (NSWindow *) window;
+- (void) endSheet;
 
 @property (copy) NSString *resolutionString;
 

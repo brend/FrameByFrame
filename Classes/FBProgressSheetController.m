@@ -37,6 +37,12 @@
 	[NSApp beginSheet: progressSheet modalForWindow: window modalDelegate: nil didEndSelector: nil contextInfo: nil];
 }
 
+- (void) endSheet
+{
+	[NSApp endSheet: progressSheet];
+	[progressSheet orderOut: self];
+}
+
 - (void) setThumbnail: (NSImage *) anImage
 {
 	thumbnailView.image = anImage;

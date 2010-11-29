@@ -140,9 +140,9 @@
 	}
 	
 	// Save the movie settings
-	if (self.movieSettings) {
-		if (![self.movieSettings writeToURL: self.temporaryStorageURL atomically: YES]) {
-			NSLog(@"Couldn't write movie settings to url %@; continuing anyway", self.temporaryStorageURL);
+	if (self.movieSettings) {		
+		if (![self.movieSettings writeToURL: self.movieSettingsURL atomically: YES]) {
+			NSLog(@"Couldn't write movie settings to url %@; continuing anyway", self.movieSettingsURL);
 		}
 	}
 	
@@ -175,6 +175,8 @@
 			return NO;
 		}
 		
+		self.movieSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
+		
 		return YES;
 	} else {
 		if (outError)
@@ -187,16 +189,12 @@
 - (void) showWindows
 {
 	[super showWindows];
-
-	NSLog(@"TODO Find out why saving is impossible after showing settings sheet");
 	
-//	// If this is a newly created document,
-//	// ask for settings
-//	if (self.movieSettings == nil) {
-//		[movieSettingsController beginSheetModalForWindow: self.window];
-//	}
-//	
-//	[self updateChangeCount: NSChangeDone];
+	// If this is a newly created document,
+	// ask for settings
+	if (self.movieSettings == nil) {
+		[movieSettingsController beginSheetModalForWindow: self.window];
+	}
 }
 
 #pragma mark -
@@ -219,6 +217,10 @@
 	return url;
 }
 
+- (NSURL *) movieSettingsURL
+{
+	return [self.temporaryStorageURL URLByAppendingPathComponent: @"settings"];
+}
 
 #pragma mark -
 #pragma mark Video Input Devices
@@ -395,10 +397,11 @@
 	}
 	
 	// Done exporting
-	NSLog(@"OK");
+	NSLog(@"Export complete");
 	
 	[progressSheetController performSelectorOnMainThread: @selector(endSheet) withObject: nil waitUntilDone: NO];
 	
+	[exporter release];
 	[pool release];
 }
 
@@ -442,6 +445,8 @@
 																			   [NSNumber numberWithInt: (int) resolution.width], kCVPixelBufferWidthKey, nil]];
 	} else
 		NSLog(@"Invalid resolution: %@", NSStringFromSize(resolution));
+	
+	[movieSettingsController endSheet];
 }
 
 #pragma mark -
@@ -455,31 +460,26 @@
 #pragma mark Testing
 - (IBAction)foo:(id)sender 
 {
-	// [NSApp beginSheet: progressSheet modalForWindow: self.window modalDelegate: nil didEndSelector: nil contextInfo: nil];
-	
-	[progressSheetController beginSheetModalForWindow: self.window];
-	[progressSheetController setValue: 0];
-	[progressSheetController setMaxValue: 9];
-	
-	[NSThread detachNewThreadSelector: @selector(bar:) toTarget: self withObject: nil];
+	[movieSettingsController beginSheetModalForWindow: self.window];
 }
 
-- (void) bar: (id) data
-{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	
-	[fileManager setDelegate: self];
-	[fileManager copyItemAtPath: @"/Users/brph0000/Desktop/x.ffm" toPath: @"/Users/brph0000/Desktop/Kopie von Untitled.ffm" error: NULL];
-	[pool release];
-}
-
-- (BOOL)fileManager:(NSFileManager *)fileManager shouldCopyItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
-{
-	NSLog(@"Ich kopiere %@", srcPath);
-	progressSheetController.value += 1;
-	
-	return YES;
-}
+// Kopieren von Dateien mit Benachrichtigungen
+//- (void) bar: (id) data
+//{
+//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+//	NSFileManager *fileManager = [NSFileManager defaultManager];
+//	
+//	[fileManager setDelegate: self];
+//	[fileManager copyItemAtPath: @"/Users/brph0000/Desktop/x.ffm" toPath: @"/Users/brph0000/Desktop/Kopie von Untitled.ffm" error: NULL];
+//	[pool release];
+//}
+//
+//- (BOOL)fileManager:(NSFileManager *)fileManager shouldCopyItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
+//{
+//	NSLog(@"Ich kopiere %@", srcPath);
+//	progressSheetController.value += 1;
+//	
+//	return YES;
+//}
 
 @end

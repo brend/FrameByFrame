@@ -19,6 +19,7 @@
 @property NSInteger maxValue, value;
 
 - (void) beginSheetModalForWindow: (NSWindow *) window;
+- (void) endSheet;
 
 - (void) setThumbnail: (NSImage *) anImage;
 

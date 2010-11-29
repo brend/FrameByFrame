@@ -24,6 +24,12 @@
 	[NSApp beginSheet: settingsSheet modalForWindow: window modalDelegate: nil didEndSelector: nil contextInfo: nil];
 }
 
+- (void) endSheet
+{
+	[NSApp endSheet: settingsSheet];
+	[settingsSheet orderOut: self];
+}
+
 #pragma mark -
 #pragma mark Retrieving the Movie Settings
 - (NSDictionary *) composeMovieSettings
@@ -42,7 +48,7 @@
 - (IBAction) acceptSettings: (id) sender
 {
 	if ([self settingsOK]) {
-		[settingsSheet orderOut: self];
+//		[settingsSheet orderOut: self];
 		
 		[self.delegate movieSettingsController: self didSaveSettings: [self composeMovieSettings]];
 	}

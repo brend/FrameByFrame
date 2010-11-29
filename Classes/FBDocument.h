@@ -51,6 +51,7 @@
 #pragma mark Handling Document Storage
 @property (retain) NSURL *temporaryStorageURL;
 - (NSURL *) createTemporaryURL;
+- (NSURL *) movieSettingsURL;
 
 #pragma mark -
 #pragma mark Video Input Devices
