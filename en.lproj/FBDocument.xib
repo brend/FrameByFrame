@@ -517,7 +517,7 @@
 						</object>
 						<object class="NSButton" id="715863740">
 							<reference key="NSNextResponder" ref="794052835"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">289</int>
 							<string key="NSFrame">{{370, 12}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="794052835"/>
 							<bool key="NSEnabled">YES</bool>
@@ -531,6 +531,26 @@
 								<int key="NSButtonFlags2">129</int>
 								<string key="NSAlternateContents"/>
 								<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+						</object>
+						<object class="NSButton" id="964218507">
+							<reference key="NSNextResponder" ref="794052835"/>
+							<int key="NSvFlags">289</int>
+							<string key="NSFrame">{{274, 12}, {96, 32}}</string>
+							<reference key="NSSuperview" ref="794052835"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="394657876">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">Close</string>
+								<reference key="NSSupport" ref="42464171"/>
+								<reference key="NSControlView" ref="964218507"/>
+								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags2">129</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
@@ -778,6 +798,14 @@
 						</object>
 					</object>
 					<int key="connectionID">100112</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancelMovieSettingsSheet:</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="964218507"/>
+					</object>
+					<int key="connectionID">100115</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1109,6 +1137,7 @@
 							<reference ref="667419833"/>
 							<reference ref="76314558"/>
 							<reference ref="715863740"/>
+							<reference ref="964218507"/>
 						</object>
 						<reference key="parent" ref="994079551"/>
 					</object>
@@ -1158,6 +1187,20 @@
 						<int key="objectID">100109</int>
 						<reference key="object" ref="281124883"/>
 						<reference key="parent" ref="715863740"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100113</int>
+						<reference key="object" ref="964218507"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="394657876"/>
+						</object>
+						<reference key="parent" ref="794052835"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100114</int>
+						<reference key="object" ref="394657876"/>
+						<reference key="parent" ref="964218507"/>
 					</object>
 				</object>
 			</object>
@@ -1221,6 +1264,9 @@
 					<string>100106.IBPluginDependency</string>
 					<string>100108.IBPluginDependency</string>
 					<string>100109.IBPluginDependency</string>
+					<string>100113.IBPluginDependency</string>
+					<string>100113.IBViewBoundsToFrameTransform</string>
+					<string>100114.IBPluginDependency</string>
 					<string>5.IBEditorWindowLastContentRect</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBWindowTemplateEditedContentRect</string>
@@ -1299,6 +1345,11 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCRAAAwtoAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{562, 555}, {668, 520}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{562, 555}, {668, 520}}</string>
@@ -1326,7 +1377,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">100112</int>
+			<int key="maxID">100115</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1338,12 +1389,14 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelMovieSettingsSheet:</string>
 							<string>exportMovie:</string>
 							<string>foo:</string>
 							<string>snapshot:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1353,12 +1406,17 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelMovieSettingsSheet:</string>
 							<string>exportMovie:</string>
 							<string>foo:</string>
 							<string>snapshot:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">cancelMovieSettingsSheet:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">exportMovie:</string>
 								<string key="candidateClassName">id</string>

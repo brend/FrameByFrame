@@ -18,6 +18,7 @@
 }
 
 @property (readonly) id<FBMovieSettingsControllerDelegate> delegate;
+@property (readonly) NSWindow *settingsSheet;
 
 - (void) beginSheetModalForWindow: (NSWindow *) window;
 - (void) endSheet;

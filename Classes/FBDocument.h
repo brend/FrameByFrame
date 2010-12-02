@@ -79,6 +79,7 @@
 #pragma mark -
 #pragma mark Movie Settings
 @property (retain) NSDictionary *movieSettings;
+- (void) applyMovieSettings;
 
 #pragma mark -
 #pragma mark Onion Skinning
@@ -109,5 +110,6 @@
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender;
 - (IBAction) exportMovie: (id) sender;
+- (IBAction) cancelMovieSettingsSheet: (id) sender;
 
 @end

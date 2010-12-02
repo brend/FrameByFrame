@@ -10,7 +10,7 @@
 
 
 @implementation FBMovieSettingsController
-@synthesize resolutionString, delegate;
+@synthesize resolutionString, delegate, settingsSheet;
 
 - (void) dealloc
 {

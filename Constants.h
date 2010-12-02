@@ -11,3 +11,5 @@
 #define FFUserDefaultLastPictureKey		@"FFUserDefaultLastPictureKey"
 #define FFUserDefaultNextPictureKey		@"FFUserDefaultNextPictureKey"
 #define FFUserDefaultPreviousPictureKey	@"FFUserDefaultPreviousPictureKey"
+
+#define FBCancelMovieSettingsContext	@"FBCancelMovieSettingsContext"

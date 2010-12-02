@@ -105,21 +105,10 @@
             return;
         }
 		
-		if (self.movieSettings) {
-			NSInteger
-				horizontalResolution = self.movieSettings.horizontalResolution,
-				verticalResolution = self.movieSettings.verticalResolution;
-			
-			if (horizontalResolution > 0 && verticalResolution > 0) {
-				[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-																			   [NSNumber numberWithInt: (int) verticalResolution], kCVPixelBufferHeightKey,
-																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
-			} else
-				NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);
-		}
-		
 		[captureView setCaptureSession:captureSession];
 		[captureSession startRunning];
+		
+		[self applyMovieSettings];
     }
 	
 	// Enumerate available video input devices
@@ -205,7 +194,39 @@
 
 #pragma mark -
 #pragma mark Managing Movie Settings
-@synthesize movieSettings;
+- (NSDictionary *) movieSettings
+{
+	return movieSettings;
+}
+
+- (void) setMovieSettings: (NSDictionary *) settings
+{
+	if (settings != movieSettings) {
+		[movieSettings release];
+		movieSettings = [settings retain];
+		
+		// TODO Re-position this code
+		[self applyMovieSettings];
+	}
+}
+
+- (void) applyMovieSettings
+{
+	if (movieSettings == nil)
+		return;
+	
+	// Change the capture view's resolution
+	NSInteger
+		horizontalResolution = movieSettings.horizontalResolution,
+		verticalResolution = movieSettings.verticalResolution;
+	
+	if (horizontalResolution > 0 && verticalResolution > 0) {
+		[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+																			   [NSNumber numberWithInt: (int) verticalResolution], kCVPixelBufferHeightKey,
+																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
+	} else
+		NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);	
+}
 
 #pragma mark -
 #pragma mark Handling Document Storage
@@ -372,6 +393,20 @@
 	 }];
 }
 
+- (IBAction) cancelMovieSettingsSheet: (id) sender
+{
+	NSBeginAlertSheet(@"Do you want to use default settings?", @"No", @"Yes", nil, movieSettingsController.settingsSheet, self, @selector(sheetDidEnd:returnCode:contextInfo:), nil, FBCancelMovieSettingsContext, @"They may not be very useful.");
+}
+
+- (void) sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+{
+	if ([(NSObject *) contextInfo isEqual: FBCancelMovieSettingsContext]) {
+		if (returnCode == 0) {
+			[movieSettingsController endSheet];
+		}
+	}
+}
+
 #pragma mark -
 #pragma mark Exporting Movies
 - (void) exportMovieToURL: (NSURL *) fileURL
@@ -441,17 +476,6 @@
 				 didSaveSettings: (NSDictionary *) settings
 {
 	self.movieSettings = settings;
-	
-	NSInteger
-		horizontalResolution = settings.horizontalResolution,
-		verticalResolution = settings.verticalResolution;
-	
-	if (horizontalResolution > 0 && verticalResolution > 0) {
-		[[[captureSession outputs] objectAtIndex:0] setPixelBufferAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-																			   [NSNumber numberWithInt: (int) verticalResolution], kCVPixelBufferHeightKey,
-																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
-	} else
-		NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);
 	
 	[movieSettingsController endSheet];
 }

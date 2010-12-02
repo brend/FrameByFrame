@@ -232,9 +232,9 @@
 			children = (
 				5FDAD289129DB0FC00B59574 /* FBProgressSheetController.h */,
 				5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */,
+				5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */,
 				5F57CDD812A16A5500C94DF7 /* FBMovieSettingsController.h */,
 				5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */,
-				5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
