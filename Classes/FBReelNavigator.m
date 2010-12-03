@@ -888,20 +888,10 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 //	}	
 }
 
-
-
-- (IBAction) foo: (id) sender
-{
-	
-}
-
 - (void) reelHasChanged
 {
-	NSLog(@"There's something going on...");
 	[self resizeToFitImages];
-	[self setNeedsDisplay: YES];
-	
+	[self setNeedsDisplay: YES];	
 }
-
 
 @end

@@ -115,10 +115,7 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 #pragma mark Handling Resolution Issues
 + (void) adaptImageSizeToResolution: (NSArray *) images;
 
-
-
-
-- (IBAction) foo: (id) sender;
+#pragma mark Take Action Whenever the Reel Changes
 - (void) reelHasChanged;
 
 @end

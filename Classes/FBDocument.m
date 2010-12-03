@@ -150,7 +150,7 @@
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {	
-	NSError *error = nil;	
+	NSError *error = nil;
 	NSURL *temporaryURL = [self createTemporaryURL];
 	
 	self.temporaryStorageURL = temporaryURL;
@@ -186,6 +186,8 @@
 	if (self.movieSettings == nil) {
 		[movieSettingsController beginSheetModalForWindow: self.window];
 	}
+	
+	[self.reelNavigator reelHasChanged];
 }
 
 #pragma mark -
