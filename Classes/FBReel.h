@@ -20,6 +20,7 @@
 #pragma mark Reel Creation
 + (id) reel;
 + (id) reelWithContentsOfURL: (NSURL *) url error: (NSError **) error;
++ (id) reelWithContentsOfDirectory: (NSURL *) directoryURL error: (NSError **) error;
 
 #pragma mark -
 #pragma mark Replacing Reel Contents

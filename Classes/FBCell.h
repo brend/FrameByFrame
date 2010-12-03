@@ -20,6 +20,7 @@
 
 #pragma mark -
 #pragma mark Initialization
+- (id) initWithIdentifier: (NSString *) identifier;
 - (id) initWithIdentifier: (NSString *) identifier image: (CIImage *) image;
 + (id) cellWithIdentifier: (NSString *) identifier image: (CIImage *) image;
 - (id) initWithCoder:(NSCoder *)aDecoder;

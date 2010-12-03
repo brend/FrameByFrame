@@ -66,6 +66,39 @@
 	return reel;
 }
 
++ (id) reelWithContentsOfDirectory: (NSURL *) directoryURL error: (NSError **) error
+{
+	NSError *intermediateError = nil;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSArray *files = [fileManager contentsOfDirectoryAtPath: directoryURL.path error: &intermediateError];
+	NSMutableArray *cells = [NSMutableArray arrayWithCapacity: files.count];
+	
+	if (files) {
+		for (NSString *file in files) {
+			if (!([file isEqualToString: @"reel"] || [file isEqualToString: @"settings"] || [file isEqualToString: @"QuickLook"])) {
+				// TODO Ensure that "file" is a valid image file, if possible
+				FBCell *cell = [[FBCell alloc] initWithIdentifier: file];
+				
+				[cell setDocumentURL: directoryURL];
+				[cells addObject: cell];
+				[cell release];
+			}
+		}
+		
+		FBReel *reel = [FBReel reel];
+		
+		reel.documentURL = directoryURL;
+		reel.cells = cells;
+		
+		return reel;
+	} else {
+		if (error)
+			*error = intermediateError;
+		
+		return nil;
+	}
+}
+
 - (BOOL) readContentsOfURL: (NSURL *) url error: (NSError **) error
 {
 	FBReel *reel = [FBReel reelWithContentsOfURL: url error: error];

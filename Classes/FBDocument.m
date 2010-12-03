@@ -152,12 +152,17 @@
 {	
 	NSError *error = nil;
 	NSURL *temporaryURL = [self createTemporaryURL];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
 	self.temporaryStorageURL = temporaryURL;
 	
-	if ([[NSFileManager defaultManager] copyItemAtURL: absoluteURL toURL: temporaryURL error: &error]) {		
-		self.reel = [FBReel reelWithContentsOfURL: absoluteURL error: &error];
-		self.reel.documentURL = self.temporaryStorageURL;
+	if ([fileManager copyItemAtURL: absoluteURL toURL: temporaryURL error: &error]) {		
+		
+		if ([fileManager fileExistsAtPath: [temporaryURL.path stringByAppendingPathComponent: @"reel"]]) {		
+			self.reel = [FBReel reelWithContentsOfURL: temporaryURL error: &error];
+		} else {
+			self.reel = [FBReel reelWithContentsOfDirectory: temporaryURL error: &error];
+		}
 		
 		if (self.reel == nil) {
 			if (outError)
@@ -166,6 +171,8 @@
 			return NO;
 		}
 		
+		self.reel.documentURL = self.temporaryStorageURL;
+		// TODO Decide: If settings aren't available, user will be asked. OK - or default? Ooor: Default if legacy document
 		self.movieSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
 		
 		return YES;

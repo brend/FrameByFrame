@@ -31,6 +31,17 @@
     return self;
 }
 
+- (id) initWithIdentifier: (NSString *) aString
+{
+	if ((self = [super init])) {
+		self.identifier = aString;
+		
+		NSAssert(self.identifier, @"Identifier must not be nil");
+	}
+	
+	return self;
+}
+
 - (id) initWithCoder:(NSCoder *)aDecoder
 {
 	if ((self = [super init])) {
