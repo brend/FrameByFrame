@@ -156,8 +156,9 @@
 	
 	self.temporaryStorageURL = temporaryURL;
 	
-	if ([fileManager copyItemAtURL: absoluteURL toURL: temporaryURL error: &error]) {		
-		
+	BOOL copyingSuccessful = [fileManager copyItemAtURL: absoluteURL toURL: temporaryURL error: &error];
+	
+	if (copyingSuccessful) {
 		if ([fileManager fileExistsAtPath: [temporaryURL.path stringByAppendingPathComponent: @"reel"]]) {		
 			self.reel = [FBReel reelWithContentsOfURL: temporaryURL error: &error];
 		} else {
