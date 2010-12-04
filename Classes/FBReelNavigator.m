@@ -114,14 +114,15 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 	
 	// Draw the images
 	for (i = 0; i < [self count]; ++i) {
-		NSImage *image = [self.dataSource reelNavigator: self thumbnailForCellAtIndex: i];
 		NSRect cellExterior = NSMakeRect(i * [self cellWidth], 0, [self cellWidth], [self cellHeight]);
-		NSSize imageSize = image.size;
 		NSRect dest = 
 			// NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
 			NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
 		
 		if (NSIntersectsRect(rect, dest)) {
+			NSImage *image = [self.dataSource reelNavigator: self thumbnailForCellAtIndex: i];
+			NSSize imageSize = image.size;
+			
 			// Draw image
 			[image drawInRect: dest fromRect: NSMakeRect(0, 0, imageSize.width, imageSize.height) operation: NSCompositeSourceOver fraction: 1];
 			
