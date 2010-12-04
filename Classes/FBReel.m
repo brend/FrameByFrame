@@ -11,12 +11,13 @@
 #pragma mark Private FBReel Interface
 @interface FBReel ()
 @property (retain) NSMutableArray *cells;
+@property NSUInteger recentImageIndex;
 @end
 
 #pragma mark -
 #pragma mark FBReel Implementation
 @implementation FBReel
-@synthesize cells;
+@synthesize cells, recentImageIndex;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -24,6 +25,7 @@
 {
     if ((self = [super init])) {
 		self.cells = [NSMutableArray arrayWithCapacity: 1024];
+		self.recentImageIndex = NSNotFound;
     }
     
     return self;
@@ -38,6 +40,7 @@
 			NSLog(@"No cells could be decoded");
 		
 		self.cells = savedCells == nil ? [NSMutableArray array] : [NSMutableArray arrayWithArray: savedCells];
+		self.recentImageIndex = NSNotFound;
 	}
 	
 	return self;
@@ -251,6 +254,17 @@
 - (CIImage *) imageAtIndex: (NSUInteger) i
 {
 	FBCell *cell = [self cellAtIndex: i];
+	
+	// Release images not in range [i - FBMaxSkinCount, ..., i + maxSkinCount]
+	NSInteger n = self.count;
+	
+	for (NSInteger k = 0; k < n; ++k) {
+		if (abs(i - k) > FBMaxSkinCount) {
+			[[self cellAtIndex: k] setImage: nil];
+		}
+	}
+	
+	self.recentImageIndex = i;
 	
 	return cell.image;
 }

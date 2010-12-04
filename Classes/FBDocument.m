@@ -367,11 +367,17 @@
 {
 	NSAssert(self.reel.count >= self.filterPipeline.skinCount, @"Not enough pictures on reel to fill the filter pipeline");
 	
+	NSUInteger selectedImageIndex = self.reelNavigator.selectedIndex;
 	NSInteger imageCount = self.filterPipeline.skinCount;
-	NSInteger startIndex = self.reel.count - imageCount;
+//	NSInteger startIndex = self.reel.count - imageCount;
+	NSInteger startIndex = MAX(0, (NSInteger) ((selectedImageIndex == NSNotFound ? 0 : selectedImageIndex) - imageCount + 1));
 	NSMutableArray *a = [NSMutableArray arrayWithCapacity: imageCount];
 	
 	for (NSInteger i = 0; i < imageCount; ++i) {
+		// NOTE Use FBReel-imageAtIndex: to retrieve the image
+		// (instead of accessing cells directly)
+		// This way, the reel can release non-adjacent images
+		// in order to relieve memory stress
 		CIImage *image = [self.reel imageAtIndex: startIndex + i];
 		
 		[a addObject: image];
@@ -495,6 +501,11 @@
 {
 	NSLog(@"Snapshot required!");
 }
+
+//- (void) reelNavigator: (FBReelNavigator *) navigator didSelectImageAtIndex: (NSUInteger) imageIndex
+//{
+//	NSLog(@"Reel navigator selected image at %d", imageIndex);
+//}
 
 #pragma mark -
 #pragma mark Testing

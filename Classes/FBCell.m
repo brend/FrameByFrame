@@ -80,6 +80,9 @@
 		NSString *filename = [self.documentURL.path stringByAppendingPathComponent: self.identifier];
 		NSData *data = [NSData dataWithContentsOfFile: filename];
 		
+		// DEBUG
+		NSLog(@"Reading image from disk: %@", self.identifier);
+		
 		image = [[CIImage imageWithData: data] retain];
 	}
 	
@@ -92,9 +95,17 @@
 	image = [anImage retain];
 }
 
+- (BOOL) imageLoaded
+{
+	return image != nil;
+}
+
 - (NSImage *) thumbnail
 {
 	if (thumbnail == nil) {
+		// DEBUG
+		NSLog(@"Reading thumbnail from disk: %@", self.identifier);
+		
 		NSString *fullsizedImageFilename = [self.documentURL.path stringByAppendingPathComponent: self.identifier];
 		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: fullsizedImageFilename];
 		NSSize thumbnailSize = NSMakeSize(64, 64);

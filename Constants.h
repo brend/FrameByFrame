@@ -13,3 +13,5 @@
 #define FFUserDefaultPreviousPictureKey	@"FFUserDefaultPreviousPictureKey"
 
 #define FBCancelMovieSettingsContext	@"FBCancelMovieSettingsContext"
+
+#define FBMaxSkinCount					10

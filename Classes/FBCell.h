@@ -29,6 +29,7 @@
 #pragma mark Accessing Cell Data
 @property (copy) NSString *identifier;
 @property (retain) CIImage *image;
+@property (readonly) BOOL imageLoaded;
 @property (readonly) NSImage *thumbnail;
 
 #pragma mark -

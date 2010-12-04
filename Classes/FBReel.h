@@ -14,6 +14,8 @@
 @private
 	NSMutableArray *cells;
 	NSURL *documentURL;
+	
+	NSUInteger recentImageIndex;
 }
 
 #pragma mark -

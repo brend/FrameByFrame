@@ -99,7 +99,8 @@
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate
-- (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *)strip;
+- (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *) navigator;
+// - (void) reelNavigator: (FBReelNavigator *) navigator didSelectImageAtIndex: (NSUInteger) imageIndex;
 
 #pragma mark -
 #pragma mark Movie Settings Controller Delegate
