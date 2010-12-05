@@ -51,20 +51,31 @@
 	return [[[FBReel alloc] init] autorelease];
 }
 
-+ (id) reelWithContentsOfURL: (NSURL *) url error: (NSError **) error
++ (id) reelWithContentsOfURL: (NSURL *) url error: (NSError **) outError
 {
 	NSError *intermediateError = nil;
 	NSString *path = [[url path] stringByAppendingPathComponent: @"reel"];
 	NSData *data = [NSData dataWithContentsOfFile: path options: 0 error: &intermediateError];
 	
 	if (data == nil) {
-		if (error)
-			*error = intermediateError;
+		if (outError)
+			*outError = intermediateError;
 		
 		return nil;
 	}
 	
-	FBReel *reel = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+	FBReel *reel = nil;
+	
+	@try {
+		reel = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+	} @catch (NSException *e) {
+		NSLog(@"Error unarchiving reel: %@", e);
+		
+		if (outError)
+			*outError = [NSError errorWithDomain: [e description] code: 0 userInfo: nil];
+		
+		return nil;
+	}
 	
 	return reel;
 }

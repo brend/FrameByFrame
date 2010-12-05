@@ -11,7 +11,7 @@
 #import "FBQuickTimeExporter.h"
 
 @implementation FBDocument
-@synthesize inputDevices, temporaryStorageURL, onionLayerCount;
+@synthesize inputDevices, temporaryStorageURL, originalFileURL, onionLayerCount;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -149,53 +149,29 @@
 }
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
-{	
-	NSError *error = nil;
-	NSURL *temporaryURL = [self createTemporaryURL];
-	NSFileManager *fileManager = [NSFileManager defaultManager];
+{
+	self.originalFileURL = absoluteURL;
 	
-	self.temporaryStorageURL = temporaryURL;
-	
-	BOOL copyingSuccessful = [fileManager copyItemAtURL: absoluteURL toURL: temporaryURL error: &error];
-	
-	if (copyingSuccessful) {
-		if ([fileManager fileExistsAtPath: [temporaryURL.path stringByAppendingPathComponent: @"reel"]]) {		
-			self.reel = [FBReel reelWithContentsOfURL: temporaryURL error: &error];
-		} else {
-			self.reel = [FBReel reelWithContentsOfDirectory: temporaryURL error: &error];
-		}
-		
-		if (self.reel == nil) {
-			if (outError)
-				*outError = error;
-			
-			return NO;
-		}
-		
-		self.reel.documentURL = self.temporaryStorageURL;
-		// TODO Decide: If settings aren't available, user will be asked. OK - or default? Ooor: Default if legacy document
-		self.movieSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
-		
-		return YES;
-	} else {
-		if (outError)
-			*outError = error;
-		
-		return NO;
-	}
+	return YES;
 }
 
 - (void) showWindows
 {
 	[super showWindows];
 	
-	// If this is a newly created document,
-	// ask for settings
-	if (self.movieSettings == nil) {
+	if (self.originalFileURL) {
+		// If this documents already exists,
+		// copy the contents asynchronously 
+		// while displaying a progress sheet
+		[progressSheetController beginSheetModalForWindow: self.window indeterminate: YES];
+		[NSThread detachNewThreadSelector: @selector(copyDocumentContents) toTarget: self withObject: nil];
+	} else {
+		// If this is a newly created document,
+		// ask for settings
 		[movieSettingsController beginSheetModalForWindow: self.window];
 	}
 	
-	[self.reelNavigator reelHasChanged];
+	// [self.reelNavigator reelHasChanged];
 }
 
 #pragma mark -
@@ -255,6 +231,66 @@
 	return [self.temporaryStorageURL URLByAppendingPathComponent: @"settings"];
 }
 
+- (void) copyDocumentContents
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSError *error = nil;
+	
+	[self copyDocumentContents: &error];
+	
+	[self performSelectorOnMainThread: @selector(documentOpened:) withObject: [error retain] waitUntilDone: NO];
+	[pool release];
+}
+
+- (BOOL) copyDocumentContents: (NSError **) outError
+{
+	NSError *error = nil;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSURL *temporaryURL = [self createTemporaryURL];
+	
+	self.temporaryStorageURL = temporaryURL;
+	
+	BOOL copyingSuccessful = [fileManager copyItemAtURL: self.originalFileURL toURL: temporaryURL error: &error];
+	
+	if (copyingSuccessful) {
+		if ([fileManager fileExistsAtPath: [temporaryURL.path stringByAppendingPathComponent: @"reel"]]) {		
+			self.reel = [FBReel reelWithContentsOfURL: temporaryURL error: &error];
+		} else {
+			self.reel = [FBReel reelWithContentsOfDirectory: temporaryURL error: &error];
+		}
+		
+		if (self.reel == nil) {
+			if (outError)
+				*outError = error;
+			
+			return NO;
+		}
+		
+		self.reel.documentURL = self.temporaryStorageURL;
+		// TODO Decide: If settings aren't available, user will be asked. OK - or default? Ooor: Default if legacy document
+		self.movieSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
+		
+		return YES;
+	} else {
+		if (outError)
+			*outError = error;
+		
+		return NO;
+	}	
+}
+
+- (void) documentOpened: (NSError *) error
+{	
+	[progressSheetController endSheet];
+	
+	if (error) {
+		NSRunAlertPanel(@"An error has occurred while opening the document", [NSString stringWithFormat: @"%@", error], @"OK", nil, nil);
+		[self close];
+	} else {
+		[self.reelNavigator reelHasChanged];
+	}
+}
+
 #pragma mark -
 #pragma mark Video Input Devices
 - (void)refreshInputDevices
@@ -311,15 +347,9 @@
 #pragma mark Displaying Video Input
 - (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)videoImage
 {
-#ifdef DEBUG_FILTER	
-	// DEBUG
-	if (shouldTakeSnapshot) {
-		[self createSnapshotFromImage: videoImage];
-		shouldTakeSnapshot = NO;
-	}
+	if (self.reel == nil)
+		return nil;
 	
-	return videoImage;
-#else
 	BOOL computeFilter = shouldTakeSnapshot;
 		
 	if (shouldTakeSnapshot) {
@@ -337,7 +367,6 @@
 	CIImage *result = [self.filterPipeline pipeVideoImage: videoImage skinImages: skinImages];
 	
 	return result;
-#endif
 }
 
 #pragma mark -

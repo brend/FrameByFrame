@@ -31,7 +31,7 @@
 	BOOL shouldTakeSnapshot;
 
 	FBReel *reel;
-	NSURL *temporaryStorageURL;
+	NSURL *temporaryStorageURL, *originalFileURL;
 	NSDictionary *movieSettings;
 	
 	FBFilterPipeline *filterPipeline;
@@ -49,9 +49,12 @@
 
 #pragma mark -
 #pragma mark Handling Document Storage
-@property (retain) NSURL *temporaryStorageURL;
+@property (retain) NSURL *temporaryStorageURL, *originalFileURL;
 - (NSURL *) createTemporaryURL;
 - (NSURL *) movieSettingsURL;
+- (void) copyDocumentContents;
+- (BOOL) copyDocumentContents: (NSError **) outError;
+- (void) documentOpened: (NSError *) error;
 
 #pragma mark -
 #pragma mark Video Input Devices

@@ -10,8 +10,9 @@
 
 
 @implementation FBProgressSheetController
-@dynamic maxValue, value;
 
+#pragma mark -
+#pragma mark Changing the Sheet's Appearance
 - (NSInteger) maxValue
 {
 	return (NSInteger) [progressBar maxValue];
@@ -32,20 +33,40 @@
 	[progressBar setDoubleValue: v];
 }
 
-- (void) beginSheetModalForWindow: (NSWindow *) window
+- (void) setThumbnail: (NSImage *) anImage
 {
-	[NSApp beginSheet: progressSheet modalForWindow: window modalDelegate: nil didEndSelector: nil contextInfo: nil];
+	thumbnailView.image = anImage;
 }
 
+- (BOOL) isIndeterminate
+{
+	return progressBar.isIndeterminate;
+}
+
+- (void) setIndeterminate: (BOOL) flag
+{
+	[progressBar setIndeterminate: flag];
+}
+
+#pragma mark -
+#pragma mark Showing the Progress Sheet
+- (void) beginSheetModalForWindow: (NSWindow *) window
+					indeterminate: (BOOL) indeterminate
+{
+	[progressBar setIndeterminate: indeterminate];
+	
+	[NSApp beginSheet: progressSheet modalForWindow: window modalDelegate: nil didEndSelector: nil contextInfo: nil];
+	
+	if (indeterminate)
+		[progressBar startAnimation: self];
+}
+
+#pragma mark -
+#pragma mark Hiding the Progress Sheet
 - (void) endSheet
 {
 	[NSApp endSheet: progressSheet];
 	[progressSheet orderOut: self];
-}
-
-- (void) setThumbnail: (NSImage *) anImage
-{
-	thumbnailView.image = anImage;
 }
 
 @end

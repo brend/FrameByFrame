@@ -16,11 +16,19 @@
 	IBOutlet NSImageView *thumbnailView;
 }
 
-@property NSInteger maxValue, value;
+#pragma mark -
+#pragma mark Showing the Progress Sheet
+- (void) beginSheetModalForWindow: (NSWindow *) window
+					indeterminate: (BOOL) indeterminate;
 
-- (void) beginSheetModalForWindow: (NSWindow *) window;
+#pragma mark -
+#pragma mark Hiding the Progress Sheet
 - (void) endSheet;
 
+#pragma mark -
+#pragma mark Changing the Sheet's Appearance
+@property NSInteger maxValue, value;
+@property (setter = setIndeterminate:) BOOL isIndeterminate;
 - (void) setThumbnail: (NSImage *) anImage;
 
 @end
