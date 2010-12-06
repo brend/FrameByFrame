@@ -61,6 +61,16 @@
 		[progressBar startAnimation: self];
 }
 
+- (void) beginDeterminateSheetModalForWindow: (NSWindow *) window
+{
+	[self beginSheetModalForWindow: window indeterminate: NO];
+}
+
+- (void) beginIndeterminateSheetModalForWindow: (NSWindow *) window
+{
+	[self beginSheetModalForWindow: window indeterminate: YES];
+}
+
 #pragma mark -
 #pragma mark Hiding the Progress Sheet
 - (void) endSheet

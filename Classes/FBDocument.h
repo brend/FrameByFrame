@@ -95,6 +95,10 @@
 - (void) createFilterPipeline;
 
 #pragma mark -
+#pragma mark Displaying the Progress Sheet
+@property (retain) FBProgressSheetController *progressSheetController;
+
+#pragma mark -
 #pragma mark Reel Navigator Data Source
 - (NSInteger) numberOfCellsForReelNavigator: (FBReelNavigator *) navigator;
 - (CIImage *) reelNavigator: (FBReelNavigator *) navigator imageForCellAtIndex:(NSInteger)index;

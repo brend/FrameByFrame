@@ -50,8 +50,6 @@
 	captureSession = nil;
 	[videoDeviceInput release];
 	videoDeviceInput = nil;
-//	[movieFileOutput release];
-//	movieFileInput = nil;
 	
 	[inputDevices release];
 	inputDevices = nil;
@@ -163,15 +161,13 @@
 		// If this documents already exists,
 		// copy the contents asynchronously 
 		// while displaying a progress sheet
-		[progressSheetController beginSheetModalForWindow: self.window indeterminate: YES];
+		[self.progressSheetController beginSheetModalForWindow: self.window indeterminate: YES];
 		[NSThread detachNewThreadSelector: @selector(copyDocumentContents) toTarget: self withObject: nil];
 	} else {
 		// If this is a newly created document,
 		// ask for settings
 		[movieSettingsController beginSheetModalForWindow: self.window];
 	}
-	
-	// [self.reelNavigator reelHasChanged];
 }
 
 #pragma mark -
@@ -281,7 +277,7 @@
 
 - (void) documentOpened: (NSError *) error
 {	
-	[progressSheetController endSheet];
+	[self.progressSheetController endSheet];
 	
 	if (error) {
 		NSRunAlertPanel(@"An error has occurred while opening the document", [NSString stringWithFormat: @"%@", error], @"OK", nil, nil);
@@ -399,7 +395,6 @@
 	
 	NSUInteger selectedImageIndex = self.reelNavigator.selectedIndex;
 	NSInteger imageCount = self.filterPipeline.skinCount;
-//	NSInteger startIndex = self.reel.count - imageCount;
 	NSInteger startIndex = MAX(0, (NSInteger) ((selectedImageIndex == NSNotFound ? 0 : selectedImageIndex) - imageCount + 1));
 	NSMutableArray *a = [NSMutableArray arrayWithCapacity: imageCount];
 	
@@ -432,7 +427,7 @@
 		 if (result == NSFileHandlingPanelOKButton) {
 			 NSString *filename = [savePanel.filename stringByAppendingPathExtension: @"mov"];
 			 NSURL *fileURL = [NSURL fileURLWithPath: filename];
-			 
+			 			 
 			 [NSThread detachNewThreadSelector: @selector(exportMovieToURL:) toTarget: self withObject: fileURL];
 		 }
 	 }];
@@ -463,18 +458,15 @@
 	NSInteger chunkSize = 10;
 	NSInteger i = 0;
 	
-	// Show progress
-	[progressSheetController setValue: 0];
-	[progressSheetController setMaxValue: self.reel.count];
-	[progressSheetController performSelectorOnMainThread: @selector(beginSheetModalForWindow:) withObject: self.window waitUntilDone: NO];	
+	[self.progressSheetController performSelectorOnMainThread: @selector(beginDeterminateSheetModalForWindow:) withObject: self.window waitUntilDone: YES];
 	
 	// Add images to the movie, chunk-wise
 	while (i < self.reel.count) {
 		NSRange range = NSMakeRange(i, MIN(chunkSize, (NSInteger) self.reel.count - i));
 		NSImage *thumbnail = [[self.reel cellAtIndex: i] thumbnail];
 		
-		[progressSheetController setValue: i];
-		[progressSheetController performSelectorOnMainThread: @selector(setThumbnail:) withObject: thumbnail waitUntilDone: NO];
+		[self.progressSheetController setValue: i];
+		[self.progressSheetController performSelectorOnMainThread: @selector(setThumbnail:) withObject: thumbnail waitUntilDone: NO];
 		
 		// Update progress display
 		[exporter exportImagesWithIndexes: [NSIndexSet indexSetWithIndexesInRange: range]];
@@ -482,9 +474,7 @@
 	}
 	
 	// Done exporting
-	NSLog(@"Export complete");
-	
-	[progressSheetController performSelectorOnMainThread: @selector(endSheet) withObject: nil waitUntilDone: NO];
+	[self.progressSheetController performSelectorOnMainThread: @selector(endSheet) withObject: nil waitUntilDone: NO];
 	
 	[exporter release];
 	[pool release];
@@ -497,6 +487,10 @@
 	[self.reel addCellWithImage: image];
 	[self.reelNavigator reelHasChanged];
 }
+
+#pragma mark -
+#pragma mark Displaying the Progress Sheet
+@synthesize progressSheetController;
 
 #pragma mark -
 #pragma mark Reel Navigator Data Source
@@ -543,24 +537,5 @@
 {
 	[movieSettingsController beginSheetModalForWindow: self.window];
 }
-
-// Kopieren von Dateien mit Benachrichtigungen
-//- (void) bar: (id) data
-//{
-//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-//	NSFileManager *fileManager = [NSFileManager defaultManager];
-//	
-//	[fileManager setDelegate: self];
-//	[fileManager copyItemAtPath: @"/Users/brph0000/Desktop/x.ffm" toPath: @"/Users/brph0000/Desktop/Kopie von Untitled.ffm" error: NULL];
-//	[pool release];
-//}
-//
-//- (BOOL)fileManager:(NSFileManager *)fileManager shouldCopyItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
-//{
-//	NSLog(@"Ich kopiere %@", srcPath);
-//	progressSheetController.value += 1;
-//	
-//	return YES;
-//}
 
 @end

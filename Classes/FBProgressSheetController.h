@@ -20,6 +20,8 @@
 #pragma mark Showing the Progress Sheet
 - (void) beginSheetModalForWindow: (NSWindow *) window
 					indeterminate: (BOOL) indeterminate;
+- (void) beginDeterminateSheetModalForWindow: (NSWindow *) window;
+- (void) beginIndeterminateSheetModalForWindow: (NSWindow *) window;
 
 #pragma mark -
 #pragma mark Hiding the Progress Sheet
