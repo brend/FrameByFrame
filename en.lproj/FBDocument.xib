@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="100118"/>
+			<integer value="100098"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -420,6 +420,7 @@
 											</object>
 											<string key="NSFrameSize">{135, 88}</string>
 											<reference key="NSSuperview" ref="513227675"/>
+											<reference key="NSWindow"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSImageCell" key="NSCell" id="727703657">
 												<int key="NSCellFlags">130560</int>
@@ -434,6 +435,7 @@
 									</object>
 									<string key="NSFrameSize">{135, 88}</string>
 									<reference key="NSSuperview" ref="348441109"/>
+									<reference key="NSWindow"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 								<object class="NSCustomView" id="958348167">
@@ -446,6 +448,7 @@
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{17, 51}, {143, 17}}</string>
 											<reference key="NSSuperview" ref="958348167"/>
+											<reference key="NSWindow"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="643194542">
 												<int key="NSCellFlags">68288064</int>
@@ -463,23 +466,27 @@
 											<object class="NSPSMatrix" key="NSDrawMatrix"/>
 											<string key="NSFrame">{{18, 23}, {340, 20}}</string>
 											<reference key="NSSuperview" ref="958348167"/>
+											<reference key="NSWindow"/>
 											<int key="NSpiFlags">16392</int>
 											<double key="NSMaxValue">100</double>
 										</object>
 									</object>
 									<string key="NSFrame">{{136, 0}, {376, 88}}</string>
 									<reference key="NSSuperview" ref="348441109"/>
+									<reference key="NSWindow"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</object>
 							<string key="NSFrameSize">{512, 88}</string>
 							<reference key="NSSuperview" ref="573755376"/>
+							<reference key="NSWindow"/>
 							<bool key="NSIsVertical">YES</bool>
 							<int key="NSDividerStyle">2</int>
 						</object>
 					</object>
 					<string key="NSFrameSize">{512, 88}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -497,7 +504,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="794052835">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -550,13 +557,13 @@
 						<object class="NSButton" id="715863740">
 							<reference key="NSNextResponder" ref="794052835"/>
 							<int key="NSvFlags">289</int>
-							<string key="NSFrame">{{370, 12}, {96, 32}}</string>
+							<string key="NSFrame">{{329, 12}, {137, 32}}</string>
 							<reference key="NSSuperview" ref="794052835"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="281124883">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">OK</string>
+								<string key="NSContents">Accept settings</string>
 								<reference key="NSSupport" ref="42464171"/>
 								<reference key="NSControlView" ref="715863740"/>
 								<int key="NSButtonFlags">-2038284033</int>
@@ -570,7 +577,7 @@
 						<object class="NSButton" id="964218507">
 							<reference key="NSNextResponder" ref="794052835"/>
 							<int key="NSvFlags">289</int>
-							<string key="NSFrame">{{274, 12}, {96, 32}}</string>
+							<string key="NSFrame">{{233, 12}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="794052835"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="394657876">
@@ -589,6 +596,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{480, 270}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -832,11 +840,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">cancelMovieSettingsSheet:</string>
-						<reference key="source" ref="512844837"/>
+						<string key="label">cancelSettings:</string>
+						<reference key="source" ref="83041398"/>
 						<reference key="destination" ref="964218507"/>
 					</object>
-					<int key="connectionID">100115</int>
+					<int key="connectionID">100123</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1318,6 +1326,7 @@
 					<string>100105.IBPluginDependency</string>
 					<string>100106.IBPluginDependency</string>
 					<string>100108.IBPluginDependency</string>
+					<string>100108.IBViewBoundsToFrameTransform</string>
 					<string>100109.IBPluginDependency</string>
 					<string>100113.IBPluginDependency</string>
 					<string>100113.IBViewBoundsToFrameTransform</string>
@@ -1400,10 +1409,13 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDpIAAwlwAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCRAAAwtoAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDaQAAwlwAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1441,7 +1453,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">100120</int>
+			<int key="maxID">100123</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1550,14 +1562,35 @@
 					<string key="className">FBMovieSettingsController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">acceptSettings:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>acceptSettings:</string>
+							<string>cancelSettings:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">acceptSettings:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">acceptSettings:</string>
-							<string key="candidateClassName">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>acceptSettings:</string>
+							<string>cancelSettings:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">acceptSettings:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">cancelSettings:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">

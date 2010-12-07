@@ -49,10 +49,13 @@
 - (IBAction) acceptSettings: (id) sender
 {
 	if ([self settingsOK]) {
-//		[settingsSheet orderOut: self];
-		
 		[self.delegate movieSettingsController: self didSaveSettings: [self composeMovieSettings]];
 	}
+}
+
+- (IBAction) cancelSettings: (id) sender
+{
+	[self.delegate movieSettingsControllerDidCancel: self];
 }
 
 - (BOOL) settingsOK

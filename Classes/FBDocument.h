@@ -41,8 +41,6 @@
 	IBOutlet FBMovieSettingsController *movieSettingsController;
 }
 
-- (IBAction)foo:(id)sender;
-
 #pragma mark -
 #pragma mark Retrieving the Document Window
 @property (readonly) NSWindow *window;
@@ -82,6 +80,8 @@
 #pragma mark -
 #pragma mark Movie Settings
 @property (retain) NSDictionary *movieSettings;
+@property (retain) FBMovieSettingsController *movieSettingsController;
+- (NSDictionary *) defaultMovieSettings;
 - (void) applyMovieSettings;
 
 #pragma mark -
@@ -113,11 +113,11 @@
 #pragma mark Movie Settings Controller Delegate
 - (void) movieSettingsController: (FBMovieSettingsController *) controller
 				 didSaveSettings: (NSDictionary *) settings;
+- (void) movieSettingsControllerDidCancel: (FBMovieSettingsController *)controller;
 
 #pragma mark -
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender;
 - (IBAction) exportMovie: (id) sender;
-- (IBAction) cancelMovieSettingsSheet: (id) sender;
 
 @end

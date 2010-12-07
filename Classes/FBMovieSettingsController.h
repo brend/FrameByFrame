@@ -28,6 +28,7 @@
 - (NSDictionary *) composeMovieSettings;
 
 - (IBAction) acceptSettings: (id) sender;
+- (IBAction) cancelSettings: (id) sender;
 
 - (BOOL) settingsOK;
 

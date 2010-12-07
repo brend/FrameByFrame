@@ -13,5 +13,6 @@
 
 - (void) movieSettingsController: (FBMovieSettingsController *) controller
 				 didSaveSettings: (NSDictionary *) settings;
+- (void) movieSettingsControllerDidCancel: (FBMovieSettingsController *) controller;
 
 @end

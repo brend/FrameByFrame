@@ -166,7 +166,7 @@
 	} else {
 		// If this is a newly created document,
 		// ask for settings
-		[movieSettingsController beginSheetModalForWindow: self.window];
+		[self.movieSettingsController beginSheetModalForWindow: self.window];
 	}
 }
 
@@ -176,6 +176,8 @@
 
 #pragma mark -
 #pragma mark Managing Movie Settings
+@synthesize movieSettingsController;
+
 - (NSDictionary *) movieSettings
 {
 	return movieSettings;
@@ -184,11 +186,13 @@
 - (void) setMovieSettings: (NSDictionary *) settings
 {
 	if (settings != movieSettings) {
+		[self willChangeValueForKey: @"movieSettings"];
 		[movieSettings release];
 		movieSettings = [settings retain];
 		
 		// TODO Re-position this code
 		[self applyMovieSettings];
+		[self didChangeValueForKey: @"movieSettings"];
 	}
 }
 
@@ -208,6 +212,14 @@
 																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
 	} else
 		NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);	
+}
+
+- (NSDictionary *) defaultMovieSettings
+{
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInteger: 640], FBHorizontalResolutionSettingName,
+			[NSNumber numberWithInteger: 480], FBVerticalResolutionSettingName,
+			nil];
 }
 
 #pragma mark -
@@ -433,16 +445,11 @@
 	 }];
 }
 
-- (IBAction) cancelMovieSettingsSheet: (id) sender
-{
-	NSBeginAlertSheet(@"Do you want to use default settings?", @"No", @"Yes", nil, movieSettingsController.settingsSheet, self, @selector(sheetDidEnd:returnCode:contextInfo:), nil, FBCancelMovieSettingsContext, @"They may not be very useful.");
-}
-
 - (void) sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
 {
 	if ([(NSObject *) contextInfo isEqual: FBCancelMovieSettingsContext]) {
 		if (returnCode == 0) {
-			[movieSettingsController endSheet];
+			[self.movieSettingsController endSheet];
 		}
 	}
 }
@@ -516,7 +523,13 @@
 {
 	self.movieSettings = settings;
 	
-	[movieSettingsController endSheet];
+	[controller endSheet];
+}
+
+- (void) movieSettingsControllerDidCancel: (FBMovieSettingsController *)controller
+{
+	[controller endSheet];
+	[self close];
 }
 
 #pragma mark -
@@ -530,12 +543,5 @@
 //{
 //	NSLog(@"Reel navigator selected image at %d", imageIndex);
 //}
-
-#pragma mark -
-#pragma mark Testing
-- (IBAction)foo:(id)sender 
-{
-	[movieSettingsController beginSheetModalForWindow: self.window];
-}
 
 @end
