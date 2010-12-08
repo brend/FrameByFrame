@@ -288,8 +288,11 @@
 		}
 		
 		self.reel.documentURL = self.temporaryStorageURL;
-		// TODO Decide: If settings aren't available, user will be asked. OK - or default? Ooor: Default if legacy document
-		self.movieSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
+		
+		NSDictionary *storedSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
+		
+		// Use default settings if none are present
+		self.movieSettings = storedSettings == nil ? [self defaultMovieSettings] : storedSettings;
 		
 		return YES;
 	} else {
