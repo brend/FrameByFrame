@@ -389,7 +389,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="573755376">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -420,7 +420,6 @@
 											</object>
 											<string key="NSFrameSize">{135, 88}</string>
 											<reference key="NSSuperview" ref="513227675"/>
-											<reference key="NSWindow"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSImageCell" key="NSCell" id="727703657">
 												<int key="NSCellFlags">130560</int>
@@ -435,7 +434,6 @@
 									</object>
 									<string key="NSFrameSize">{135, 88}</string>
 									<reference key="NSSuperview" ref="348441109"/>
-									<reference key="NSWindow"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 								<object class="NSCustomView" id="958348167">
@@ -448,7 +446,6 @@
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{17, 51}, {143, 17}}</string>
 											<reference key="NSSuperview" ref="958348167"/>
-											<reference key="NSWindow"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="643194542">
 												<int key="NSCellFlags">68288064</int>
@@ -466,27 +463,22 @@
 											<object class="NSPSMatrix" key="NSDrawMatrix"/>
 											<string key="NSFrame">{{18, 23}, {340, 20}}</string>
 											<reference key="NSSuperview" ref="958348167"/>
-											<reference key="NSWindow"/>
 											<int key="NSpiFlags">16392</int>
 											<double key="NSMaxValue">100</double>
 										</object>
 									</object>
 									<string key="NSFrame">{{136, 0}, {376, 88}}</string>
 									<reference key="NSSuperview" ref="348441109"/>
-									<reference key="NSWindow"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</object>
 							<string key="NSFrameSize">{512, 88}</string>
 							<reference key="NSSuperview" ref="573755376"/>
-							<reference key="NSWindow"/>
 							<bool key="NSIsVertical">YES</bool>
 							<int key="NSDividerStyle">2</int>
 						</object>
 					</object>
 					<string key="NSFrameSize">{512, 88}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -745,14 +737,6 @@
 						<reference key="destination" ref="512844837"/>
 					</object>
 					<int key="connectionID">100075</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">foo:</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="297029154"/>
-					</object>
-					<int key="connectionID">100077</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1465,15 +1449,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>cancelMovieSettingsSheet:</string>
 							<string>exportMovie:</string>
-							<string>foo:</string>
 							<string>snapshot:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1482,23 +1462,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>cancelMovieSettingsSheet:</string>
 							<string>exportMovie:</string>
-							<string>foo:</string>
 							<string>snapshot:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
-								<string key="name">cancelMovieSettingsSheet:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
 								<string key="name">exportMovie:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">foo:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

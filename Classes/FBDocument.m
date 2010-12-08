@@ -44,15 +44,28 @@
 - (void)dealloc 
 {
 	self.temporaryStorageURL = nil;
-	self.filterPipeline = nil;
+	self.originalFileURL = nil;
+	
+	[filterPipeline release];
+	filterPipeline = nil;
+	[reel release];
+	reel = nil;
+	[movieSettings release];
+	movieSettings = nil;
 	
 	[captureSession release];
 	captureSession = nil;
 	[videoDeviceInput release];
 	videoDeviceInput = nil;
+	[captureDecompressedVideoOutput release];
+	captureDecompressedVideoOutput = nil;
 	
-	[inputDevices release];
-	inputDevices = nil;
+	self.inputDevices = nil;
+	
+	// Outlets
+	captureView = nil;
+	progressSheetController = nil;
+	movieSettingsController = nil;
 
     [super dealloc];
 }
@@ -82,14 +95,14 @@
         captureSession = [[QTCaptureSession alloc] init];
 		
 		QTCaptureDevice *device = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
-        success = [device open:&error];
+        success = [device open: &error];
         if (!success) {
             [[NSAlert alertWithError:error] runModal];
             return;
         }
 		
-		captureDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice:device];
-        success = [captureSession addInput:captureDeviceInput error:&error];
+		videoDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice:device];
+        success = [captureSession addInput: videoDeviceInput error: &error];
         if (!success) {
             [[NSAlert alertWithError:error] runModal];
             return;

@@ -20,7 +20,6 @@
 									FBMovieSettingsControllerDelegate>
 {
 	QTCaptureSession *captureSession;
-	QTCaptureDeviceInput *captureDeviceInput;
 	QTCaptureDecompressedVideoOutput *captureDecompressedVideoOutput;
 	IBOutlet QTCaptureView *captureView;
 	
