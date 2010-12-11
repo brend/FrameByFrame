@@ -92,6 +92,19 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 		return nil;
 	}
 	
+	// Perform sanity check on reel files
+	NSMutableIndexSet *insaneIndexes = [NSMutableIndexSet indexSet];
+	
+	for (NSInteger i = 0; i < reel.count; ++i) {
+		FBCell *cell = [reel cellAtIndex: i];
+		
+		if (![FBReel saneFile: cell.identifier atPath: url.path]) {
+			NSLog(@"Insane reel reference: %@", cell.identifier);
+			[insaneIndexes addIndex: i];
+		}
+	}
+	[reel removeCellsAtIndexes: insaneIndexes];
+	
 	return reel;
 }
 
