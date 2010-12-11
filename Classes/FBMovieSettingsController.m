@@ -10,15 +10,17 @@
 
 
 @implementation FBMovieSettingsController
-@synthesize delegate, settingsSheet;
 
+#pragma mark -
+#pragma mark Initialization and Deallocation
 - (id) init
 {
 	if ((self = [super init])) {
-		self.availableResolutions = [NSArray arrayWithObjects:
-									 [NSValue valueWithSize: NSMakeSize(640, 480)], 
-									 [NSValue valueWithSize: NSMakeSize(800, 600)], 
-									 nil];
+		self.availableResolutions = 
+			[NSArray arrayWithObjects:
+				 [NSValue valueWithSize: NSMakeSize(640, 480)], 
+				 [NSValue valueWithSize: NSMakeSize(800, 600)], 
+				 nil];
 	}
 	
 	return self;
@@ -27,8 +29,18 @@
 - (void) dealloc
 {
 	delegate = nil;
+	[availableResolutions release];
+	availableResolutions = nil;
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark Delegate
+@synthesize delegate;
+
+#pragma mark -
+#pragma mark Accessing and Displaying the Sheet
+@synthesize settingsSheet;
 
 - (void) beginSheetModalForWindow: (NSWindow *) window
 {
@@ -42,22 +54,7 @@
 }
 
 #pragma mark -
-#pragma mark Retrieving the Movie Settings
-- (NSDictionary *) composeMovieSettings
-{
-	// TODO: Error handling if (somehow) selectedResolution is (inexplicably) nil
-	NSSize resolution = [self.selectedResolution sizeValue];
-	
-	NSAssert(resolution.width > 0 && resolution.height > 0, @"Invalid resolution");
-	
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithInteger: resolution.width], FBHorizontalResolutionSettingName,
-							  [NSNumber numberWithInteger: resolution.height], FBVerticalResolutionSettingName,
-							  nil];
-	
-	return settings;
-}
-
+#pragma mark Interface Builder Actions
 - (IBAction) acceptSettings: (id) sender
 {
 	if ([self settingsOK]) {
@@ -70,6 +67,10 @@
 	[self.delegate movieSettingsControllerDidCancel: self];
 }
 
+#pragma mark -
+#pragma mark Accessing Movie Settings
+@synthesize selectedResolution, availableResolutions;
+
 - (BOOL) settingsOK
 {
 	NSSize resolution = [self.selectedResolution sizeValue];
@@ -77,6 +78,21 @@
 	return resolution.width > 0 && resolution.height > 0;
 }
 
-@synthesize selectedResolution, availableResolutions;
+- (NSDictionary *) composeMovieSettings
+{
+	if (![self settingsOK])
+		return nil;
+	
+	NSSize resolution = [self.selectedResolution sizeValue];
+	
+	NSAssert(resolution.width > 0 && resolution.height > 0, @"Invalid resolution");
+	
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithInteger: resolution.width], FBHorizontalResolutionSettingName,
+							  [NSNumber numberWithInteger: resolution.height], FBVerticalResolutionSettingName,
+							  nil];
+	
+	return settings;
+}
 
 @end

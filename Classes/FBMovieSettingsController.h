@@ -18,20 +18,26 @@
 	NSValue *selectedResolution;
 }
 
+#pragma mark -
+#pragma mark Delegate
 @property (readonly) id<FBMovieSettingsControllerDelegate> delegate;
-@property (readonly) NSWindow *settingsSheet;
 
+#pragma mark -
+#pragma mark Accessing and Displaying the Sheet
+@property (readonly) NSWindow *settingsSheet;
 - (void) beginSheetModalForWindow: (NSWindow *) window;
 - (void) endSheet;
 
-- (NSDictionary *) composeMovieSettings;
-
-- (IBAction) acceptSettings: (id) sender;
-- (IBAction) cancelSettings: (id) sender;
-
-- (BOOL) settingsOK;
-
+#pragma mark -
+#pragma mark Accessing Movie Settings
 @property (retain) NSValue *selectedResolution;
 @property (copy) NSArray *availableResolutions;
+- (NSDictionary *) composeMovieSettings;
+- (BOOL) settingsOK;
+
+#pragma mark -
+#pragma mark Interface Builder Actions
+- (IBAction) acceptSettings: (id) sender;
+- (IBAction) cancelSettings: (id) sender;
 
 @end
