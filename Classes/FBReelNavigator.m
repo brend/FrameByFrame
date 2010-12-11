@@ -105,7 +105,7 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 - (void)drawRect:(NSRect)rect 
 {
 	float spf = 1.0f / (float) [self framesPerSecond];
-	NSString *secondUnitName = NSLocalizedString(@"FFSecondUnitName", @"sec.");
+	NSString *secondUnitName = NSLocalizedString(FFSecondUnitName, @"sec.");
 	NSUInteger i;
 	
 	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -536,8 +536,10 @@ NSString *FFIndicesPboardType = @"FFIndicesPboardType", *FFImagesPboardType = @"
 
 - (void) setFramesPerSecond: (NSUInteger) fps
 {
+	[self willChangeValueForKey: @"framesPerSecond"];
 	framesPerSecond = fps;
 	[self setNeedsDisplay: YES];
+	[self didChangeValueForKey: @"framesPerSecond"];
 }
 
 #pragma mark Cut, Copy, Paste and Delete Menu Items

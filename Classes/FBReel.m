@@ -52,6 +52,11 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 {
 	FBSystemFilenames = [[NSArray alloc] initWithObjects: @"QuickLook", @"reel", @"settings", nil];
 	
+	// Magic numbers are as follows (not all are in use)
+	// BMP	0x424D
+	// JPG	0xFFD8FFE0
+	// PNG	0x89504E47
+	// TIFF	0x4D4D002A
 	NSArray *magicNumbers = [NSArray arrayWithObjects: @"MM", @"BM", nil];
 	NSMutableArray *magicData = [NSMutableArray array];
 	
