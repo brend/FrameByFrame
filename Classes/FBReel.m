@@ -19,6 +19,8 @@
 @implementation FBReel
 @synthesize cells, recentImageIndex;
 
+static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
+
 #pragma mark -
 #pragma mark Initialization and Deallocation
 - (id)init 
@@ -44,6 +46,19 @@
 	}
 	
 	return self;
+}
+
++ (void) initialize
+{
+	FBSystemFilenames = [[NSArray alloc] initWithObjects: @"QuickLook", @"reel", @"settings", nil];
+	
+	NSArray *magicNumbers = [NSArray arrayWithObjects: @"MM", @"BM", nil];
+	NSMutableArray *magicData = [NSMutableArray array];
+	
+	for (NSString *mn in magicNumbers)
+		[magicData addObject: [mn dataUsingEncoding: NSASCIIStringEncoding]];
+	
+	FBReadableMagics = [[NSArray alloc] initWithArray: magicData];
 }
 
 + (id) reel
@@ -84,19 +99,22 @@
 {
 	NSError *intermediateError = nil;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *directoryPath = directoryURL.path;
 	NSArray *files = [fileManager contentsOfDirectoryAtPath: directoryURL.path error: &intermediateError];
 	NSMutableArray *cells = [NSMutableArray arrayWithCapacity: files.count];
 	
 	if (files) {
 		for (NSString *file in files) {
-			if (!([file isEqualToString: @"reel"] || [file isEqualToString: @"settings"] || [file isEqualToString: @"QuickLook"])) {
-				// TODO Ensure that "file" is a valid image file, if possible
+			if ([FBReel saneFile: file atPath: directoryPath]) {
 				FBCell *cell = [[FBCell alloc] initWithIdentifier: file];
 				
 				[cell setDocumentURL: directoryURL];
 				[cells addObject: cell];
 				[cell release];
+			} else {
+				NSLog(@"Insane file not added to reel: %@", file);
 			}
+
 		}
 		
 		FBReel *reel = [FBReel reel];
@@ -137,6 +155,33 @@
 - (void) encodeWithCoder:(NSCoder *)aCoder
 {
 	[aCoder encodeObject: self.cells forKey: @"cells"];
+}
+
+#pragma mark -
+#pragma mark Reel Sanity
++ (NSArray *) systemFilenames
+{
+	return FBSystemFilenames;
+}
+
++ (NSArray *) readableMagics
+{
+	return FBReadableMagics;
+}
+
++ (BOOL) saneFile: (NSString *) filename atPath: (NSString *) path
+{
+	if ([[FBReel systemFilenames] containsObject: filename])
+		return NO;
+		
+	NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath: [path stringByAppendingPathComponent: filename]];
+	
+	if (fileHandle == nil)
+		return NO;
+	
+	NSData *magic = [fileHandle readDataOfLength: 2];
+	
+	return [[FBReel readableMagics] containsObject: magic];
 }
 
 #pragma mark -
