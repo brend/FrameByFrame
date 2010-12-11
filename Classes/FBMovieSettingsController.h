@@ -14,7 +14,8 @@
 	IBOutlet NSWindow *settingsSheet;
 	IBOutlet id<FBMovieSettingsControllerDelegate> delegate;
 	
-	NSString *resolutionString;
+	NSArray *availableResolutions;
+	NSValue *selectedResolution;
 }
 
 @property (readonly) id<FBMovieSettingsControllerDelegate> delegate;
@@ -23,13 +24,14 @@
 - (void) beginSheetModalForWindow: (NSWindow *) window;
 - (void) endSheet;
 
-@property (copy) NSString *resolutionString;
-
 - (NSDictionary *) composeMovieSettings;
 
 - (IBAction) acceptSettings: (id) sender;
 - (IBAction) cancelSettings: (id) sender;
 
 - (BOOL) settingsOK;
+
+@property (retain) NSValue *selectedResolution;
+@property (copy) NSArray *availableResolutions;
 
 @end

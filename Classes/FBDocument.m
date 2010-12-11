@@ -203,7 +203,7 @@
 		[movieSettings release];
 		movieSettings = [settings retain];
 		
-		// TODO Re-position this code
+		// TODO: Re-position this code
 		[self applyMovieSettings];
 		[self didChangeValueForKey: @"movieSettings"];
 	}

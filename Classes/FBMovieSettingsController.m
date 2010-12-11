@@ -10,14 +10,25 @@
 
 
 @implementation FBMovieSettingsController
-@synthesize resolutionString, delegate, settingsSheet;
+@synthesize delegate, settingsSheet;
+
+- (id) init
+{
+	if ((self = [super init])) {
+		self.availableResolutions = [NSArray arrayWithObjects:
+									 [NSValue valueWithSize: NSMakeSize(640, 480)], 
+									 [NSValue valueWithSize: NSMakeSize(800, 600)], 
+									 nil];
+	}
+	
+	return self;
+}
 
 - (void) dealloc
 {
 	delegate = nil;
 	[super dealloc];
 }
-
 
 - (void) beginSheetModalForWindow: (NSWindow *) window
 {
@@ -34,7 +45,8 @@
 #pragma mark Retrieving the Movie Settings
 - (NSDictionary *) composeMovieSettings
 {
-	NSSize resolution = NSSizeFromString(self.resolutionString);
+	// TODO: Error handling if (somehow) selectedResolution is (inexplicably) nil
+	NSSize resolution = [self.selectedResolution sizeValue];
 	
 	NSAssert(resolution.width > 0 && resolution.height > 0, @"Invalid resolution");
 	
@@ -60,9 +72,11 @@
 
 - (BOOL) settingsOK
 {
-	NSSize resolution = NSSizeFromString(self.resolutionString);
+	NSSize resolution = [self.selectedResolution sizeValue];
 	
 	return resolution.width > 0 && resolution.height > 0;
 }
+
+@synthesize selectedResolution, availableResolutions;
 
 @end

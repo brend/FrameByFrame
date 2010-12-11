@@ -43,7 +43,7 @@
 	if ((self = [super init])) {
 		self.reel = aReel;
 		
-		// TODO Use actual parameters
+		// TODO: Use actual parameters
 		NSDictionary *initializationSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 												filename, @"filename",
 												[NSNumber numberWithUnsignedInteger: 1], @"fps",
@@ -184,7 +184,7 @@ nostring:
 #pragma mark Adding Images to the Movie
 - (void) exportImagesWithIndexes: (NSIndexSet *) indexes
 {
-	// TODO Echte FPS verwenden
+	// TODO: Echte FPS verwenden
 	NSArray *images = [self.reel NSImagesAtIndexes: indexes];
 	NSInteger fps = 1;
 	

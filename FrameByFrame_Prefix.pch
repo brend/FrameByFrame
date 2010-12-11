@@ -10,4 +10,5 @@
 	#import "FBLocalizationKeys.h"
 // Categories
 	#import "NSDictionary(FBAdditions).h"
+	#import "NSValue(FBAdditions).h"
 #endif
