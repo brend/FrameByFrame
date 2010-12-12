@@ -61,7 +61,8 @@
 
 #pragma mark -
 #pragma mark Displaying Video Input
-- (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)image;
+- (CIImage *) view: (QTCaptureView *) view willDisplayImage: (CIImage *) image;
+- (void) captureDeviceFormatDescriptionsDidChange: (NSNotification*) notification;
 
 #pragma mark -
 #pragma mark Taking Pictures

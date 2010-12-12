@@ -102,6 +102,14 @@
         }
 		
 		videoDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice:device];
+		
+		// Register for notification of format change
+		[[NSNotificationCenter defaultCenter] addObserver: self 
+												 selector: @selector(captureDeviceFormatDescriptionsDidChange:) 
+													 name: QTCaptureDeviceFormatDescriptionsDidChangeNotification
+												   // object: videoDeviceInput];
+												   object: nil];		
+		
         success = [captureSession addInput: videoDeviceInput error: &error];
         if (!success) {
             [[NSAlert alertWithError:error] runModal];
@@ -391,6 +399,36 @@
 	CIImage *result = [self.filterPipeline pipeVideoImage: videoImage skinImages: skinImages];
 	
 	return result;
+}
+
+- (void) captureDeviceFormatDescriptionsDidChange:(NSNotification*)notification
+{
+	id device = [notification object];
+	NSArray *formats = [device formatDescriptions];
+	NSMutableSet *acceptableResolutions = [NSMutableSet setWithArray: self.movieSettingsController.availableResolutions];
+	
+	// Add current resolution(s?) to the set
+	// of existing resolutions
+	for (id format in formats) {
+		NSValue *size = [format attributeForKey: QTFormatDescriptionVideoCleanApertureDisplaySizeAttribute];
+		
+		[acceptableResolutions addObject: size];
+	}
+	
+	// Sort the resolutions
+	NSArray *allResolutions = [[acceptableResolutions allObjects] sortedArrayUsingComparator:
+							   ^(id a, id b) {
+								   float wa = [a sizeValue].width, wb = [b sizeValue].width;
+								   
+								   if (wa < wb)
+									   return NSOrderedAscending;
+								   else if (wa > wb)
+									   return NSOrderedDescending;
+								   else
+									   return NSOrderedSame;
+							   }];
+	
+	self.movieSettingsController.availableResolutions = allResolutions;
 }
 
 #pragma mark -
