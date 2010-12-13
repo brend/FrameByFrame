@@ -43,6 +43,10 @@
 
 - (void)dealloc 
 {
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	
+	[notificationCenter removeObserver: self name: QTCaptureDeviceFormatDescriptionsDidChangeNotification object: nil];
+	
 	self.temporaryStorageURL = nil;
 	self.originalFileURL = nil;
 	
@@ -403,6 +407,8 @@
 
 - (void) captureDeviceFormatDescriptionsDidChange:(NSNotification*)notification
 {
+	NSLog(@"Document %@ reports format change, sir!", self);
+	
 	id device = [notification object];
 	NSArray *formats = [device formatDescriptions];
 	NSMutableSet *acceptableResolutions = [NSMutableSet setWithArray: self.movieSettingsController.availableResolutions];
