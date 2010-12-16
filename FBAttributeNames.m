@@ -8,7 +8,7 @@
 
 #import "FBAttributeNames.h"
 
-NSString const 
-	*FBFramesPerSecondAttributeName		= @"FBFramesPerSecondAttributeName",
-	*FBHorizontalResolutionSettingName	= @"FBHorizontalResolutionSettingName",
-	*FBVerticalResolutionSettingName	= @"FBVerticalResolutionSettingName";
+NSString 
+	* const FBFramesPerSecondAttributeName		= @"FBFramesPerSecondAttributeName",
+	* const FBHorizontalResolutionSettingName	= @"FBHorizontalResolutionSettingName",
+	* const FBVerticalResolutionSettingName		= @"FBVerticalResolutionSettingName";

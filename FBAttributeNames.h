@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern NSString const
-	*FBFramesPerSecondAttributeName,
-	*FBHorizontalResolutionSettingName,
-	*FBVerticalResolutionSettingName;
+extern NSString
+	* const FBFramesPerSecondAttributeName,
+	* const FBHorizontalResolutionSettingName,
+	* const FBVerticalResolutionSettingName;
