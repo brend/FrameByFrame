@@ -87,10 +87,14 @@
 	
 	NSAssert(resolution.width > 0 && resolution.height > 0, @"Invalid resolution");
 	
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithInteger: resolution.width], FBHorizontalResolutionSettingName,
-							  [NSNumber numberWithInteger: resolution.height], FBVerticalResolutionSettingName,
-							  nil];
+	NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithDictionary: [NSDictionary defaultMovieSettings]];
+	NSDictionary *localSettings =
+		[NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInteger: resolution.width], FBHorizontalResolutionSettingName,
+			[NSNumber numberWithInteger: resolution.height], FBVerticalResolutionSettingName,
+			nil];
+	
+	[settings addEntriesFromDictionary: localSettings];
 	
 	return settings;
 }

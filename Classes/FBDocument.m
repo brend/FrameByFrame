@@ -23,6 +23,7 @@
 		// If an error occurs here, send a [self release] message and return nil.
 		
 		self.onionLayerCount = 2;
+		self.framesPerSecond = 15;
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
@@ -154,6 +155,10 @@
 	}
 	
 	// Save the movie settings
+	
+	// FIXME: Handle movie settings more elegantly
+	[self.movieSettings setObject: [NSNumber numberWithInteger: self.framesPerSecond] forKey: FBFramesPerSecondAttributeName];
+	
 	if (self.movieSettings) {		
 		if (![self.movieSettings writeToURL: self.movieSettingsURL atomically: YES]) {
 			NSLog(@"Couldn't write movie settings to url %@; continuing anyway", self.movieSettingsURL);
@@ -203,12 +208,12 @@
 #pragma mark Managing Movie Settings
 @synthesize movieSettingsController;
 
-- (NSDictionary *) movieSettings
+- (NSMutableDictionary *) movieSettings
 {
 	return movieSettings;
 }
 
-- (void) setMovieSettings: (NSDictionary *) settings
+- (void) setMovieSettings: (NSMutableDictionary *) settings
 {
 	if (settings != movieSettings) {
 		[self willChangeValueForKey: @"movieSettings"];
@@ -236,15 +241,12 @@
 																			   [NSNumber numberWithInt: (int) verticalResolution], kCVPixelBufferHeightKey,
 																			   [NSNumber numberWithInt: (int) horizontalResolution], kCVPixelBufferWidthKey, nil]];
 	} else
-		NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);	
-}
-
-- (NSDictionary *) defaultMovieSettings
-{
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInteger: 640], FBHorizontalResolutionSettingName,
-			[NSNumber numberWithInteger: 480], FBVerticalResolutionSettingName,
-			nil];
+		NSLog(@"Invalid resolution: %d x %d", horizontalResolution, verticalResolution);
+	
+	// Set the desired frames per second
+	NSInteger fps = MAX(1, movieSettings.framesPerSecond);
+	
+	self.framesPerSecond = fps;
 }
 
 #pragma mark -
@@ -304,7 +306,7 @@
 		NSDictionary *storedSettings = [NSDictionary dictionaryWithContentsOfURL: self.movieSettingsURL];
 		
 		// Use default settings if none are present
-		self.movieSettings = storedSettings == nil ? [self defaultMovieSettings] : storedSettings;
+		self.movieSettings = [NSMutableDictionary dictionaryWithDictionary: storedSettings == nil ? [NSDictionary defaultMovieSettings] : storedSettings];
 		
 		return YES;
 	} else {
@@ -484,6 +486,10 @@
 }
 
 #pragma mark -
+#pragma mark Frames Per Second
+@synthesize framesPerSecond;
+
+#pragma mark -
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender
 {
@@ -521,7 +527,8 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	// Initialize movie exporter
 	// This will create a QTMovie on the main thread
-	FBQuickTimeExporter *exporter = [[FBQuickTimeExporter alloc] initWithReel: self.reel destination: fileURL.path];
+	NSDictionary *exportAttributes = [NSDictionary dictionaryWithObject: [NSNumber numberWithInteger: self.framesPerSecond] forKey: FBFramesPerSecondAttributeName];
+	FBQuickTimeExporter *exporter = [[FBQuickTimeExporter alloc] initWithReel: self.reel destination: fileURL.path attributes: exportAttributes];
 	NSInteger chunkSize = 10;
 	NSInteger i = 0;
 	
@@ -581,7 +588,7 @@
 - (void) movieSettingsController: (FBMovieSettingsController *) controller
 				 didSaveSettings: (NSDictionary *) settings
 {
-	self.movieSettings = settings;
+	self.movieSettings = [NSMutableDictionary dictionaryWithDictionary: settings];
 	
 	[controller endSheet];
 }

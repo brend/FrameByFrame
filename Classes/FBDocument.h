@@ -31,10 +31,10 @@
 
 	FBReel *reel;
 	NSURL *temporaryStorageURL, *originalFileURL;
-	NSDictionary *movieSettings;
+	NSMutableDictionary *movieSettings;
 	
 	FBFilterPipeline *filterPipeline;
-	NSInteger onionLayerCount;
+	NSInteger onionLayerCount, framesPerSecond;
 	
 	IBOutlet FBProgressSheetController *progressSheetController;
 	IBOutlet FBMovieSettingsController *movieSettingsController;
@@ -79,15 +79,18 @@
 
 #pragma mark -
 #pragma mark Movie Settings
-@property (retain) NSDictionary *movieSettings;
+@property (retain) NSMutableDictionary *movieSettings;
 @property (retain) FBMovieSettingsController *movieSettingsController;
-- (NSDictionary *) defaultMovieSettings;
 - (void) applyMovieSettings;
 
 #pragma mark -
 #pragma mark Onion Skinning
 @property (nonatomic, assign) NSInteger onionLayerCount;
 - (NSArray *) skinImages;
+
+#pragma mark -
+#pragma mark Frames Per Second
+@property NSInteger framesPerSecond;
 
 #pragma mark -
 #pragma mark Filter Pipeline

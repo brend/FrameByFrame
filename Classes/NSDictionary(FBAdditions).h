@@ -11,7 +11,11 @@
 
 @interface NSDictionary (FBAdditions)
 
+#pragma mark -
+#pragma mark Movie Settings
++ (NSDictionary *) defaultMovieSettings;
 - (NSInteger) horizontalResolution;
 - (NSInteger) verticalResolution;
+- (NSInteger) framesPerSecond;
 
 @end

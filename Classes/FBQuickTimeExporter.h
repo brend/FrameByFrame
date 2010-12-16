@@ -13,19 +13,20 @@
 @interface FBQuickTimeExporter : NSObject 
 {
 	FBReel *reel;
-	NSDictionary *movieAttributes;
+	NSDictionary *movieAttributes, *exportAttributes;
 	QTMovie *movie;
 }
 
 #pragma mark -
 #pragma mark Initialization
 - (id) initWithReel: (FBReel *) reel
-		destination: (NSString *) filename;
+		destination: (NSString *) filename
+		 attributes: (NSDictionary *) exportAttributes;
 
 #pragma mark -
 #pragma mark Attributes
 @property (retain, readonly) FBReel *reel;
-@property (retain, readonly) NSDictionary *movieAttributes;
+@property (retain, readonly) NSDictionary *movieAttributes, *exportAttributes;
 
 #pragma mark -
 #pragma mark Adding Images to the Movie

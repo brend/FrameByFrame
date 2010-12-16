@@ -14,7 +14,7 @@
 @interface FBQuickTimeExporter ()
 
 @property (readwrite, retain) FBReel *reel;
-@property (readwrite, retain) NSDictionary *movieAttributes;
+@property (readwrite, retain) NSDictionary *movieAttributes, *exportAttributes;
 @property (retain) QTMovie *movie;
 
 - (void) initializeMovieWithSettings: (NSDictionary *) settings;
@@ -33,20 +33,23 @@
 #pragma mark -
 #pragma mark FBQuickTimeExporter Implementation
 @implementation FBQuickTimeExporter
-@synthesize reel, movieAttributes, movie;
+@synthesize reel, movieAttributes, exportAttributes, movie;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
 - (id) initWithReel: (FBReel *) aReel
 		destination: (NSString *) filename
+		 attributes: (NSDictionary *) attributes
 {
 	if ((self = [super init])) {
 		self.reel = aReel;
+		self.exportAttributes = attributes;
 		
 		// TODO: Use actual parameters
+		NSNumber *fps = [exportAttributes objectForKey: FBFramesPerSecondAttributeName];
 		NSDictionary *initializationSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 												filename, @"filename",
-												[NSNumber numberWithUnsignedInteger: 1], @"fps",
+												fps == nil ? [NSNumber numberWithUnsignedInteger: 1] : fps, @"fps",
 												[NSNumber numberWithUnsignedInteger: 0x61766331], @"codec",
 												[NSNumber numberWithUnsignedInteger: codecNormalQuality], @"compression",
 												nil];
@@ -61,6 +64,7 @@
 {
 	self.reel = nil;
 	self.movieAttributes = nil;
+	self.exportAttributes = nil;
 	self.movie = nil;
 	[super dealloc];
 }
@@ -71,9 +75,9 @@
 {
 	NSString *filename = [settings objectForKey: @"filename"];
 	NSUInteger
-	fps = [[settings objectForKey: @"fps"] unsignedIntegerValue],
-	codec = [[settings objectForKey: @"codec"] unsignedIntegerValue],
-	compression = [[settings objectForKey: @"compression"] unsignedIntegerValue];
+		fps = [[settings objectForKey: @"fps"] unsignedIntegerValue],
+		codec = [[settings objectForKey: @"codec"] unsignedIntegerValue],
+		compression = [[settings objectForKey: @"compression"] unsignedIntegerValue];
 	
 	[self initializeMovieToFile: filename framesPerSecond: fps codec: codec compression: compression reportProgressDelegate: nil];
 }
@@ -88,7 +92,7 @@
 	DataHandler mDataHandlerRef;
 	
     // Check first if the new QuickTime 7.2.1 initToWritableFile: method is available
-    if ([[[[QTMovie alloc] init] autorelease] respondsToSelector:@selector(initToWritableFile:error:)] == YES)
+	if ([QTMovie instancesRespondToSelector: @selector(initToWritableFile:error:)])
     {
 		NSString *tempName = filename;
 		
@@ -96,24 +100,34 @@
 			return;
         
         // Create a QTMovie with a writable data reference
-        mMovie = [[QTMovie alloc] initToWritableFile:tempName error:NULL];
+        mMovie = [[[QTMovie alloc] initToWritableFile:tempName error:NULL] autorelease];
     }
     else    
     {    
         // The QuickTime 7.2.1 initToWritableFile: method is not available, so use the native 
         // QuickTime API CreateMovieStorage() to create a QuickTime movie with a writable 
         // data reference
+        OSErr err = 0;
 		
-        OSErr err;
         // create a native QuickTime movie
         Movie qtMovie = [self quicktimeMovieWithFilename: filename dataHandler:&mDataHandlerRef error:&err];
         if (nil == qtMovie)
 			return;
+		
+		if (err) {
+			NSLog(@"Error %d while creating movie with filename %@", err, filename);
+			
+			return;
+		}
         
         // instantiate a QTMovie from our native QuickTime movie
         mMovie = [QTMovie movieWithQuickTimeMovie:qtMovie disposeWhenDone:YES error:nil];
-        if (!mMovie || err)
+		
+        if (mMovie == nil) {
+			NSLog(@"QuickTime movie is nil");
+			
 			return;
+		}
     }
 	
 	
@@ -184,9 +198,9 @@ nostring:
 #pragma mark Adding Images to the Movie
 - (void) exportImagesWithIndexes: (NSIndexSet *) indexes
 {
-	// TODO: Echte FPS verwenden
 	NSArray *images = [self.reel NSImagesAtIndexes: indexes];
-	NSInteger fps = 1;
+	NSNumber *fpsAttribute = [self.exportAttributes objectForKey: FBFramesPerSecondAttributeName];
+	NSInteger fps = fpsAttribute == nil ? 1 : [fpsAttribute integerValue];
 	
 	[self.movie addImagesAsMPEG4: images
 				 framesPerSecond: fps
