@@ -93,6 +93,9 @@
 {
 	[super windowControllerDidLoadNib:aController];
 	
+	// Binding properties
+	[self.reelNavigator bind: @"framesPerSecond" toObject: self withKeyPath: @"framesPerSecond" options: nil];
+	
 	// Create a capture session
 	if (!captureSession) {
         BOOL success;
