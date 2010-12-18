@@ -22,7 +22,9 @@
 				 [NSValue valueWithSize: NSMakeSize(800, 600)], 
 				 nil];
 		if (self.availableResolutions.count > 0)
-			self.selectedResolution = [self.availableResolutions objectAtIndex: 0];
+			self.selectedPredefinedResolution = [self.availableResolutions objectAtIndex: 0];
+		self.customHorizontalResolution = 640;
+		self.customVerticalResolution = 480;
 	}
 	
 	return self;
@@ -44,9 +46,9 @@
 #pragma mark Accessing and Displaying the Sheet
 @synthesize settingsSheet;
 
-- (void) beginSheetModalForWindow: (NSWindow *) window
+- (void) beginSheetModalForWindow: (NSWindow *) aWindow
 {
-	[NSApp beginSheet: settingsSheet modalForWindow: window modalDelegate: nil didEndSelector: nil contextInfo: nil];
+	[NSApp beginSheet: settingsSheet modalForWindow: aWindow modalDelegate: nil didEndSelector: nil contextInfo: nil];
 }
 
 - (void) endSheet
@@ -61,6 +63,8 @@
 {
 	if ([self settingsOK]) {
 		[self.delegate movieSettingsController: self didSaveSettings: [self composeMovieSettings]];
+	} else {
+		NSRunAlertPanel(@"Bad resolution", @"Please select a resolution that is suitable to your camera", @"OK", nil, nil);
 	}
 }
 
@@ -71,11 +75,18 @@
 
 #pragma mark -
 #pragma mark Accessing Movie Settings
-@synthesize selectedResolution, availableResolutions;
+@synthesize selectedPredefinedResolution, availableResolutions;
+@synthesize useCustomResolution, customHorizontalResolution, customVerticalResolution;
 
 - (BOOL) settingsOK
 {
-	NSSize resolution = [self.selectedResolution sizeValue];
+	NSSize resolution = NSZeroSize;
+	
+	if (self.useCustomResolution) {
+		resolution = NSMakeSize(self.customHorizontalResolution, self.customVerticalResolution);
+	} else {
+		resolution = [self.selectedPredefinedResolution sizeValue];
+	}
 	
 	return resolution.width > 0 && resolution.height > 0;
 }
@@ -85,7 +96,13 @@
 	if (![self settingsOK])
 		return nil;
 	
-	NSSize resolution = [self.selectedResolution sizeValue];
+	NSSize resolution = NSZeroSize;
+	
+	if (self.useCustomResolution) {
+		resolution = NSMakeSize(self.customHorizontalResolution, self.customVerticalResolution);
+	} else {
+		resolution = [self.selectedPredefinedResolution sizeValue];
+	}	
 	
 	NSAssert(resolution.width > 0 && resolution.height > 0, @"Invalid resolution");
 	

@@ -15,7 +15,10 @@
 	IBOutlet id<FBMovieSettingsControllerDelegate> delegate;
 	
 	NSArray *availableResolutions;
-	NSValue *selectedResolution;
+	NSValue *selectedPredefinedResolution;
+	
+	BOOL useCustomResolution;
+	NSInteger customHorizontalResolution, customVerticalResolution;
 }
 
 #pragma mark -
@@ -30,7 +33,10 @@
 
 #pragma mark -
 #pragma mark Accessing Movie Settings
-@property (retain) NSValue *selectedResolution;
+@property BOOL useCustomResolution;
+@property NSInteger customHorizontalResolution, customVerticalResolution;
+
+@property (retain) NSValue *selectedPredefinedResolution;
 @property (copy) NSArray *availableResolutions;
 - (NSDictionary *) composeMovieSettings;
 - (BOOL) settingsOK;
