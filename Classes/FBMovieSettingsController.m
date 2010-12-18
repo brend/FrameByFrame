@@ -21,6 +21,8 @@
 				 [NSValue valueWithSize: NSMakeSize(640, 480)], 
 				 [NSValue valueWithSize: NSMakeSize(800, 600)], 
 				 nil];
+		if (self.availableResolutions.count > 0)
+			self.selectedResolution = [self.availableResolutions objectAtIndex: 0];
 	}
 	
 	return self;
