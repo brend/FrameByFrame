@@ -36,9 +36,7 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 	IBOutlet NSScrollView *scrollView;
 	IBOutlet id<FBReelNavigatorDelegate> delegate;
 	IBOutlet id<FBReelNavigatorDataSource> dataSource;
-	
-//	IBOutlet FBReel *reel;
-	
+		
 	NSMutableIndexSet *selectedIndexes;
 	
 	CIImage *currentImage;
@@ -92,11 +90,8 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 - (IBAction) add: (id) sender;
 - (IBAction) remove: (id) sender;
 
-#pragma mark Insertion Mark
-- (NSInteger) insertionMark;
-- (void) setInsertionMark: (NSInteger) index;
-
 #pragma mark Handling Selection
+@property (readonly) NSArray *selectedImages;
 - (void) shiftSelectionToRight;
 - (void) shiftSelectionToLeft;
 - (void) shiftSelectionToBeginning;

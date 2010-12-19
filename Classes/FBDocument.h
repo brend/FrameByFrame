@@ -106,6 +106,7 @@
 - (NSInteger) numberOfCellsForReelNavigator: (FBReelNavigator *) navigator;
 - (CIImage *) reelNavigator: (FBReelNavigator *) navigator imageForCellAtIndex:(NSInteger)index;
 - (NSImage *) reelNavigator: (FBReelNavigator *) navigator thumbnailForCellAtIndex:(NSInteger)index;
+- (NSArray *) urlsForImagesAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark -
 #pragma mark Reel Navigator Delegate

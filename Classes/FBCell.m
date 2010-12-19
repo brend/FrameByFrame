@@ -77,7 +77,7 @@
 - (CIImage *) image
 {
 	if (image == nil) {
-		NSString *filename = [self.documentURL.path stringByAppendingPathComponent: self.identifier];
+		NSString *filename = self.cellURL.path;
 		NSData *data = [NSData dataWithContentsOfFile: filename];
 		
 		image = [[CIImage imageWithData: data] retain];
@@ -100,7 +100,7 @@
 - (NSImage *) thumbnail
 {
 	if (thumbnail == nil) {		
-		NSString *fullsizedImageFilename = [self.documentURL.path stringByAppendingPathComponent: self.identifier];
+		NSString *fullsizedImageFilename = self.cellURL.path;
 		NSImage *fullsizedImage = [[NSImage alloc] initWithContentsOfFile: fullsizedImageFilename];
 		NSSize thumbnailSize = NSMakeSize(64, 64);
 		NSImage *thumb = [[NSImage alloc] initWithSize: thumbnailSize];
@@ -123,6 +123,11 @@
 #pragma mark -
 #pragma mark Saving the Cell
 @synthesize documentURL;
+
+- (NSURL *) cellURL
+{
+	return [self.documentURL URLByAppendingPathComponent: self.identifier];
+}
 
 - (BOOL) writeToFile: (NSString *) path error: (NSError **) outError
 {

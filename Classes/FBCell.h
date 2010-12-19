@@ -35,6 +35,7 @@
 #pragma mark -
 #pragma mark Saving the Cell
 @property (retain) NSURL *documentURL;
+@property (readonly) NSURL *cellURL;
 - (BOOL) writeToFile: (NSString *) filename error: (NSError **) outError;
 
 #pragma mark -

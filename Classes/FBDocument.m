@@ -586,6 +586,11 @@
 	return [[self.reel cellAtIndex: index] thumbnail];
 }
 
+- (NSArray *) urlsForImagesAtIndexes: (NSIndexSet *) indexes
+{
+	return [self.reel urlsForImagesAtIndexes: indexes];
+}
+
 #pragma mark -
 #pragma mark Movie Settings Controller Delegate
 - (void) movieSettingsController: (FBMovieSettingsController *) controller

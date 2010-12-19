@@ -243,6 +243,18 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	return self.cells.count;
 }
 
+- (NSArray *) urlsForImagesAtIndexes: (NSIndexSet *) indexes
+{
+	NSArray *a = [self.cells objectsAtIndexes: indexes];
+	NSMutableArray *urls = [NSMutableArray arrayWithCapacity: a.count];
+	
+	for (FBCell *cell in a) {
+		[urls addObject: cell.cellURL];
+	}
+	
+	return urls;
+}
+
 #pragma mark -
 #pragma mark Adding, Retrieving and Counting Pictures
 - (void) insertCell: (FBCell *) cell

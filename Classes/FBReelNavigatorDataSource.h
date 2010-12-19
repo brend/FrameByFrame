@@ -18,5 +18,6 @@
 	thumbnailForCellAtIndex: (NSInteger) index;
 - (CIImage *) reelNavigator: (FBReelNavigator *) navigator
 		imageForCellAtIndex: (NSInteger) index;
+- (NSArray *) urlsForImagesAtIndexes: (NSIndexSet *) indexes;
 
 @end

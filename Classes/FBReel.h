@@ -42,6 +42,7 @@
 #pragma mark -
 #pragma mark Querying the Reel
 - (NSUInteger) count;
+- (NSArray *) urlsForImagesAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark -
 #pragma mark Adding and Retrieving Cells
