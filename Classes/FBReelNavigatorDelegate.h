@@ -12,7 +12,7 @@
 #pragma mark Reel Navigator Delegate
 @protocol FBReelNavigatorDelegate <NSObject>
 
-- (void) reelNavigatorRequestsSnapshot: (FBReelNavigator *) strip;
+- (void) reelNavigatorRequestsSnapshot: (FBReelNavigator *) navigator;
 // - (void) reelNavigator: (FBReelNavigator *) didSelectImageAtIndex: (NSUInteger) imageIndex;
 
 @end

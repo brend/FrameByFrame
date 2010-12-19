@@ -326,7 +326,7 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	NSAssert(indexes.count == images.count, @"Number of images doesn't fit number of indexes");
 	
 	NSMutableArray *imageCells = [NSMutableArray arrayWithCapacity: indexes.count];
-	
+
 	for (CIImage *image in images) {
 		NSString *identifier = [self createUniqueCellIdentifier];
 		FBCell *cell = [FBCell cellWithIdentifier: identifier image: image];

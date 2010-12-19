@@ -22,18 +22,5 @@
 			source: (id) source
 		 slideBack: (BOOL) slideBack;
 - (NSArray *)namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination;
-- (NSImage *) dragImageForCell: (NSUInteger) cellIndex numberOfImages: (NSUInteger) numberOfImages;
-
-#pragma mark -
-#pragma mark Drag target
-- (NSDragOperation) draggingEntered:(id < NSDraggingInfo >)sender;
-- (NSDragOperation) draggingUpdated:(id < NSDraggingInfo >)sender;
-- (void) draggingExited: (id < NSDraggingInfo >) sender;
-- (BOOL) performDragOperation: (id < NSDraggingInfo >) sender;
-- (NSInteger) cellAtPoint: (NSPoint) p;
-
-#pragma mark -
-#pragma mark Insertion mark
-@property NSInteger insertionMark;
 
 @end

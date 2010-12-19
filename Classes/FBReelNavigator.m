@@ -177,6 +177,12 @@
 	}
 }
 
+#pragma mark Handling Selection
+- (NSInteger) cellAtPoint: (NSPoint) p
+{
+	return (NSUInteger) MIN(round(p.x / [self cellWidth]), [self count]);
+}
+
 #pragma mark Key Events
 - (void) keyDown: (NSEvent *) theEvent
 {
@@ -675,6 +681,22 @@
 {
 	[self resizeToFitImages];
 	[self setNeedsDisplay: YES];	
+}
+
+#pragma mark -
+#pragma mark Insertion mark
+- (NSInteger) insertionMark
+{
+	return insertionMark;
+}
+
+- (void) setInsertionMark: (NSInteger) index
+{
+	if (index < -1 || index > [self count] + 1)
+		NSLog(@"Suspicious insertion mark index: %d (strip has %d elements)", index, [self count]);
+	
+	insertionMark = index;
+	[self setNeedsDisplay: YES];
 }
 
 @end

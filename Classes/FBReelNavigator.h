@@ -92,10 +92,12 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 
 #pragma mark Handling Selection
 @property (readonly) NSArray *selectedImages;
+@property NSInteger insertionMark;
 - (void) shiftSelectionToRight;
 - (void) shiftSelectionToLeft;
 - (void) shiftSelectionToBeginning;
 - (void) shiftSelectionToEnd;
+- (NSInteger) cellAtPoint: (NSPoint) p;
 
 #pragma mark Scrolling
 - (void) scrollToImage: (NSUInteger) index;
