@@ -11,13 +11,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FBReel.h"
 #import "FBReelNavigator.h"
+#import "FBDragDropBuddy.h"
 #import "FBFilterPipeline.h"
 #import "FBProgressSheetController.h"
 #import "FBMovieSettingsController.h"
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate, 
 									FBReelNavigatorDataSource, 
-									FBMovieSettingsControllerDelegate>
+									FBMovieSettingsControllerDelegate, FBDragDropBuddy>
 {
 	QTCaptureSession *captureSession;
 	QTCaptureDecompressedVideoOutput *captureDecompressedVideoOutput;

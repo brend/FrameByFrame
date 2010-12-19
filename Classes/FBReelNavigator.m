@@ -80,7 +80,7 @@
 
 - (void) awakeFromNib
 {
-	[self registerForDraggedTypes: [NSArray arrayWithObjects: NSTIFFPboardType, NSFilenamesPboardType, FFIndicesPboardType, nil]];
+	[self registerForDraggedTypes: [NSArray arrayWithObjects: NSTIFFPboardType, NSFilenamesPboardType, nil]];
 }
 
 - (NSInteger) count
@@ -698,5 +698,9 @@
 	insertionMark = index;
 	[self setNeedsDisplay: YES];
 }
+
+#pragma mark -
+#pragma mark Drag and Drop
+@synthesize dragDropBuddy;
 
 @end

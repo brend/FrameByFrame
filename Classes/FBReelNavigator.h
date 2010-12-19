@@ -26,8 +26,9 @@
 #import "FBReel.h"
 #import "FBReelNavigatorDelegate.h"
 #import "FBReelNavigatorDataSource.h"
+#import "FBDragDropBuddy.h"
 
-extern NSString *FFIndicesPboardType, *FFImagesPboardType;
+extern NSString *FFImagesPboardType;
 
 #pragma mark -
 #pragma mark FBReelNavigator Interface
@@ -47,6 +48,8 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 	NSPoint mouseDownPosition;
 	NSUInteger mouseDownCell;
 	NSInteger insertionMark;
+	
+	IBOutlet id<FBDragDropBuddy> dragDropBuddy;
 }
 
 //@property (readonly) FBReel *reel;
@@ -114,5 +117,9 @@ extern NSString *FFIndicesPboardType, *FFImagesPboardType;
 
 #pragma mark Take Action Whenever the Reel Changes
 - (void) reelHasChanged;
+
+#pragma mark -
+#pragma mark Drag and Drop
+@property (readonly) id<FBDragDropBuddy> dragDropBuddy;
 
 @end

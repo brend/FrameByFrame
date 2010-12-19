@@ -10,4 +10,8 @@
 #import "FBDocument.h"
 
 @interface FBDocument (DragDrop)
+
+- (NSArray *) namesOfFilesAtIndexes: (NSIndexSet *) indexes forDestination: (NSURL *) destination;
+- (void) insertImages: (NSArray *) images atIndex: (NSUInteger) index;
+
 @end

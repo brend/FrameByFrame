@@ -21,6 +21,9 @@
 		pasteboard: (NSPasteboard *) pb
 			source: (id) source
 		 slideBack: (BOOL) slideBack;
-- (NSArray *)namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination;
+
+#pragma mark -
+#pragma mark Creating Drag and Drop Icons
+- (NSImage *) iconForDraggingWithCellAt: (NSUInteger) cellIndex numberOfImages: (NSUInteger) numberOfImages;
 
 @end
