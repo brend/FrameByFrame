@@ -52,7 +52,10 @@
 			atIndex: (NSUInteger) i;
 - (void) insertCells: (NSArray *) someCells
 		   atIndexes: (NSIndexSet *) indexes;
+- (void) insertCells: (NSArray *) someCells
+			 atIndex: (NSUInteger) index;
 - (FBCell *) cellAtIndex: (NSUInteger) i;
+- (NSArray *) cellsAtIndexes: (NSIndexSet *) indexes;
 - (FBCell *) lastCell;
 
 #pragma mark -

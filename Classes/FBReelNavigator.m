@@ -80,7 +80,7 @@
 
 - (void) awakeFromNib
 {
-	[self registerForDraggedTypes: [NSArray arrayWithObjects: NSTIFFPboardType, NSFilenamesPboardType, nil]];
+	[self registerForDraggedTypes: [NSArray arrayWithObjects: @"FBIndexesPboardType", NSTIFFPboardType, NSFilenamesPboardType, nil]];
 }
 
 - (NSInteger) count

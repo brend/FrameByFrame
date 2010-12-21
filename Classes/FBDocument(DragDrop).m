@@ -59,11 +59,22 @@
 
 - (void) insertImages: (NSArray *) importedImages atIndex: (NSUInteger) index
 {
+	// TODO: Make this into a method of FBReel
 	for (NSInteger i = 0; i < importedImages.count; ++i) {
 		CIImage *ciImage = [importedImages objectAtIndex: importedImages.count - (i + 1)];
 		
 		[self.reel insertCellWithImage: ciImage atIndex: index];
 	}
+}
+
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex
+{
+	NSArray *cells = [self.reel cellsAtIndexes: sourceIndexes];
+	int finalDestination = destinationIndex - [sourceIndexes countOfIndexesInRange: NSMakeRange(0, destinationIndex)];
+	
+	[self.reel removeCellsAtIndexes: sourceIndexes];
+	[self.reel insertCells: cells atIndex: finalDestination];
+	// TODO: Find out if reel navigator needs to be re-displayed
 }
 
 @end

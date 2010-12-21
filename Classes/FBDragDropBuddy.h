@@ -11,6 +11,7 @@
 
 - (NSArray *) namesOfFilesAtIndexes: (NSIndexSet *) indexes forDestination: (NSURL *) destination;
 - (void) insertImages: (NSArray *) images atIndex: (NSUInteger) index;
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex;
 
 @end
 

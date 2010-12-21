@@ -10,7 +10,7 @@
 
 const NSInteger FFMinimumDragDistance =	6;
 
-NSString *FFImagesPboardType = @"FFImagesPboardType";
+NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"FBIndexesPboardType";
 
 
 @implementation FBReelNavigator (DragDrop)
@@ -62,8 +62,9 @@ NSString *FFImagesPboardType = @"FFImagesPboardType";
 		location = NSMakePoint(location.x - imageSize.width / 2, location.y);
 		
 		// Pasteboard
-		[pb addTypes: [NSArray arrayWithObjects: NSFilenamesPboardType, NSTIFFPboardType, NSStringPboardType, nil] owner: self];
+		[pb addTypes: [NSArray arrayWithObjects: FBIndexesPboardType, NSFilenamesPboardType, NSTIFFPboardType, NSStringPboardType, nil] owner: self];
 		[pb setData: [rep TIFFRepresentation] forType: NSTIFFPboardType];
+		[pb setData: [NSData data] forType: FBIndexesPboardType];
 		
 		[rep release];
 		
@@ -112,7 +113,7 @@ NSString *FFImagesPboardType = @"FFImagesPboardType";
 	NSPasteboard *pb = [sender draggingPasteboard];
 	NSArray *types = [pb types];
 	
-	if ([types containsObject: NSTIFFPboardType] || [types containsObject: NSFilenamesPboardType])
+	if ([types containsObject: NSTIFFPboardType] || [types containsObject: NSFilenamesPboardType] || [types containsObject: FBIndexesPboardType])
 		return NSDragOperationMove;
 	else
 		return NSDragOperationNone;
@@ -136,9 +137,8 @@ NSString *FFImagesPboardType = @"FFImagesPboardType";
 - (BOOL) performDragOperation: (id < NSDraggingInfo >) sender
 {	
 	NSPasteboard *pb = [sender draggingPasteboard];
-	NSString *type = [pb availableTypeFromArray: [NSArray arrayWithObjects: NSFilenamesPboardType, NSTIFFPboardType, nil]];
+	NSString *type = [pb availableTypeFromArray: [NSArray arrayWithObjects: FBIndexesPboardType, NSFilenamesPboardType, NSTIFFPboardType, nil]];
 	
-	// TODO: Navigator
 	NSPoint p = [self convertPoint: [sender draggingLocation] fromView: nil];
 	NSUInteger cell = [self cellAtPoint: p];
 	
@@ -149,6 +149,12 @@ NSString *FFImagesPboardType = @"FFImagesPboardType";
 		NSArray *importedImages = [FBReelNavigator loadImagesFromFiles: filenames];
 		
 		[self.dragDropBuddy insertImages: importedImages atIndex: cell];
+	} else if ([type isEqualToString: FBIndexesPboardType]) {
+		// Move the indexed images 
+		// iff this navigator is the dragging source
+		if ([sender draggingSource] == self) {			
+			[self.dragDropBuddy moveCellsAtIndexes: self.selectedIndexes toIndex: cell];
+		}
 	} else if ([type isEqualToString: NSTIFFPboardType]) {
 		// TODO: Is this not implemented?
 	} else

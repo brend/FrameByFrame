@@ -283,6 +283,18 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	}
 }
 
+- (void) insertCells: (NSArray *) someCells
+			 atIndex: (NSUInteger) index
+{
+	NSInteger cellCount = someCells.count;
+	
+	for (NSInteger i = 0; i < cellCount; ++i) {
+		FBCell *cell = [someCells objectAtIndex: cellCount - (i + 1)];
+		
+		[self insertCell: cell atIndex: index];
+	}
+}
+
 - (void) addCell:(FBCell *)cell
 {
 	[self insertCell: cell atIndex: self.count];
@@ -291,6 +303,11 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 - (FBCell *) cellAtIndex:(NSUInteger)i
 {
 	return [self.cells objectAtIndex: i];
+}
+
+- (NSArray *) cellsAtIndexes: (NSIndexSet *) indexes
+{
+	return [self.cells objectsAtIndexes: indexes];
 }
 
 - (FBCell *) lastCell
