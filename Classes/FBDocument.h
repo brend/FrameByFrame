@@ -121,6 +121,12 @@
 - (void) movieSettingsControllerDidCancel: (FBMovieSettingsController *)controller;
 
 #pragma mark -
+#pragma mark Drag Drop Buddy
+- (NSArray *) namesOfFilesAtIndexes: (NSIndexSet *) indexes forDestination: (NSURL *) destination;
+- (void) insertImages: (NSArray *) images atIndex: (NSUInteger) index;
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex;
+
+#pragma mark -
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender;
 - (IBAction) exportMovie: (id) sender;

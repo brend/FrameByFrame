@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */; };
-		5F4C4FB512BE73D800AF7D8C /* FBDocument(DragDrop).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C4FB412BE73D800AF7D8C /* FBDocument(DragDrop).m */; };
 		5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5234AC12987CF80007FCDB /* QuickTime.framework */; };
 		5F535FBA12B40A1E0079198C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F535FB812B40A1E0079198C /* Localizable.strings */; };
 		5F535FF012B40F8D0079198C /* FBLocalizationKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F535FEF12B40F8D0079198C /* FBLocalizationKeys.m */; };
@@ -40,8 +39,6 @@
 /* Begin PBXFileReference section */
 		5F4C4F1312BE210600AF7D8C /* FBReelNavigator(DragDrop).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBReelNavigator(DragDrop).h"; sourceTree = "<group>"; };
 		5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBReelNavigator(DragDrop).m"; sourceTree = "<group>"; };
-		5F4C4FB312BE73D800AF7D8C /* FBDocument(DragDrop).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBDocument(DragDrop).h"; sourceTree = "<group>"; };
-		5F4C4FB412BE73D800AF7D8C /* FBDocument(DragDrop).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBDocument(DragDrop).m"; sourceTree = "<group>"; };
 		5F4C516512BE931700AF7D8C /* FBDragDropBuddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDragDropBuddy.h; sourceTree = "<group>"; };
 		5F5234AC12987CF80007FCDB /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		5F535FCD12B40C9D0079198C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -259,8 +256,6 @@
 			children = (
 				5F9641B7127A12D4009E6FC1 /* FBDocument.h */,
 				5F9641B8127A12D4009E6FC1 /* FBDocument.m */,
-				5F4C4FB312BE73D800AF7D8C /* FBDocument(DragDrop).h */,
-				5F4C4FB412BE73D800AF7D8C /* FBDocument(DragDrop).m */,
 				5F4C516512BE931700AF7D8C /* FBDragDropBuddy.h */,
 			);
 			name = Document;
@@ -359,7 +354,6 @@
 				5FD5B95612B6C63200F159A3 /* FBAttributeNames.m in Sources */,
 				5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */,
 				5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */,
-				5F4C4FB512BE73D800AF7D8C /* FBDocument(DragDrop).m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
