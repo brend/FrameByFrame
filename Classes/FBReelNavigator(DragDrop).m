@@ -156,7 +156,14 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 			[self.dragDropBuddy moveCellsAtIndexes: self.selectedIndexes toIndex: cell];
 		}
 	} else if ([type isEqualToString: NSTIFFPboardType]) {
-		// TODO: Is this not implemented?
+		NSData *tiffData = [pb dataForType: NSTIFFPboardType];
+		
+		if (tiffData) {
+			CIImage *image = [CIImage imageWithData: tiffData];
+			
+			[self.dragDropBuddy insertImages: [NSArray arrayWithObject: image] atIndex: cell];
+			[image release];
+		}
 	} else
 		return NO;
 	

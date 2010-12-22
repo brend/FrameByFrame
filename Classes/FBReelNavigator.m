@@ -680,7 +680,7 @@
 - (void) reelHasChanged
 {
 	[self resizeToFitImages];
-	[self setNeedsDisplay: YES];	
+	[self setNeedsDisplay: YES];
 }
 
 #pragma mark -

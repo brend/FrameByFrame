@@ -448,10 +448,13 @@
 
 - (void) createFilterPipeline
 {
-	NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
-	FBFilterPipeline *fp = [FBFilterPipeline filterPipelineWithSkinCount: imageCount];
-	
-	self.filterPipeline = fp;
+//	if (self.filterPipeline.skinCount != self.onionLayerCount) {
+		NSLog(@"pipeline");
+		NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
+		FBFilterPipeline *fp = [FBFilterPipeline filterPipelineWithSkinCount: imageCount];
+		
+		self.filterPipeline = fp;
+//	}
 }
 
 #pragma mark -
@@ -560,8 +563,14 @@
 #pragma mark -
 #pragma mark Taking Snapshots
 - (void) createSnapshotFromImage:(CIImage *)image
-{	
-	[self.reel addCellWithImage: image];
+{
+	// Insert image after current selection
+	// Then advance selection one frame
+	NSUInteger selectedIndex = (NSUInteger) self.reelNavigator.selectedIndex;
+	NSUInteger insertionIndex = selectedIndex == NSNotFound ? 0 : selectedIndex + 1;
+	
+	[self.reel insertCellWithImage: image atIndex: insertionIndex];
+	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: insertionIndex]];
 	[self.reelNavigator reelHasChanged];
 }
 
