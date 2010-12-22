@@ -162,7 +162,6 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 			CIImage *image = [CIImage imageWithData: tiffData];
 			
 			[self.dragDropBuddy insertImages: [NSArray arrayWithObject: image] atIndex: cell];
-			[image release];
 		}
 	} else
 		return NO;
