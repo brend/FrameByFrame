@@ -564,14 +564,10 @@
 #pragma mark Taking Snapshots
 - (void) createSnapshotFromImage:(CIImage *)image
 {
-	// Insert image after current selection
-	// Then advance selection one frame
 	NSUInteger selectedIndex = (NSUInteger) self.reelNavigator.selectedIndex;
 	NSUInteger insertionIndex = selectedIndex == NSNotFound ? 0 : selectedIndex + 1;
 	
-	[self.reel insertCellWithImage: image atIndex: insertionIndex];
-	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: insertionIndex]];
-	[self.reelNavigator reelHasChanged];
+	[self insertImages: [NSArray arrayWithObject: image] atIndex: insertionIndex];
 }
 
 #pragma mark -
@@ -675,14 +671,21 @@
 	return names;	
 }
 
-- (void) insertImages: (NSArray *) importedImages atIndex: (NSUInteger) index
+- (void) insertImages: (NSArray *) importedImages atIndex: (NSUInteger) insertionIndex
 {
-	// TODO: Make this into a method of FBReel
+	if (importedImages.count == 0)
+		return;
+	
 	for (NSInteger i = 0; i < importedImages.count; ++i) {
 		CIImage *ciImage = [importedImages objectAtIndex: importedImages.count - (i + 1)];
 		
-		[self.reel insertCellWithImage: ciImage atIndex: index];
+		[self.reel insertCellWithImage: ciImage atIndex: insertionIndex];
 	}
+	
+	// Update navigator selection
+	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: insertionIndex + (importedImages.count - 1)]];
+	[self.reelNavigator reelHasChanged];
+	
 }
 
 - (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex
@@ -692,7 +695,7 @@
 	
 	[self.reel removeCellsAtIndexes: sourceIndexes];
 	[self.reel insertCells: cells atIndex: finalDestination];
-	// TODO: Find out if reel navigator needs to be re-displayed
+	// TODO: Move navigator selection
 }
 
 @end
