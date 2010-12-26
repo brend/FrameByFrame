@@ -391,7 +391,7 @@
 	if (self.reel == nil)
 		return nil;
 	
-	BOOL computeFilter = shouldTakeSnapshot;
+//	BOOL computeFilter = shouldTakeSnapshot;
 		
 	if (shouldTakeSnapshot) {
 		[self createSnapshotFromImage: videoImage];
@@ -400,6 +400,8 @@
 	
 	if (self.reel.count == 0 || self.onionLayerCount == 0)
 		return videoImage;
+	
+	BOOL computeFilter = [self skinImageRange].length != self.filterPipeline.skinCount;
 	
 	if (computeFilter)
 		[self createFilterPipeline];
@@ -448,13 +450,10 @@
 
 - (void) createFilterPipeline
 {
-//	if (self.filterPipeline.skinCount != self.onionLayerCount) {
-		NSLog(@"pipeline");
-		NSInteger imageCount = MIN(self.onionLayerCount, self.reel.count);
-		FBFilterPipeline *fp = [FBFilterPipeline filterPipelineWithSkinCount: imageCount];
-		
-		self.filterPipeline = fp;
-//	}
+	NSInteger imageCount = [self skinImageRange].length;
+	FBFilterPipeline *fp = [FBFilterPipeline filterPipelineWithSkinCount: imageCount];
+	
+	self.filterPipeline = fp;
 }
 
 #pragma mark -
@@ -469,26 +468,25 @@
 	}
 }
 
+- (NSRange) skinImageRange
+{
+	NSUInteger selectedImageIndex = self.reelNavigator.selectedIndex;
+	
+	if (selectedImageIndex == NSNotFound)
+		return NSMakeRange(0, 0);
+	
+	// imageCount := min { skinCount, selectedImageIndex + 1 }
+	NSUInteger imageCount = MIN(self.onionLayerCount, selectedImageIndex + 1);
+	NSUInteger startIndex = selectedImageIndex + 1 - imageCount;
+	
+	return NSMakeRange(startIndex, imageCount);
+}
+
 - (NSArray *) skinImages
 {
-	NSAssert(self.reel.count >= self.filterPipeline.skinCount, @"Not enough pictures on reel to fill the filter pipeline");
+	NSRange range = [self skinImageRange];
 	
-	NSUInteger selectedImageIndex = self.reelNavigator.selectedIndex;
-	NSInteger imageCount = self.filterPipeline.skinCount;
-	NSInteger startIndex = MAX(0, (NSInteger) ((selectedImageIndex == NSNotFound ? 0 : selectedImageIndex) - imageCount + 1));
-	NSMutableArray *a = [NSMutableArray arrayWithCapacity: imageCount];
-	
-	for (NSInteger i = 0; i < imageCount; ++i) {
-		// NOTE Use FBReel-imageAtIndex: to retrieve the image
-		// (instead of accessing cells directly)
-		// This way, the reel can release non-adjacent images
-		// in order to relieve memory stress
-		CIImage *image = [self.reel imageAtIndex: startIndex + i];
-		
-		[a addObject: image];
-	}
-	
-	return a;
+	return [self.reel imagesAtIndexes: [NSIndexSet indexSetWithIndexesInRange: range]];
 }
 
 #pragma mark -

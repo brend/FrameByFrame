@@ -87,6 +87,7 @@
 #pragma mark -
 #pragma mark Onion Skinning
 @property (nonatomic, assign) NSInteger onionLayerCount;
+- (NSRange) skinImageRange;
 - (NSArray *) skinImages;
 
 #pragma mark -
