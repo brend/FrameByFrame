@@ -738,18 +738,12 @@
 		return;
 
 	[reelLock lock];
-	
-	NSArray *cells = [self.reel cellsAtIndexes: sourceIndexes];
-	int finalDestination = destinationIndex - [sourceIndexes countOfIndexesInRange: NSMakeRange(0, destinationIndex)];
-	
-	[self.reel removeCellsAtIndexes: sourceIndexes];
-	[self.reel insertCells: cells atIndex: finalDestination];
-	
+	NSUInteger finalDestination = [self.reel moveCellsAtIndexes: sourceIndexes toIndex: destinationIndex];
 	[reelLock unlock];
 	
 	// Set up undo action
-	[[self.undoManager prepareWithInvocationTarget: self] moveCellsAtIndexes: [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(finalDestination, sourceIndexes.count)]
-																   toIndexes: sourceIndexes];
+	[(FBDocument *) [self.undoManager prepareWithInvocationTarget: self] moveCellsAtIndexes: [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(finalDestination, sourceIndexes.count)]
+																				  toIndexes: sourceIndexes];
 	
 	// Update navigator selection
 	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: finalDestination + sourceIndexes.count - 1]];
@@ -758,21 +752,23 @@
 
 - (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes;
 {
-//	[reelLock lock];
+	[reelLock lock];
+	NSUInteger finalDestination = [self.reel moveCellsAtIndexes: sourceIndexes toIndexes: destinationIndexes];
+	[reelLock unlock];
 	
-	@throw [NSException exceptionWithName: @"NotImplemented" reason: @"Laziness" userInfo: nil];
+	// Set up undo action
+	[(FBDocument *) [self.undoManager prepareWithInvocationTarget: self] moveCellsAtIndexes: destinationIndexes toIndexes: sourceIndexes];
 	
-//	[reelLock unlock];
+	// Update navigator selection
+//	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: finalDestination + sourceIndexes.count - 1]];
+	[self.reelNavigator reelHasChanged];
 }
 
 - (void) removeImagesAtIndexes: (NSIndexSet *) indexes
 {
 	[reelLock lock];
-	
 	NSArray *images = [self.reel imagesAtIndexes: indexes];
-	
 	[self.reel removeCellsAtIndexes: indexes];
-	
 	[reelLock unlock];
 	
 	// Set up undo action

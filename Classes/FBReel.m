@@ -318,6 +318,29 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 }
 
 #pragma mark -
+#pragma mark Rearranging Cells
+- (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex
+{
+	NSArray *cellsToBeMoved = [self cellsAtIndexes: sourceIndexes];
+	int finalDestination = destinationIndex - [sourceIndexes countOfIndexesInRange: NSMakeRange(0, destinationIndex)];
+	
+	[self removeCellsAtIndexes: sourceIndexes];
+	[self insertCells: cellsToBeMoved atIndex: finalDestination];
+	
+	return finalDestination;
+}
+
+- (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes
+{
+	NSArray *cellsToBeMoved = [self cellsAtIndexes: sourceIndexes];
+	
+	[self removeCellsAtIndexes: sourceIndexes];
+	[self insertCells: cellsToBeMoved atIndexes: destinationIndexes];
+	
+	return NSNotFound;
+}
+
+#pragma mark -
 #pragma mark Removing Cells
 - (void) removeCellsAtIndexes: (NSIndexSet *) indexes
 {

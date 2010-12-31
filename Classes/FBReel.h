@@ -46,7 +46,6 @@
 
 #pragma mark -
 #pragma mark Adding and Retrieving Cells
-
 - (void) addCell: (FBCell *) cell;
 - (void) insertCell: (FBCell *) cell
 			atIndex: (NSUInteger) i;
@@ -57,6 +56,11 @@
 - (FBCell *) cellAtIndex: (NSUInteger) i;
 - (NSArray *) cellsAtIndexes: (NSIndexSet *) indexes;
 - (FBCell *) lastCell;
+
+#pragma mark -
+#pragma mark Rearranging Cells
+- (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) indexes toIndex: (NSUInteger) destinationIndex;
+- (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) indexes toIndexes: (NSIndexSet *) destinationIndexex;
 
 #pragma mark -
 #pragma mark Removing Cells
