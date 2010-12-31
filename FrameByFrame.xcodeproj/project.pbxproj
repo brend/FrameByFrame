@@ -32,8 +32,8 @@
 		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
 		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
 		5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */; };
-		5FD5B95612B6C63200F159A3 /* FBAttributeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5B95512B6C63200F159A3 /* FBAttributeNames.m */; };
 		5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */; };
+		5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF2600812CDF98A00AF889C /* FBAttributeNames.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,11 +82,11 @@
 		5FCF2EBA12947A7100993D6D /* FBReelNavigatorDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigatorDataSource.h; sourceTree = "<group>"; };
 		5FD0B71012BABF0800B08F63 /* FBKeyboardConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBKeyboardConstants.h; path = Sources/FBKeyboardConstants.h; sourceTree = "<group>"; };
 		5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBKeyboardConstants.m; path = Sources/FBKeyboardConstants.m; sourceTree = "<group>"; };
-		5FD5B95412B6C63200F159A3 /* FBAttributeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAttributeNames.h; sourceTree = "<group>"; };
-		5FD5B95512B6C63200F159A3 /* FBAttributeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAttributeNames.m; sourceTree = "<group>"; };
 		5FDAD289129DB0FC00B59574 /* FBProgressSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBProgressSheetController.h; sourceTree = "<group>"; };
 		5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBProgressSheetController.m; sourceTree = "<group>"; };
 		5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FBReelNavigatorDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		5FF2600712CDF98A00AF889C /* FBAttributeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBAttributeNames.h; path = Sources/FBAttributeNames.h; sourceTree = "<group>"; };
+		5FF2600812CDF98A00AF889C /* FBAttributeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBAttributeNames.m; path = Sources/FBAttributeNames.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,12 +108,12 @@
 		5F535FF812B40F950079198C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				5F535FEE12B40F8D0079198C /* FBLocalizationKeys.h */,
-				5F535FEF12B40F8D0079198C /* FBLocalizationKeys.m */,
-				5FD5B95412B6C63200F159A3 /* FBAttributeNames.h */,
-				5FD5B95512B6C63200F159A3 /* FBAttributeNames.m */,
+				5FF2600712CDF98A00AF889C /* FBAttributeNames.h */,
+				5FF2600812CDF98A00AF889C /* FBAttributeNames.m */,
 				5FD0B71012BABF0800B08F63 /* FBKeyboardConstants.h */,
 				5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */,
+				5F535FEE12B40F8D0079198C /* FBLocalizationKeys.h */,
+				5F535FEF12B40F8D0079198C /* FBLocalizationKeys.m */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -351,9 +351,9 @@
 				5F57CE5612A1A0B900C94DF7 /* NSDictionary(FBAdditions).m in Sources */,
 				5F535FF012B40F8D0079198C /* FBLocalizationKeys.m in Sources */,
 				5F53608812B4279A0079198C /* NSValue(FBAdditions).m in Sources */,
-				5FD5B95612B6C63200F159A3 /* FBAttributeNames.m in Sources */,
 				5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */,
 				5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */,
+				5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
