@@ -15,4 +15,6 @@
     
 }
 
+- (void) registerInitialUserDefaults;
+
 @end

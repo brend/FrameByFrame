@@ -28,6 +28,8 @@
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
 		
+		reelLock = [[NSLock alloc] init];
+
 		NSError *error = nil;
 		
 		if (![[NSFileManager defaultManager] createDirectoryAtPath: self.temporaryStorageURL.path withIntermediateDirectories: NO attributes: nil error: &error])
@@ -55,6 +57,8 @@
 	filterPipeline = nil;
 	[reel release];
 	reel = nil;
+	[reelLock release];
+	reelLock = nil;
 	[movieSettings release];
 	movieSettings = nil;
 	
@@ -109,14 +113,13 @@
             return;
         }
 		
-		videoDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice:device];
+		videoDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice: device];
 		
 		// Register for notification of format change
 		[[NSNotificationCenter defaultCenter] addObserver: self 
 												 selector: @selector(captureDeviceFormatDescriptionsDidChange:) 
 													 name: QTCaptureDeviceFormatDescriptionsDidChangeNotification
-												   // object: videoDeviceInput];
-												   object: nil];		
+												    object: device];
 		
         success = [captureSession addInput: videoDeviceInput error: &error];
         if (!success) {
@@ -391,17 +394,17 @@
 	if (self.reel == nil)
 		return nil;
 	
-//	BOOL computeFilter = shouldTakeSnapshot;
-		
 	if (shouldTakeSnapshot) {
 		[self createSnapshotFromImage: videoImage];
 		shouldTakeSnapshot = NO;
 	}
 	
 	if (self.reel.count == 0 || self.onionLayerCount == 0)
-		return videoImage;
+		return nil;
 	
 	BOOL computeFilter = [self skinImageRange].length != self.filterPipeline.skinCount;
+	
+	[reelLock lock];
 	
 	if (computeFilter)
 		[self createFilterPipeline];
@@ -409,13 +412,13 @@
 	NSArray *skinImages = [self skinImages];
 	CIImage *result = [self.filterPipeline pipeVideoImage: videoImage skinImages: skinImages];
 	
+	[reelLock unlock];
+	
 	return result;
 }
 
 - (void) captureDeviceFormatDescriptionsDidChange:(NSNotification*)notification
-{
-	NSLog(@"Document %@ reports format change, sir!", self);
-	
+{	
 	id device = [notification object];
 	NSArray *formats = [device formatDescriptions];
 	NSMutableSet *acceptableResolutions = [NSMutableSet setWithArray: self.movieSettingsController.availableResolutions];
@@ -498,6 +501,14 @@
 - (IBAction) snapshot: (id) sender
 {
 	shouldTakeSnapshot = YES;
+}
+
+- (IBAction) remove: (id) sender
+{
+	NSIndexSet *indexes = self.reelNavigator.selectedIndexes;
+	
+	if (indexes.count > 0)
+		[self removeImagesAtIndexes: indexes];
 }
 
 - (IBAction) exportMovie: (id) sender
@@ -614,7 +625,12 @@
 #pragma mark Reel Navigator Delegate
 - (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *)strip
 {
-	NSLog(@"Snapshot required!");
+	[self snapshot: self];
+}
+
+- (void) reelNavigatorRequestsDeletion: (FBReelNavigator *)navigator;
+{
+	[self remove: self];
 }
 
 //- (void) reelNavigator: (FBReelNavigator *) navigator didSelectImageAtIndex: (NSUInteger) imageIndex
@@ -669,10 +685,22 @@
 	return names;	
 }
 
+- (NSArray *) pathsOfFilesAtIndexes:(NSIndexSet *)indexes
+{
+	NSMutableArray *paths = [NSMutableArray arrayWithCapacity: indexes.count];
+
+	for (NSURL *url in [self urlsForImagesAtIndexes: indexes])
+		[paths addObject: url.path];
+	
+	return paths;
+}
+
 - (void) insertImages: (NSArray *) importedImages atIndex: (NSUInteger) insertionIndex
 {
 	if (importedImages.count == 0)
 		return;
+	
+	[reelLock lock];
 	
 	for (NSInteger i = 0; i < importedImages.count; ++i) {
 		CIImage *ciImage = [importedImages objectAtIndex: importedImages.count - (i + 1)];
@@ -680,20 +708,84 @@
 		[self.reel insertCellWithImage: ciImage atIndex: insertionIndex];
 	}
 	
+	[reelLock unlock];
+	
+	// Set up undo action
+	[self.undoManager registerUndoWithTarget: self selector: @selector(removeImagesAtIndexes:) object: [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(insertionIndex, importedImages.count)]];
+	
 	// Update navigator selection
 	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: insertionIndex + (importedImages.count - 1)]];
 	[self.reelNavigator reelHasChanged];
+}
+
+- (void) insertImages: (NSArray *) importedImages atIndexes: (NSIndexSet *) indexes
+{
+	[reelLock lock];
+	[self.reel insertCellsWithImages: importedImages atIndexes: indexes];
+	[reelLock unlock];
 	
+	// Set up undo action
+	[self.undoManager registerUndoWithTarget: self selector: @selector(removeImagesAtIndexes:) object: indexes];
+	
+	// Update navigator selection
+	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: indexes.lastIndex]];
+	[self.reelNavigator reelHasChanged];
 }
 
 - (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex
 {
+	if (sourceIndexes.count == 0)
+		return;
+
+	[reelLock lock];
+	
 	NSArray *cells = [self.reel cellsAtIndexes: sourceIndexes];
 	int finalDestination = destinationIndex - [sourceIndexes countOfIndexesInRange: NSMakeRange(0, destinationIndex)];
 	
 	[self.reel removeCellsAtIndexes: sourceIndexes];
 	[self.reel insertCells: cells atIndex: finalDestination];
-	// TODO: Move navigator selection
+	
+	[reelLock unlock];
+	
+	// Set up undo action
+	[[self.undoManager prepareWithInvocationTarget: self] moveCellsAtIndexes: [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(finalDestination, sourceIndexes.count)]
+																   toIndexes: sourceIndexes];
+	
+	// Update navigator selection
+	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: finalDestination + sourceIndexes.count - 1]];
+	[self.reelNavigator reelHasChanged];
+}
+
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes;
+{
+//	[reelLock lock];
+	
+	@throw [NSException exceptionWithName: @"NotImplemented" reason: @"Laziness" userInfo: nil];
+	
+//	[reelLock unlock];
+}
+
+- (void) removeImagesAtIndexes: (NSIndexSet *) indexes
+{
+	[reelLock lock];
+	
+	NSArray *images = [self.reel imagesAtIndexes: indexes];
+	
+	[self.reel removeCellsAtIndexes: indexes];
+	
+	[reelLock unlock];
+	
+	// Set up undo action
+	[[self.undoManager prepareWithInvocationTarget: self] insertImages: images atIndexes: indexes];
+	
+	// Update navigator selection
+	NSUInteger newSelection = MIN(self.reel.count - 1, indexes.firstIndex);
+	NSMutableIndexSet *newIndexes = newSelection < self.reel.count 
+									? [NSMutableIndexSet indexSetWithIndex: newSelection] 
+									: [NSMutableIndexSet indexSet];
+	
+	[self.reelNavigator setSelectedIndexes: newIndexes];
+	[self.reelNavigator reelHasChanged];
 }
 
 @end

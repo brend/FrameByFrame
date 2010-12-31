@@ -424,21 +424,12 @@
 #pragma mark IB Add, Remove
 - (IBAction) add: (id) sender
 {
-	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
-//	if (currentImage) {
-//		NSUInteger insertionIndex = [self selectedIndex];
-//		
-//		if (insertionIndex == NSNotFound)
-//			[self.reel addCellWithImage: self.currentImage];
-//		else
-//			[self.reel insertCellWithImage: self.currentImage atIndex: insertionIndex + 1];
-//	}
+	[self.delegate reelNavigatorRequestsSnapshot: self];
 }
 
 - (IBAction) remove: (id) sender
 {
-	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
-//	[self removeObjectsAtIndexes: selectedIndexes];
+	[self.delegate reelNavigatorRequestsDeletion: self];
 }
 
 #pragma mark Selection Indices and Selected Images

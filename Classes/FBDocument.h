@@ -39,6 +39,8 @@
 	
 	IBOutlet FBProgressSheetController *progressSheetController;
 	IBOutlet FBMovieSettingsController *movieSettingsController;
+	
+	NSLock *reelLock;
 }
 
 #pragma mark -
@@ -113,6 +115,7 @@
 #pragma mark -
 #pragma mark Reel Navigator Delegate
 - (void) reelNavigatorRequestsSnapshot:(FBReelNavigator *) navigator;
+- (void) reelNavigatorRequestsDeletion: (FBReelNavigator *)navigator;
 // - (void) reelNavigator: (FBReelNavigator *) navigator didSelectImageAtIndex: (NSUInteger) imageIndex;
 
 #pragma mark -
@@ -124,12 +127,17 @@
 #pragma mark -
 #pragma mark Drag Drop Buddy
 - (NSArray *) namesOfFilesAtIndexes: (NSIndexSet *) indexes forDestination: (NSURL *) destination;
+- (NSArray *) pathsOfFilesAtIndexes:(NSIndexSet *)indexes;
 - (void) insertImages: (NSArray *) images atIndex: (NSUInteger) index;
 - (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex;
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes;
+- (void) insertImages: (NSArray *) images atIndexes: (NSIndexSet *) indexes;
+- (void) removeImagesAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark -
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender;
+- (IBAction) remove: (id) sender;
 - (IBAction) exportMovie: (id) sender;
 
 @end

@@ -321,6 +321,7 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 #pragma mark Removing Cells
 - (void) removeCellsAtIndexes: (NSIndexSet *) indexes
 {
+	// TODO: Remove image files?
 	[self.cells removeObjectsAtIndexes: indexes];
 }
 

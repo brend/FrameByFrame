@@ -26,6 +26,15 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	[self registerInitialUserDefaults];
+}
+
+- (void) registerInitialUserDefaults
+{
+	NSString *defaultsPath = [[NSBundle mainBundle] pathForResource: @"InitialUserDefaults" ofType: @"plist"];
+	NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile: defaultsPath];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
+	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defaults];
 }
 
 @end

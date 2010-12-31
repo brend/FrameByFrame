@@ -10,8 +10,12 @@
 @protocol FBDragDropBuddy <NSObject>
 
 - (NSArray *) namesOfFilesAtIndexes: (NSIndexSet *) indexes forDestination: (NSURL *) destination;
+- (NSArray *) pathsOfFilesAtIndexes: (NSIndexSet *) indexes;
+
 - (void) insertImages: (NSArray *) images atIndex: (NSUInteger) index;
+- (void) insertImages: (NSArray *) images atIndexes: (NSIndexSet *) indexes;
 - (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndex: (NSUInteger) destinationIndex;
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes;
+- (void) removeImagesAtIndexes: (NSIndexSet *) indexes;
 
 @end
-

@@ -13,6 +13,7 @@
 @protocol FBReelNavigatorDelegate <NSObject>
 
 - (void) reelNavigatorRequestsSnapshot: (FBReelNavigator *) navigator;
+- (void) reelNavigatorRequestsDeletion: (FBReelNavigator *) navigator;
 // - (void) reelNavigator: (FBReelNavigator *) didSelectImageAtIndex: (NSUInteger) imageIndex;
 
 @end

@@ -62,9 +62,9 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 		location = NSMakePoint(location.x - imageSize.width / 2, location.y);
 		
 		// Pasteboard
-		[pb addTypes: [NSArray arrayWithObjects: FBIndexesPboardType, NSFilenamesPboardType, NSTIFFPboardType, NSStringPboardType, nil] owner: self];
+		[pb addTypes: [NSArray arrayWithObjects: FBIndexesPboardType, NSFilenamesPboardType, NSTIFFPboardType, nil] owner: self];
 		[pb setData: [rep TIFFRepresentation] forType: NSTIFFPboardType];
-		[pb setData: [NSData data] forType: FBIndexesPboardType];
+		[pb setPropertyList: [self.dragDropBuddy pathsOfFilesAtIndexes: self.selectedIndexes] forType: FBIndexesPboardType];
 		
 		[rep release];
 		
@@ -154,6 +154,13 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 		// iff this navigator is the dragging source
 		if ([sender draggingSource] == self) {			
 			[self.dragDropBuddy moveCellsAtIndexes: self.selectedIndexes toIndex: cell];
+		} else {
+			// If the dragging source is another navigator,
+			// obtain file data
+			NSArray *filenames = [pb propertyListForType: FBIndexesPboardType];
+			NSArray *importedImages = [FBReelNavigator loadImagesFromFiles: filenames];
+			
+			[self.dragDropBuddy insertImages: importedImages atIndex: cell];
 		}
 	} else if ([type isEqualToString: NSTIFFPboardType]) {
 		NSData *tiffData = [pb dataForType: NSTIFFPboardType];
@@ -175,30 +182,32 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 {
 	NSAssert(cellIndex < [self count], @"Cell index must be smaller than total number of images in strip");
 	
-	NSRect destRect = NSMakeRect(0, 0, [self cellWidth], [self cellHeight]);
-	NSImage *dragImage = [[NSImage alloc] initWithSize: destRect.size];
-	CIImage *cellImage = [self.dataSource reelNavigator: self imageForCellAtIndex: cellIndex];
-	CGSize cellImageSize = cellImage.extent.size;
+//	NSRect destRect = NSMakeRect(0, 0, [self cellWidth], [self cellHeight]);
+//	NSImage *dragImage = [[NSImage alloc] initWithSize: destRect.size];
+//	CIImage *cellImage = [self.dataSource reelNavigator: self imageForCellAtIndex: cellIndex];
+//	CGSize cellImageSize = cellImage.extent.size;
+//	
+//	[dragImage lockFocus];
+//	// Draw the image of the cell being dragged
+//	[cellImage drawInRect: destRect fromRect: NSMakeRect(0, 0, cellImageSize.width, cellImageSize.height) operation: NSCompositeSourceOver fraction: 0.75];
+//	
+//	// Draw the number of images being dragged
+//	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil];
+//	NSString *text = [NSString stringWithFormat: @"%d", numberOfImages];
+//	NSSize textSize = [text sizeWithAttributes: textAttributes];
+//	float max = MAX(textSize.width, textSize.height);
+//	NSBezierPath *circle = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(destRect.size.width - 4 - max, 4, max, max)];
+//	
+//	[[NSColor redColor] setFill];
+//	[circle fill];
+//	
+//	[text drawAtPoint: NSMakePoint(destRect.size.width - 4 - (max + textSize.width) * 0.5, 4) withAttributes: textAttributes];
+//	
+//	[dragImage unlockFocus];
+//	
+//	return [dragImage autorelease];
 	
-	[dragImage lockFocus];
-	// Draw the image of the cell being dragged
-	[cellImage drawInRect: destRect fromRect: NSMakeRect(0, 0, cellImageSize.width, cellImageSize.height) operation: NSCompositeSourceOver fraction: 0.75];
-	
-	// Draw the number of images being dragged
-	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil];
-	NSString *text = [NSString stringWithFormat: @"%d", numberOfImages];
-	NSSize textSize = [text sizeWithAttributes: textAttributes];
-	float max = MAX(textSize.width, textSize.height);
-	NSBezierPath *circle = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(destRect.size.width - 4 - max, 4, max, max)];
-	
-	[[NSColor redColor] setFill];
-	[circle fill];
-	
-	[text drawAtPoint: NSMakePoint(destRect.size.width - 4 - (max + textSize.width) * 0.5, 4) withAttributes: textAttributes];
-	
-	[dragImage unlockFocus];
-	
-	return [dragImage autorelease];
+	return [self.dataSource reelNavigator: self thumbnailForCellAtIndex: cellIndex];
 }
 
 @end
