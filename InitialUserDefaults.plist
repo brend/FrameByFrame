@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FFUserDefaultDownloadNews</key>
+	<true/>
+	<key>FFUserDefaultFirstPictureKey</key>
+	<integer>63233</integer>
+	<key>FFUserDefaultFramesToAverage</key>
+	<integer>1</integer>
+	<key>FFUserDefaultLastPictureKey</key>
+	<integer>63232</integer>
+	<key>FFUserDefaultNextPictureKey</key>
+	<integer>63235</integer>
+	<key>FFUserDefaultPreviousPictureKey</key>
+	<integer>63234</integer>
+	<key>FFUserDefaultSnapshotKey</key>
+	<integer>32</integer>
+	<key>FFUserDefaultUseRemoteControl</key>
+	<true/>
+	<key>FFUserDefaultUseSound</key>
+	<true/>
+	<key>FFUserDefaultSnapshotSound</key>
+	<string>Shutter 1</string>
+</dict>
+</plist>

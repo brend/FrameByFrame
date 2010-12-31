@@ -18,6 +18,7 @@
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
 		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
 		5F6D770E12A12C1B007CEA3D /* FBQuickTimeExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */; };
+		5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F90267612CE3A140055B78D /* InitialUserDefaults.plist */; };
 		5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9641A8127A12D3009E6FC1 /* Cocoa.framework */; };
 		5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */; };
 		5F9641B0127A12D3009E6FC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9641AF127A12D3009E6FC1 /* main.m */; };
@@ -56,6 +57,7 @@
 		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5F6D770C12A12C1B007CEA3D /* FBQuickTimeExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBQuickTimeExporter.h; sourceTree = "<group>"; };
 		5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBQuickTimeExporter.m; sourceTree = "<group>"; };
+		5F90267612CE3A140055B78D /* InitialUserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialUserDefaults.plist; sourceTree = "<group>"; };
 		5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameByFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9641A8127A12D3009E6FC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FrameByFrame-Info.plist"; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */,
 				5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */,
+				5F90267612CE3A140055B78D /* InitialUserDefaults.plist */,
 				5F9641B4127A12D4009E6FC1 /* Credits.rtf */,
 				5F535FB812B40A1E0079198C /* Localizable.strings */,
 				5F9641B1127A12D3009E6FC1 /* MainMenu.xib */,
@@ -327,6 +330,7 @@
 				5F9641B6127A12D4009E6FC1 /* Credits.rtf in Resources */,
 				5F9641BC127A12D4009E6FC1 /* FBDocument.xib in Resources */,
 				5F535FBA12B40A1E0079198C /* Localizable.strings in Resources */,
+				5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
