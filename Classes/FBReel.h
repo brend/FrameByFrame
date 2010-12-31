@@ -60,7 +60,7 @@
 #pragma mark -
 #pragma mark Rearranging Cells
 - (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) indexes toIndex: (NSUInteger) destinationIndex;
-- (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) indexes toIndexes: (NSIndexSet *) destinationIndexex;
+- (void) moveCellsAtIndexes: (NSIndexSet *) indexes toIndexes: (NSIndexSet *) destinationIndexex;
 
 #pragma mark -
 #pragma mark Removing Cells

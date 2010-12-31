@@ -753,14 +753,14 @@
 - (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes;
 {
 	[reelLock lock];
-	NSUInteger finalDestination = [self.reel moveCellsAtIndexes: sourceIndexes toIndexes: destinationIndexes];
+	[self.reel moveCellsAtIndexes: sourceIndexes toIndexes: destinationIndexes];
 	[reelLock unlock];
 	
 	// Set up undo action
 	[(FBDocument *) [self.undoManager prepareWithInvocationTarget: self] moveCellsAtIndexes: destinationIndexes toIndexes: sourceIndexes];
 	
 	// Update navigator selection
-//	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: finalDestination + sourceIndexes.count - 1]];
+	[self.reelNavigator setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: destinationIndexes.lastIndex]];
 	[self.reelNavigator reelHasChanged];
 }
 

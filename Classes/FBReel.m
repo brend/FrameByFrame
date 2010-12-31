@@ -330,14 +330,12 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	return finalDestination;
 }
 
-- (NSUInteger) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes
+- (void) moveCellsAtIndexes: (NSIndexSet *) sourceIndexes toIndexes: (NSIndexSet *) destinationIndexes
 {
 	NSArray *cellsToBeMoved = [self cellsAtIndexes: sourceIndexes];
 	
 	[self removeCellsAtIndexes: sourceIndexes];
 	[self insertCells: cellsToBeMoved atIndexes: destinationIndexes];
-	
-	return NSNotFound;
 }
 
 #pragma mark -
