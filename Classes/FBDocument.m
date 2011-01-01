@@ -259,10 +259,14 @@
 #pragma mark Handling Document Storage
 - (NSURL *) createTemporaryURL
 {
-	char template[] = "/tmp/fbf.XXXXXXXX";
-	char *tempdir = mktemp(template);
+	char *tempdir = (char *) malloc(sizeof(char) * (1 + strlen(FBTemporaryFilenamePattern)));
+	
+	strcpy(tempdir, FBTemporaryFilenamePattern);
+	mktemp(tempdir);
 	
 	NSURL *url = [NSURL fileURLWithPath: [NSString stringWithCString: tempdir encoding: NSASCIIStringEncoding]];
+	
+	free(tempdir);
 	
 	return url;
 }

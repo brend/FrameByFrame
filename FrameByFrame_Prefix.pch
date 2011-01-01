@@ -5,6 +5,7 @@
 #ifdef __OBJC__
 	#import <Cocoa/Cocoa.h>
 // Constants
+	#import "FBMiscConstants.h"
 	#import "FBLocalizationKeys.h"
 	#import "FBKeyboardConstants.h"
 	#import "FBAttributeNames.h"
