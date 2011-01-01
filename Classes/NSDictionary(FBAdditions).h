@@ -16,6 +16,7 @@
 + (NSDictionary *) defaultMovieSettings;
 - (NSInteger) horizontalResolution;
 - (NSInteger) verticalResolution;
+- (NSSize) movieResolution;
 - (NSInteger) framesPerSecond;
 
 @end

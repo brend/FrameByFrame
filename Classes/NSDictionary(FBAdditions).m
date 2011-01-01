@@ -32,6 +32,11 @@
 	return [[self objectForKey: FBVerticalResolutionSettingName] integerValue];
 }
 
+- (NSSize) movieResolution
+{
+	return NSMakeSize(self.horizontalResolution, self.verticalResolution);
+}
+
 - (NSInteger) framesPerSecond
 {
 	return [[self objectForKey: FBFramesPerSecondAttributeName] integerValue];

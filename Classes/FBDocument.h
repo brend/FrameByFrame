@@ -70,6 +70,7 @@
 #pragma mark -
 #pragma mark Taking Pictures
 - (void) createSnapshotFromImage: (CIImage *) image;
+- (CIImage *) adaptImage: (CIImage *) image;
 
 #pragma mark -
 #pragma mark Exporting Movies

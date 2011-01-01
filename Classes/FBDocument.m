@@ -579,6 +579,20 @@
 	[self insertImages: [NSArray arrayWithObject: image] atIndex: insertionIndex];
 }
 
+- (CIImage *) adaptImage: (CIImage *) image
+{
+	CGSize size = image.extent.size;
+	NSSize desiredSize = self.movieSettings.movieResolution;
+	
+	// TODO: Ensure desiredSize != 0, or else!
+	if (!(size.width == desiredSize.width && size.height == desiredSize.height)) {
+		CGAffineTransform scale = CGAffineTransformMakeScale(desiredSize.width / size.width, desiredSize.height / size.height);
+		
+		return [image imageByApplyingTransform: scale];
+	} else
+		return image;
+}
+
 #pragma mark -
 #pragma mark Displaying the Progress Sheet
 @synthesize progressSheetController;
@@ -702,10 +716,13 @@
 	
 	[reelLock lock];
 	
+	// Insert images in the correct order
 	for (NSInteger i = 0; i < importedImages.count; ++i) {
 		CIImage *ciImage = [importedImages objectAtIndex: importedImages.count - (i + 1)];
+		// Adapt image to movie settings
+		CIImage *adaptedImage = [self adaptImage: ciImage];
 		
-		[self.reel insertCellWithImage: ciImage atIndex: insertionIndex];
+		[self.reel insertCellWithImage: adaptedImage atIndex: insertionIndex];
 	}
 	
 	[reelLock unlock];
@@ -720,8 +737,15 @@
 
 - (void) insertImages: (NSArray *) importedImages atIndexes: (NSIndexSet *) indexes
 {
+	// Adapt images to movie settings
+	NSMutableArray *adaptedImages = [NSMutableArray arrayWithCapacity: importedImages.count];
+	
+	for (CIImage *image in importedImages)
+		[adaptedImages addObject: [self adaptImage: image]];
+	
+	// Insert images into reel
 	[reelLock lock];
-	[self.reel insertCellsWithImages: importedImages atIndexes: indexes];
+	[self.reel insertCellsWithImages: adaptedImages atIndexes: indexes];
 	[reelLock unlock];
 	
 	// Set up undo action
