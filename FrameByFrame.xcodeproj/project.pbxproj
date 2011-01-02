@@ -31,6 +31,7 @@
 		5FA58033127C5DB4003C2B32 /* FBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA58032127C5DB4003C2B32 /* FBCell.m */; };
 		5FA85DE01291C85600384AF5 /* FBFilterPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */; };
 		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
+		5FBB814612D0996C0020C02D /* FBCrashRecoveryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */; };
 		5FC117BA12CFC5020046D313 /* FBMiscConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC117B912CFC5020046D313 /* FBMiscConstants.m */; };
 		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
 		5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */; };
@@ -80,6 +81,8 @@
 		5FA85DDF1291C85600384AF5 /* FBFilterPipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFilterPipeline.m; sourceTree = "<group>"; };
 		5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigator.h; sourceTree = "<group>"; };
 		5FABC130128572BA0084B0A1 /* FBReelNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBReelNavigator.m; sourceTree = "<group>"; };
+		5FBB814412D0996C0020C02D /* FBCrashRecoveryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCrashRecoveryController.h; sourceTree = "<group>"; };
+		5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCrashRecoveryController.m; sourceTree = "<group>"; };
 		5FC117B812CFC5020046D313 /* FBMiscConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBMiscConstants.h; path = Sources/FBMiscConstants.h; sourceTree = "<group>"; };
 		5FC117B912CFC5020046D313 /* FBMiscConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBMiscConstants.m; path = Sources/FBMiscConstants.m; sourceTree = "<group>"; };
 		5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTMovieExtensions.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 			children = (
 				5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */,
 				5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */,
+				5FBB814412D0996C0020C02D /* FBCrashRecoveryController.h */,
+				5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 				5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */,
 				5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */,
 				5FC117BA12CFC5020046D313 /* FBMiscConstants.m in Sources */,
+				5FBB814612D0996C0020C02D /* FBCrashRecoveryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

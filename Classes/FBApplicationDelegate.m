@@ -27,8 +27,11 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[self registerInitialUserDefaults];
+	[self showCrashRecoveryWindowIfNecessary];
 }
 
+#pragma mark -
+#pragma mark Registering User Defaults
 - (void) registerInitialUserDefaults
 {
 	NSString *defaultsPath = [[NSBundle mainBundle] pathForResource: @"InitialUserDefaults" ofType: @"plist"];
@@ -36,5 +39,14 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defaults];
 }
+
+#pragma mark -
+#pragma mark Recovering Unsaved Documents
+- (void) showCrashRecoveryWindowIfNecessary
+{
+	if (crashRecoveryController.unsavedDocumentsExist) {
+		[crashRecoveryWindow makeKeyAndOrderFront: self];
+	}
+}	
 
 @end
