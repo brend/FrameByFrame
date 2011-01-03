@@ -26,9 +26,12 @@
 			
 			if ([filename hasPrefix: @"fbf."] 
 				&& [fileManager fileExistsAtPath: path isDirectory: &isDirectory]
-				&& isDirectory) 
+				&& isDirectory)
 			{
-				[temporaryDocuments addObject: path];
+				NSArray *documentItems = [fileManager contentsOfDirectoryAtPath: path error: NULL];
+				
+				if (documentItems.count > 0)
+					[temporaryDocuments addObject: path];
 			}
 		}
 		
@@ -77,6 +80,22 @@
 }
 
 #pragma mark -
+#pragma mark Deleting Unsaved Documents
+- (void) deleteTemporaryDocuments
+{
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSError *error = nil;
+	
+	for (NSString *path in self.temporaryDocumentPaths) {
+		if (![fileManager removeItemAtPath: path error: &error]) {
+			NSLog(@"Cannot delete file at path %@ due to error: %@", path, error);
+		}
+	}
+	
+//	self.temporaryDocumentPaths = [NSArray array];
+}
+
+#pragma mark -
 #pragma Interface Builder Actions
 - (IBAction) open: (id) sender
 {
@@ -85,7 +104,20 @@
 
 - (IBAction) deleteAll: (id) sender
 {
-	NSLog(@"TODO: Implement");
+	NSString *message = @"Do you really want to delete all remaining unsaved documents? This process can't be reversed.";
+	
+	NSBeginAlertSheet(@"Delete unsaved documents", @"OK", @"Cancel", nil, window, self, @selector(sheetDidEnd:returnCode:contextInfo:), nil, nil, message);
+}
+
+#pragma mark -
+#pragma mark Sheet Delegate
+- (void) sheetDidEnd: (NSWindow *) sheet
+		  returnCode: (int) returnCode
+		 contextInfo: (void *) context
+{
+	if (returnCode == 1) {
+		[self deleteTemporaryDocuments];
+	}
 }
 
 @end

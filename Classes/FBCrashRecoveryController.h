@@ -11,6 +11,8 @@
 
 @interface FBCrashRecoveryController : NSObject <NSTableViewDataSource>
 {
+	IBOutlet NSWindow *window;
+	
 	NSArray *temporaryDocumentPaths;
 }
 
@@ -18,6 +20,10 @@
 #pragma mark Discovering Unsaved Documents
 @property (copy) NSArray *temporaryDocumentPaths;
 @property (readonly) BOOL unsavedDocumentsExist;
+
+#pragma mark -
+#pragma mark Deleting Unsaved Documents
+- (void) deleteTemporaryDocuments;
 
 #pragma mark -
 #pragma mark Table View Data Source
