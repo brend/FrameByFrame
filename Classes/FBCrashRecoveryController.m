@@ -117,6 +117,7 @@
 {
 	if (returnCode == 1) {
 		[self deleteTemporaryDocuments];
+		[window close];
 	}
 }
 
