@@ -8,6 +8,7 @@
 
 #import "FBCrashRecoveryController.h"
 
+#import "FBDocument.h"
 
 @implementation FBCrashRecoveryController
 @synthesize temporaryDocumentPaths;
@@ -99,7 +100,31 @@
 #pragma Interface Builder Actions
 - (IBAction) open: (id) sender
 {
-	NSLog(@"TODO: Implement");
+	NSInteger selectedRow = documentList.selectedRow;
+	
+	if (selectedRow >= 0) {
+		NSURL *source = [NSURL fileURLWithPath: [self.temporaryDocumentPaths objectAtIndex: selectedRow]];
+		
+		NSSavePanel *savePanel = [NSSavePanel savePanel];
+		
+		if ([savePanel runModal] == NSOKButton) {
+			NSURL *destination = savePanel.URL;
+			NSError *error = nil;
+			
+			if ([[NSFileManager defaultManager] copyItemAtURL: source toURL: destination error: &error]) {
+				FBDocument *document = [[FBDocument alloc] initWithContentsOfURL: destination ofType: @"ffm" error: &error];
+				
+				if (document) {
+					[document makeWindowControllers];
+					[document showWindows];
+				} else {
+					NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
+				}
+			} else {
+				NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
+			}
+		}
+	}
 }
 
 - (IBAction) deleteAll: (id) sender

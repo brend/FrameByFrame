@@ -12,6 +12,7 @@
 @interface FBCrashRecoveryController : NSObject <NSTableViewDataSource>
 {
 	IBOutlet NSWindow *window;
+	IBOutlet NSTableView *documentList;
 	
 	NSArray *temporaryDocumentPaths;
 }
