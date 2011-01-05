@@ -107,6 +107,8 @@
 		
 		NSSavePanel *savePanel = [NSSavePanel savePanel];
 		
+		savePanel.allowedFileTypes = [NSArray arrayWithObject: @"ffm"];
+		
 		if ([savePanel runModal] == NSOKButton) {
 			NSURL *destination = savePanel.URL;
 			NSError *error = nil;
