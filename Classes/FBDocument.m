@@ -680,6 +680,13 @@
 }
 
 #pragma mark -
+#pragma mark Window Delegate
+- (void) windowWillClose: (NSWindow *) aWindow
+{
+	[captureSession stopRunning];
+}
+
+#pragma mark -
 #pragma mark Drag Drop Buddy
 - (NSArray *) namesOfFilesAtIndexes: (NSIndexSet *) indexes forDestination: (NSURL *) dropDestination
 {

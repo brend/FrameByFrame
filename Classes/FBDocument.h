@@ -120,6 +120,10 @@
 // - (void) reelNavigator: (FBReelNavigator *) navigator didSelectImageAtIndex: (NSUInteger) imageIndex;
 
 #pragma mark -
+#pragma mark Window Delegate
+- (void) windowWillClose:(NSWindow *)aWindow;
+
+#pragma mark -
 #pragma mark Movie Settings Controller Delegate
 - (void) movieSettingsController: (FBMovieSettingsController *) controller
 				 didSaveSettings: (NSDictionary *) settings;
