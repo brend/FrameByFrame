@@ -18,6 +18,8 @@
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
 		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
 		5F6D770E12A12C1B007CEA3D /* FBQuickTimeExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */; };
+		5F7C8AEB12D6750300CF9497 /* Button-Capture.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F7C8AE912D6750300CF9497 /* Button-Capture.tiff */; };
+		5F7C8AEC12D6750300CF9497 /* Button-Cut.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F7C8AEA12D6750300CF9497 /* Button-Cut.tiff */; };
 		5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F90267612CE3A140055B78D /* InitialUserDefaults.plist */; };
 		5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9641A8127A12D3009E6FC1 /* Cocoa.framework */; };
 		5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */; };
@@ -37,6 +39,8 @@
 		5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */; };
 		5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */; };
 		5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF2600812CDF98A00AF889C /* FBAttributeNames.m */; };
+		5FF34FF612D7AFA100E0A744 /* Icon-Onion-Off.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */; };
+		5FF34FF712D7AFA100E0A744 /* Icon-Onion-On.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,8 @@
 		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5F6D770C12A12C1B007CEA3D /* FBQuickTimeExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBQuickTimeExporter.h; sourceTree = "<group>"; };
 		5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBQuickTimeExporter.m; sourceTree = "<group>"; };
+		5F7C8AE912D6750300CF9497 /* Button-Capture.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Button-Capture.tiff"; sourceTree = "<group>"; };
+		5F7C8AEA12D6750300CF9497 /* Button-Cut.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Button-Cut.tiff"; sourceTree = "<group>"; };
 		5F90267612CE3A140055B78D /* InitialUserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialUserDefaults.plist; sourceTree = "<group>"; };
 		5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameByFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9641A8127A12D3009E6FC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -95,6 +101,8 @@
 		5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FBReelNavigatorDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5FF2600712CDF98A00AF889C /* FBAttributeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBAttributeNames.h; path = Sources/FBAttributeNames.h; sourceTree = "<group>"; };
 		5FF2600812CDF98A00AF889C /* FBAttributeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBAttributeNames.m; path = Sources/FBAttributeNames.m; sourceTree = "<group>"; };
+		5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Onion-Off.png"; sourceTree = "<group>"; };
+		5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Onion-On.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +167,17 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		5F7C8ADA12D6708E00CF9497 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */,
+				5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */,
+				5F7C8AE912D6750300CF9497 /* Button-Capture.tiff */,
+				5F7C8AEA12D6750300CF9497 /* Button-Cut.tiff */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		5F964196127A12D3009E6FC1 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +217,7 @@
 		5F96419F127A12D3009E6FC1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F7C8ADA12D6708E00CF9497 /* Images */,
 				5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */,
 				5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */,
 				5F90267612CE3A140055B78D /* InitialUserDefaults.plist */,
@@ -341,6 +361,10 @@
 				5F9641BC127A12D4009E6FC1 /* FBDocument.xib in Resources */,
 				5F535FBA12B40A1E0079198C /* Localizable.strings in Resources */,
 				5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */,
+				5F7C8AEB12D6750300CF9497 /* Button-Capture.tiff in Resources */,
+				5F7C8AEC12D6750300CF9497 /* Button-Cut.tiff in Resources */,
+				5FF34FF612D7AFA100E0A744 /* Icon-Onion-Off.png in Resources */,
+				5FF34FF712D7AFA100E0A744 /* Icon-Onion-On.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
