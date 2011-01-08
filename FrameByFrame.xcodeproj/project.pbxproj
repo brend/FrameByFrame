@@ -18,8 +18,6 @@
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
 		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
 		5F6D770E12A12C1B007CEA3D /* FBQuickTimeExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */; };
-		5F7C8AEB12D6750300CF9497 /* Button-Capture.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F7C8AE912D6750300CF9497 /* Button-Capture.tiff */; };
-		5F7C8AEC12D6750300CF9497 /* Button-Cut.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F7C8AEA12D6750300CF9497 /* Button-Cut.tiff */; };
 		5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F90267612CE3A140055B78D /* InitialUserDefaults.plist */; };
 		5F9641A9127A12D3009E6FC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9641A8127A12D3009E6FC1 /* Cocoa.framework */; };
 		5F9641AE127A12D3009E6FC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */; };
@@ -35,6 +33,11 @@
 		5FABC131128572BA0084B0A1 /* FBReelNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FABC130128572BA0084B0A1 /* FBReelNavigator.m */; };
 		5FBB814612D0996C0020C02D /* FBCrashRecoveryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */; };
 		5FC117BA12CFC5020046D313 /* FBMiscConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC117B912CFC5020046D313 /* FBMiscConstants.m */; };
+		5FCA061F12D8D6F600241581 /* Button-Empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA061E12D8D6F600241581 /* Button-Empty.png */; };
+		5FCA063012D8DD8900241581 /* Button-Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA062F12D8DD8900241581 /* Button-Capture.png */; };
+		5FCA064012D8DEA500241581 /* Button-Capture-Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */; };
+		5FCA064C12D8E1EF00241581 /* Button-Cut.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA064B12D8E1EF00241581 /* Button-Cut.png */; };
+		5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA066912D8F3DA00241581 /* Button-Play.png */; };
 		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
 		5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */; };
 		5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */; };
@@ -63,8 +66,6 @@
 		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5F6D770C12A12C1B007CEA3D /* FBQuickTimeExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBQuickTimeExporter.h; sourceTree = "<group>"; };
 		5F6D770D12A12C1B007CEA3D /* FBQuickTimeExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBQuickTimeExporter.m; sourceTree = "<group>"; };
-		5F7C8AE912D6750300CF9497 /* Button-Capture.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Button-Capture.tiff"; sourceTree = "<group>"; };
-		5F7C8AEA12D6750300CF9497 /* Button-Cut.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Button-Cut.tiff"; sourceTree = "<group>"; };
 		5F90267612CE3A140055B78D /* InitialUserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialUserDefaults.plist; sourceTree = "<group>"; };
 		5F9641A5127A12D3009E6FC1 /* FrameByFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameByFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9641A8127A12D3009E6FC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -91,6 +92,11 @@
 		5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCrashRecoveryController.m; sourceTree = "<group>"; };
 		5FC117B812CFC5020046D313 /* FBMiscConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBMiscConstants.h; path = Sources/FBMiscConstants.h; sourceTree = "<group>"; };
 		5FC117B912CFC5020046D313 /* FBMiscConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBMiscConstants.m; path = Sources/FBMiscConstants.m; sourceTree = "<group>"; };
+		5FCA061E12D8D6F600241581 /* Button-Empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Empty.png"; sourceTree = "<group>"; };
+		5FCA062F12D8DD8900241581 /* Button-Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture.png"; sourceTree = "<group>"; };
+		5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture-Pressed.png"; sourceTree = "<group>"; };
+		5FCA064B12D8E1EF00241581 /* Button-Cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Cut.png"; sourceTree = "<group>"; };
+		5FCA066912D8F3DA00241581 /* Button-Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Play.png"; sourceTree = "<group>"; };
 		5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTMovieExtensions.h; sourceTree = "<group>"; };
 		5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTMovieExtensions.m; sourceTree = "<group>"; };
 		5FCF2EBA12947A7100993D6D /* FBReelNavigatorDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBReelNavigatorDataSource.h; sourceTree = "<group>"; };
@@ -170,10 +176,13 @@
 		5F7C8ADA12D6708E00CF9497 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5FCA066912D8F3DA00241581 /* Button-Play.png */,
+				5FCA064B12D8E1EF00241581 /* Button-Cut.png */,
+				5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */,
+				5FCA062F12D8DD8900241581 /* Button-Capture.png */,
+				5FCA061E12D8D6F600241581 /* Button-Empty.png */,
 				5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */,
 				5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */,
-				5F7C8AE912D6750300CF9497 /* Button-Capture.tiff */,
-				5F7C8AEA12D6750300CF9497 /* Button-Cut.tiff */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -361,10 +370,13 @@
 				5F9641BC127A12D4009E6FC1 /* FBDocument.xib in Resources */,
 				5F535FBA12B40A1E0079198C /* Localizable.strings in Resources */,
 				5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */,
-				5F7C8AEB12D6750300CF9497 /* Button-Capture.tiff in Resources */,
-				5F7C8AEC12D6750300CF9497 /* Button-Cut.tiff in Resources */,
 				5FF34FF612D7AFA100E0A744 /* Icon-Onion-Off.png in Resources */,
 				5FF34FF712D7AFA100E0A744 /* Icon-Onion-On.png in Resources */,
+				5FCA061F12D8D6F600241581 /* Button-Empty.png in Resources */,
+				5FCA063012D8DD8900241581 /* Button-Capture.png in Resources */,
+				5FCA064012D8DEA500241581 /* Button-Capture-Pressed.png in Resources */,
+				5FCA064C12D8E1EF00241581 /* Button-Cut.png in Resources */,
+				5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

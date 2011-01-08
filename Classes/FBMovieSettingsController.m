@@ -18,8 +18,9 @@
 	if ((self = [super init])) {
 		self.availableResolutions = 
 			[NSArray arrayWithObjects:
-				 [NSValue valueWithSize: NSMakeSize(640, 480)], 
-				 [NSValue valueWithSize: NSMakeSize(800, 600)], 
+				 [NSValue valueWithSize: NSMakeSize(640, 480)],
+				 [NSValue valueWithSize: NSMakeSize(800, 450)],
+				 [NSValue valueWithSize: NSMakeSize(800, 600)],
 				 nil];
 		if (self.availableResolutions.count > 0)
 			self.selectedPredefinedResolution = [self.availableResolutions objectAtIndex: 0];
