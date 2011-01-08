@@ -40,6 +40,8 @@
 	IBOutlet FBProgressSheetController *progressSheetController;
 	IBOutlet FBMovieSettingsController *movieSettingsController;
 	
+	IBOutlet NSTextField *resolutionLabel;
+	
 	NSLock *reelLock;
 }
 
