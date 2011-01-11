@@ -14,6 +14,7 @@
 		5F53608812B4279A0079198C /* NSValue(FBAdditions).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F53608712B4279A0079198C /* NSValue(FBAdditions).m */; };
 		5F57CDDA12A16A5500C94DF7 /* FBMovieSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */; };
 		5F57CE5612A1A0B900C94DF7 /* NSDictionary(FBAdditions).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */; };
+		5F6951C212D91F7000A53C8F /* FrameByFrame.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5F6951C112D91F7000A53C8F /* FrameByFrame.icns */; };
 		5F6A5B5C12987DF000BA6CD6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */; };
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
 		5F6A5B6012987DF800BA6CD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */; };
@@ -61,6 +62,7 @@
 		5F57CE5412A1A0B900C94DF7 /* NSDictionary(FBAdditions).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary(FBAdditions).h"; sourceTree = "<group>"; };
 		5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary(FBAdditions).m"; sourceTree = "<group>"; };
 		5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMovieSettingsControllerDelegate.h; sourceTree = "<group>"; };
+		5F6951C112D91F7000A53C8F /* FrameByFrame.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FrameByFrame.icns; sourceTree = "<group>"; };
 		5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		5F6A5B5E12987DF800BA6CD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				5F7C8ADA12D6708E00CF9497 /* Images */,
+				5F6951C112D91F7000A53C8F /* FrameByFrame.icns */,
 				5F9641AA127A12D3009E6FC1 /* FrameByFrame-Info.plist */,
 				5F9641AC127A12D3009E6FC1 /* InfoPlist.strings */,
 				5F90267612CE3A140055B78D /* InitialUserDefaults.plist */,
@@ -377,6 +380,7 @@
 				5FCA064012D8DEA500241581 /* Button-Capture-Pressed.png in Resources */,
 				5FCA064C12D8E1EF00241581 /* Button-Cut.png in Resources */,
 				5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */,
+				5F6951C212D91F7000A53C8F /* FrameByFrame.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
