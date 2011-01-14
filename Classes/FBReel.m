@@ -434,7 +434,7 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 #pragma mark Creating Cell Identifiers
 - (NSString *) createUniqueCellIdentifier
 {
-	return [NSString stringWithFormat: @"%f", [NSDate timeIntervalSinceReferenceDate]];
+	return [NSString stringWithFormat: @"%f.tiff", [NSDate timeIntervalSinceReferenceDate]];
 }
 
 @end
