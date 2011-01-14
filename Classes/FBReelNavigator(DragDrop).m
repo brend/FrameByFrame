@@ -29,32 +29,6 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 		NSUInteger selectionCount = [[self selectedIndexes] count];
 		NSImage *image = [self iconForDraggingWithCellAt: clickedCell numberOfImages: selectionCount];
 		NSPoint location = [self convertPoint: [e locationInWindow] fromView: nil];
-		NSSize imageSize = image.size;
-		
-		// Image position
-		location = NSMakePoint(location.x - imageSize.width / 2, location.y);
-		
-		[self dragPromisedFilesOfTypes: [NSArray arrayWithObject: @"tiff"] fromRect: NSMakeRect(location.x - 16, location.y - 16, 32, 32) source: self slideBack: YES event: e];
-	}
-}
-
-#pragma mark -
-#pragma mark Drag Source
-- (void) dragImage: (NSImage *) oldImage 
-				at: (NSPoint) location
-			offset: (NSSize) size
-			 event: (NSEvent *) e
-		pasteboard: (NSPasteboard *) pb
-			source: (id) source
-		 slideBack: (BOOL) slideBack
-{
-	NSPoint p = [self convertPoint: [e locationInWindow] fromView: nil];
-	NSUInteger clickedCell = (NSUInteger) floor(p.x / [self cellWidth]);
-	
-	if (clickedCell < [self count]) {
-		NSUInteger selectionCount = [[self selectedIndexes] count];
-		NSImage *image = [self iconForDraggingWithCellAt: clickedCell numberOfImages: selectionCount];
-		NSPoint location = [self convertPoint: [e locationInWindow] fromView: nil];
 		NSSize imageSize = [image size];
 		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: self.selectedImage];
 		
@@ -62,21 +36,29 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 		location = NSMakePoint(location.x - imageSize.width / 2, location.y);
 		
 		// Pasteboard
-		[pb addTypes: [NSArray arrayWithObjects: FBIndexesPboardType, NSFilenamesPboardType, NSTIFFPboardType, nil] owner: self];
-		[pb setData: [rep TIFFRepresentation] forType: NSTIFFPboardType];
-		[pb setPropertyList: [self.dragDropBuddy pathsOfFilesAtIndexes: self.selectedIndexes] forType: FBIndexesPboardType];
+		NSPasteboard *pb = [NSPasteboard pasteboardWithName: NSDragPboard];
+		NSArray *pathsOfSelectedFiles = [self.dragDropBuddy pathsOfFilesAtIndexes: self.selectedIndexes];
+		
+		[pb clearContents];
+		[pb addTypes: [NSArray arrayWithObjects: FBIndexesPboardType, NSFilenamesPboardType, nil] owner: self];
+		[pb setPropertyList: pathsOfSelectedFiles forType: FBIndexesPboardType];
+		[pb setPropertyList: pathsOfSelectedFiles forType: NSFilenamesPboardType];
 		
 		[rep release];
 		
-		[super dragImage: image at: location offset: NSZeroSize event: e pasteboard: pb source: self slideBack: YES];
+		// Initiate drag operation
+		[self dragImage: image
+					 at: location
+				 offset: NSZeroSize
+				  event: e 
+			 pasteboard: pb
+				 source: self
+			  slideBack: YES];
 	}
 }
 
-- (NSArray *)namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination
-{
-	return [self.dragDropBuddy namesOfFilesAtIndexes: self.selectedIndexes forDestination: dropDestination];
-}
-
+#pragma mark -
+#pragma mark Creating Drag and Drop Icons
 - (NSImage *) dragImageForCell: (NSUInteger) cellIndex numberOfImages: (NSUInteger) numberOfImages
 {
 	NSAssert(cellIndex < [self count], @"Cell index must be smaller than total number of images in strip");

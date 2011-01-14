@@ -14,13 +14,6 @@
 #pragma mark -
 #pragma mark Drag Source
 - (void) mouseDragged: (NSEvent *) e;
-- (void) dragImage: (NSImage *) oldImage 
-				at: (NSPoint) location
-			offset: (NSSize) size
-			 event: (NSEvent *) e
-		pasteboard: (NSPasteboard *) pb
-			source: (id) source
-		 slideBack: (BOOL) slideBack;
 
 #pragma mark -
 #pragma mark Creating Drag and Drop Icons
