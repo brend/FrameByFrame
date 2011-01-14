@@ -119,6 +119,7 @@
 				if (document) {
 					[document makeWindowControllers];
 					[document showWindows];
+					[document release];
 				} else {
 					NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
 				}
