@@ -57,38 +57,6 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 	}
 }
 
-#pragma mark -
-#pragma mark Creating Drag and Drop Icons
-- (NSImage *) dragImageForCell: (NSUInteger) cellIndex numberOfImages: (NSUInteger) numberOfImages
-{
-	NSAssert(cellIndex < [self count], @"Cell index must be smaller than total number of images in strip");
-	
-	NSRect destRect = NSMakeRect(0, 0, [self cellWidth], [self cellHeight]);
-	NSImage *dragImage = [[NSImage alloc] initWithSize: destRect.size];
-	CIImage *cellImage = [self.dataSource reelNavigator: self imageForCellAtIndex: cellIndex];
-	CGSize cellImageSize = cellImage.extent.size;
-	
-	[dragImage lockFocus];
-	// Draw the image of the cell being dragged
-	[cellImage drawInRect: destRect fromRect: NSMakeRect(0, 0, cellImageSize.width, cellImageSize.height) operation: NSCompositeSourceOver fraction: 0.75];
-	
-	// Draw the number of images being dragged
-	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil];
-	NSString *text = [NSString stringWithFormat: @"%d", numberOfImages];
-	NSSize textSize = [text sizeWithAttributes: textAttributes];
-	float max = MAX(textSize.width, textSize.height);
-	NSBezierPath *circle = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(destRect.size.width - 4 - max, 4, max, max)];
-	
-	[[NSColor redColor] setFill];
-	[circle fill];
-	
-	[text drawAtPoint: NSMakePoint(destRect.size.width - 4 - (max + textSize.width) * 0.5, 4) withAttributes: textAttributes];
-	
-	[dragImage unlockFocus];
-	
-	return [dragImage autorelease];
-}
-
 #pragma mark Drag target
 - (NSDragOperation) draggingEntered:(id < NSDraggingInfo >)sender
 {
