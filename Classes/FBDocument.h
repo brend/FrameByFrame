@@ -46,6 +46,10 @@
 }
 
 #pragma mark -
+#pragma mark Application Termination
+- (void) applicationWillTerminate: (NSNotification *) n;
+
+#pragma mark -
 #pragma mark Retrieving the Document Window
 @property (readonly) NSWindow *window;
 
@@ -57,6 +61,7 @@
 - (void) copyDocumentContents;
 - (BOOL) copyDocumentContents: (NSError **) outError;
 - (void) documentOpened: (NSError *) error;
+- (void) removeTemporaryStorage;
 
 #pragma mark -
 #pragma mark Video Input Devices

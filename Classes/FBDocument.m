@@ -49,6 +49,7 @@
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	
 	[notificationCenter removeObserver: self name: QTCaptureDeviceFormatDescriptionsDidChangeNotification object: nil];
+	[notificationCenter removeObserver: self name: NSApplicationWillTerminateNotification object: nil];
 	
 	self.temporaryStorageURL = nil;
 	self.originalFileURL = nil;
@@ -97,6 +98,8 @@
 {
 	[super windowControllerDidLoadNib:aController];
 	
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	
 	// Binding properties
 	[self.reelNavigator bind: @"framesPerSecond" toObject: self withKeyPath: @"framesPerSecond" options: nil];
 	
@@ -116,10 +119,10 @@
 		videoDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice: device];
 		
 		// Register for notification of format change
-		[[NSNotificationCenter defaultCenter] addObserver: self 
-												 selector: @selector(captureDeviceFormatDescriptionsDidChange:) 
-													 name: QTCaptureDeviceFormatDescriptionsDidChangeNotification
-												    object: device];
+		[notificationCenter addObserver: self 
+							   selector: @selector(captureDeviceFormatDescriptionsDidChange:) 
+								   name: QTCaptureDeviceFormatDescriptionsDidChangeNotification
+								 object: device];
 		
         success = [captureSession addInput: videoDeviceInput error: &error];
         if (!success) {
@@ -146,6 +149,9 @@
 	
 	// Create filter pipeline
 	[self createFilterPipeline];
+	
+	// Register for notification on application termination
+	[notificationCenter addObserver: self selector: @selector(applicationWillTerminate:) name: NSApplicationWillTerminateNotification object: nil];
 }
 
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
@@ -339,6 +345,15 @@
 	} else {
 		[self.reelNavigator reelHasChanged];
 	}
+}
+
+- (void) removeTemporaryStorage
+{
+	NSError *error = nil;
+	BOOL success = [[NSFileManager defaultManager] removeItemAtURL: self.temporaryStorageURL error: &error];
+	
+	if (!success)
+		NSLog(@"Could not delete temporary storage due to error: %@", error);
 }
 
 #pragma mark -
@@ -819,6 +834,16 @@
 	
 	[self.reelNavigator setSelectedIndexes: newIndexes];
 	[self.reelNavigator reelHasChanged];
+}
+
+#pragma mark -
+#pragma mark Application Termination
+- (void) applicationWillTerminate: (NSNotification *) n
+{
+	// Remove temporary storage,
+	// but only if all changes have been saved
+	if (!self.isDocumentEdited)
+		[self removeTemporaryStorage];
 }
 
 @end
