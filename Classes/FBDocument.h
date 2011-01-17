@@ -147,6 +147,11 @@
 - (void) removeImagesAtIndexes: (NSIndexSet *) indexes;
 
 #pragma mark -
+#pragma mark QuickLook
+- (NSImage *) quickLookPreview;
+- (NSImage *) quickLookThumbnail;
+
+#pragma mark -
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender;
 - (IBAction) remove: (id) sender;

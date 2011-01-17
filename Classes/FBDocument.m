@@ -178,7 +178,21 @@
 	}
 	
 	// Copy all the files to their destination
-	if ([[NSFileManager defaultManager] copyItemAtURL: temporaryStorageURL toURL: absoluteURL error: &error]) {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	if ([fileManager copyItemAtURL: temporaryStorageURL toURL: absoluteURL error: &error]) {
+		// Add QuickLook data
+		NSURL *quickLookURL = [absoluteURL URLByAppendingPathComponent: @"QuickLook"];
+		
+		if ([fileManager createDirectoryAtPath: quickLookURL.path withIntermediateDirectories: NO attributes: nil error: NULL]) {
+			NSImage *quickLookPreview = [self quickLookPreview], *quickLookThumbnail = [self quickLookThumbnail];
+			
+			if (quickLookPreview)
+				[[quickLookPreview TIFFRepresentation] writeToURL: [quickLookURL URLByAppendingPathComponent: @"Preview.tiff"] atomically: YES];
+			if (quickLookThumbnail)
+				[[quickLookThumbnail TIFFRepresentation] writeToURL: [quickLookURL URLByAppendingPathComponent: @"Thumbnail.tiff"] atomically: YES];
+		}
+		
 		return YES;
 	} else {
 		if (outError)
@@ -844,6 +858,31 @@
 	// but only if all changes have been saved
 	if (!self.isDocumentEdited)
 		[self removeTemporaryStorage];
+}
+
+#pragma mark -
+#pragma mark QuickLook
+- (NSImage *) quickLookPreview
+{
+	if (self.reel.count == 0)
+		return nil;
+	
+	CIImage *ciImage = [self.reel imageAtIndex: self.reel.count / 2];
+	NSBitmapImageRep *r = [[NSBitmapImageRep alloc] initWithCIImage: ciImage];
+	NSImage *image = [[NSImage alloc] init];
+	
+	[image addRepresentation: r];
+	[r release];
+	
+	return [image autorelease];
+}
+
+- (NSImage *) quickLookThumbnail
+{
+	if (self.reel.count == 0)
+		return nil;
+	
+	return [[self.reel cellAtIndex: self.reel.count / 2] thumbnail];
 }
 
 @end
