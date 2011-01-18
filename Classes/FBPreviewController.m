@@ -27,10 +27,25 @@
 
 #pragma mark -
 #pragma mark Playing Previews
-- (void) startPreviewFromImageAtIndex: (NSUInteger) startIndex
-					  framesPerSecond: (NSUInteger) fps
+- (void) startPreviewWithReel: (FBReel *) aReel
+			 fromImageAtIndex: (NSUInteger) startIndex
+			  framesPerSecond: (NSUInteger) fps
 {
-	NSLog(@"I'ma playin' mah preview");
+	reel = aReel;
+	frameIndex = startIndex;
+	timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 / (float) fps target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
+}
+
+- (void) nextFrame: (id) sender
+{
+	if (frameIndex < reel.count) {
+		FBCell *cell = [reel cellAtIndex: frameIndex];
+		
+		imageView.image = cell.thumbnail;
+		
+		++frameIndex;
+	} else
+		[sender invalidate];
 }
 
 @end

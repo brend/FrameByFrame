@@ -572,8 +572,11 @@
 
 - (IBAction) playPreview: (id) sender
 {
-	[self.previewController startPreviewFromImageAtIndex: self.reelNavigator.selectedIndex
-										 framesPerSecond: self.framesPerSecond];
+	NSUInteger selectedFrame = self.reelNavigator.selectedIndex;
+	
+	[self.previewController startPreviewWithReel: self.reel
+								fromImageAtIndex: selectedFrame == NSNotFound ? 0 : selectedFrame
+								 framesPerSecond: self.framesPerSecond];
 }
 
 #pragma mark -

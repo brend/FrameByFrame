@@ -7,16 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FBReel.h"
 
 @interface FBPreviewController : NSObject 
 {
 	IBOutlet NSPanel *previewPanel;
+	IBOutlet NSImageView *imageView;
+	
+	FBReel *reel;
+	NSUInteger frameIndex;
+	NSTimer *timer;
 }
 
 #pragma mark -
 #pragma mark Playing Previews
-- (void) startPreviewFromImageAtIndex: (NSUInteger) startIndex
-					  framesPerSecond: (NSUInteger) fps;
+- (void) startPreviewWithReel: (FBReel *) reel
+			 fromImageAtIndex: (NSUInteger) startIndex
+			  framesPerSecond: (NSUInteger) fps;
 
 @end
