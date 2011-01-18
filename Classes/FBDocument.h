@@ -15,6 +15,7 @@
 #import "FBFilterPipeline.h"
 #import "FBProgressSheetController.h"
 #import "FBMovieSettingsController.h"
+#import "FBPreviewController.h"
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate, 
 									FBReelNavigatorDataSource, 
@@ -39,6 +40,7 @@
 	
 	IBOutlet FBProgressSheetController *progressSheetController;
 	IBOutlet FBMovieSettingsController *movieSettingsController;
+	IBOutlet FBPreviewController *previewController;
 	
 	IBOutlet NSTextField *resolutionLabel;
 	
@@ -114,6 +116,10 @@
 @property (retain) FBProgressSheetController *progressSheetController;
 
 #pragma mark -
+#pragma mark Playing Previews
+@property (retain) FBPreviewController *previewController;
+
+#pragma mark -
 #pragma mark Reel Navigator Data Source
 - (NSInteger) numberOfCellsForReelNavigator: (FBReelNavigator *) navigator;
 - (CIImage *) reelNavigator: (FBReelNavigator *) navigator imageForCellAtIndex:(NSInteger)index;
@@ -156,5 +162,6 @@
 - (IBAction) snapshot: (id) sender;
 - (IBAction) remove: (id) sender;
 - (IBAction) exportMovie: (id) sender;
+- (IBAction) playPreview: (id) sender;
 
 @end

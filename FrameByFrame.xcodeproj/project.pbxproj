@@ -43,6 +43,7 @@
 		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
 		5FD0B71212BABF0800B08F63 /* FBKeyboardConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0B71112BABF0800B08F63 /* FBKeyboardConstants.m */; };
 		5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */; };
+		5FE7D94E12E631E40007385B /* FBPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE7D94D12E631E40007385B /* FBPreviewController.m */; };
 		5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF2600812CDF98A00AF889C /* FBAttributeNames.m */; };
 		5FF34FF612D7AFA100E0A744 /* Icon-Onion-Off.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */; };
 		5FF34FF712D7AFA100E0A744 /* Icon-Onion-On.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */; };
@@ -109,6 +110,8 @@
 		5FDAD289129DB0FC00B59574 /* FBProgressSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBProgressSheetController.h; sourceTree = "<group>"; };
 		5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBProgressSheetController.m; sourceTree = "<group>"; };
 		5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FBReelNavigatorDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		5FE7D94C12E631E40007385B /* FBPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBPreviewController.h; sourceTree = "<group>"; };
+		5FE7D94D12E631E40007385B /* FBPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPreviewController.m; sourceTree = "<group>"; };
 		5FF2600712CDF98A00AF889C /* FBAttributeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBAttributeNames.h; path = Sources/FBAttributeNames.h; sourceTree = "<group>"; };
 		5FF2600812CDF98A00AF889C /* FBAttributeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBAttributeNames.m; path = Sources/FBAttributeNames.m; sourceTree = "<group>"; };
 		5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Onion-Off.png"; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */,
 				5F57CDD812A16A5500C94DF7 /* FBMovieSettingsController.h */,
 				5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */,
+				5FE7D94C12E631E40007385B /* FBPreviewController.h */,
+				5FE7D94D12E631E40007385B /* FBPreviewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */,
 				5FC117BA12CFC5020046D313 /* FBMiscConstants.m in Sources */,
 				5FBB814612D0996C0020C02D /* FBCrashRecoveryController.m in Sources */,
+				5FE7D94E12E631E40007385B /* FBPreviewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

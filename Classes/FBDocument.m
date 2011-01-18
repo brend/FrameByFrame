@@ -570,6 +570,12 @@
 	}
 }
 
+- (IBAction) playPreview: (id) sender
+{
+	[self.previewController startPreviewFromImageAtIndex: self.reelNavigator.selectedIndex
+										 framesPerSecond: self.framesPerSecond];
+}
+
 #pragma mark -
 #pragma mark Exporting Movies
 - (void) exportMovieToURL: (NSURL *) fileURL
@@ -884,5 +890,9 @@
 	
 	return [[self.reel cellAtIndex: self.reel.count / 2] thumbnail];
 }
+
+#pragma mark -
+#pragma mark Playing Previews
+@synthesize previewController;
 
 @end
