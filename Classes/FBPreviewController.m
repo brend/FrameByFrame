@@ -39,9 +39,15 @@
 - (void) nextFrame: (id) sender
 {
 	if (frameIndex < reel.count) {
-		FBCell *cell = [reel cellAtIndex: frameIndex];
+		// NOTE Don't query cells, but images
+		// This way, the reel can release unused images
+		NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage: [reel imageAtIndex: frameIndex]];
+		NSImage *image = [[NSImage alloc] init];
 		
-		imageView.image = cell.thumbnail;
+		[image addRepresentation: rep];
+		[imageView setImage: image];
+		[image release];
+		[rep release];
 		
 		++frameIndex;
 	} else
