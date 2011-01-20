@@ -14,6 +14,8 @@
 @private
     IBOutlet NSWindow *crashRecoveryWindow;
 	IBOutlet FBCrashRecoveryController *crashRecoveryController;
+	
+	BOOL applicationHasStarted;
 }
 
 #pragma mark -
