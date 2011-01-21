@@ -19,10 +19,15 @@
 	NSTimer *timer;
 }
 
+@property (retain) NSTimer *timer;
+
 #pragma mark -
 #pragma mark Playing Previews
+@property (readonly) BOOL isPreviewPlaying;
+
 - (void) startPreviewWithReel: (FBReel *) reel
 			 fromImageAtIndex: (NSUInteger) startIndex
 			  framesPerSecond: (NSUInteger) fps;
+- (void) stopPreview;
 
 @end

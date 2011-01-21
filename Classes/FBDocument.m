@@ -570,15 +570,6 @@
 	}
 }
 
-- (IBAction) playPreview: (id) sender
-{
-	NSUInteger selectedFrame = self.reelNavigator.selectedIndex;
-	
-	[self.previewController startPreviewWithReel: self.reel
-								fromImageAtIndex: selectedFrame == NSNotFound ? 0 : selectedFrame
-								 framesPerSecond: self.framesPerSecond];
-}
-
 #pragma mark -
 #pragma mark Exporting Movies
 - (void) exportMovieToURL: (NSURL *) fileURL
@@ -897,5 +888,18 @@
 #pragma mark -
 #pragma mark Playing Previews
 @synthesize previewController;
+
+- (IBAction) togglePreviewPlayback: (id) sender
+{
+	if (self.previewController.isPreviewPlaying)
+		[self.previewController stopPreview];
+	else {
+		NSUInteger selectedFrame = self.reelNavigator.selectedIndex;
+		
+		[self.previewController startPreviewWithReel: self.reel
+									fromImageAtIndex: selectedFrame == NSNotFound ? 0 : selectedFrame
+									 framesPerSecond: self.framesPerSecond];
+	}
+}
 
 @end

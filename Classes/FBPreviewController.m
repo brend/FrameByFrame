@@ -10,6 +10,7 @@
 
 
 @implementation FBPreviewController
+@synthesize timer;
 
 - (id)init {
     if ((self = [super init])) {
@@ -19,21 +20,30 @@
     return self;
 }
 
-- (void)dealloc {
-    // Clean-up code here.
+- (void)dealloc 
+{
+    [self.timer invalidate];
+	self.timer = nil;
     
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Playing Previews
+- (BOOL) isPreviewPlaying
+{
+	return self.timer != nil;
+}
+
 - (void) startPreviewWithReel: (FBReel *) aReel
 			 fromImageAtIndex: (NSUInteger) startIndex
 			  framesPerSecond: (NSUInteger) fps
 {
+	[self stopPreview];
+	
 	reel = aReel;
 	frameIndex = startIndex;
-	timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 / (float) fps target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 / (float) fps target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
 }
 
 - (void) nextFrame: (id) sender
@@ -51,7 +61,13 @@
 		
 		++frameIndex;
 	} else
-		[sender invalidate];
+		[self stopPreview];
+}
+
+- (void) stopPreview
+{
+	[self.timer invalidate];
+	self.timer = nil;
 }
 
 @end

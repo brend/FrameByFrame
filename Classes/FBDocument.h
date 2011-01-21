@@ -118,6 +118,7 @@
 #pragma mark -
 #pragma mark Playing Previews
 @property (retain) FBPreviewController *previewController;
+- (IBAction) togglePreviewPlayback: (id) sender;
 
 #pragma mark -
 #pragma mark Reel Navigator Data Source
@@ -162,6 +163,5 @@
 - (IBAction) snapshot: (id) sender;
 - (IBAction) remove: (id) sender;
 - (IBAction) exportMovie: (id) sender;
-- (IBAction) playPreview: (id) sender;
 
 @end
