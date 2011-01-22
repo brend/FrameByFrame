@@ -3,7 +3,7 @@
 //  FrameByFrame
 //
 //  Created by Philipp Brendel on 18.01.11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 BrendCorp. All rights reserved.
 //
 
 #import "FBPreviewController.h"
