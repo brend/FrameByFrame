@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */; };
+		5F4EF30112EB4BED004A2F3D /* FBOrganizerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4EF30012EB4BED004A2F3D /* FBOrganizerController.m */; };
 		5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5234AC12987CF80007FCDB /* QuickTime.framework */; };
 		5F535FBA12B40A1E0079198C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F535FB812B40A1E0079198C /* Localizable.strings */; };
 		5F535FF012B40F8D0079198C /* FBLocalizationKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F535FEF12B40F8D0079198C /* FBLocalizationKeys.m */; };
@@ -53,6 +54,8 @@
 		5F4C4F1312BE210600AF7D8C /* FBReelNavigator(DragDrop).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBReelNavigator(DragDrop).h"; sourceTree = "<group>"; };
 		5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBReelNavigator(DragDrop).m"; sourceTree = "<group>"; };
 		5F4C516512BE931700AF7D8C /* FBDragDropBuddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDragDropBuddy.h; sourceTree = "<group>"; };
+		5F4EF2FF12EB4BED004A2F3D /* FBOrganizerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBOrganizerController.h; sourceTree = "<group>"; };
+		5F4EF30012EB4BED004A2F3D /* FBOrganizerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBOrganizerController.m; sourceTree = "<group>"; };
 		5F5234AC12987CF80007FCDB /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		5F535FCD12B40C9D0079198C /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5F535FEE12B40F8D0079198C /* FBLocalizationKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLocalizationKeys.h; path = Sources/FBLocalizationKeys.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */,
 				5F57CDD812A16A5500C94DF7 /* FBMovieSettingsController.h */,
 				5F57CDD912A16A5500C94DF7 /* FBMovieSettingsController.m */,
+				5F4EF2FF12EB4BED004A2F3D /* FBOrganizerController.h */,
+				5F4EF30012EB4BED004A2F3D /* FBOrganizerController.m */,
 				5FE7D94C12E631E40007385B /* FBPreviewController.h */,
 				5FE7D94D12E631E40007385B /* FBPreviewController.m */,
 			);
@@ -420,6 +425,7 @@
 				5FC117BA12CFC5020046D313 /* FBMiscConstants.m in Sources */,
 				5FBB814612D0996C0020C02D /* FBCrashRecoveryController.m in Sources */,
 				5FE7D94E12E631E40007385B /* FBPreviewController.m in Sources */,
+				5F4EF30112EB4BED004A2F3D /* FBOrganizerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
