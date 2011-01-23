@@ -14,12 +14,11 @@
 #import "FBDragDropBuddy.h"
 #import "FBFilterPipeline.h"
 #import "FBProgressSheetController.h"
-#import "FBMovieSettingsController.h"
 #import "FBPreviewController.h"
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate, 
 									FBReelNavigatorDataSource, 
-									FBMovieSettingsControllerDelegate, FBDragDropBuddy>
+									FBDragDropBuddy>
 {
 	QTCaptureSession *captureSession;
 	QTCaptureDecompressedVideoOutput *captureDecompressedVideoOutput;
@@ -39,7 +38,6 @@
 	NSInteger onionLayerCount, framesPerSecond;
 	
 	IBOutlet FBProgressSheetController *progressSheetController;
-	IBOutlet FBMovieSettingsController *movieSettingsController;
 	IBOutlet FBPreviewController *previewController;
 	
 	IBOutlet NSTextField *resolutionLabel;
@@ -74,7 +72,7 @@
 #pragma mark -
 #pragma mark Displaying Video Input
 - (CIImage *) view: (QTCaptureView *) view willDisplayImage: (CIImage *) image;
-- (void) captureDeviceFormatDescriptionsDidChange: (NSNotification*) notification;
+// - (void) captureDeviceFormatDescriptionsDidChange: (NSNotification*) notification;
 
 #pragma mark -
 #pragma mark Taking Pictures
@@ -93,7 +91,6 @@
 #pragma mark -
 #pragma mark Movie Settings
 @property (retain) NSMutableDictionary *movieSettings;
-@property (retain) FBMovieSettingsController *movieSettingsController;
 - (void) applyMovieSettings;
 
 #pragma mark -
@@ -136,12 +133,6 @@
 #pragma mark -
 #pragma mark Window Delegate
 - (void) windowWillClose:(NSWindow *)aWindow;
-
-#pragma mark -
-#pragma mark Movie Settings Controller Delegate
-- (void) movieSettingsController: (FBMovieSettingsController *) controller
-				 didSaveSettings: (NSDictionary *) settings;
-- (void) movieSettingsControllerDidCancel: (FBMovieSettingsController *)controller;
 
 #pragma mark -
 #pragma mark Drag Drop Buddy

@@ -48,7 +48,7 @@
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	
-	[notificationCenter removeObserver: self name: QTCaptureDeviceFormatDescriptionsDidChangeNotification object: nil];
+//	[notificationCenter removeObserver: self name: QTCaptureDeviceFormatDescriptionsDidChangeNotification object: nil];
 	[notificationCenter removeObserver: self name: NSApplicationWillTerminateNotification object: nil];
 	
 	self.temporaryStorageURL = nil;
@@ -75,7 +75,6 @@
 	// Outlets
 	captureView = nil;
 	progressSheetController = nil;
-	movieSettingsController = nil;
 
     [super dealloc];
 }
@@ -119,10 +118,10 @@
 		videoDeviceInput = [[QTCaptureDeviceInput alloc] initWithDevice: device];
 		
 		// Register for notification of format change
-		[notificationCenter addObserver: self 
-							   selector: @selector(captureDeviceFormatDescriptionsDidChange:) 
-								   name: QTCaptureDeviceFormatDescriptionsDidChangeNotification
-								 object: device];
+//		[notificationCenter addObserver: self 
+//							   selector: @selector(captureDeviceFormatDescriptionsDidChange:) 
+//								   name: QTCaptureDeviceFormatDescriptionsDidChangeNotification
+//								 object: device];
 		
         success = [captureSession addInput: videoDeviceInput error: &error];
         if (!success) {
@@ -227,8 +226,6 @@
 
 #pragma mark -
 #pragma mark Managing Movie Settings
-@synthesize movieSettingsController;
-
 - (NSMutableDictionary *) movieSettings
 {
 	return movieSettings;
@@ -447,35 +444,36 @@
 	return result;
 }
 
-- (void) captureDeviceFormatDescriptionsDidChange:(NSNotification*)notification
-{	
-	id device = [notification object];
-	NSArray *formats = [device formatDescriptions];
-	NSMutableSet *acceptableResolutions = [NSMutableSet setWithArray: self.movieSettingsController.availableResolutions];
-	
-	// Add current resolution(s?) to the set
-	// of existing resolutions
-	for (id format in formats) {
-		NSValue *size = [format attributeForKey: QTFormatDescriptionVideoCleanApertureDisplaySizeAttribute];
-		
-		[acceptableResolutions addObject: size];
-	}
-	
-	// Sort the resolutions
-	NSArray *allResolutions = [[acceptableResolutions allObjects] sortedArrayUsingComparator:
-							   ^(id a, id b) {
-								   float wa = [a sizeValue].width, wb = [b sizeValue].width;
-								   
-								   if (wa < wb)
-									   return NSOrderedAscending;
-								   else if (wa > wb)
-									   return NSOrderedDescending;
-								   else
-									   return NSOrderedSame;
-							   }];
-	
-	self.movieSettingsController.availableResolutions = allResolutions;
-}
+// TODO: Find out native resolution for use in Organizer
+//- (void) captureDeviceFormatDescriptionsDidChange:(NSNotification*)notification
+//{	
+//	id device = [notification object];
+//	NSArray *formats = [device formatDescriptions];
+//	NSMutableSet *acceptableResolutions = [NSMutableSet setWithArray: self.movieSettingsController.availableResolutions];
+//	
+//	// Add current resolution(s?) to the set
+//	// of existing resolutions
+//	for (id format in formats) {
+//		NSValue *size = [format attributeForKey: QTFormatDescriptionVideoCleanApertureDisplaySizeAttribute];
+//		
+//		[acceptableResolutions addObject: size];
+//	}
+//	
+//	// Sort the resolutions
+//	NSArray *allResolutions = [[acceptableResolutions allObjects] sortedArrayUsingComparator:
+//							   ^(id a, id b) {
+//								   float wa = [a sizeValue].width, wb = [b sizeValue].width;
+//								   
+//								   if (wa < wb)
+//									   return NSOrderedAscending;
+//								   else if (wa > wb)
+//									   return NSOrderedDescending;
+//								   else
+//									   return NSOrderedSame;
+//							   }];
+//	
+//	self.movieSettingsController.availableResolutions = allResolutions;
+//}
 
 #pragma mark -
 #pragma mark Filter Pipeline
@@ -554,15 +552,6 @@
 			 [NSThread detachNewThreadSelector: @selector(exportMovieToURL:) toTarget: self withObject: fileURL];
 		 }
 	 }];
-}
-
-- (void) sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
-{
-	if ([(NSObject *) contextInfo isEqual: FBCancelMovieSettingsContext]) {
-		if (returnCode == 0) {
-			[self.movieSettingsController endSheet];
-		}
-	}
 }
 
 #pragma mark -
@@ -647,22 +636,6 @@
 - (NSArray *) urlsForImagesAtIndexes: (NSIndexSet *) indexes
 {
 	return [self.reel urlsForImagesAtIndexes: indexes];
-}
-
-#pragma mark -
-#pragma mark Movie Settings Controller Delegate
-- (void) movieSettingsController: (FBMovieSettingsController *) controller
-				 didSaveSettings: (NSDictionary *) settings
-{
-	self.movieSettings = [NSMutableDictionary dictionaryWithDictionary: settings];
-	
-	[controller endSheet];
-}
-
-- (void) movieSettingsControllerDidCancel: (FBMovieSettingsController *)controller
-{
-	[controller endSheet];
-	[self close];
 }
 
 #pragma mark -
