@@ -25,6 +25,9 @@
 			self.selectedPredefinedResolution = [self.availableResolutions objectAtIndex: 0];
 		self.customHorizontalResolution = 640;
 		self.customVerticalResolution = 480;
+		
+		// Find recently used documents
+		recentDocuments = [[[NSDocumentController sharedDocumentController] recentDocumentURLs] copy];
     }
     
     return self;
@@ -35,6 +38,12 @@
 //	delegate = nil;
 	[availableResolutions release];
 	availableResolutions = nil;
+	
+	[recentDocuments release];
+	recentDocuments = nil;
+	
+	[recentDocumentsSelection release];
+	recentDocumentsSelection = nil;
     
     [super dealloc];
 }
@@ -88,9 +97,6 @@
 {
 	if ([self settingsOK]) {
 		NSDictionary *movieSettings = [self composeMovieSettings];
-		
-//		[self.delegate movieSettingsController: self didSaveSettings: [self composeMovieSettings]];
-		
         NSDocumentController *controller = [NSDocumentController sharedDocumentController];
 		NSError *error = nil;
 		FBDocument *document = [controller makeUntitledDocumentOfType: @"FrameByFrame Movie" error: &error];
@@ -112,7 +118,19 @@
 #pragma mark Opening a Recently Used Movie
 - (IBAction) openRecent: (id) sender
 {
-	NSLog(@"TODO Implement FBOrganizerController-openRecent:");
+	if (self.recentDocumentsSelection.count > 0) {
+		NSURL *documentURL = [self.recentDocuments objectAtIndex: self.recentDocumentsSelection.firstIndex];
+		NSError *error = nil;
+		NSDocumentController *controller = [NSDocumentController sharedDocumentController];
+		NSDocument *document = [controller openDocumentWithContentsOfURL: documentURL
+																 display: YES
+																   error: &error];
+		
+		if (document == nil)
+			NSLog(@"Couldn't open document at %@ because of error: %@", documentURL, error);
+	}
 }
+
+@synthesize recentDocuments, recentDocumentsSelection;
 
 @end

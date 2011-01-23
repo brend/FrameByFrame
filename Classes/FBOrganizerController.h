@@ -17,6 +17,9 @@
 	
 	BOOL useCustomResolution;
 	NSInteger customHorizontalResolution, customVerticalResolution;
+	
+	NSArray *recentDocuments;
+	NSIndexSet *recentDocumentsSelection;
 }
 
 //#pragma mark -
@@ -37,6 +40,8 @@
 
 #pragma mark -
 #pragma mark Opening a Recently Used Movie
+@property (readonly) NSArray *recentDocuments;
+@property (retain) NSIndexSet *recentDocumentsSelection;
 - (IBAction) openRecent: (id) sender;
 
 //#pragma mark -
