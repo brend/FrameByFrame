@@ -45,7 +45,6 @@
 		self.reel = aReel;
 		self.exportAttributes = attributes;
 		
-		// TODO: Use actual parameters
 		NSNumber *fps = [exportAttributes objectForKey: FBFramesPerSecondAttributeName];
 		NSDictionary *initializationSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 												filename, @"filename",

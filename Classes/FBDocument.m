@@ -213,16 +213,11 @@
 {
 	[super showWindows];
 	
+	// If an existing document has been opened,
+	// copy the contents asynchronously while displaying a progress sheet
 	if (self.originalFileURL) {
-		// If this documents already exists,
-		// copy the contents asynchronously 
-		// while displaying a progress sheet
 		[self.progressSheetController beginSheetModalForWindow: self.window indeterminate: YES];
 		[NSThread detachNewThreadSelector: @selector(copyDocumentContents) toTarget: self withObject: nil];
-	} else {
-		// If this is a newly created document,
-		// ask for settings
-		[self.movieSettingsController beginSheetModalForWindow: self.window];
 	}
 }
 
