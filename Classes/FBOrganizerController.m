@@ -107,6 +107,9 @@
 			[document showWindows];
 			
 			document.movieSettings = [NSMutableDictionary dictionaryWithDictionary: movieSettings];
+			
+			// Close window when done
+			[window close];
 		} else
 			NSLog(@"Error creating untitled document: %@", error);
 	} else {
@@ -126,11 +129,29 @@
 																 display: YES
 																   error: &error];
 		
-		if (document == nil)
+		if (document) {
+			// Close window when done
+			[window close];
+		} else
 			NSLog(@"Couldn't open document at %@ because of error: %@", documentURL, error);
 	}
 }
 
 @synthesize recentDocuments, recentDocumentsSelection;
+
+#pragma mark -
+#pragma mark Handling Unsaved Movies
+- (IBAction) openUnsaved: (id) sender
+{
+	[crashRecovery open: self];
+	
+	// Close window when done
+	[window close];
+}
+
+- (IBAction) deleteUnsaved: (id) sender
+{
+	[crashRecovery deleteAll: self];
+}
 
 @end

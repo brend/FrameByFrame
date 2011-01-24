@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FBCrashRecoveryController.h"
 
 @interface FBOrganizerController : NSObject 
 {
 @private
+	IBOutlet NSWindow *window;
+	IBOutlet FBCrashRecoveryController *crashRecovery;
+	
    	NSArray *availableResolutions;
 	NSValue *selectedPredefinedResolution;
 	
@@ -21,10 +24,6 @@
 	NSArray *recentDocuments;
 	NSIndexSet *recentDocumentsSelection;
 }
-
-//#pragma mark -
-//#pragma mark Delegate
-//@property (readonly) id<FBMovieSettingsControllerDelegate> delegate;
 
 #pragma mark -
 #pragma mark Creating a New Movie
@@ -44,9 +43,9 @@
 @property (retain) NSIndexSet *recentDocumentsSelection;
 - (IBAction) openRecent: (id) sender;
 
-//#pragma mark -
-//#pragma mark Interface Builder Actions
-//- (IBAction) acceptSettings: (id) sender;
-//- (IBAction) cancelSettings: (id) sender;
+#pragma mark -
+#pragma mark Handling Unsaved Movies
+- (IBAction) openUnsaved: (id) sender;
+- (IBAction) deleteUnsaved: (id) sender;
 
 @end

@@ -163,8 +163,6 @@
 			children = (
 				5F9641C7127A138A009E6FC1 /* FBApplicationDelegate.h */,
 				5F9641C8127A138A009E6FC1 /* FBApplicationDelegate.m */,
-				5FBB814412D0996C0020C02D /* FBCrashRecoveryController.h */,
-				5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -315,6 +313,8 @@
 		5FDAD288129DB0E000B59574 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5FBB814412D0996C0020C02D /* FBCrashRecoveryController.h */,
+				5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */,
 				5FDAD289129DB0FC00B59574 /* FBProgressSheetController.h */,
 				5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */,
 				5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */,
