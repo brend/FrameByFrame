@@ -1355,7 +1355,7 @@
 				<string key="NSClassName">FBApplicationDelegate</string>
 			</object>
 			<object class="NSWindowTemplate" id="689457783">
-				<int key="NSWindowStyleMask">1</int>
+				<int key="NSWindowStyleMask">3</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{610, 458}, {672, 462}}</string>
 				<int key="NSWTFlags">1685585920</int>
