@@ -123,17 +123,28 @@
 {
 	if (self.recentDocumentsSelection.count > 0) {
 		NSURL *documentURL = [self.recentDocuments objectAtIndex: self.recentDocumentsSelection.firstIndex];
+		
+		if (![[NSFileManager defaultManager] fileExistsAtPath: documentURL.path]) {
+			NSString *message = [NSString stringWithFormat: @"The movie %@ does no longer exist.", documentURL.path];
+			
+			NSRunAlertPanel(@"Movie doesn't exist", message, @"OK", nil, nil);
+			
+			return;
+		}
+		
 		NSError *error = nil;
 		NSDocumentController *controller = [NSDocumentController sharedDocumentController];
-		NSDocument *document = [controller openDocumentWithContentsOfURL: documentURL
-																 display: YES
-																   error: &error];
+		NSDocument *document = 
+			[controller openDocumentWithContentsOfURL: documentURL
+											  display: YES
+												error: &error];
 		
 		if (document) {
 			// Close window when done
 			[window close];
 		} else
-			NSLog(@"Couldn't open document at %@ because of error: %@", documentURL, error);
+			NSLog(@"Couldn't open movie at %@ because of error: %@", documentURL, error);
+		
 	}
 }
 
