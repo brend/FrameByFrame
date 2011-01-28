@@ -27,37 +27,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[self registerInitialUserDefaults];
-	[self showCrashRecoveryWindowIfNecessary];
-	
-	applicationHasStarted = YES;
-}
-
-- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
-{
-    if (!applicationHasStarted)
-    {
-        // Get the recent documents
-        NSDocumentController *controller = [NSDocumentController sharedDocumentController];
-        NSArray *documents = [controller recentDocumentURLs];
-        
-        // If there is a recent document, try to open it.
-        if ([documents count] > 0)
-        {
-            NSError *error = nil;
-			
-			[controller openDocumentWithContentsOfURL: [documents objectAtIndex:0]
-											  display: YES
-												error: &error];
-            
-            // If there was no error, then prevent untitled from appearing.
-            if (error == nil)
-            {
-                return NO;
-            }
-        }
-    }
-    
-    return YES;
 }
 
 #pragma mark -
@@ -68,15 +37,6 @@
 	NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile: defaultsPath];
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defaults];
-}
-
-#pragma mark -
-#pragma mark Recovering Unsaved Documents
-- (void) showCrashRecoveryWindowIfNecessary
-{
-	if (crashRecoveryController.unsavedDocumentsExist) {
-		[crashRecoveryWindow makeKeyAndOrderFront: self];
-	}
 }	
 
 @end

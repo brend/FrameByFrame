@@ -11,19 +11,10 @@
 
 @interface FBApplicationDelegate : NSObject 
 {
-@private
-    IBOutlet NSWindow *crashRecoveryWindow;
-	IBOutlet FBCrashRecoveryController *crashRecoveryController;
-	
-	BOOL applicationHasStarted;
 }
 
 #pragma mark -
 #pragma mark Registering User Defaults
 - (void) registerInitialUserDefaults;
-
-#pragma mark -
-#pragma mark Recovering Unsaved Documents
-- (void) showCrashRecoveryWindowIfNecessary;
 
 @end
