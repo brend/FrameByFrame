@@ -10,6 +10,15 @@
 
 #import "FBDocument.h"
 
+#pragma mark -
+#pragma mark FBCrashRecoveryController Private Interface
+@interface FBCrashRecoveryController ()
+@property (copy) NSArray *temporaryDocumentPaths;
+- (void) loadTemporaryDocuments;
+@end
+
+#pragma mark -
+#pragma mark FBCrashRecoveryController Implementation
 @implementation FBCrashRecoveryController
 @synthesize temporaryDocumentPaths;
 
@@ -17,30 +26,10 @@
 {
 	self = [super init];
 	if (self != nil) {
-		NSMutableArray *temporaryDocuments = [NSMutableArray array];
-		NSFileManager *fileManager = [NSFileManager defaultManager];
-		NSString *tempDirectory = @"/tmp";
-		BOOL isDirectory = NO;
-		
-		for (NSString *filename in [fileManager contentsOfDirectoryAtPath: tempDirectory error: NULL]) {
-			NSString *path = [tempDirectory stringByAppendingPathComponent: filename];
-			
-			if ([filename hasPrefix: @"fbf."] 
-				&& [fileManager fileExistsAtPath: path isDirectory: &isDirectory]
-				&& isDirectory)
-			{
-				NSArray *documentItems = [fileManager contentsOfDirectoryAtPath: path error: NULL];
-				
-				if (documentItems.count > 0)
-					[temporaryDocuments addObject: path];
-			}
-		}
-		
-		self.temporaryDocumentPaths = temporaryDocuments;		
+		[self loadTemporaryDocuments];
 	}
 	return self;
 }
-
 
 - (void) dealloc
 {
@@ -51,6 +40,30 @@
 - (BOOL) unsavedDocumentsExist
 {
 	return self.temporaryDocumentPaths.count > 0;
+}
+
+- (void) loadTemporaryDocuments
+{
+	NSMutableArray *temporaryDocuments = [NSMutableArray array];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *tempDirectory = @"/tmp";
+	BOOL isDirectory = NO;
+	
+	for (NSString *filename in [fileManager contentsOfDirectoryAtPath: tempDirectory error: NULL]) {
+		NSString *path = [tempDirectory stringByAppendingPathComponent: filename];
+		
+		if ([filename hasPrefix: @"fbf."] 
+			&& [fileManager fileExistsAtPath: path isDirectory: &isDirectory]
+			&& isDirectory)
+		{
+			NSArray *documentItems = [fileManager contentsOfDirectoryAtPath: path error: NULL];
+			
+			if (documentItems.count > 0)
+				[temporaryDocuments addObject: path];
+		}
+	}
+	
+	self.temporaryDocumentPaths = temporaryDocuments;
 }
 
 #pragma mark -
@@ -145,6 +158,8 @@
 {
 	if (returnCode == 1) {
 		[self deleteTemporaryDocuments];
+		[self loadTemporaryDocuments];
+		[documentList reloadData];
 	}
 }
 

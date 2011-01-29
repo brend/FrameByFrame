@@ -19,7 +19,6 @@
 
 #pragma mark -
 #pragma mark Discovering Unsaved Documents
-@property (copy) NSArray *temporaryDocumentPaths;
 @property (readonly) BOOL unsavedDocumentsExist;
 
 #pragma mark -
