@@ -13,6 +13,7 @@
 {
 @private
 	IBOutlet NSWindow *window;
+	IBOutlet NSTableView *recentDocumentsView;
 	IBOutlet FBCrashRecoveryController *crashRecovery;
 	
    	NSArray *availableResolutions;
@@ -39,7 +40,7 @@
 
 #pragma mark -
 #pragma mark Opening a Recently Used Movie
-@property (readonly) NSArray *recentDocuments;
+@property (copy) NSArray *recentDocuments;
 @property (retain) NSIndexSet *recentDocumentsSelection;
 - (IBAction) openRecent: (id) sender;
 

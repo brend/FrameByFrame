@@ -9,6 +9,14 @@
 #import "FBOrganizerController.h"
 #import "FBDocument.h"
 
+#pragma mark -
+#pragma mark Private FBOrganizerController Interface
+@interface FBOrganizerController ()
+- (void) loadRecentDocuments;
+@end
+
+#pragma mark -
+#pragma mark FBOrganizerController Implementation
 @implementation FBOrganizerController
 
 - (id)init 
@@ -27,14 +35,28 @@
 		self.customVerticalResolution = 480;
 		
 		// Find recently used documents
-		recentDocuments = [[[NSDocumentController sharedDocumentController] recentDocumentURLs] copy];
+		[self loadRecentDocuments];
     }
     
     return self;
 }
 
+- (void) windowDidBecomeKey: (NSNotification *) n
+{
+	[self loadRecentDocuments];
+	[recentDocumentsView reloadData];
+}
+
+- (void) awakeFromNib
+{
+	// Register for notification on change of key window
+	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidBecomeKey:) name: NSWindowDidBecomeKeyNotification object: window];
+}
+
 - (void)dealloc 
 {
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: NSWindowDidBecomeKeyNotification object: window];
+	
 //	delegate = nil;
 	[availableResolutions release];
 	availableResolutions = nil;
@@ -146,6 +168,11 @@
 			NSLog(@"Couldn't open movie at %@ because of error: %@", documentURL, error);
 		
 	}
+}
+
+- (void) loadRecentDocuments
+{
+	self.recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
 }
 
 @synthesize recentDocuments, recentDocumentsSelection;
