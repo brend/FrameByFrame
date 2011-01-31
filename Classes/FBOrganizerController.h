@@ -14,6 +14,7 @@
 @private
 	IBOutlet NSWindow *window;
 	IBOutlet NSTableView *recentDocumentsView;
+	IBOutlet NSTabView *organizerTabs;
 	IBOutlet FBCrashRecoveryController *crashRecovery;
 	
    	NSArray *availableResolutions;
@@ -48,5 +49,11 @@
 #pragma mark Handling Unsaved Movies
 - (IBAction) openUnsaved: (id) sender;
 - (IBAction) deleteUnsaved: (id) sender;
+
+#pragma mark -
+#pragma mark Toolbar Actions
+- (IBAction) toolbarNewDocument: (id) sender;
+- (IBAction) toolbarOpenDocument: (id) sender;
+- (IBAction) toolbarRecoverDocument: (id) sender;
 
 @end

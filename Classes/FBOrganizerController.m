@@ -192,4 +192,25 @@
 	[crashRecovery deleteAll: self];
 }
 
+#pragma mark -
+#pragma mark Toolbar Actions
+- (IBAction) toolbarNewDocument: (id) sender
+{
+	[organizerTabs selectTabViewItemWithIdentifier: @"NewDocument"];
+	
+//	[window setFrame: (NSRect) { .origin = window.frame.origin, .size = NSMakeSize(800, 600) }
+//			 display: YES 
+//			 animate: YES];
+}
+
+- (IBAction) toolbarOpenDocument: (id) sender
+{
+	[organizerTabs selectTabViewItemWithIdentifier: @"OpenDocument"];
+}
+
+- (IBAction) toolbarRecoverDocument: (id) sender
+{
+	[organizerTabs selectTabViewItemWithIdentifier: @"RecoverDocument"];
+}
+
 @end

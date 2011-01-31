@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F24654A12F6130700D584BD /* Button-NewDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F24654912F6130700D584BD /* Button-NewDocument.png */; };
+		5F24654C12F6141D00D584BD /* Button-OpenDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F24654B12F6141D00D584BD /* Button-OpenDocument.png */; };
+		5F24654E12F6153300D584BD /* Button-RecoverDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F24654D12F6153300D584BD /* Button-RecoverDocument.png */; };
 		5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */; };
 		5F4EF30112EB4BED004A2F3D /* FBOrganizerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4EF30012EB4BED004A2F3D /* FBOrganizerController.m */; };
 		5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5234AC12987CF80007FCDB /* QuickTime.framework */; };
@@ -50,6 +53,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F24654912F6130700D584BD /* Button-NewDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-NewDocument.png"; sourceTree = "<group>"; };
+		5F24654B12F6141D00D584BD /* Button-OpenDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-OpenDocument.png"; sourceTree = "<group>"; };
+		5F24654D12F6153300D584BD /* Button-RecoverDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-RecoverDocument.png"; sourceTree = "<group>"; };
 		5F4C4F1312BE210600AF7D8C /* FBReelNavigator(DragDrop).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBReelNavigator(DragDrop).h"; sourceTree = "<group>"; };
 		5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBReelNavigator(DragDrop).m"; sourceTree = "<group>"; };
 		5F4C516512BE931700AF7D8C /* FBDragDropBuddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDragDropBuddy.h; sourceTree = "<group>"; };
@@ -181,6 +187,9 @@
 		5F7C8ADA12D6708E00CF9497 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5F24654D12F6153300D584BD /* Button-RecoverDocument.png */,
+				5F24654B12F6141D00D584BD /* Button-OpenDocument.png */,
+				5F24654912F6130700D584BD /* Button-NewDocument.png */,
 				5FCA066912D8F3DA00241581 /* Button-Play.png */,
 				5FCA064B12D8E1EF00241581 /* Button-Cut.png */,
 				5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */,
@@ -390,6 +399,9 @@
 				5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */,
 				5F6951C212D91F7000A53C8F /* FrameByFrame.icns in Resources */,
 				5FC18E2712E1D5E00096E8CE /* Document.icns in Resources */,
+				5F24654A12F6130700D584BD /* Button-NewDocument.png in Resources */,
+				5F24654C12F6141D00D584BD /* Button-OpenDocument.png in Resources */,
+				5F24654E12F6153300D584BD /* Button-RecoverDocument.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
