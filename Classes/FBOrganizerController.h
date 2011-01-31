@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "FBCrashRecoveryController.h"
 
-@interface FBOrganizerController : NSObject 
+@interface FBOrganizerController : NSObject
 {
 @private
 	IBOutlet NSWindow *window;
 	IBOutlet NSTableView *recentDocumentsView;
 	IBOutlet NSTabView *organizerTabs;
 	IBOutlet FBCrashRecoveryController *crashRecovery;
-	
+	IBOutlet NSToolbar *organizerBar;
+		
    	NSArray *availableResolutions;
 	NSValue *selectedPredefinedResolution;
 	
@@ -55,5 +56,9 @@
 - (IBAction) toolbarNewDocument: (id) sender;
 - (IBAction) toolbarOpenDocument: (id) sender;
 - (IBAction) toolbarRecoverDocument: (id) sender;
+
+#pragma mark -
+#pragma mark Resizing the Window
+- (void) setFrameSize: (NSSize) newSize resizable: (BOOL) resize;
 
 @end

@@ -51,6 +51,12 @@
 {
 	// Register for notification on change of key window
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidBecomeKey:) name: NSWindowDidBecomeKeyNotification object: window];
+	
+	// Pre-select first toolbar item (should be "New Movie")
+	if (organizerBar.items.count) {
+		[organizerBar setSelectedItemIdentifier: [[organizerBar.items objectAtIndex: 0] itemIdentifier]];
+		[self toolbarNewDocument: organizerBar];
+	}
 }
 
 - (void)dealloc 
@@ -197,20 +203,32 @@
 - (IBAction) toolbarNewDocument: (id) sender
 {
 	[organizerTabs selectTabViewItemWithIdentifier: @"NewDocument"];
-	
-//	[window setFrame: (NSRect) { .origin = window.frame.origin, .size = NSMakeSize(800, 600) }
-//			 display: YES 
-//			 animate: YES];
+	[self setFrameSize: NSMakeSize(480, 240) resizable: NO];
 }
 
 - (IBAction) toolbarOpenDocument: (id) sender
 {
 	[organizerTabs selectTabViewItemWithIdentifier: @"OpenDocument"];
+	[self setFrameSize: NSMakeSize(480, 408) resizable: NO];
 }
 
 - (IBAction) toolbarRecoverDocument: (id) sender
 {
 	[organizerTabs selectTabViewItemWithIdentifier: @"RecoverDocument"];
+	[self setFrameSize: NSMakeSize(480, 408) resizable: NO];
+}
+
+#pragma mark -
+#pragma mark Resizing the Window
+- (void) setFrameSize: (NSSize) newSize resizable: (BOOL) resize
+{
+	NSRect oldFrame = window.frame;
+	NSRect newFrame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y + (oldFrame.size.height - newSize.height), newSize.width, newSize.height);
+	
+	[window setFrame: newFrame
+			 display: YES 
+			 animate: YES];
+	[window setShowsResizeIndicator: resize];
 }
 
 @end
