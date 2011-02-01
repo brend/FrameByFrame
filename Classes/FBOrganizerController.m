@@ -209,13 +209,13 @@
 - (IBAction) toolbarOpenDocument: (id) sender
 {
 	[organizerTabs selectTabViewItemWithIdentifier: @"OpenDocument"];
-	[self setFrameSize: NSMakeSize(480, 408) resizable: NO];
+	[self setFrameSize: NSMakeSize(480, 408) resizable: YES];
 }
 
 - (IBAction) toolbarRecoverDocument: (id) sender
 {
 	[organizerTabs selectTabViewItemWithIdentifier: @"RecoverDocument"];
-	[self setFrameSize: NSMakeSize(480, 408) resizable: NO];
+	[self setFrameSize: NSMakeSize(480, 408) resizable: YES];
 }
 
 #pragma mark -
