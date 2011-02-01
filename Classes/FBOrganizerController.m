@@ -231,4 +231,11 @@
 	[window setShowsResizeIndicator: resize];
 }
 
+#pragma mark -
+#pragma mark Window Delegate
+- (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize
+{
+	return sender.showsResizeIndicator ? frameSize : sender.frame.size;
+}
+
 @end
