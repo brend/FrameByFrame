@@ -30,9 +30,11 @@
 			  framesPerSecond: (NSUInteger) fps;
 - (void) stopPreview;
 - (void) togglePreview;
+- (void) rewindPreview;
 
 - (void) presentFrame;
 
 - (IBAction) togglePreview: (id) sender;
+- (IBAction) rewindPreview: (id) sender;
 
 @end

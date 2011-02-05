@@ -93,6 +93,13 @@
 		[self startPreview];
 }
 
+- (void) rewindPreview
+{
+	[self stopPreview];
+	startFrame = frameIndex = 0;
+	[self presentFrame];
+}
+
 - (void) presentFrame
 {
 	if (frameIndex < reel.count) {
@@ -111,6 +118,11 @@
 - (IBAction) togglePreview: (id) sender
 {
 	[self togglePreview];
+}
+
+- (IBAction) rewindPreview: (id) sender
+{
+	[self rewindPreview];
 }
 
 @end
