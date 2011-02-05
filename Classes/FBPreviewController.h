@@ -15,7 +15,7 @@
 	IBOutlet NSImageView *imageView;
 	
 	FBReel *reel;
-	NSUInteger frameIndex;
+	NSUInteger startFrame, frameIndex, framesPerSecond;
 	NSTimer *timer;
 }
 
@@ -25,9 +25,14 @@
 #pragma mark Playing Previews
 @property (readonly) BOOL isPreviewPlaying;
 
-- (void) startPreviewWithReel: (FBReel *) reel
+- (void) setupPreviewWithReel: (FBReel *) reel
 			 fromImageAtIndex: (NSUInteger) startIndex
 			  framesPerSecond: (NSUInteger) fps;
 - (void) stopPreview;
+- (void) togglePreview;
+
+- (void) presentFrame;
+
+- (IBAction) togglePreview: (id) sender;
 
 @end

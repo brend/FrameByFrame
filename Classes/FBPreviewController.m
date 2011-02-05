@@ -46,7 +46,54 @@
 	self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 / (float) fps target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
 }
 
+- (void) setupPreviewWithReel: (FBReel *) aReel
+			 fromImageAtIndex: (NSUInteger) startIndex
+			  framesPerSecond: (NSUInteger) fps
+{
+	[self stopPreview];
+	reel = aReel;
+	startFrame = frameIndex = startIndex;
+	framesPerSecond = fps;
+	[self presentFrame];
+	
+	[previewPanel makeKeyAndOrderFront: self];
+}
+
 - (void) nextFrame: (id) sender
+{
+	if (frameIndex < reel.count) {
+		[self presentFrame];
+		
+		++frameIndex;
+	} else
+		[self stopPreview];
+}
+
+- (void) startPreview
+{
+	frameIndex = startFrame;
+	self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 / (float) framesPerSecond
+												  target: self
+												selector: @selector(nextFrame:)
+												userInfo: nil
+												 repeats: YES];
+}
+
+- (void) stopPreview
+{
+	[self.timer invalidate];
+	self.timer = nil;
+}
+
+- (void) togglePreview
+{
+	if (self.isPreviewPlaying)
+		[self stopPreview];
+	else
+		[self startPreview];
+}
+
+- (void) presentFrame
 {
 	if (frameIndex < reel.count) {
 		// NOTE Don't query cells, but images
@@ -58,16 +105,12 @@
 		[imageView setImage: image];
 		[image release];
 		[rep release];
-		
-		++frameIndex;
-	} else
-		[self stopPreview];
+	}
 }
 
-- (void) stopPreview
+- (IBAction) togglePreview: (id) sender
 {
-	[self.timer invalidate];
-	self.timer = nil;
+	[self togglePreview];
 }
 
 @end

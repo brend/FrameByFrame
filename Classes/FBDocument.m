@@ -857,17 +857,16 @@
 #pragma mark Playing Previews
 @synthesize previewController;
 
-- (IBAction) togglePreviewPlayback: (id) sender
+- (IBAction) showPreviewWindow: (id) sender
 {
-	if (self.previewController.isPreviewPlaying)
-		[self.previewController stopPreview];
-	else {
-		NSUInteger selectedFrame = self.reelNavigator.selectedIndex;
-		
-		[self.previewController startPreviewWithReel: self.reel
-									fromImageAtIndex: selectedFrame == NSNotFound ? 0 : selectedFrame
-									 framesPerSecond: self.framesPerSecond];
-	}
+	NSUInteger selectedFrame = self.reelNavigator.selectedIndex;
+	NSUInteger startFrame = (selectedFrame == NSNotFound) 
+								? 0
+								: ((selectedFrame == self.reel.count - 1) ? 0 : selectedFrame);
+	
+	[self.previewController setupPreviewWithReel: self.reel
+								fromImageAtIndex: startFrame
+								 framesPerSecond: self.framesPerSecond];
 }
 
 @end
