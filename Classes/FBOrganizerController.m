@@ -183,6 +183,39 @@
 
 @synthesize recentDocuments, recentDocumentsSelection;
 
+
+- (NSImage *) thumbnailForDocumentAtURL: (NSURL *) url
+{
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	BOOL isDirectory = NO;
+	
+	if ([fileManager fileExistsAtPath: url.path isDirectory: &isDirectory] && isDirectory) {
+		NSArray *files = [fileManager contentsOfDirectoryAtPath: url.path error: NULL];
+		NSString *imageFile = nil;
+		
+		if (files == nil)
+			return nil;
+		
+		for (NSString *file in files) {
+			if ([file hasPrefix: @"."] || [file isEqualToString: @"QuickLook"] || [file isEqualToString: @"reel"] || [file isEqualToString: @"movieSettings"])
+				continue;
+			
+			imageFile = file;
+			break;
+		}
+		
+		if (imageFile) {
+			NSImage *image = [[NSImage alloc] initWithContentsOfFile: [url.path stringByAppendingPathComponent: imageFile]];
+			
+			[image setSize: NSMakeSize(48, 48)];
+			
+			return [image autorelease];
+		} else
+			return nil;
+	} else
+		return nil;
+}
+
 #pragma mark -
 #pragma mark Handling Unsaved Movies
 - (IBAction) openUnsaved: (id) sender
@@ -236,6 +269,36 @@
 - (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize
 {
 	return sender.showsResizeIndicator ? frameSize : sender.frame.size;
+}
+
+#pragma mark -
+#pragma mark Table View Data Source
+- (NSInteger) numberOfRowsInTableView: (NSTableView *) tableView
+{
+	return tableView == recentDocumentsView ? self.recentDocuments.count : 0;
+}
+
+- (id) tableView: (NSTableView *) tableView objectValueForTableColumn: (NSTableColumn *) tableColumn row: (NSInteger) row
+{
+	if (tableView == recentDocumentsView) {
+		if ([tableColumn.identifier isEqualToString: @"PathColumn"]) {
+			NSURL *url = [self.recentDocuments objectAtIndex: row];
+			NSString *file = [[url lastPathComponent] stringByDeletingPathExtension];
+			
+			return [NSString stringWithFormat: @"%@\n%@", file, url.path];
+		} else if ([tableColumn.identifier isEqualToString: @"ThumbnailColumn"]) {
+			return [self thumbnailForDocumentAtURL: [self.recentDocuments objectAtIndex: row]];
+		} else
+			return nil;
+	} else
+		return nil;
+}
+
+#pragma mark -
+#pragma mark Table View Delegate
+- (CGFloat) tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+	return 64;
 }
 
 @end

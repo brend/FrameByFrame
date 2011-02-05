@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FBCrashRecoveryController.h"
 
-@interface FBOrganizerController : NSObject
+@interface FBOrganizerController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 {
 @private
 	IBOutlet NSWindow *window;
@@ -45,6 +45,7 @@
 @property (copy) NSArray *recentDocuments;
 @property (retain) NSIndexSet *recentDocumentsSelection;
 - (IBAction) openRecent: (id) sender;
+- (NSImage *) thumbnailForDocumentAtURL: (NSURL *) url;
 
 #pragma mark -
 #pragma mark Handling Unsaved Movies
