@@ -19,8 +19,6 @@
 	NSTimer *timer;
 }
 
-@property (retain) NSTimer *timer;
-
 #pragma mark -
 #pragma mark Playing Previews
 @property (readonly) BOOL isPreviewPlaying;
@@ -32,8 +30,7 @@
 - (void) togglePreview;
 - (void) rewindPreview;
 
-- (void) presentFrame;
-
+#pragma mark Interface Builder Actions
 - (IBAction) togglePreview: (id) sender;
 - (IBAction) rewindPreview: (id) sender;
 

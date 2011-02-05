@@ -8,6 +8,13 @@
 
 #import "FBPreviewController.h"
 
+@interface FBPreviewController ()
+@property (retain) NSTimer *timer;
+- (void) presentFrame;
+- (void) nextFrame: (id) sender;
+@end
+
+#pragma mark -
 
 @implementation FBPreviewController
 @synthesize timer;
@@ -100,6 +107,8 @@
 	[self presentFrame];
 }
 
+#pragma mark -
+#pragma mark Presenting Frames
 - (void) presentFrame
 {
 	if (frameIndex < reel.count) {
@@ -115,6 +124,8 @@
 	}
 }
 
+#pragma mark -
+#pragma mark Interface Builder Actions
 - (IBAction) togglePreview: (id) sender
 {
 	[self togglePreview];
