@@ -7,6 +7,7 @@
 //
 
 #import "FBReel.h"
+#import "FBFileInfo.h"
 
 #pragma mark Private FBReel Interface
 @interface FBReel ()
@@ -18,8 +19,6 @@
 #pragma mark FBReel Implementation
 @implementation FBReel
 @synthesize cells, recentImageIndex;
-
-static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -46,24 +45,6 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	}
 	
 	return self;
-}
-
-+ (void) initialize
-{
-	FBSystemFilenames = [[NSArray alloc] initWithObjects: @"QuickLook", @"reel", @"settings", nil];
-	
-	// Magic numbers are as follows (not all are in use)
-	// BMP	0x424D
-	// JPG	0xFFD8FFE0
-	// PNG	0x89504E47
-	// TIFF	0x4D4D002A
-	NSArray *magicNumbers = [NSArray arrayWithObjects: @"MM", @"BM", nil];
-	NSMutableArray *magicData = [NSMutableArray array];
-	
-	for (NSString *mn in magicNumbers)
-		[magicData addObject: [mn dataUsingEncoding: NSASCIIStringEncoding]];
-	
-	FBReadableMagics = [[NSArray alloc] initWithArray: magicData];
 }
 
 + (id) reel
@@ -98,17 +79,21 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	}
 	
 	// Perform sanity check on reel files
+	FBFileInfo *fileInfo = [[FBFileInfo alloc] init];
+	NSString *urlPath = url.path;
 	NSMutableIndexSet *insaneIndexes = [NSMutableIndexSet indexSet];
 	
 	for (NSInteger i = 0; i < reel.count; ++i) {
 		FBCell *cell = [reel cellAtIndex: i];
 		
-		if (![FBReel saneFile: cell.identifier atPath: url.path]) {
+		if (![fileInfo readableImageFile: [urlPath stringByAppendingPathComponent: cell.identifier]]) {
 			NSLog(@"Insane reel reference: %@", cell.identifier);
 			[insaneIndexes addIndex: i];
 		}
 	}
+	
 	[reel removeCellsAtIndexes: insaneIndexes];
+	[fileInfo release];
 	
 	return reel;
 }
@@ -119,11 +104,13 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSString *directoryPath = directoryURL.path;
 	NSArray *files = [fileManager contentsOfDirectoryAtPath: directoryURL.path error: &intermediateError];
-	NSMutableArray *cells = [NSMutableArray arrayWithCapacity: files.count];
 	
 	if (files) {
+		NSMutableArray *cells = [NSMutableArray arrayWithCapacity: files.count];
+		FBFileInfo *fileInfo = [[FBFileInfo alloc] init];
+		
 		for (NSString *file in files) {
-			if ([FBReel saneFile: file atPath: directoryPath]) {
+			if ([fileInfo readableImageFile: [directoryPath stringByAppendingPathComponent: file]]) {
 				FBCell *cell = [[FBCell alloc] initWithIdentifier: file];
 				
 				[cell setDocumentURL: directoryURL];
@@ -139,6 +126,8 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 		
 		reel.documentURL = directoryURL;
 		reel.cells = cells;
+		
+		[fileInfo release];
 		
 		return reel;
 	} else {
@@ -176,35 +165,7 @@ static NSArray *FBSystemFilenames = nil, *FBReadableMagics = nil;
 }
 
 #pragma mark -
-#pragma mark Reel Sanity
-+ (NSArray *) systemFilenames
-{
-	return FBSystemFilenames;
-}
-
-+ (NSArray *) readableMagics
-{
-	return FBReadableMagics;
-}
-
-+ (BOOL) saneFile: (NSString *) filename atPath: (NSString *) path
-{
-	if ([[FBReel systemFilenames] containsObject: filename])
-		return NO;
-		
-	NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath: [path stringByAppendingPathComponent: filename]];
-	
-	if (fileHandle == nil)
-		return NO;
-	
-	NSData *magic = [fileHandle readDataOfLength: 2];
-	
-	return [[FBReel readableMagics] containsObject: magic];
-}
-
-#pragma mark -
 #pragma mark Saving the Reel
-// @synthesize documentURL;
 
 - (NSURL *) documentURL
 {

@@ -25,12 +25,6 @@
 + (id) reelWithContentsOfDirectory: (NSURL *) directoryURL error: (NSError **) error;
 
 #pragma mark -
-#pragma mark Reel Sanity
-+ (NSArray *) systemFilenames;
-+ (NSArray *) readableMagics;
-+ (BOOL) saneFile: (NSString *) filename atPath: (NSString *) path;
-
-#pragma mark -
 #pragma mark Replacing Reel Contents
 - (BOOL) readContentsOfURL: (NSURL *) url error: (NSError **) error;
 
