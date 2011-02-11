@@ -89,8 +89,19 @@
 		NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath: path error: NULL];
 		
 		return [attributes fileModificationDate];
+	} else if ([identifier isEqualToString: @"ThumbnailColumn"]) {
+		NSURL *url = [NSURL fileURLWithPath: [self.temporaryDocumentPaths objectAtIndex: rowIndex]];
+		
+		return [self thumbnailForDocumentAtURL: url];
 	} else
 		return nil;
+}
+
+#pragma mark -
+#pragma mark Table View Delegate
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+	return 64;
 }
 
 #pragma mark -
@@ -161,6 +172,40 @@
 		[self loadTemporaryDocuments];
 		[documentList reloadData];
 	}
+}
+
+#pragma mark -
+#pragma mark Thumbnails
+- (NSImage *) thumbnailForDocumentAtURL: (NSURL *) url
+{
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	BOOL isDirectory = NO;
+	
+	if ([fileManager fileExistsAtPath: url.path isDirectory: &isDirectory] && isDirectory) {
+		NSArray *files = [fileManager contentsOfDirectoryAtPath: url.path error: NULL];
+		NSString *imageFile = nil;
+		
+		if (files == nil)
+			return nil;
+		
+		for (NSString *file in files) {
+			if ([file hasPrefix: @"."] || [file isEqualToString: @"QuickLook"] || [file isEqualToString: @"reel"] || [file isEqualToString: @"movieSettings"])
+				continue;
+			
+			imageFile = file;
+			break;
+		}
+		
+		if (imageFile) {
+			NSImage *image = [[NSImage alloc] initWithContentsOfFile: [url.path stringByAppendingPathComponent: imageFile]];
+			
+			[image setSize: NSMakeSize(48, 48)];
+			
+			return [image autorelease];
+		} else
+			return nil;
+	} else
+		return nil;
 }
 
 @end

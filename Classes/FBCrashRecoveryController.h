@@ -34,4 +34,8 @@
 - (IBAction) open: (id) sender;
 - (IBAction) deleteAll: (id) sender;
 
+#pragma mark -
+#pragma mark Thumbnails
+- (NSImage *) thumbnailForDocumentAtURL: (NSURL *) url;
+
 @end
