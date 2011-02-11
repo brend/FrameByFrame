@@ -28,7 +28,7 @@
 	QTCaptureDeviceInput *videoDeviceInput;
 	
 	IBOutlet FBReelNavigator *reelNavigator;
-	BOOL shouldTakeSnapshot;
+	CIImage *currentFrame;
 
 	FBReel *reel;
 	NSURL *temporaryStorageURL, *originalFileURL;
@@ -76,6 +76,7 @@
 
 #pragma mark -
 #pragma mark Taking Pictures
+@property (retain) CIImage *currentFrame;
 - (void) createSnapshotFromImage: (CIImage *) image;
 - (CIImage *) adaptImage: (CIImage *) image;
 

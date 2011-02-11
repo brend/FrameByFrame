@@ -421,10 +421,12 @@
 	if (self.reel == nil)
 		return nil;
 	
-	if (shouldTakeSnapshot) {
-		[self createSnapshotFromImage: videoImage];
-		shouldTakeSnapshot = NO;
-	}
+//	if (shouldTakeSnapshot) {
+//		[self createSnapshotFromImage: videoImage];
+//		shouldTakeSnapshot = NO;
+//	}
+	
+	self.currentFrame = videoImage;
 	
 	if (self.reel.count == 0 || self.onionLayerCount == 0)
 		return nil;
@@ -528,7 +530,8 @@
 #pragma mark Interface Builder Actions
 - (IBAction) snapshot: (id) sender
 {
-	shouldTakeSnapshot = YES;
+	if (self.currentFrame)
+		[self createSnapshotFromImage: self.currentFrame];
 }
 
 - (IBAction) remove: (id) sender
@@ -590,6 +593,9 @@
 
 #pragma mark -
 #pragma mark Taking Snapshots
+
+@synthesize currentFrame;
+
 - (void) createSnapshotFromImage:(CIImage *)image
 {
 	NSUInteger selectedIndex = (NSUInteger) self.reelNavigator.selectedIndex;
