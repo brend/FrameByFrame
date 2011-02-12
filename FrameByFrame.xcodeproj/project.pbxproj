@@ -18,6 +18,8 @@
 		5F535FF012B40F8D0079198C /* FBLocalizationKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F535FEF12B40F8D0079198C /* FBLocalizationKeys.m */; };
 		5F53608812B4279A0079198C /* NSValue(FBAdditions).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F53608712B4279A0079198C /* NSValue(FBAdditions).m */; };
 		5F57CE5612A1A0B900C94DF7 /* NSDictionary(FBAdditions).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */; };
+		5F6759B71306F2FD00D0A01C /* Icon-Overlay-Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6759B51306F2FD00D0A01C /* Icon-Overlay-Camera.png */; };
+		5F6759B81306F2FD00D0A01C /* Icon-Overlay-Reel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6759B61306F2FD00D0A01C /* Icon-Overlay-Reel.png */; };
 		5F6951C212D91F7000A53C8F /* FrameByFrame.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5F6951C112D91F7000A53C8F /* FrameByFrame.icns */; };
 		5F6A5B5C12987DF000BA6CD6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */; };
 		5F6A5B5F12987DF800BA6CD6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */; };
@@ -73,6 +75,8 @@
 		5F57CE5412A1A0B900C94DF7 /* NSDictionary(FBAdditions).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary(FBAdditions).h"; sourceTree = "<group>"; };
 		5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary(FBAdditions).m"; sourceTree = "<group>"; };
 		5F57CE7C12A1A5AC00C94DF7 /* FBMovieSettingsControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMovieSettingsControllerDelegate.h; sourceTree = "<group>"; };
+		5F6759B51306F2FD00D0A01C /* Icon-Overlay-Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Overlay-Camera.png"; sourceTree = "<group>"; };
+		5F6759B61306F2FD00D0A01C /* Icon-Overlay-Reel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Overlay-Reel.png"; sourceTree = "<group>"; };
 		5F6951C112D91F7000A53C8F /* FrameByFrame.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FrameByFrame.icns; sourceTree = "<group>"; };
 		5F6A5B5B12987DF000BA6CD6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		5F6A5B5D12987DF800BA6CD6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Xcode4/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -192,6 +196,8 @@
 		5F7C8ADA12D6708E00CF9497 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5F6759B51306F2FD00D0A01C /* Icon-Overlay-Camera.png */,
+				5F6759B61306F2FD00D0A01C /* Icon-Overlay-Reel.png */,
 				5F24654D12F6153300D584BD /* Button-RecoverDocument.png */,
 				5F24654B12F6141D00D584BD /* Button-OpenDocument.png */,
 				5F24654912F6130700D584BD /* Button-NewDocument.png */,
@@ -407,6 +413,8 @@
 				5F24654A12F6130700D584BD /* Button-NewDocument.png in Resources */,
 				5F24654C12F6141D00D584BD /* Button-OpenDocument.png in Resources */,
 				5F24654E12F6153300D584BD /* Button-RecoverDocument.png in Resources */,
+				5F6759B71306F2FD00D0A01C /* Icon-Overlay-Camera.png in Resources */,
+				5F6759B81306F2FD00D0A01C /* Icon-Overlay-Reel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

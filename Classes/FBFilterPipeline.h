@@ -13,6 +13,7 @@
 {
 	CIFilter *filter;
 	NSArray *parameterNames;
+	float opacity;
 }
 
 #pragma mark -
@@ -24,6 +25,11 @@
 #pragma mark Retrieving Pipeline Information
 @property (readonly) NSUInteger skinCount;
 @property (readonly, copy) NSArray *parameterNames;
+
+
+#pragma mark -
+#pragma mark Controlling Translucency
+@property float opacity;
 
 #pragma mark -
 #pragma mark Piping Images Through the Pipeline

@@ -36,6 +36,7 @@
 	
 	FBFilterPipeline *filterPipeline;
 	NSInteger onionLayerCount, framesPerSecond;
+	float opacity;
 	
 	IBOutlet FBProgressSheetController *progressSheetController;
 	IBOutlet FBPreviewController *previewController;
@@ -96,7 +97,8 @@
 
 #pragma mark -
 #pragma mark Onion Skinning
-@property (nonatomic, assign) NSInteger onionLayerCount;
+@property (nonatomic, assign, setter = setOnionLayerCount:) NSInteger onionLayerCount;
+@property (nonatomic, assign, setter = setOpacity:) float opacity;
 - (NSRange) skinImageRange;
 - (NSArray *) skinImages;
 

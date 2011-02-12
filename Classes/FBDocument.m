@@ -11,7 +11,7 @@
 #import "FBQuickTimeExporter.h"
 
 @implementation FBDocument
-@synthesize inputDevices, temporaryStorageURL, originalFileURL, onionLayerCount;
+@synthesize inputDevices, temporaryStorageURL, originalFileURL;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -23,6 +23,7 @@
 		// If an error occurs here, send a [self release] message and return nil.
 		
 		self.onionLayerCount = 2;
+		self.opacity = 0.5f;
 		self.framesPerSecond = 15;
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
@@ -491,6 +492,9 @@
 
 #pragma mark -
 #pragma mark Onion Skinning
+
+@synthesize onionLayerCount;
+
 - (void) setOnionLayerCount: (NSInteger) skinCount
 {
 	if (skinCount != onionLayerCount) {
@@ -520,6 +524,16 @@
 	NSRange range = [self skinImageRange];
 	
 	return [self.reel imagesAtIndexes: [NSIndexSet indexSetWithIndexesInRange: range]];
+}
+
+@synthesize opacity;
+
+- (void) setOpacity: (float) f
+{
+	[self willChangeValueForKey: @"opacity"];
+	opacity = f;
+	self.filterPipeline.opacity = opacity;
+	[self didChangeValueForKey: @"opacity"];
 }
 
 #pragma mark -

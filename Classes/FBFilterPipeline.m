@@ -14,8 +14,7 @@
 @property (retain) CIFilter *filter;
 @property (copy) NSArray *parameterNames;
 - (void) generateFilterWithSkinCount: (NSInteger) skinCount;
-- (void) generateFilterForSinglePicture;
-- (void) generateFilterForMultiplePictures: (NSInteger) skinCount;
+- (void) buildFilter: (NSUInteger) skinCount;
 @end
 
 #pragma mark -
@@ -27,6 +26,7 @@
 - (id) initWithSkinCount: (NSInteger) skinCount
 {
 	if ((self = [super init])) {
+		self.opacity = 0.5f;
 		[self generateFilterWithSkinCount: skinCount];
 	}
 	
@@ -50,96 +50,78 @@
 @synthesize filter;
 
 #pragma mark -
+#pragma mark Controlling Translucency
+@synthesize opacity;
+
+#pragma mark -
 #pragma mark Creating the Core Image Filter
 - (void) generateFilterWithSkinCount: (NSInteger) skinCount
 {
 	self.filter = nil;
 	self.parameterNames = nil;
 	
-	switch (skinCount) {
-		case 0:
-			return;
-		case 1:
-			[self generateFilterForSinglePicture];
-			break;
-		default:
-			[self generateFilterForMultiplePictures: skinCount];
-			break;
-	}
-	
-	// [self.filter setDefaults];
+	if (skinCount > 0)
+		[self buildFilter: skinCount];
 }
 
-- (void) generateFilterForSinglePicture
+- (void) buildFilter: (NSUInteger) skinCount
 {
+	if (skinCount == 0)
+		return;
+	
 	CIFilterGenerator *generator = [CIFilterGenerator filterGenerator];
-	CIFilter
-		*fade = [CIFilter filterWithName: @"CIColorMatrix"],
-		*blend = [CIFilter filterWithName: @"CISourceOverCompositing"];
-	
-	[fade setDefaults];
-	[fade setValue: [CIVector vectorWithX: 0.0f Y: 0.0f Z: 0.0f W: 0.5f] forKey: @"inputAVector"];
-	
-	[blend setDefaults];
-	
-	[generator connectObject: fade withKey: @"outputImage" toObject: blend withKey: @"inputImage"];
-	[generator exportKey: @"inputImage" fromObject: fade withName: @"inputImage0"];
-	[generator exportKey: @"inputBackgroundImage" fromObject: blend withName: @"videoImage"];
-	[generator exportKey: @"outputImage" fromObject: blend withName: @"outputImage"];
-	
-	self.filter = [generator filter];
-	self.parameterNames = [NSArray arrayWithObject: @"inputImage0"];
-}
-
-- (void) generateFilterForMultiplePictures: (NSInteger) skinCount
-{
-	CIFilterGenerator *generator = [CIFilterGenerator filterGenerator];
-	CIFilter *penultimateBlend = nil;
 	NSMutableArray *params = [NSMutableArray arrayWithCapacity: skinCount];
 	
-	NSAssert(skinCount > 1, @"This method expects a skin count of at least 2");
+	// Opacity of the onion skin images
+	float alpha = 1.0f / (float) skinCount;
 	
-	for (NSInteger i = 0; i < skinCount; ++i) {
+	// Step 0
+	CIFilter *firstBlend = [CIFilter filterWithName: @"CISourceOverCompositing"];
+	
+	[firstBlend setDefaults];
+	[generator exportKey: @"inputBackgroundImage" fromObject: firstBlend withName: @"inputImage0"];
+	
+	[params addObject: @"inputImage0"];
+	
+	// Step 1 through (skinCount - 1)
+	CIFilter *formerBlend = firstBlend;
+	
+	for (NSInteger i = 1; i < skinCount; ++i) {
+		NSString *exportedInput = [NSString stringWithFormat: @"inputImage%d", i];
 		CIFilter *fade = [CIFilter filterWithName: @"CIColorMatrix"];
 		CIFilter *blend = [CIFilter filterWithName: @"CISourceOverCompositing"];
-		float alpha = 1.0f / (float) skinCount;
-		//		float alpha = 0.5f;
-		
+
 		[fade setDefaults];
 		[fade setValue: [CIVector vectorWithX: 0.0f Y: 0.0f Z: 0.0f W: alpha] forKey: @"inputAVector"];
-		
+
 		[blend setDefaults];
 		
-		NSString *exportedInput = [NSString stringWithFormat: @"inputImage%d", i];
-		
-		if (i == 0) {
-			[generator connectObject: fade withKey: @"outputImage" toObject: blend withKey: @"inputImage"];
-		} else {
-			[generator connectObject: fade withKey: @"outputImage" toObject: blend withKey: @"inputBackgroundImage"];
-			[generator connectObject: penultimateBlend withKey: @"outputImage" toObject: blend withKey: @"inputImage"];
-		}
-		
 		[generator exportKey: @"inputImage" fromObject: fade withName: exportedInput];
-		[params addObject: exportedInput];
+		[generator connectObject: fade withKey: @"outputImage" toObject: formerBlend withKey: @"inputImage"];
+		[generator connectObject: formerBlend withKey: @"outputImage" toObject: blend withKey: @"inputBackgroundImage"];
 		
-		penultimateBlend = blend;
+		[params addObject: exportedInput];
+		formerBlend = blend;
 	}
 	
-	NSAssert(penultimateBlend != nil, @"There must be at least one picture thingy");
+	// Final step: Put the video image through a fader and hook it up
+	// Export the fader's alpha vector as well as the final output image
+	CIFilter *videoFade = [CIFilter filterWithName: @"CIColorMatrix"];
 	
-	CIFilter *finalBlend = [CIFilter filterWithName: @"CISourceOverCompositing"];
+	[videoFade setDefaults];
+	[generator exportKey: @"inputAVector" fromObject: videoFade withName: @"inputAVector"];	
 	
-	[finalBlend setDefaults];
-	[generator connectObject: penultimateBlend withKey: @"outputImage" toObject: finalBlend withKey: @"inputImage"];
-	[generator exportKey: @"inputBackgroundImage" fromObject: finalBlend withName: @"videoImage"];
-	[generator exportKey: @"outputImage" fromObject: finalBlend withName: @"outputImage"];
+	[generator exportKey: @"inputImage" fromObject: videoFade withName: @"videoImage"];
+	[generator connectObject: videoFade withKey: @"outputImage" toObject: formerBlend withKey: @"inputImage"];
+	
+	[generator exportKey: @"outputImage" fromObject: formerBlend withName: @"outputImage"];
+	
+	self.filter = [generator filter];
+	self.parameterNames = params;
 	
 	// So wird gespeichert
 	//	[generator setClassAttributes: [NSDictionary dictionary]];
 	//	[generator writeToURL: [NSURL fileURLWithPath: @"/Users/brph0000/Desktop/Threeway.plist"] atomically: YES];
-	
-	self.filter = [generator filter];
-	self.parameterNames = params;
 }
 
 #pragma mark -
@@ -157,7 +139,9 @@
 				  skinImages: (NSArray *) skinImages
 {
 	if (skinImages.count != self.skinCount)
+		// TODO: Check if it's ok to return nil here - maybe the counts don't match because of parallelism
 		@throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Number of skin images doesn't match skin count" userInfo: nil];
+//		return nil;
 	
 	[self.filter setDefaults];
 	
@@ -167,7 +151,8 @@
 		[self.filter setValue: picture forKey: [self.parameterNames objectAtIndex: i]];
 	}
 	
-	[self.filter setValue: videoImage forKey: @"videoImage"];	
+	[self.filter setValue: videoImage forKey: @"videoImage"];
+	[self.filter setValue: [CIVector vectorWithX: 0.0f Y: 0.0f Z: 0.0f W: self.opacity] forKey: @"inputAVector"];
 	
 	return [self.filter valueForKey: @"outputImage"];
 }
