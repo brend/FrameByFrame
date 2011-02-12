@@ -139,9 +139,7 @@
 				  skinImages: (NSArray *) skinImages
 {
 	if (skinImages.count != self.skinCount)
-		// TODO: Check if it's ok to return nil here - maybe the counts don't match because of parallelism
-		@throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Number of skin images doesn't match skin count" userInfo: nil];
-//		return nil;
+		return nil;
 	
 	[self.filter setDefaults];
 	
