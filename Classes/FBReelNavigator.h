@@ -52,7 +52,6 @@ extern NSString *FFImagesPboardType;
 	IBOutlet id<FBDragDropBuddy> dragDropBuddy;
 }
 
-//@property (readonly) FBReel *reel;
 @property(readonly) NSInteger count;
 @property(copy) NSMutableIndexSet *selectedIndexes;
 @property(readonly) NSUInteger selectedIndex, framesPerSecond;
@@ -60,13 +59,16 @@ extern NSString *FFImagesPboardType;
 @property(retain) CIImage *currentImage;
 @property(retain) NSColor *highlightColor, *selectionColor;
 
+#pragma mark -
 #pragma mark Delegate and Data Source
 @property (readonly) id<FBReelNavigatorDelegate> delegate;
 @property (readonly) id<FBReelNavigatorDataSource> dataSource;
 
+#pragma mark -
 #pragma mark Adding Representations to Images
 + (NSArray *) addTIFFRepresentations: (NSArray *) images;
 
+#pragma mark -
 #pragma mark Adding and Removing Images
 - (void) addObject: (CIImage *) image;
 - (void) insertObject: (CIImage *) image atIndex: (NSUInteger) index;
@@ -74,10 +76,11 @@ extern NSString *FFImagesPboardType;
 - (void) insertObjects: (NSArray *) images atIndexes: (NSIndexSet *) indexes;
 - (void) removeObjectsAtIndexes: (NSIndexSet *) indexes;
 
+#pragma mark -
 #pragma mark Retrieving Images
-//- (CIImage *) objectAtIndex: (NSUInteger) index;
 - (NSArray *) imagesAtIndexes: (NSIndexSet *) indexes;
 
+#pragma mark -
 #pragma mark Cell Measures
 - (float) cellWidth;
 - (float) cellInteriorWidth;
@@ -86,13 +89,16 @@ extern NSString *FFImagesPboardType;
 - (float) cellInteriorHeight;
 - (float) cellBorderHeight;
 
+#pragma mark -
 #pragma mark Resize to fit Images
 - (void) resizeToFitImages;
 
+#pragma mark -
 #pragma mark IB Add, Remove
 - (IBAction) add: (id) sender;
 - (IBAction) remove: (id) sender;
 
+#pragma mark -
 #pragma mark Handling Selection
 @property (readonly) NSArray *selectedImages;
 @property NSInteger insertionMark;
@@ -102,19 +108,24 @@ extern NSString *FFImagesPboardType;
 - (void) shiftSelectionToEnd;
 - (NSInteger) cellAtPoint: (NSPoint) p;
 
+#pragma mark -
 #pragma mark Scrolling
 - (void) scrollToImage: (NSUInteger) index;
 - (BOOL) imageVisible: (NSUInteger) index;
 
+#pragma mark -
 #pragma mark Loading Images from Files
 + (NSArray *) loadImagesFromFiles: (NSArray *) filenames;
 
+#pragma mark -
 #pragma mark Making Snapshots
 - (void) requestSnapshot;
 
+#pragma mark -
 #pragma mark Handling Resolution Issues
 + (void) adaptImageSizeToResolution: (NSArray *) images;
 
+#pragma mark -
 #pragma mark Take Action Whenever the Reel Changes
 - (void) reelHasChanged;
 

@@ -25,6 +25,7 @@
 
 #import "FBReelNavigator.h"
 
+#pragma mark -
 #pragma mark Reel Navigator Implementation
 @implementation FBReelNavigator
 
@@ -32,6 +33,7 @@
 @synthesize dataSource, delegate;
 @dynamic count, selectedIndexes, selectedIndex, selectedImage, framesPerSecond;
 
+#pragma mark -
 #pragma mark Key-Value Coding
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
 {
@@ -41,6 +43,7 @@
 		return [NSSet set];
 }
 
+#pragma mark -
 #pragma mark Adding Representations to Images
 + (NSArray *) addTIFFRepresentations: (NSArray *) images
 {
@@ -54,6 +57,7 @@
 	return images;
 }
 
+#pragma mark -
 #pragma mark Initialization and Deallocation
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
@@ -88,6 +92,7 @@
 	return [self.dataSource numberOfCellsForReelNavigator: self];
 }
 
+#pragma mark -
 #pragma mark Drawing
 - (void)drawRect:(NSRect)rect 
 {
@@ -140,12 +145,14 @@
 	}
 }
 
+#pragma mark -
 #pragma mark First Responder
 - (BOOL) acceptsFirstResponder
 {
 	return YES;
 }
 
+#pragma mark -
 #pragma mark Mouse Events
 - (void) mouseDown: (NSEvent *) e
 {
@@ -177,12 +184,14 @@
 	}
 }
 
+#pragma mark -
 #pragma mark Handling Selection
 - (NSInteger) cellAtPoint: (NSPoint) p
 {
 	return (NSUInteger) MIN(round(p.x / [self cellWidth]), [self count]);
 }
 
+#pragma mark -
 #pragma mark Key Events
 - (void) keyDown: (NSEvent *) theEvent
 {
@@ -209,6 +218,7 @@
 		[self remove: self];
 }
 
+#pragma mark -
 #pragma mark Cell Dimensions
 - (float) cellWidth
 {
@@ -240,6 +250,7 @@
 	return 2;
 }
 
+#pragma mark -
 #pragma mark Scrolling
 - (void) scrollToImage: (NSUInteger) index
 {
@@ -264,6 +275,7 @@
 	return imageLeft >= visibleArea.origin.x && imageLeft + imageWidth <= visibleArea.origin.x + visibleArea.size.width;
 }
 
+#pragma mark -
 #pragma mark Resize to fit Images
 - (void) resizeToFitImages
 {
@@ -272,6 +284,7 @@
 		[self scrollToImage: [self count] - 1];
 }
 
+#pragma mark -
 #pragma mark Adding and Removing Images
 - (void) addObject: (CIImage *) image
 {
@@ -403,6 +416,7 @@
 //	[self setNeedsDisplay: YES];
 //}
 //
+#pragma mark -
 #pragma mark Retrieving Images
 //- (CIImage *) objectAtIndex: (NSUInteger) index
 //{
@@ -421,6 +435,7 @@
 	return a;
 }
 
+#pragma mark -
 #pragma mark IB Add, Remove
 - (IBAction) add: (id) sender
 {
@@ -432,6 +447,7 @@
 	[self.delegate reelNavigatorRequestsDeletion: self];
 }
 
+#pragma mark -
 #pragma mark Selection Indices and Selected Images
 - (void) setSelectedIndexes: (NSMutableIndexSet *) s
 {
@@ -510,6 +526,7 @@
 		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: [self count] - 1]];
 }
 
+#pragma mark -
 #pragma mark Frames per Second
 - (NSUInteger) framesPerSecond
 {
@@ -524,6 +541,7 @@
 	[self didChangeValueForKey: @"framesPerSecond"];
 }
 
+#pragma mark -
 #pragma mark Cut, Copy, Paste and Delete Menu Items
 + (NSArray *) pasteTypes
 {
@@ -620,6 +638,7 @@
 	[self delete: nil];
 }
 
+#pragma mark -
 #pragma mark Loading Images from Files
 + (NSArray *) loadImagesFromFiles: (NSArray *) filenames
 {
@@ -643,6 +662,7 @@
 	return images;
 }
 
+#pragma mark -
 #pragma mark Making Snapshots
 - (void) requestSnapshot
 {
@@ -652,6 +672,7 @@
 		[self add: self];
 }
 
+#pragma mark -
 #pragma mark Handling Resolution Issues
 + (void) adaptImageSizeToResolution: (NSArray *) images
 {
