@@ -49,6 +49,10 @@ extern NSString *FFImagesPboardType;
 	NSUInteger mouseDownCell;
 	NSInteger insertionMark;
 	
+	// Drawing
+	NSShadow *selectionShadow;
+	NSDictionary *textAttributes;
+	
 	IBOutlet id<FBDragDropBuddy> dragDropBuddy;
 }
 

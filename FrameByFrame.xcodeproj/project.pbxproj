@@ -41,6 +41,7 @@
 		5FBB814612D0996C0020C02D /* FBCrashRecoveryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB814512D0996C0020C02D /* FBCrashRecoveryController.m */; };
 		5FC117BA12CFC5020046D313 /* FBMiscConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC117B912CFC5020046D313 /* FBMiscConstants.m */; };
 		5FC18E2712E1D5E00096E8CE /* Document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5FC18E2612E1D5E00096E8CE /* Document.icns */; };
+		5FC29A81130805A4005B3EF0 /* NSShadow(SingleLineShadows).m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */; };
 		5FCA061F12D8D6F600241581 /* Button-Empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA061E12D8D6F600241581 /* Button-Empty.png */; };
 		5FCA063012D8DD8900241581 /* Button-Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA062F12D8DD8900241581 /* Button-Capture.png */; };
 		5FCA064012D8DEA500241581 /* Button-Capture-Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */; };
@@ -110,6 +111,8 @@
 		5FC117B812CFC5020046D313 /* FBMiscConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBMiscConstants.h; path = Sources/FBMiscConstants.h; sourceTree = "<group>"; };
 		5FC117B912CFC5020046D313 /* FBMiscConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBMiscConstants.m; path = Sources/FBMiscConstants.m; sourceTree = "<group>"; };
 		5FC18E2612E1D5E00096E8CE /* Document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Document.icns; sourceTree = "<group>"; };
+		5FC29A7F130805A4005B3EF0 /* NSShadow(SingleLineShadows).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSShadow(SingleLineShadows).h"; sourceTree = "<group>"; };
+		5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSShadow(SingleLineShadows).m"; sourceTree = "<group>"; };
 		5FCA061E12D8D6F600241581 /* Button-Empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Empty.png"; sourceTree = "<group>"; };
 		5FCA062F12D8DD8900241581 /* Button-Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture.png"; sourceTree = "<group>"; };
 		5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture-Pressed.png"; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 				5F57CE5512A1A0B900C94DF7 /* NSDictionary(FBAdditions).m */,
 				5F53608612B4279A0079198C /* NSValue(FBAdditions).h */,
 				5F53608712B4279A0079198C /* NSValue(FBAdditions).m */,
+				5FC29A7F130805A4005B3EF0 /* NSShadow(SingleLineShadows).h */,
+				5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				5FE7D94E12E631E40007385B /* FBPreviewController.m in Sources */,
 				5F4EF30112EB4BED004A2F3D /* FBOrganizerController.m in Sources */,
 				5F2DA3E312FEB9ED00803D70 /* FBFileInfo.m in Sources */,
+				5FC29A81130805A4005B3EF0 /* NSShadow(SingleLineShadows).m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

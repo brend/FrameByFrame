@@ -24,6 +24,13 @@
 
 
 #import "FBReelNavigator.h"
+#import "NSShadow(SingleLineShadows).h"
+
+#pragma mark Reel Navigator Private Interface
+@interface FBReelNavigator ()
+@property (retain) NSDictionary *textAttributes;
+@property (retain) NSShadow *selectionShadow;
+@end
 
 #pragma mark -
 #pragma mark Reel Navigator Implementation
@@ -68,6 +75,13 @@
 		highlightColor = [[NSColor colorWithDeviceRed: 0.6 green: 0.86 blue: 1 alpha: 0.3] retain];
 		
 		insertionMark = -1;
+		
+		// Initialize drawing tools
+		self.selectionShadow = [NSShadow shadowWithOffset: NSMakeSize(-2, -2) blurRadius: 4 color: [NSColor blackColor]];
+		self.textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+							   [NSColor orangeColor], NSForegroundColorAttributeName,
+							   self.selectionShadow, NSShadowAttributeName,
+							   nil];
     }
     return self;
 }
@@ -94,17 +108,16 @@
 
 #pragma mark -
 #pragma mark Drawing
+
+@synthesize textAttributes, selectionShadow;
+
 - (void)drawRect:(NSRect)rect 
 {
 	float spf = 1.0f / (float) [self framesPerSecond];
 	NSString *secondUnitName = NSLocalizedString(FFSecondUnitName, @"sec.");
 	NSUInteger i;
 	
-	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-													[NSColor orangeColor], NSForegroundColorAttributeName,
-													nil];
-	
-	// Draw the images
+	// Draw the cells
 	for (i = 0; i < [self count]; ++i) {
 		NSRect cellExterior = NSMakeRect(i * [self cellWidth], 0, [self cellWidth], [self cellHeight]);
 		NSRect dest = NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
@@ -117,22 +130,30 @@
 			[image drawInRect: dest fromRect: NSMakeRect(0, 0, imageSize.width, imageSize.height) operation: NSCompositeSourceOver fraction: 1];
 			
 			// Draw selection/highlight
-			if ([selectedIndexes containsIndex: i]) {
-				[(i == [self selectedIndex] ? selectionColor : highlightColor) setFill];
-				[NSBezierPath fillRect: dest];
+			if (i == self.selectedIndex) {
+				NSRect sr = dest;
+				NSBezierPath *selectionPath = [NSBezierPath bezierPathWithRoundedRect: sr xRadius: 4 yRadius: 4];
+				
+				[[NSColor orangeColor] setStroke];
+				[self.selectionShadow set];
+				[selectionPath setLineWidth: 4];
+				[selectionPath stroke];
+				
+				[NSShadow clearShadow];
 			}
 			
 			// Draw time indicator
+			NSRect textDest = NSInsetRect(dest, 4, 4);
 			float second = i * spf;
 			NSString *timeFormat = [NSString stringWithFormat: @"%.1f %@", second, secondUnitName];
 			
-			[timeFormat drawWithRect: NSMakeRect(dest.origin.x + 2, dest.origin.y + 1, dest.size.width - 4, dest.size.height - 2) options: 0 attributes: textAttributes];
+			[timeFormat drawWithRect: NSMakeRect(textDest.origin.x + 2, textDest.origin.y + 1, textDest.size.width - 4, textDest.size.height - 2) options: 0 attributes: textAttributes];
 			
 			// Draw frame indicator
 			NSString *frameFormat = [NSString stringWithFormat: @"%d", i + 1];
-			NSRect frameFormatBounds = [frameFormat boundingRectWithSize: NSMakeSize(dest.size.width - 4, dest.size.height - 16) options: 0 attributes: textAttributes];
+			NSRect frameFormatBounds = [frameFormat boundingRectWithSize: NSMakeSize(textDest.size.width - 4, textDest.size.height - 16) options: 0 attributes: textAttributes];
 			
-			[frameFormat drawWithRect: NSMakeRect(dest.origin.x + 2, dest.origin.y + dest.size.height - (1 + frameFormatBounds.size.height), dest.size.width - 4, dest.size.height - 2 * (1 + frameFormatBounds.size.height)) options: 0 attributes: textAttributes];
+			[frameFormat drawWithRect: NSMakeRect(textDest.origin.x + 2, textDest.origin.y + textDest.size.height - (1 + frameFormatBounds.size.height), textDest.size.width - 4, textDest.size.height - 2 * (1 + frameFormatBounds.size.height)) options: 0 attributes: textAttributes];
 		}
 	}
 	
@@ -307,121 +328,8 @@
 	@throw [NSException exceptionWithName: @"NotImplemented" reason: nil userInfo: nil];
 }
 
-
-//- (void) addObject: (CIImage *) image
-//{
-//	NSAssert(image, @"Image is nil");
-//	
-//	[self willChangeValueForKey: @"images"];
-//	
-//	[FBReelNavigator adaptImageSizeToResolution: [NSArray arrayWithObject: image]];
-//	
-//	// Add the image
-//	[self.reel addCellWithImage: image];
-//	
-//	// Set up undo information
-//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: [NSIndexSet indexSetWithIndex: [self count] - 1]];
-//	
-//	// When resizing, allow for some extra space for drag and drop
-//	[self resizeToFitImages];
-//	[self didChangeValueForKey: @"images"];
-//	[self setNeedsDisplay: YES];
-//}
-//
-//- (void) insertObject: (CIImage *) image atIndex: (NSUInteger) index
-//{
-//	[self willChangeValueForKey: @"images"];
-//	
-//	[FBReelNavigator adaptImageSizeToResolution: [NSArray arrayWithObject: image]];
-//	
-//	// Insert the image
-//	[self.reel insertCellWithImage: image atIndex: index];
-//	[selectedIndexes shiftIndexesStartingAtIndex: index by: 1];
-//	
-//	// Resize the frame to make it visible
-//	[self resizeToFitImages];
-//	
-//	// Set up undo information
-//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: [NSIndexSet indexSetWithIndex: index]];
-//	
-//	[self didChangeValueForKey: @"images"];
-//	[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: index]];
-//	[self setNeedsDisplay: YES];
-//}
-//
-//- (void) insertObjects: (NSArray *) newImages atIndex: (NSUInteger) index
-//{
-//	[self willChangeValueForKey: @"images"];
-//	
-//	[FBReelNavigator adaptImageSizeToResolution: newImages];
-//	
-//	// Insert the images
-//	NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(index, [newImages count])];
-//
-//	[self.reel insertCellsWithImages: newImages atIndexes: indexes];
-//	
-//	// Resize the frame to make them visible
-//	[self resizeToFitImages];
-//	
-//	// Set up undo information
-//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: indexes];
-//	
-//	[self didChangeValueForKey: @"images"];
-//	if ([self count] > 0)
-//		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: MAX(0, (NSInteger) (index + [newImages count]) - 1)]];
-//	[self setNeedsDisplay: YES];
-//}
-//
-//- (void) insertObjects: (NSArray *) newImages atIndexes: (NSIndexSet *) indexes
-//{
-//	[self willChangeValueForKey: @"images"];
-//	[self willChangeValueForKey: @"selectedIndexes"];
-//	
-//	[FBReelNavigator adaptImageSizeToResolution: newImages];
-//	
-//	// Insert the images
-//	[self.reel insertCellsWithImages: newImages atIndexes: indexes];
-//	[selectedIndexes removeIndexesInRange: NSMakeRange(MIN(1, self.reel.count), MAX(0, (int) self.reel.count - 1))];
-//	
-//	// Resize the frame to make them visible
-//	[self resizeToFitImages];
-//	
-//	// Set up undo information
-//	[self.window.undoManager registerUndoWithTarget: self selector: @selector(removeObjectsAtIndexes:) object: indexes];
-//	
-//	[self didChangeValueForKey: @"images"];
-//	[self didChangeValueForKey: @"selectedIndexes"];
-//	[self setNeedsDisplay: YES];
-//}
-//
-//- (void) removeObjectsAtIndexes: (NSIndexSet *) indexes
-//{
-//	[self willChangeValueForKey: @"images"];
-//	
-//	// Remove the images
-//	NSInteger desiredIndex = (NSInteger) [selectedIndexes firstIndex] - 1;
-//	NSArray *removedImages = [self.reel imagesAtIndexes: indexes];
-//	
-//	[self.reel removeImagesAtIndexes: indexes];
-//	
-//	// Resize the frame to make them visible
-//	[self resizeToFitImages];	
-//
-//	// Set up undo information
-//	[[self.window.undoManager prepareWithInvocationTarget: self] insertObjects: removedImages atIndexes: indexes];
-//	
-//	[self didChangeValueForKey: @"images"];
-//	if (desiredIndex >= 0 && desiredIndex < [self count])
-//		[self setSelectedIndexes: [NSMutableIndexSet indexSetWithIndex: desiredIndex]];
-//	[self setNeedsDisplay: YES];
-//}
-//
 #pragma mark -
 #pragma mark Retrieving Images
-//- (CIImage *) objectAtIndex: (NSUInteger) index
-//{
-//	return [self.reel imageAtIndex: index];
-//}
 
 - (NSArray *) imagesAtIndexes: (NSIndexSet *) indexes
 {

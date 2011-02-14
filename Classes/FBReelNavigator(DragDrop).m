@@ -142,16 +142,16 @@ NSString *FFImagesPboardType = @"FFImagesPboardType", *FBIndexesPboardType = @"F
 	[cellImage drawInRect: destRect fromRect: NSMakeRect(0, 0, cellImageSize.width, cellImageSize.height) operation: NSCompositeSourceOver fraction: 0.75];
 	
 	// Draw the number of images being dragged
-	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil];
+	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil];
 	NSString *text = [NSString stringWithFormat: @"%d", numberOfImages];
-	NSSize textSize = [text sizeWithAttributes: textAttributes];
+	NSSize textSize = [text sizeWithAttributes: attrs];
 	float max = MAX(textSize.width, textSize.height);
 	NSBezierPath *circle = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(destRect.size.width - 4 - max, 4, max, max)];
 	
 	[[NSColor redColor] setFill];
 	[circle fill];
 	
-	[text drawAtPoint: NSMakePoint(destRect.size.width - 4 - (max + textSize.width) * 0.5, 4) withAttributes: textAttributes];
+	[text drawAtPoint: NSMakePoint(destRect.size.width - 4 - (max + textSize.width) * 0.5, 4) withAttributes: attrs];
 	
 	[dragImage unlockFocus];
 	
