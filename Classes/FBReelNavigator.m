@@ -30,6 +30,7 @@
 @interface FBReelNavigator ()
 @property (retain) NSDictionary *textAttributes;
 @property (retain) NSShadow *selectionShadow;
+@property (copy) NSString *secondUnitName;
 @end
 
 #pragma mark -
@@ -66,9 +67,9 @@
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+- (id)initWithFrame:(NSRect)frame 
+{
+    if ((self = [super initWithFrame:frame])) {
 		selectedIndexes = [[NSMutableIndexSet alloc] init];
 		
 		selectionColor = [[[NSColor blueColor] colorWithAlphaComponent: 0.3] retain];
@@ -87,17 +88,22 @@
 							   shadow,		NSShadowAttributeName,
 							   font,		NSFontAttributeName,
 							   nil];
+		self.secondUnitName = NSLocalizedString(FFSecondUnitName, @"sec.");
     }
+	
     return self;
 }
 
 - (void) dealloc
 {
-	// NOTE "reel" is an Interface Builder Outlet; do not release
-//	reel = nil;
 	[currentImage release];
 	currentImage = nil;
 	delegate = nil; // Delegate will not be retained upon assignment
+	
+	self.selectionShadow = nil;
+	self.textAttributes = nil;
+	self.secondUnitName = nil;
+	
 	[super dealloc];
 }
 
@@ -114,16 +120,14 @@
 #pragma mark -
 #pragma mark Drawing
 
-@synthesize textAttributes, selectionShadow;
+@synthesize textAttributes, selectionShadow, secondUnitName;
 
 - (void)drawRect:(NSRect)rect 
 {
 	float spf = 1.0f / (float) [self framesPerSecond];
-	NSString *secondUnitName = NSLocalizedString(FFSecondUnitName, @"sec.");
-	NSUInteger i;
 	
 	// Draw the cells
-	for (i = 0; i < [self count]; ++i) {
+	for (NSUInteger i = 0; i < [self count]; ++i) {
 		NSRect cellExterior = NSMakeRect(i * [self cellWidth], 0, [self cellWidth], [self cellHeight]);
 		NSRect dest = NSMakeRect(cellExterior.origin.x + [self cellBorderWidth], [self cellBorderHeight], [self cellInteriorWidth], [self cellInteriorHeight]);
 		

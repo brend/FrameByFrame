@@ -52,6 +52,7 @@ extern NSString *FFImagesPboardType;
 	// Drawing
 	NSShadow *selectionShadow;
 	NSDictionary *textAttributes;
+	NSString *secondUnitName;
 	
 	IBOutlet id<FBDragDropBuddy> dragDropBuddy;
 }
