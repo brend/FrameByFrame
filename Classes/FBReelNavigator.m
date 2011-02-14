@@ -77,10 +77,15 @@
 		insertionMark = -1;
 		
 		// Initialize drawing tools
-		self.selectionShadow = [NSShadow shadowWithOffset: NSMakeSize(-2, -2) blurRadius: 4 color: [NSColor blackColor]];
+		NSFont *font = [NSFont systemFontOfSize: [NSFont systemFontSize] + 2];
+		NSShadow *shadow = [NSShadow shadowWithOffset: NSMakeSize(-2, -2) blurRadius: 3 color: [NSColor blackColor]];
+		NSColor *infoColor = [NSColor orangeColor];
+		
+		self.selectionShadow = shadow;
 		self.textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [NSColor orangeColor], NSForegroundColorAttributeName,
-							   self.selectionShadow, NSShadowAttributeName,
+							   infoColor,	NSForegroundColorAttributeName,
+							   shadow,		NSShadowAttributeName,
+							   font,		NSFontAttributeName,
 							   nil];
     }
     return self;
