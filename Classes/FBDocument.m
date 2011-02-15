@@ -88,6 +88,13 @@
 }
 
 #pragma mark -
+#pragma mark TEST
+- (void) awakeFromNib
+{
+	[previewController bind: @"framesPerSecond" toObject: self withKeyPath: @"framesPerSecond" options: nil];
+}
+
+#pragma mark -
 #pragma mark Document Implementation
 - (NSString *)windowNibName 
 {

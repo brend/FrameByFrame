@@ -22,6 +22,7 @@
 #pragma mark -
 #pragma mark Playing Previews
 @property (readonly) BOOL isPreviewPlaying;
+@property NSUInteger framesPerSecond;
 
 - (void) setupPreviewWithReel: (FBReel *) reel
 			 fromImageAtIndex: (NSUInteger) startIndex

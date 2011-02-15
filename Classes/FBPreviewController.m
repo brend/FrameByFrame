@@ -31,12 +31,17 @@
 {
     [self.timer invalidate];
 	self.timer = nil;
+	
+	reel = nil;
     
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark Playing Previews
+
+@synthesize framesPerSecond;
+
 - (BOOL) isPreviewPlaying
 {
 	return self.timer != nil;
