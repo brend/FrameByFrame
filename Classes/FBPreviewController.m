@@ -38,6 +38,14 @@
 }
 
 #pragma mark -
+#pragma mark Awaking from Nib
+
+- (void) awakeFromNib
+{
+	[previewPanel setBecomesKeyOnlyIfNeeded: YES];
+}
+
+#pragma mark -
 #pragma mark Playing Previews
 
 @synthesize framesPerSecond;
@@ -68,7 +76,7 @@
 	framesPerSecond = fps;
 	[self presentFrame];
 	
-	[previewPanel makeKeyAndOrderFront: self];
+	[previewPanel orderFront: self];
 }
 
 - (void) nextFrame: (id) sender
