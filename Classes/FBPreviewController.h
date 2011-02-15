@@ -13,6 +13,7 @@
 {
 	IBOutlet NSPanel *previewPanel;
 	IBOutlet NSImageView *imageView;
+	IBOutlet NSButton *playButton;
 	
 	FBReel *reel;
 	NSUInteger startFrame, frameIndex, framesPerSecond;

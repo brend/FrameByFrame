@@ -95,6 +95,8 @@
 {
 	[self.timer invalidate];
 	self.timer = nil;
+	
+	playButton.state = NSOffState;
 }
 
 - (void) togglePreview
