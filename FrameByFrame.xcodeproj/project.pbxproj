@@ -174,7 +174,7 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		5F57CDEB12A16D3500C94DF7 /* Filtering */ = {
+		5F57CDEB12A16D3500C94DF7 /* Filtering Video Input */ = {
 			isa = PBXGroup;
 			children = (
 				5FA85DDE1291C85600384AF5 /* FBFilterPipeline.h */,
@@ -182,7 +182,7 @@
 				5FB1AA19130BD74300E8E4F3 /* FBProductPipeline.h */,
 				5FB1AA1A130BD74300E8E4F3 /* FBProductPipeline.m */,
 			);
-			name = Filtering;
+			name = "Filtering Video Input";
 			sourceTree = "<group>";
 		};
 		5F57CDEC12A16D4A00C94DF7 /* Application */ = {
@@ -250,7 +250,7 @@
 				5F57CE5212A1A09F00C94DF7 /* Categories */,
 				5FCECB2C1297F2A1008D2CCD /* QuickTime Movies */,
 				5FA85DD61291C80000384AF5 /* Reel */,
-				5F57CDEB12A16D3500C94DF7 /* Filtering */,
+				5F57CDEB12A16D3500C94DF7 /* Filtering Video Input */,
 				5FABC132128572C30084B0A1 /* Views */,
 				5FDAD288129DB0E000B59574 /* Controllers */,
 				5FCFA696129EF77800027DF1 /* Document */,

@@ -29,7 +29,7 @@
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
 		// TEST
-		self.productPipeline = [[[FBProductPipeline alloc] init] autorelease];
+		self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: [CIFilter filterWithName: @"CIGaussianBlur"]] autorelease];
 		
 		reelLock = [[NSLock alloc] init];
 

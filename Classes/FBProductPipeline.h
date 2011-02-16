@@ -16,6 +16,8 @@
 	NSAffineTransform *transform;
 }
 
+- (id) initWithArtisticFilter: (CIFilter *) aFilter;
+
 @property (copy) NSAffineTransform *transform;
 
 - (CIImage *) pipeImage: (CIImage *) inputImage;
