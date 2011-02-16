@@ -28,6 +28,8 @@
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
+		// TEST
+		self.productPipeline = [[[FBProductPipeline alloc] init] autorelease];
 		
 		reelLock = [[NSLock alloc] init];
 
@@ -57,6 +59,8 @@
 	
 	[filterPipeline release];
 	filterPipeline = nil;
+	[productPipeline release];
+	productPipeline = nil;
 	[reel release];
 	reel = nil;
 	[reelLock release];
@@ -88,7 +92,7 @@
 }
 
 #pragma mark -
-#pragma mark TEST
+#pragma mark Awaking from Nib: Such as Bindings
 - (void) awakeFromNib
 {
 	[previewController bind: @"framesPerSecond" toObject: self withKeyPath: @"framesPerSecond" options: nil];
@@ -424,20 +428,22 @@
 
 #pragma mark -
 #pragma mark Displaying Video Input
-- (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)videoImage
+
+- (CIImage *) view: (QTCaptureView *) view 
+  willDisplayImage: (CIImage *) videoImage
 {
 	if (self.reel == nil)
 		return nil;
 	
-//	if (shouldTakeSnapshot) {
-//		[self createSnapshotFromImage: videoImage];
-//		shouldTakeSnapshot = NO;
-//	}
+	self.productPipeline.transform = [self productTransform];
 	
-	self.currentFrame = videoImage;
+	// Transmogrify the video image (transform, filter, etc.)
+	// NOTE From this point on, use self.currentFrame instead of videoImage/nil 
+	// in order to keep the applied transformations
+	self.currentFrame = [self.productPipeline pipeImage: videoImage];
 	
 	if (self.reel.count == 0 || self.onionLayerCount == 0)
-		return nil;
+		return self.currentFrame;
 	
 	BOOL computeFilter = [self skinImageRange].length != self.filterPipeline.skinCount;
 	
@@ -445,9 +451,9 @@
 	
 	if (computeFilter)
 		[self createFilterPipeline];
-	
+		
 	NSArray *skinImages = [self skinImages];
-	CIImage *result = [self.filterPipeline pipeVideoImage: videoImage skinImages: skinImages];
+	CIImage *result = [self.filterPipeline pipeVideoImage: self.currentFrame skinImages: skinImages];
 	
 	[reelLock unlock];
 	
@@ -615,7 +621,7 @@
 #pragma mark -
 #pragma mark Taking Snapshots
 
-@synthesize currentFrame;
+@synthesize currentFrame, productPipeline, mirroring;
 
 - (void) createSnapshotFromImage:(CIImage *)image
 {
@@ -637,6 +643,18 @@
 		return [image imageByApplyingTransform: scale];
 	} else
 		return image;
+}
+
+- (NSAffineTransform *) productTransform
+{
+	NSAffineTransform *transform = [NSAffineTransform transform];
+	float
+		scaleX = (mirroring == FBMirrorImageHorizontal || mirroring == FBMirrorImageBoth) ? -1 : 1,
+		scaleY = (mirroring == FBMirrorImageVertical || mirroring == FBMirrorImageBoth) ? -1 : 1;
+	
+	[transform scaleXBy: scaleX yBy: scaleY];
+	
+	return transform;
 }
 
 #pragma mark -

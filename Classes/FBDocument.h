@@ -13,6 +13,7 @@
 #import "FBReelNavigator.h"
 #import "FBDragDropBuddy.h"
 #import "FBFilterPipeline.h"
+#import "FBProductPipeline.h"
 #import "FBProgressSheetController.h"
 #import "FBPreviewController.h"
 
@@ -20,6 +21,7 @@
 									FBReelNavigatorDataSource, 
 									FBDragDropBuddy>
 {
+@private
 	QTCaptureSession *captureSession;
 	QTCaptureDecompressedVideoOutput *captureDecompressedVideoOutput;
 	IBOutlet QTCaptureView *captureView;
@@ -28,7 +30,9 @@
 	QTCaptureDeviceInput *videoDeviceInput;
 	
 	IBOutlet FBReelNavigator *reelNavigator;
+	NSInteger mirroring;
 	CIImage *currentFrame;
+	FBProductPipeline *productPipeline;
 
 	FBReel *reel;
 	NSURL *temporaryStorageURL, *originalFileURL;
@@ -78,8 +82,11 @@
 #pragma mark -
 #pragma mark Taking Pictures
 @property (retain) CIImage *currentFrame;
+@property (retain) FBProductPipeline *productPipeline;
+@property NSInteger mirroring;
 - (void) createSnapshotFromImage: (CIImage *) image;
 - (CIImage *) adaptImage: (CIImage *) image;
+- (NSAffineTransform *) productTransform;
 
 #pragma mark -
 #pragma mark Exporting Movies
