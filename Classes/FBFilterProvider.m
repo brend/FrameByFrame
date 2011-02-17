@@ -58,15 +58,22 @@
 
 + (NSArray *) constructFilters
 {
-	NSMutableArray *filters = [NSMutableArray array];
+	// NOTE: Die Methode CIFilter+filterNamesInCategories: ermoeglicht die Einschraenkung der Suche auf Filter, die allen angegebenen Kategorien angehoeren
+// 	NSArray *categories = [NSArray arrayWithObjects: @"CICategoryStylize", @"CICategoryVideo", nil];
+	NSMutableArray *names = [NSMutableArray array];
 	
-	CIFilter *filter = nil;
+	[names addObjectsFromArray:	[CIFilter filterNamesInCategory: @"CICategoryStylize"]];
+	[names addObjectsFromArray: [CIFilter filterNamesInCategory: @"CICategoryDistortionEffect"]];
+	[names addObjectsFromArray: [CIFilter filterNamesInCategory: @"CICategoryBlur"]];
 	
-	filter = [CIFilter filterWithName: @"CIGloom"];
-	[filter setValue: [NSNumber numberWithFloat: 5] forKey: @"inputRadius"];
-	[filter setValue: [NSNumber numberWithFloat: 1] forKey: @"inputIntensity"];
+	NSMutableArray *filters = [NSMutableArray arrayWithCapacity: names.count];
 	
-	[filters addObject: filter];
+	for (NSString *name in names) {
+		CIFilter *filter = [CIFilter filterWithName: name];
+		
+		[filter setDefaults];
+		[filters addObject: filter];
+	}
 	
 	return filters;
 }
