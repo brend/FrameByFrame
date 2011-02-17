@@ -16,10 +16,16 @@
 	NSAffineTransform *transform;
 }
 
+#pragma mark -
+#pragma mark Initialization
 - (id) initWithArtisticFilter: (CIFilter *) aFilter;
 
+#pragma mark -
+#pragma mark Filter Properties
 @property (copy) NSAffineTransform *transform;
 
+#pragma mark -
+#pragma mark Sending Images Through the Pipeline
 - (CIImage *) pipeImage: (CIImage *) inputImage;
 
 @end

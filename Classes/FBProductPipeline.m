@@ -14,7 +14,12 @@
 - (void) createFilterWithArtisticFilter: (CIFilter *) aFilter;
 @end
 
+#pragma mark -
+
 @implementation FBProductPipeline
+
+#pragma mark -
+#pragma mark Initialization and Deallocation
 
 - (id) initWithArtisticFilter: (CIFilter *) aFilter
 {
@@ -35,9 +40,10 @@
     [super dealloc];
 }
 
-@synthesize filter;
+#pragma mark -
+#pragma mark Filter Management and Properties
 
-@synthesize transform;
+@synthesize filter, transform;
 
 - (void) createFilterWithArtisticFilter: (CIFilter *) artisticFilter
 {
@@ -62,6 +68,9 @@
 	
 	self.filter = [generator filter];
 }
+
+#pragma mark -
+#pragma mark Sending Images Through the Pipeline
 
 - (CIImage *) pipeImage: (CIImage *) inputImage
 {
