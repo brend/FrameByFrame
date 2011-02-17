@@ -48,6 +48,8 @@
 	IBOutlet NSTextField *resolutionLabel;
 	
 	NSLock *reelLock;
+	
+	CIFilter *selectedArtisticFilter;
 }
 
 #pragma mark -
@@ -164,5 +166,9 @@
 - (IBAction) snapshot: (id) sender;
 - (IBAction) remove: (id) sender;
 - (IBAction) exportMovie: (id) sender;
+
+#pragma mark -
+#pragma mark Applying Artistic Filters
+@property (retain) CIFilter *selectedArtisticFilter;
 
 @end

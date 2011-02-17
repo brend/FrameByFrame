@@ -28,9 +28,8 @@
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
-		// TEST
-		self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: [CIFilter filterWithName: @"CIGaussianBlur"]] autorelease];
-		
+		self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: nil] autorelease];
+				
 		reelLock = [[NSLock alloc] init];
 
 		NSError *error = nil;
@@ -912,6 +911,23 @@
 	[self.previewController setupPreviewWithReel: self.reel
 								fromImageAtIndex: startFrame
 								 framesPerSecond: self.framesPerSecond];
+}
+
+#pragma mark -
+#pragma mark Applying Artistic Filters
+
+- (CIFilter *) selectedArtisticFilter
+{
+	return selectedArtisticFilter;
+}
+
+- (void) setSelectedArtisticFilter: (CIFilter *) aFilter
+{
+	[self willChangeValueForKey: @"selectedArtisticFilter"];
+	[selectedArtisticFilter autorelease];
+	selectedArtisticFilter = [aFilter retain];
+	self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: aFilter] autorelease];
+	[self didChangeValueForKey: @"selectedArtisticFilter"];
 }
 
 @end
