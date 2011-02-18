@@ -65,6 +65,7 @@
 	[names addObjectsFromArray:	[CIFilter filterNamesInCategory: @"CICategoryStylize"]];
 	[names addObjectsFromArray: [CIFilter filterNamesInCategory: @"CICategoryDistortionEffect"]];
 	[names addObjectsFromArray: [CIFilter filterNamesInCategory: @"CICategoryBlur"]];
+	[names addObjectsFromArray: [CIFilter filterNamesInCategory: @"CICategorySharpen"]];
 	
 	NSMutableArray *filters = [NSMutableArray arrayWithCapacity: names.count];
 	

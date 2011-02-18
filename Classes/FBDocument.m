@@ -10,6 +10,13 @@
 #import "FBReelNavigator.h"
 #import "FBQuickTimeExporter.h"
 
+@interface FBDocument ()
+- (void) adaptFilterControls;
+- (void) constructProductPipeline;
+@end
+
+#pragma mark -
+
 @implementation FBDocument
 @synthesize inputDevices, temporaryStorageURL, originalFileURL;
 
@@ -28,7 +35,8 @@
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
-		self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: nil] autorelease];
+		[self constructProductPipeline];
+		// self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: nil] autorelease];
 				
 		reelLock = [[NSLock alloc] init];
 
@@ -439,7 +447,15 @@
 	// Transmogrify the video image (transform, filter, etc.)
 	// NOTE From this point on, use self.currentFrame instead of videoImage/nil 
 	// in order to keep the applied transformations
-	self.currentFrame = [self.productPipeline pipeImage: videoImage];
+	
+	@try
+	{
+		self.currentFrame = [self.productPipeline pipeImage: videoImage];
+	} @catch (NSException *exn) {
+		self.currentFrame = nil;
+		
+		NSLog(@"The selected filter can't be applied: %@", exn);
+	}
 	
 	if (self.reel.count == 0 || self.onionLayerCount == 0)
 		return self.currentFrame;
@@ -654,6 +670,60 @@
 	[transform scaleXBy: scaleX yBy: scaleY];
 	
 	return transform;
+}
+
+- (void) constructProductPipeline
+{
+	CIFilter *filter = self.selectedArtisticFilter;
+	
+	if (filter) {
+		NSDictionary *attrs = filter.attributes;
+		NSDictionary *controls = [NSDictionary dictionaryWithObjectsAndKeys:
+								  sliderRadius, @"inputRadius",
+								  sliderIntensity, @"inputIntensity", 
+								  sliderSharpness, @"inputSharpness",
+								  nil];
+		
+		for (NSString *key in controls) {
+			NSControl *control = [controls objectForKey: key];
+			BOOL hasInput = [attrs objectForKey: key] != nil;
+
+			if (hasInput) {
+				[filter setValue: [NSNumber numberWithDouble: control.doubleValue] forKey: key];
+			}
+		}
+	}
+	
+	self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: self.selectedArtisticFilter] autorelease];
+}
+
+- (void) adaptFilterControls
+{
+	CIFilter *filter = selectedArtisticFilter;
+	NSDictionary *attrs = filter.attributes;
+	NSDictionary *controls = [NSDictionary dictionaryWithObjectsAndKeys:
+							  sliderRadius, @"inputRadius",
+							  sliderIntensity, @"inputIntensity", 
+							  sliderSharpness, @"inputSharpness",
+							  nil];
+	NSDictionary *boxes = [NSDictionary dictionaryWithObjectsAndKeys:
+							  boxRadius, @"inputRadius",
+							  boxIntensity, @"inputIntensity", 
+							  boxSharpness, @"inputSharpness",
+							  nil];
+
+	
+	for (NSString *key in controls) {
+		BOOL hasInput = [attrs objectForKey: key] != nil;
+		NSSlider *control = [controls objectForKey: key];
+		
+		[[boxes objectForKey: key] setHidden: !hasInput];
+		
+		if (hasInput) {
+			[control setMinValue: [[[attrs objectForKey: key] objectForKey: @"CIAttributeSliderMin"] doubleValue]];
+			[control setMaxValue: [[[attrs objectForKey: key] objectForKey: @"CIAttributeSliderMax"] doubleValue]];
+		}
+	}
 }
 
 #pragma mark -
@@ -926,8 +996,16 @@
 	[self willChangeValueForKey: @"selectedArtisticFilter"];
 	[selectedArtisticFilter autorelease];
 	selectedArtisticFilter = [aFilter retain];
-	self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: aFilter] autorelease];
+	[self adaptFilterControls];
+	[self constructProductPipeline];
 	[self didChangeValueForKey: @"selectedArtisticFilter"];
+}
+
+- (IBAction) sliderDidChangeValue: (id) sender
+{
+	if (self.selectedArtisticFilter) {
+		[self constructProductPipeline];
+	}
 }
 
 @end

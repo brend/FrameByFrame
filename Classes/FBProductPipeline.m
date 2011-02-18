@@ -58,7 +58,8 @@
 	if (artisticFilter) {
 		// NOTE Give the generator its own copy of the filter
 		// in order to rule out external influences
-		CIFilter *filterCopy = [artisticFilter copy];
+		// CIFilter *filterCopy = [artisticFilter copy];
+		CIFilter *filterCopy = [artisticFilter retain];
 		
 		[generator connectObject: transformFilter withKey: @"outputImage" toObject: filterCopy withKey: @"inputImage"];
 		[generator exportKey: @"outputImage" fromObject: filterCopy withName: @"outputImage"];

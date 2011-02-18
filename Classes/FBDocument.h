@@ -50,6 +50,8 @@
 	NSLock *reelLock;
 	
 	CIFilter *selectedArtisticFilter;
+	IBOutlet NSSlider *sliderRadius, *sliderIntensity, *sliderSharpness;
+	IBOutlet NSView *boxRadius, *boxIntensity, *boxSharpness;
 }
 
 #pragma mark -
@@ -170,5 +172,6 @@
 #pragma mark -
 #pragma mark Applying Artistic Filters
 @property (retain) CIFilter *selectedArtisticFilter;
+- (IBAction) sliderDidChangeValue: (id) sender;
 
 @end
