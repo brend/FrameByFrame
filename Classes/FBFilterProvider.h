@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
-
-@interface FBFilterProvider : NSObject 
+@interface FBFilterProvider : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 {
 @private
-    NSArray *filterAttributes;
+	IBOutlet id delegate;
+	IBOutlet NSTableView *filterAttributesView;
+	
+    NSArray *filterDescriptions;
+	CIFilter *artisticFilter;
 }
 
 #pragma mark -
@@ -21,8 +25,14 @@
 + (NSArray *) constructFilters;
 
 #pragma mark -
-#pragma mark Accessing Filter Attributes
+#pragma mark Accessing Filter Descriptions
 
-@property (readonly) NSArray *filterAttributes;
+@property (readonly) NSArray *filterDescriptions;
+
+#pragma -
+#pragma mark Accessing the Currently Selected Filter
+
+@property (retain) CIFilter *artisticFilter;
+@property (readonly) NSDictionary *artisticFilterAttributes;
 
 @end

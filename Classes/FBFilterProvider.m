@@ -7,7 +7,6 @@
 //
 
 #import "FBFilterProvider.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation FBFilterProvider
 
@@ -34,7 +33,7 @@
 			[attributeDictionaries addObject: attributes];
 		}
 		
-		filterAttributes = [[NSArray alloc] initWithArray: attributeDictionaries];
+		filterDescriptions = [[NSArray alloc] initWithArray: attributeDictionaries];
     }
     
     return self;
@@ -42,8 +41,8 @@
 
 - (void)dealloc
 {
-	[filterAttributes release];
-	filterAttributes = nil;
+	[filterDescriptions release];
+	filterDescriptions = nil;
 	
     [super dealloc];
 }
@@ -51,7 +50,7 @@
 #pragma mark -
 #pragma mark Accessing Filter Attributes
 
-@synthesize filterAttributes;
+@synthesize filterDescriptions;
 
 #pragma mark -
 #pragma mark Filter Construction
@@ -77,6 +76,95 @@
 	}
 	
 	return filters;
+}
+
+#pragma mark -
+#pragma mark Accessing the Currently Selected Filter
+
+- (CIFilter *) artisticFilter
+{
+	return artisticFilter;
+}
+
+- (void) setArtisticFilter: (CIFilter *) aFilter
+{
+	[self willChangeValueForKey: @"artisticFilter"];
+	[artisticFilter autorelease];
+	artisticFilter = [aFilter retain];
+	[filterAttributesView reloadData];
+	[self didChangeValueForKey: @"artisticFilter"];
+}
+
+- (NSDictionary *) artisticFilterAttributes
+{
+	NSArray *acceptableAttributeClasses = [NSArray arrayWithObjects: @"NSNumber", @"CIVector", nil];
+	NSMutableDictionary *a = [NSMutableDictionary dictionary];
+	
+	for (NSString *x in self.artisticFilter.attributes)
+		if ([x hasPrefix: @"input"] 
+			&& [acceptableAttributeClasses containsObject: [[self.artisticFilter.attributes objectForKey: x] objectForKey: @"CIAttributeClass"]])
+			[a setObject: [self.artisticFilter.attributes objectForKey: x] forKey: x];
+	
+	return a;
+}
+
+#pragma mark -
+#pragma mark Table View Data Source
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+	return [[self artisticFilterAttributes] count];
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+	NSDictionary *attributes = [self artisticFilterAttributes];
+	NSString *key = [[attributes allKeys] objectAtIndex: rowIndex];
+	
+	if ([[aTableColumn identifier] isEqualToString: @"ColumnFilterAttributeValue"])
+		return [self.artisticFilter valueForKey: key];
+	else
+		return key;
+}
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+	if ([aTableColumn.identifier isEqualToString: @"ColumnFilterAttributeValue"]) {
+		NSDictionary *attributes = [self artisticFilterAttributes];
+		
+		NSString *key = [[attributes allKeys] objectAtIndex: rowIndex];
+		
+		[self.artisticFilter setValue: anObject forKey: key];
+		
+		[delegate filterProviderDidEditFilter: self];
+	}
+}
+
+#pragma mark -
+#pragma mark Table View Delegate
+
+- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	if ([tableColumn.identifier isEqualToString: @"ColumnFilterAttributeValue"]) {
+		NSDictionary *attributes = [self artisticFilterAttributes];
+		NSDictionary *info = [attributes objectForKey: [[attributes allKeys] objectAtIndex: row]];
+		
+		if ([[info CIAttributeClass] isEqualToString: @"NSNumber"]) {
+			NSSliderCell *cell = [[NSSliderCell alloc] init];
+			
+			[cell setMinValue: [[info objectForKey: @"CIAttributeSliderMin"] doubleValue]];
+			[cell setMaxValue: [[info objectForKey: @"CIAttributeSliderMax"] doubleValue]];
+			
+			return [cell autorelease];
+		} else
+			return nil;
+	} else
+		return nil;
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+	return 24;
 }
 
 @end

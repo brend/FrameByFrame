@@ -12,6 +12,7 @@
 #import "FBReel.h"
 #import "FBReelNavigator.h"
 #import "FBDragDropBuddy.h"
+#import "FBFilterProvider.h"
 #import "FBFilterPipeline.h"
 #import "FBProductPipeline.h"
 #import "FBProgressSheetController.h"
@@ -49,6 +50,7 @@
 	
 	NSLock *reelLock;
 	
+	IBOutlet FBFilterProvider *filterProvider;
 	CIFilter *selectedArtisticFilter;
 	IBOutlet NSSlider *sliderRadius, *sliderIntensity, *sliderSharpness;
 	IBOutlet NSView *boxRadius, *boxIntensity, *boxSharpness;

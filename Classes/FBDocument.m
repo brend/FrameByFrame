@@ -103,6 +103,7 @@
 - (void) awakeFromNib
 {
 	[previewController bind: @"framesPerSecond" toObject: self withKeyPath: @"framesPerSecond" options: nil];
+	[filterProvider bind: @"artisticFilter" toObject: self withKeyPath: @"selectedArtisticFilter" options: nil];
 }
 
 #pragma mark -
@@ -1006,6 +1007,11 @@
 	if (self.selectedArtisticFilter) {
 		[self constructProductPipeline];
 	}
+}
+
+- (void) filterProviderDidEditFilter: (FBFilterProvider *) fp
+{
+	[self constructProductPipeline];
 }
 
 @end

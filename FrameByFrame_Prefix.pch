@@ -11,5 +11,6 @@
 	#import "FBAttributeNames.h"
 // Categories
 	#import "NSDictionary(FBAdditions).h"
+	#import "NSDictionary(CIFilterAttributes).h"
 	#import "NSValue(FBAdditions).h"
 #endif
