@@ -53,7 +53,7 @@
 	NSLock *reelLock;
 	
 	IBOutlet FBFilterProvider *filterProvider;
-	CIFilter *selectedArtisticFilter;
+	CIFilter *artisticFilter;
 	IBOutlet NSSlider *sliderRadius, *sliderIntensity, *sliderSharpness;
 	IBOutlet NSView *boxRadius, *boxIntensity, *boxSharpness;
 }
@@ -175,7 +175,7 @@
 
 #pragma mark -
 #pragma mark Applying Artistic Filters
-@property (retain) CIFilter *selectedArtisticFilter;
+@property (retain) CIFilter *artisticFilter;
 - (IBAction) sliderDidChangeValue: (id) sender;
 - (void) filterProviderDidEditFilter: (FBFilterProvider *) filterProvider;
 

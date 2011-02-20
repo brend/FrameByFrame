@@ -103,7 +103,7 @@
 - (void) awakeFromNib
 {
 	[previewController bind: @"framesPerSecond" toObject: self withKeyPath: @"framesPerSecond" options: nil];
-	[filterProvider bind: @"artisticFilter" toObject: self withKeyPath: @"selectedArtisticFilter" options: nil];
+	[filterProvider bind: @"artisticFilter" toObject: self withKeyPath: @"artisticFilter" options: nil];
 }
 
 #pragma mark -
@@ -675,7 +675,7 @@
 
 - (void) constructProductPipeline
 {
-	CIFilter *filter = self.selectedArtisticFilter;
+	CIFilter *filter = self.artisticFilter;
 	
 	if (filter) {
 		NSDictionary *attrs = filter.attributes;
@@ -695,12 +695,12 @@
 		}
 	}
 	
-	self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: self.selectedArtisticFilter] autorelease];
+	self.productPipeline = [[[FBProductPipeline alloc] initWithArtisticFilter: self.artisticFilter] autorelease];
 }
 
 - (void) adaptFilterControls
 {
-	CIFilter *filter = selectedArtisticFilter;
+	CIFilter *filter = artisticFilter;
 	NSDictionary *attrs = filter.attributes;
 	NSDictionary *controls = [NSDictionary dictionaryWithObjectsAndKeys:
 							  sliderRadius, @"inputRadius",
@@ -987,24 +987,24 @@
 #pragma mark -
 #pragma mark Applying Artistic Filters
 
-- (CIFilter *) selectedArtisticFilter
+- (CIFilter *) artisticFilter
 {
-	return selectedArtisticFilter;
+	return artisticFilter;
 }
 
-- (void) setSelectedArtisticFilter: (CIFilter *) aFilter
+- (void) setArtisticFilter: (CIFilter *) aFilter
 {
-	[self willChangeValueForKey: @"selectedArtisticFilter"];
-	[selectedArtisticFilter autorelease];
-	selectedArtisticFilter = [aFilter retain];
+	[self willChangeValueForKey: @"artisticFilter"];
+	[artisticFilter autorelease];
+	artisticFilter = [aFilter retain];
 	[self adaptFilterControls];
 	[self constructProductPipeline];
-	[self didChangeValueForKey: @"selectedArtisticFilter"];
+	[self didChangeValueForKey: @"artisticFilter"];
 }
 
 - (IBAction) sliderDidChangeValue: (id) sender
 {
-	if (self.selectedArtisticFilter) {
+	if (self.artisticFilter) {
 		[self constructProductPipeline];
 	}
 }
