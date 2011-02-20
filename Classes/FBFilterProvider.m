@@ -128,10 +128,12 @@
 	NSDictionary *attributes = [self artisticFilterAttributes];
 	NSString *key = [[attributes allKeys] objectAtIndex: rowIndex];
 	
-	if ([[aTableColumn identifier] isEqualToString: @"ColumnFilterAttributeValue"])
+	if ([aTableColumn.identifier isEqualToString: @"ColumnFilterAttributeValue"])
 		return [self.artisticFilter valueForKey: key];
+	else if ([aTableColumn.identifier isEqualToString: @"ColumnFilterAttributeName"])
+		return [[attributes objectForKey: key] objectForKey: @"CIAttributeDisplayName"];
 	else
-		return key;
+		return nil;
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
