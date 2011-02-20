@@ -19,3 +19,5 @@ FFNoSoundPlaceholder = "No sound";
 
 BCButtonVisitWebsite = "Visit web site";
 BCMessageNoNewsAvailable = "No news available.";
+
+FFLabelResolution = "Resolution";

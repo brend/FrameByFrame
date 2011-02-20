@@ -260,7 +260,7 @@
 		
 		// TODO: Re-position this code
 		[self applyMovieSettings];
-		[resolutionLabel setStringValue: [NSString stringWithFormat: @"%dx%d", (NSInteger) settings.horizontalResolution, (NSInteger) settings.verticalResolution]];
+		[resolutionLabel setStringValue: [NSString stringWithFormat: @"%@: %dx%d", NSLocalizedString(@"FFLabelResolution", @"Resolution"), (NSInteger) settings.horizontalResolution, (NSInteger) settings.verticalResolution]];
 		
 		[self didChangeValueForKey: @"movieSettings"];
 	}
