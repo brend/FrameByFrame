@@ -63,11 +63,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F228EA8130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSDictionary(CIFilterAttributes).h"; sourceTree = "<group>"; };
+		5F228EA8130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary(CIFilterAttributes).h"; sourceTree = "<group>"; };
 		5F228EA9130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary(CIFilterAttributes).m"; sourceTree = "<group>"; };
 		5F24654912F6130700D584BD /* Button-NewDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-NewDocument.png"; sourceTree = "<group>"; };
 		5F24654B12F6141D00D584BD /* Button-OpenDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-OpenDocument.png"; sourceTree = "<group>"; };
 		5F24654D12F6153300D584BD /* Button-RecoverDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-RecoverDocument.png"; sourceTree = "<group>"; };
+		5F2D659713111F960034E86C /* FBFilterProviderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFilterProviderDelegate.h; sourceTree = "<group>"; };
 		5F2DA3E112FEB9ED00803D70 /* FBFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFileInfo.h; sourceTree = "<group>"; };
 		5F2DA3E212FEB9ED00803D70 /* FBFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFileInfo.m; sourceTree = "<group>"; };
 		5F30253A130D49FD00D7FDEA /* FBFilterProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFilterProvider.h; sourceTree = "<group>"; };
@@ -189,6 +190,7 @@
 				5FB1AA1A130BD74300E8E4F3 /* FBProductPipeline.m */,
 				5F30253A130D49FD00D7FDEA /* FBFilterProvider.h */,
 				5F30253B130D49FD00D7FDEA /* FBFilterProvider.m */,
+				5F2D659713111F960034E86C /* FBFilterProviderDelegate.h */,
 			);
 			name = "Filtering Video Input";
 			sourceTree = "<group>";

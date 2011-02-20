@@ -44,8 +44,15 @@
 	[filterDescriptions release];
 	filterDescriptions = nil;
 	
+	delegate = nil;
+	
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Delegate
+
+@synthesize delegate;
 
 #pragma mark -
 #pragma mark Accessing Filter Attributes

@@ -9,15 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "FBFilterProviderDelegate.h"
+
 @interface FBFilterProvider : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 {
 @private
-	IBOutlet id delegate;
+	IBOutlet id<FBFilterProviderDelegate> delegate;
 	IBOutlet NSTableView *filterAttributesView;
 	
     NSArray *filterDescriptions;
 	CIFilter *artisticFilter;
 }
+
+#pragma mark -
+#pragma mark Delegate
+
+@property (readonly) id<FBFilterProviderDelegate> delegate;
 
 #pragma mark -
 #pragma mark Filter Construction

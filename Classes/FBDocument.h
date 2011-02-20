@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTKit.h>
 #import <QuartzCore/QuartzCore.h>
+
 #import "FBReel.h"
 #import "FBReelNavigator.h"
 #import "FBDragDropBuddy.h"
@@ -20,7 +21,8 @@
 
 @interface FBDocument : NSDocument <FBReelNavigatorDelegate, 
 									FBReelNavigatorDataSource, 
-									FBDragDropBuddy>
+									FBDragDropBuddy,
+									FBFilterProviderDelegate>
 {
 @private
 	QTCaptureSession *captureSession;
@@ -175,5 +177,6 @@
 #pragma mark Applying Artistic Filters
 @property (retain) CIFilter *selectedArtisticFilter;
 - (IBAction) sliderDidChangeValue: (id) sender;
+- (void) filterProviderDidEditFilter: (FBFilterProvider *) filterProvider;
 
 @end
