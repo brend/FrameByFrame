@@ -29,7 +29,9 @@
 				 blurRadius:(CGFloat)radius
 					  color:(NSColor *)shadowColor
 {
-	[[NSShadow shadowWithOffset: offset blurRadius: radius color: shadowColor] set];
+	NSShadow *shadow = [NSShadow shadowWithOffset: offset blurRadius: radius color: shadowColor];
+	
+	[shadow set];
 }
 
 + (void)clearShadow
