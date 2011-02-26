@@ -52,6 +52,9 @@
 	// Register for notification on change of key window
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidBecomeKey:) name: NSWindowDidBecomeKeyNotification object: window];
 	
+	// Hook up the double-tap, er, click
+	[recentDocumentsView setDoubleAction: @selector(openRecent:)];
+	
 	// Pre-select first toolbar item (should be "New Movie")
 	if (organizerBar.items.count) {
 		[organizerBar setSelectedItemIdentifier: [[organizerBar.items objectAtIndex: 0] itemIdentifier]];
@@ -299,6 +302,15 @@
 - (CGFloat) tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
 {
 	return 64;
+}
+
+#pragma mark -
+#pragma mark Auxiliary Actions
+- (IBAction) noOp: (id) sender
+{
+	// No action.
+	// This method's only purpose is to set the target 
+	// for the table view's doubleAction
 }
 
 @end

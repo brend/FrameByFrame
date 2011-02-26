@@ -62,4 +62,8 @@
 #pragma mark Resizing the Window
 - (void) setFrameSize: (NSSize) newSize resizable: (BOOL) resize;
 
+#pragma mark -
+#pragma mark Auxiliary Actions
+- (IBAction) noOp: (id) sender;
+
 @end
