@@ -281,12 +281,12 @@
 - (id) tableView: (NSTableView *) tableView objectValueForTableColumn: (NSTableColumn *) tableColumn row: (NSInteger) row
 {
 	if (tableView == recentDocumentsView) {
-		if ([tableColumn.identifier isEqualToString: @"PathColumn"]) {
+		if ([tableColumn.identifier isEqualToString: @"OpenPathColumn"]) {
 			NSURL *url = [self.recentDocuments objectAtIndex: row];
 			NSString *file = [[url lastPathComponent] stringByDeletingPathExtension];
 			
 			return [NSString stringWithFormat: @"%@\n%@", file, url.path];
-		} else if ([tableColumn.identifier isEqualToString: @"ThumbnailColumn"]) {
+		} else if ([tableColumn.identifier isEqualToString: @"OpenThumbnailColumn"]) {
 			return [self thumbnailForDocumentAtURL: [self.recentDocuments objectAtIndex: row]];
 		} else
 			return nil;

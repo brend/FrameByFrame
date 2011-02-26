@@ -77,19 +77,19 @@
 {
 	NSString *identifier = aTableColumn.identifier;
 	
-	if ([identifier isEqualToString: @"PathColumn"]) {
+	if ([identifier isEqualToString: @"RecoverPathColumn"]) {
 		return [self.temporaryDocumentPaths objectAtIndex: rowIndex];
-	} else if ([identifier isEqualToString: @"ItemsColumn"]) {
+	} else if ([identifier isEqualToString: @"RecoverItemsColumn"]) {
 		NSString *path = [self.temporaryDocumentPaths objectAtIndex: rowIndex];
 		NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: path error: NULL];
 		
 		return [NSNumber numberWithUnsignedInteger: files.count];
-	} else if ([identifier isEqualToString: @"DateColumn"]) {
+	} else if ([identifier isEqualToString: @"RecoverDateColumn"]) {
 		NSString *path = [self.temporaryDocumentPaths objectAtIndex: rowIndex];
 		NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath: path error: NULL];
 		
 		return [attributes fileModificationDate];
-	} else if ([identifier isEqualToString: @"ThumbnailColumn"]) {
+	} else if ([identifier isEqualToString: @"RecoverThumbnailColumn"]) {
 		NSURL *url = [NSURL fileURLWithPath: [self.temporaryDocumentPaths objectAtIndex: rowIndex]];
 		
 		return [self thumbnailForDocumentAtURL: url];

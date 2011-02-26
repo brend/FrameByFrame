@@ -1572,7 +1572,7 @@
 							<int key="NSvFlags">18</int>
 							<string key="NSFrame">{{-8, -10}, {493, 350}}</string>
 							<reference key="NSSuperview" ref="1005908196"/>
-							<reference key="NSNextKeyView" ref="752826330"/>
+							<reference key="NSNextKeyView" ref="472793066"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSTabViewItem" id="10104833">
@@ -1895,7 +1895,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="1053247750">
 									<string key="NSIdentifier">OpenDocument</string>
 									<object class="NSView" key="NSView" id="472793066">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="383983083"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1924,7 +1924,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="NSMutableArray" key="NSTableColumns">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSTableColumn" id="841886769">
-																		<string key="NSIdentifier">ThumbnailColumn</string>
+																		<string key="NSIdentifier">OpenThumbnailColumn</string>
 																		<double key="NSWidth">72</double>
 																		<double key="NSMinWidth">10</double>
 																		<double key="NSMaxWidth">3.4028234663852886e+38</double>
@@ -1968,7 +1968,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="119225864"/>
 																	</object>
 																	<object class="NSTableColumn" id="611055590">
-																		<string key="NSIdentifier">PathColumn</string>
+																		<string key="NSIdentifier">OpenPathColumn</string>
 																		<double key="NSWidth">373</double>
 																		<double key="NSMinWidth">40</double>
 																		<double key="NSMaxWidth">1000</double>
@@ -2096,6 +2096,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">289</int>
 												<string key="NSFrame">{{383, 12}, {96, 32}}</string>
 												<reference key="NSSuperview" ref="472793066"/>
+												<reference key="NSNextKeyView"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="431728396">
 													<int key="NSCellFlags">67239424</int>
@@ -2134,6 +2135,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrameSize">{493, 350}</string>
+										<reference key="NSSuperview" ref="383983083"/>
 										<reference key="NSNextKeyView" ref="846082399"/>
 									</object>
 									<string key="NSLabel">Open Document</string>
@@ -2143,7 +2145,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="956371563">
 									<string key="NSIdentifier">RecoverDocument</string>
 									<object class="NSView" key="NSView" id="752826330">
-										<reference key="NSNextResponder" ref="383983083"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2182,7 +2184,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="NSMutableArray" key="NSTableColumns">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSTableColumn" id="309197350">
-																		<string key="NSIdentifier">ThumbnailColumn</string>
+																		<string key="NSIdentifier">RecoverThumbnailColumn</string>
 																		<double key="NSWidth">65</double>
 																		<double key="NSMinWidth">10</double>
 																		<double key="NSMaxWidth">3.4028234663852886e+38</double>
@@ -2209,7 +2211,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="370803248"/>
 																	</object>
 																	<object class="NSTableColumn" id="794818911">
-																		<string key="NSIdentifier">PathColumn</string>
+																		<string key="NSIdentifier">RecoverPathColumn</string>
 																		<double key="NSWidth">179</double>
 																		<double key="NSMinWidth">40</double>
 																		<double key="NSMaxWidth">1000</double>
@@ -2238,7 +2240,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="370803248"/>
 																	</object>
 																	<object class="NSTableColumn" id="352078629">
-																		<string key="NSIdentifier">ItemsColumn</string>
+																		<string key="NSIdentifier">RecoverItemsColumn</string>
 																		<double key="NSWidth">79</double>
 																		<double key="NSMinWidth">40</double>
 																		<double key="NSMaxWidth">1000</double>
@@ -2264,7 +2266,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="370803248"/>
 																	</object>
 																	<object class="NSTableColumn" id="581123827">
-																		<string key="NSIdentifier">DateColumn</string>
+																		<string key="NSIdentifier">RecoverDateColumn</string>
 																		<double key="NSWidth">116</double>
 																		<double key="NSMinWidth">10</double>
 																		<double key="NSMaxWidth">3.4028234663852886e+38</double>
@@ -2386,7 +2388,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">289</int>
 												<string key="NSFrame">{{383, 12}, {96, 32}}</string>
 												<reference key="NSSuperview" ref="752826330"/>
-												<reference key="NSNextKeyView"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="1034287578">
 													<int key="NSCellFlags">67239424</int>
@@ -2427,7 +2428,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrameSize">{493, 350}</string>
-										<reference key="NSSuperview" ref="383983083"/>
 										<reference key="NSNextKeyView" ref="681519488"/>
 									</object>
 									<string key="NSLabel">Recover Document</string>
@@ -2435,14 +2435,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 									<reference key="NSTabView" ref="383983083"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="956371563"/>
+							<reference key="NSSelectedTabViewItem" ref="1053247750"/>
 							<reference key="NSFont" ref="76556142"/>
 							<int key="NSTvFlags">6</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="752826330"/>
+								<reference ref="472793066"/>
 							</object>
 						</object>
 					</object>
