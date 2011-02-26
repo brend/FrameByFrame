@@ -37,6 +37,11 @@
 	[super dealloc];
 }
 
+- (void) awakeFromNib
+{
+	[documentList setDoubleAction: @selector(open:)];
+}
+
 - (BOOL) unsavedDocumentsExist
 {
 	return self.temporaryDocumentPaths.count > 0;
@@ -128,30 +133,40 @@
 	
 	if (selectedRow >= 0) {
 		NSURL *source = [NSURL fileURLWithPath: [self.temporaryDocumentPaths objectAtIndex: selectedRow]];
-		
 		NSSavePanel *savePanel = [NSSavePanel savePanel];
 		
 		savePanel.allowedFileTypes = [NSArray arrayWithObject: @"ffm"];
 		
-		if ([savePanel runModal] == NSOKButton) {
-			NSURL *destination = savePanel.URL;
-			NSError *error = nil;
-			
-			if ([[NSFileManager defaultManager] copyItemAtURL: source toURL: destination error: &error]) {
-				FBDocument *document = [[FBDocument alloc] initWithContentsOfURL: destination ofType: @"ffm" error: &error];
-				
-				if (document) {
-					[document makeWindowControllers];
-					[document showWindows];
-					[document release];
-				} else {
-					NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
-				}
-			} else {
-				NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
-			}
-		}
+		[savePanel beginSheetModalForWindow: window completionHandler:
+		 ^(NSInteger result) {
+			 if (result == NSOKButton) {
+				 NSURL *destination = savePanel.URL;
+				 NSError *error = nil;
+				 
+				 if ([[NSFileManager defaultManager] copyItemAtURL: source toURL: destination error: &error]) {
+					 FBDocument *document = [[FBDocument alloc] initWithContentsOfURL: destination ofType: @"ffm" error: &error];
+					 
+					 if (document) {
+						 [document makeWindowControllers];
+						 [document showWindows];
+						 [document release];
+					 } else {
+						 NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
+					 }
+				 } else {
+					 NSRunAlertPanel(@"An error has occurred", [error description], @"OK", nil, nil);
+				 }
+			 }
+		 }];		
 	}
+}
+
+- (IBAction) openWithButton: (id) sender
+{
+	// This ridiculous piece of code exists
+	// because the modal sheet didn't work 
+	// when I had the button's action set to open:
+	[self performSelector: @selector(open:) withObject: sender afterDelay: 0.1];
 }
 
 - (IBAction) deleteAll: (id) sender
@@ -159,6 +174,13 @@
 	NSString *message = @"Do you really want to delete all remaining unsaved documents? This process can't be reversed.";
 	
 	NSBeginAlertSheet(@"Delete unsaved documents", @"OK", @"Cancel", nil, window, self, @selector(sheetDidEnd:returnCode:contextInfo:), nil, nil, message);
+}
+
+- (IBAction) documentListAction: (id) sender
+{
+	// No action.
+	// This method's only purpose is to set the target 
+	// for the table view's doubleAction
 }
 
 #pragma mark -

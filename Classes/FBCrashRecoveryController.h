@@ -33,6 +33,8 @@
 #pragma Interface Builder Actions
 - (IBAction) open: (id) sender;
 - (IBAction) deleteAll: (id) sender;
+- (IBAction) openWithButton: (id) sender;
+- (IBAction) documentListAction: (id) sender;
 
 #pragma mark -
 #pragma mark Thumbnails
