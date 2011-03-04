@@ -370,6 +370,7 @@
 		[self close];
 	} else {
 		[self.reelNavigator reelHasChanged];
+		[self.reelNavigator shiftSelectionToEnd];
 	}
 }
 
