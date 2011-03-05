@@ -32,6 +32,7 @@
 		self.onionLayerCount = 2;
 		self.opacity = 0.5f;
 		self.framesPerSecond = 15;
+		self.maxFramesPerSecond = 30;
 		self.temporaryStorageURL = [self createTemporaryURL];
 		self.reel = [FBReel reel];
 		self.reel.documentURL = self.temporaryStorageURL;
@@ -568,7 +569,7 @@
 
 #pragma mark -
 #pragma mark Frames Per Second
-@synthesize framesPerSecond;
+@synthesize framesPerSecond, maxFramesPerSecond;
 
 #pragma mark -
 #pragma mark Interface Builder Actions

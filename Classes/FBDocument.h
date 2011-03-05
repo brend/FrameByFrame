@@ -42,7 +42,7 @@
 	NSMutableDictionary *movieSettings;
 	
 	FBFilterPipeline *filterPipeline;
-	NSInteger onionLayerCount, framesPerSecond;
+	NSInteger onionLayerCount, framesPerSecond, maxFramesPerSecond;
 	float opacity;
 	
 	IBOutlet FBProgressSheetController *progressSheetController;
@@ -119,7 +119,7 @@
 
 #pragma mark -
 #pragma mark Frames Per Second
-@property NSInteger framesPerSecond;
+@property NSInteger framesPerSecond, maxFramesPerSecond;
 
 #pragma mark -
 #pragma mark Filter Pipeline
