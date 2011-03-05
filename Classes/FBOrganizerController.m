@@ -130,13 +130,9 @@
 		NSDictionary *movieSettings = [self composeMovieSettings];
         NSDocumentController *controller = [NSDocumentController sharedDocumentController];
 		NSError *error = nil;
-		FBDocument *document = [controller makeUntitledDocumentOfType: @"FrameByFrame Movie" error: &error];
+		FBDocument *document = [controller openUntitledDocumentAndDisplay: YES error: &error];
 		
-		if (document) {
-			// TODO: Do I *really* have to do this manually?
-			[document makeWindowControllers];
-			[document showWindows];
-			
+		if (document) {			
 			document.movieSettings = [NSMutableDictionary dictionaryWithDictionary: movieSettings];
 			
 			// Close window when done
