@@ -7,14 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "FBCrashRecoveryController.h"
+#import "FBOrganizerController.h"
 
 @interface FBApplicationDelegate : NSObject 
 {
+	IBOutlet FBOrganizerController *organizerController;
 }
 
 #pragma mark -
 #pragma mark Registering User Defaults
 - (void) registerInitialUserDefaults;
+
+#pragma mark -
+#pragma mark Presenting the Organizer
+- (void) showOrganizer;
 
 @end

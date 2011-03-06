@@ -29,6 +29,10 @@
 }
 
 #pragma mark -
+#pragma mark Presenting the Organizer
+- (IBAction) show: (id) sender;
+
+#pragma mark -
 #pragma mark Creating a New Movie
 @property BOOL useCustomResolution;
 @property NSInteger customHorizontalResolution, customVerticalResolution;

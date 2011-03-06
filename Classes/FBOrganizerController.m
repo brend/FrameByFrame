@@ -80,6 +80,13 @@
 }
 
 #pragma mark -
+#pragma mark Presenting the Organizer
+- (IBAction) show: (id) sender
+{
+	[window makeKeyAndOrderFront: self];
+}
+
+#pragma mark -
 #pragma mark Creating a New Movie
 @synthesize selectedPredefinedResolution, availableResolutions;
 @synthesize useCustomResolution, customHorizontalResolution, customVerticalResolution;

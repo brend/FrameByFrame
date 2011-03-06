@@ -39,4 +39,11 @@
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defaults];
 }	
 
+#pragma mark -
+#pragma mark Presenting the Organizer
+- (void) showOrganizer
+{
+	[organizerController show: nil];
+}
+
 @end

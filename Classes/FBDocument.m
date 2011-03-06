@@ -7,6 +7,7 @@
 //
 
 #import "FBDocument.h"
+#import "FBApplicationDelegate.h"
 #import "FBReelNavigator.h"
 #import "FBQuickTimeExporter.h"
 
@@ -800,6 +801,11 @@
 - (void) windowWillClose: (NSWindow *) aWindow
 {
 	[captureSession stopRunning];
+	
+	NSArray *documents = [[NSDocumentController sharedDocumentController] documents];
+	
+	if (documents.count == 1)
+		[[NSApp delegate] showOrganizer];
 }
 
 #pragma mark -
