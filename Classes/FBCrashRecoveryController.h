@@ -40,4 +40,8 @@
 #pragma mark Thumbnails
 - (NSImage *) thumbnailForDocumentAtURL: (NSURL *) url;
 
+#pragma mark -
+#pragma mark Accessing Information About Unsaved Documents
+- (NSUInteger) numberOfUnsavedDocuments;
+
 @end

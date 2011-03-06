@@ -75,7 +75,7 @@
 #pragma mark Table View Data Source
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return self.temporaryDocumentPaths.count;
+	return self.numberOfUnsavedDocuments;
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
@@ -228,6 +228,13 @@
 			return nil;
 	} else
 		return nil;
+}
+
+#pragma mark -
+#pragma mark Accessing Information About Unsaved Documents
+- (NSUInteger) numberOfUnsavedDocuments
+{
+	return self.temporaryDocumentPaths.count;
 }
 
 @end

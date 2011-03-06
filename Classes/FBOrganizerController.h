@@ -17,6 +17,7 @@
 	IBOutlet NSTabView *organizerTabs;
 	IBOutlet FBCrashRecoveryController *crashRecovery;
 	IBOutlet NSToolbar *organizerBar;
+	IBOutlet NSToolbarItem *documentRecoveryItem;
 		
    	NSArray *availableResolutions;
 	NSValue *selectedPredefinedResolution;

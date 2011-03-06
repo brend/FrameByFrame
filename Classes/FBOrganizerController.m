@@ -41,10 +41,36 @@
     return self;
 }
 
+- (void)dealloc 
+{
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: NSWindowDidBecomeKeyNotification object: window];
+	
+	//	delegate = nil;
+	[availableResolutions release];
+	availableResolutions = nil;
+	
+	[recentDocuments release];
+	recentDocuments = nil;
+	
+	[recentDocumentsSelection release];
+	recentDocumentsSelection = nil;
+    
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Responding to Events
+
 - (void) windowDidBecomeKey: (NSNotification *) n
 {
 	[self loadRecentDocuments];
 	[recentDocumentsView reloadData];
+	
+	// Assign the appopriate toolbar image
+	// (recent documents gets exclamation mark if docs present)
+	NSString *recoveryImage = crashRecovery.numberOfUnsavedDocuments == 0 ? @"Button-RecoverDocument" : @"Button-RecoverDocument-Alert";
+		
+	[documentRecoveryItem setImage: [NSImage imageNamed: recoveryImage]];
 }
 
 - (void) awakeFromNib
@@ -60,23 +86,6 @@
 		[organizerBar setSelectedItemIdentifier: [[organizerBar.items objectAtIndex: 0] itemIdentifier]];
 		[self toolbarNewDocument: organizerBar];
 	}
-}
-
-- (void)dealloc 
-{
-	[[NSNotificationCenter defaultCenter] removeObserver: self name: NSWindowDidBecomeKeyNotification object: window];
-	
-//	delegate = nil;
-	[availableResolutions release];
-	availableResolutions = nil;
-	
-	[recentDocuments release];
-	recentDocuments = nil;
-	
-	[recentDocumentsSelection release];
-	recentDocumentsSelection = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -

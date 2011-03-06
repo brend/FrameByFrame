@@ -58,6 +58,7 @@
 		5FDAD28B129DB0FC00B59574 /* FBProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDAD28A129DB0FC00B59574 /* FBProgressSheetController.m */; };
 		5FE7D94E12E631E40007385B /* FBPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE7D94D12E631E40007385B /* FBPreviewController.m */; };
 		5FF2600912CDF98A00AF889C /* FBAttributeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF2600812CDF98A00AF889C /* FBAttributeNames.m */; };
+		5FF2865013243951006202E9 /* Button-RecoverDocument-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF2864F13243951006202E9 /* Button-RecoverDocument-Alert.png */; };
 		5FF34FF612D7AFA100E0A744 /* Icon-Onion-Off.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */; };
 		5FF34FF712D7AFA100E0A744 /* Icon-Onion-On.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */; };
 /* End PBXBuildFile section */
@@ -146,6 +147,7 @@
 		5FE7D94D12E631E40007385B /* FBPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPreviewController.m; sourceTree = "<group>"; };
 		5FF2600712CDF98A00AF889C /* FBAttributeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBAttributeNames.h; path = Sources/FBAttributeNames.h; sourceTree = "<group>"; };
 		5FF2600812CDF98A00AF889C /* FBAttributeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBAttributeNames.m; path = Sources/FBAttributeNames.m; sourceTree = "<group>"; };
+		5FF2864F13243951006202E9 /* Button-RecoverDocument-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-RecoverDocument-Alert.png"; sourceTree = "<group>"; };
 		5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Onion-Off.png"; sourceTree = "<group>"; };
 		5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Onion-On.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,6 +226,7 @@
 		5F7C8ADA12D6708E00CF9497 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5FF2864F13243951006202E9 /* Button-RecoverDocument-Alert.png */,
 				5FC19C47130C456A0040C53E /* Icon-Mirror-Both.png */,
 				5FC19C45130C3BC70040C53E /* Icon-Mirror-Horizontal.png */,
 				5FC19C43130C3A7A0040C53E /* Icon-Mirror-Vertical.png */,
@@ -449,6 +452,7 @@
 				5FC19C44130C3A7A0040C53E /* Icon-Mirror-Vertical.png in Resources */,
 				5FC19C46130C3BC70040C53E /* Icon-Mirror-Horizontal.png in Resources */,
 				5FC19C48130C456A0040C53E /* Icon-Mirror-Both.png in Resources */,
+				5FF2865013243951006202E9 /* Button-RecoverDocument-Alert.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
