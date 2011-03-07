@@ -825,7 +825,7 @@
 								<object class="NSButton" id="922541627">
 									<reference key="NSNextResponder" ref="487387358"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{185, 9}, {52, 58}}</string>
+									<string key="NSFrame">{{192, 17}, {43, 42}}</string>
 									<reference key="NSSuperview" ref="487387358"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView"/>
@@ -837,7 +837,7 @@
 										<reference key="NSSupport" ref="42464171"/>
 										<reference key="NSControlView" ref="922541627"/>
 										<int key="NSButtonFlags">-2042347265</int>
-										<int key="NSButtonFlags2">130</int>
+										<int key="NSButtonFlags2">2</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">Button-Play</string>
@@ -851,7 +851,7 @@
 								<object class="NSButton" id="605304063">
 									<reference key="NSNextResponder" ref="487387358"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{115, 8}, {52, 58}}</string>
+									<string key="NSFrame">{{121, 13}, {43, 46}}</string>
 									<reference key="NSSuperview" ref="487387358"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="922541627"/>
@@ -863,7 +863,7 @@
 										<reference key="NSSupport" ref="42464171"/>
 										<reference key="NSControlView" ref="605304063"/>
 										<int key="NSButtonFlags">-2039201537</int>
-										<int key="NSButtonFlags2">129</int>
+										<int key="NSButtonFlags2">1</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">Button-Cut</string>
@@ -877,7 +877,7 @@
 								<object class="NSButton" id="4374556">
 									<reference key="NSNextResponder" ref="487387358"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{45, 8}, {52, 58}}</string>
+									<string key="NSFrame">{{48, 13}, {48, 46}}</string>
 									<reference key="NSSuperview" ref="487387358"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="605304063"/>
@@ -889,7 +889,7 @@
 										<reference key="NSSupport" ref="42464171"/>
 										<reference key="NSControlView" ref="4374556"/>
 										<int key="NSButtonFlags">-2039201537</int>
-										<int key="NSButtonFlags2">129</int>
+										<int key="NSButtonFlags2">1</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">Button-Capture</string>
@@ -1826,9 +1826,9 @@
 						<reference key="object" ref="487387358"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="4374556"/>
 							<reference ref="605304063"/>
 							<reference ref="922541627"/>
-							<reference ref="4374556"/>
 						</object>
 						<reference key="parent" ref="568628114"/>
 					</object>
@@ -3133,9 +3133,9 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{64, 64}</string>
-				<string>{64, 64}</string>
-				<string>{64, 64}</string>
+				<string>{43, 42}</string>
+				<string>{43, 42}</string>
+				<string>{43, 42}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>

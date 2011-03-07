@@ -48,9 +48,7 @@
 		5FC19C46130C3BC70040C53E /* Icon-Mirror-Horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC19C45130C3BC70040C53E /* Icon-Mirror-Horizontal.png */; };
 		5FC19C48130C456A0040C53E /* Icon-Mirror-Both.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC19C47130C456A0040C53E /* Icon-Mirror-Both.png */; };
 		5FC29A81130805A4005B3EF0 /* NSShadow(SingleLineShadows).m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */; };
-		5FCA061F12D8D6F600241581 /* Button-Empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA061E12D8D6F600241581 /* Button-Empty.png */; };
 		5FCA063012D8DD8900241581 /* Button-Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA062F12D8DD8900241581 /* Button-Capture.png */; };
-		5FCA064012D8DEA500241581 /* Button-Capture-Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */; };
 		5FCA064C12D8E1EF00241581 /* Button-Cut.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA064B12D8E1EF00241581 /* Button-Cut.png */; };
 		5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA066912D8F3DA00241581 /* Button-Play.png */; };
 		5FCECB321297F2DA008D2CCD /* QTMovieExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCECB301297F2DA008D2CCD /* QTMovieExtensions.m */; };
@@ -130,9 +128,7 @@
 		5FC19C47130C456A0040C53E /* Icon-Mirror-Both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Mirror-Both.png"; sourceTree = "<group>"; };
 		5FC29A7F130805A4005B3EF0 /* NSShadow(SingleLineShadows).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSShadow(SingleLineShadows).h"; sourceTree = "<group>"; };
 		5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSShadow(SingleLineShadows).m"; sourceTree = "<group>"; };
-		5FCA061E12D8D6F600241581 /* Button-Empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Empty.png"; sourceTree = "<group>"; };
 		5FCA062F12D8DD8900241581 /* Button-Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture.png"; sourceTree = "<group>"; };
-		5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture-Pressed.png"; sourceTree = "<group>"; };
 		5FCA064B12D8E1EF00241581 /* Button-Cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Cut.png"; sourceTree = "<group>"; };
 		5FCA066912D8F3DA00241581 /* Button-Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Play.png"; sourceTree = "<group>"; };
 		5FCECB2F1297F2DA008D2CCD /* QTMovieExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTMovieExtensions.h; sourceTree = "<group>"; };
@@ -237,9 +233,7 @@
 				5F24654912F6130700D584BD /* Button-NewDocument.png */,
 				5FCA066912D8F3DA00241581 /* Button-Play.png */,
 				5FCA064B12D8E1EF00241581 /* Button-Cut.png */,
-				5FCA063F12D8DEA500241581 /* Button-Capture-Pressed.png */,
 				5FCA062F12D8DD8900241581 /* Button-Capture.png */,
-				5FCA061E12D8D6F600241581 /* Button-Empty.png */,
 				5FF34FF412D7AFA100E0A744 /* Icon-Onion-Off.png */,
 				5FF34FF512D7AFA100E0A744 /* Icon-Onion-On.png */,
 			);
@@ -437,9 +431,7 @@
 				5F90267712CE3A140055B78D /* InitialUserDefaults.plist in Resources */,
 				5FF34FF612D7AFA100E0A744 /* Icon-Onion-Off.png in Resources */,
 				5FF34FF712D7AFA100E0A744 /* Icon-Onion-On.png in Resources */,
-				5FCA061F12D8D6F600241581 /* Button-Empty.png in Resources */,
 				5FCA063012D8DD8900241581 /* Button-Capture.png in Resources */,
-				5FCA064012D8DEA500241581 /* Button-Capture-Pressed.png in Resources */,
 				5FCA064C12D8E1EF00241581 /* Button-Cut.png in Resources */,
 				5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */,
 				5F6951C212D91F7000A53C8F /* FrameByFrame.icns in Resources */,
