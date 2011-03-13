@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F2160A8132AD0DB00F4760D /* ButtonBanderole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2160A7132AD0DB00F4760D /* ButtonBanderole.png */; };
 		5F228EAA130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F228EA9130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).m */; };
 		5F24654A12F6130700D584BD /* Button-NewDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F24654912F6130700D584BD /* Button-NewDocument.png */; };
 		5F24654C12F6141D00D584BD /* Button-OpenDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F24654B12F6141D00D584BD /* Button-OpenDocument.png */; };
 		5F24654E12F6153300D584BD /* Button-RecoverDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F24654D12F6153300D584BD /* Button-RecoverDocument.png */; };
 		5F2DA3E312FEB9ED00803D70 /* FBFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DA3E212FEB9ED00803D70 /* FBFileInfo.m */; };
 		5F30253C130D49FD00D7FDEA /* FBFilterProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F30253B130D49FD00D7FDEA /* FBFilterProvider.m */; };
+		5F492376132B8C77000C0B69 /* FBBanderoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F492375132B8C77000C0B69 /* FBBanderoleView.m */; };
 		5F4C4F1512BE210600AF7D8C /* FBReelNavigator(DragDrop).m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */; };
 		5F4EF30112EB4BED004A2F3D /* FBOrganizerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4EF30012EB4BED004A2F3D /* FBOrganizerController.m */; };
 		5F5234AD12987CF80007FCDB /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5234AC12987CF80007FCDB /* QuickTime.framework */; };
@@ -62,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F2160A7132AD0DB00F4760D /* ButtonBanderole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonBanderole.png; sourceTree = "<group>"; };
 		5F228EA8130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary(CIFilterAttributes).h"; sourceTree = "<group>"; };
 		5F228EA9130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary(CIFilterAttributes).m"; sourceTree = "<group>"; };
 		5F24654912F6130700D584BD /* Button-NewDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-NewDocument.png"; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 		5F2DA3E212FEB9ED00803D70 /* FBFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFileInfo.m; sourceTree = "<group>"; };
 		5F30253A130D49FD00D7FDEA /* FBFilterProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFilterProvider.h; sourceTree = "<group>"; };
 		5F30253B130D49FD00D7FDEA /* FBFilterProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFilterProvider.m; sourceTree = "<group>"; };
+		5F492374132B8C77000C0B69 /* FBBanderoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBanderoleView.h; sourceTree = "<group>"; };
+		5F492375132B8C77000C0B69 /* FBBanderoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBBanderoleView.m; sourceTree = "<group>"; };
 		5F4C4F1312BE210600AF7D8C /* FBReelNavigator(DragDrop).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBReelNavigator(DragDrop).h"; sourceTree = "<group>"; };
 		5F4C4F1412BE210600AF7D8C /* FBReelNavigator(DragDrop).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBReelNavigator(DragDrop).m"; sourceTree = "<group>"; };
 		5F4C516512BE931700AF7D8C /* FBDragDropBuddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDragDropBuddy.h; sourceTree = "<group>"; };
@@ -222,6 +227,7 @@
 		5F7C8ADA12D6708E00CF9497 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5F2160A7132AD0DB00F4760D /* ButtonBanderole.png */,
 				5FF2864F13243951006202E9 /* Button-RecoverDocument-Alert.png */,
 				5FC19C47130C456A0040C53E /* Icon-Mirror-Both.png */,
 				5FC19C45130C3BC70040C53E /* Icon-Mirror-Horizontal.png */,
@@ -327,6 +333,8 @@
 		5FABC132128572C30084B0A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5F492374132B8C77000C0B69 /* FBBanderoleView.h */,
+				5F492375132B8C77000C0B69 /* FBBanderoleView.m */,
 				5FCF2EBA12947A7100993D6D /* FBReelNavigatorDataSource.h */,
 				5FE388F31285EB8000854266 /* FBReelNavigatorDelegate.h */,
 				5FABC12F128572BA0084B0A1 /* FBReelNavigator.h */,
@@ -445,6 +453,7 @@
 				5FC19C46130C3BC70040C53E /* Icon-Mirror-Horizontal.png in Resources */,
 				5FC19C48130C456A0040C53E /* Icon-Mirror-Both.png in Resources */,
 				5FF2865013243951006202E9 /* Button-RecoverDocument-Alert.png in Resources */,
+				5F2160A8132AD0DB00F4760D /* ButtonBanderole.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +489,7 @@
 				5FB1AA1B130BD74300E8E4F3 /* FBProductPipeline.m in Sources */,
 				5F30253C130D49FD00D7FDEA /* FBFilterProvider.m in Sources */,
 				5F228EAA130FE3C3007C9E90 /* NSDictionary(CIFilterAttributes).m in Sources */,
+				5F492376132B8C77000C0B69 /* FBBanderoleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
