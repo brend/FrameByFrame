@@ -835,7 +835,6 @@
 									<string key="NSFrame">{{177, 6}, {64, 66}}</string>
 									<reference key="NSSuperview" ref="487387358"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="244412705">
 										<int key="NSCellFlags">67239424</int>
@@ -843,7 +842,7 @@
 										<string key="NSContents"/>
 										<reference key="NSSupport" ref="42464171"/>
 										<reference key="NSControlView" ref="922541627"/>
-										<int key="NSButtonFlags">-2042347265</int>
+										<int key="NSButtonFlags">138690815</int>
 										<int key="NSButtonFlags2">2</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
@@ -869,7 +868,7 @@
 										<string key="NSContents"/>
 										<reference key="NSSupport" ref="42464171"/>
 										<reference key="NSControlView" ref="605304063"/>
-										<int key="NSButtonFlags">-2039201537</int>
+										<int key="NSButtonFlags">141836543</int>
 										<int key="NSButtonFlags2">1</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
@@ -895,7 +894,7 @@
 										<string key="NSContents"/>
 										<reference key="NSSupport" ref="42464171"/>
 										<reference key="NSControlView" ref="4374556"/>
-										<int key="NSButtonFlags">-2040250113</int>
+										<int key="NSButtonFlags">140787967</int>
 										<int key="NSButtonFlags2">1</int>
 										<object class="NSCustomResource" key="NSNormalImage">
 											<string key="NSClassName">NSImage</string>
@@ -930,7 +929,7 @@
 											<string key="NSFrameSize">{683, 128}</string>
 											<reference key="NSSuperview" ref="405800823"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="320935537"/>
+											<reference key="NSNextKeyView" ref="141696745"/>
 											<string key="NSClassName">FBReelNavigator</string>
 										</object>
 									</object>
@@ -971,7 +970,7 @@
 							<string key="NSFrame">{{0, -1}, {668, 145}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="141696745"/>
+							<reference key="NSNextKeyView" ref="405800823"/>
 							<int key="NSsFlags">162</int>
 							<reference key="NSVScroller" ref="141696745"/>
 							<reference key="NSHScroller" ref="320935537"/>
