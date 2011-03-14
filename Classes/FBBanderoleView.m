@@ -11,7 +11,7 @@
 
 @implementation FBBanderoleView
 
-- (id)initWithFrame:(NSRect)frame
+- (id) initWithFrame: (NSRect) frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)dealloc
+- (void) dealloc
 {
 	[patternImage release];
 	patternImage = nil;
@@ -29,13 +29,13 @@
     [super dealloc];
 }
 
-- (void)drawRect:(NSRect)dirtyRect
+- (void) drawRect: (NSRect) dirtyRect
 {
 	NSSize patternSize = patternImage.size;
 	NSInteger repetitions = ceilf(self.frame.size.width / patternSize.width);
 	NSRect
 		sourceRect = (NSRect) { .origin = NSZeroPoint, .size = patternSize },
-		destRect = (NSRect) { .origin = dirtyRect.origin, .size = patternSize };
+		destRect = (NSRect) { .origin = NSZeroPoint, .size = patternSize };
 	
 	while (repetitions--) {
 		[patternImage drawInRect: destRect fromRect: sourceRect operation: NSCompositeSourceOver fraction: 1];
