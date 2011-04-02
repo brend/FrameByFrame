@@ -54,6 +54,7 @@
 					indeterminate: (BOOL) indeterminate
 {
 	[progressBar setIndeterminate: indeterminate];
+	[self setThumbnail: indeterminate ? [NSImage imageNamed: @"Button-OpenDocument"] : nil];
 	
 	[NSApp beginSheet: progressSheet modalForWindow: window modalDelegate: nil didEndSelector: nil contextInfo: nil];
 	
