@@ -10,6 +10,7 @@
 #import "FBApplicationDelegate.h"
 #import "FBReelNavigator.h"
 #import "FBQuickTimeExporter.h"
+#import "FBFileInfo.h"
 
 @interface FBDocument ()
 - (void) adaptFilterControls;
@@ -603,6 +604,20 @@
 	 }];
 }
 
+- (IBAction) exportFrames: (id) sender
+{
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
+	
+	[savePanel beginSheetModalForWindow: self.window completionHandler:
+	 ^(NSInteger result) {
+		 if (result == NSFileHandlingPanelOKButton) {
+			NSURL *fileURL = [NSURL fileURLWithPath: savePanel.filename];
+			 
+			[NSThread detachNewThreadSelector: @selector(exportFramesToURL:) toTarget: self withObject: fileURL];
+		 }
+	 }];
+}
+
 #pragma mark -
 #pragma mark Exporting Movies
 - (void) exportMovieToURL: (NSURL *) fileURL
@@ -615,6 +630,7 @@
 	NSInteger chunkSize = 10;
 	NSInteger i = 0;
 	
+	// Show progress sheet
 	[self.progressSheetController performSelectorOnMainThread: @selector(beginDeterminateSheetModalForWindow:) withObject: self.window waitUntilDone: YES];
 	
 	// Add images to the movie, chunk-wise
@@ -635,6 +651,36 @@
 	
 	[exporter release];
 	[pool release];
+}
+
+- (void) exportFramesToURL: (NSURL *) fileURL
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	NSError *error = nil;
+	
+	// Show progress sheet
+	[self.progressSheetController setMaxValue: [[fileManager contentsOfDirectoryAtPath: temporaryStorageURL.path error: NULL] count]];
+	[self.progressSheetController performSelectorOnMainThread: @selector(beginDeterminateSheetModalForWindow:) withObject: self.window waitUntilDone: YES];
+	
+	fileManager.delegate = self;
+	[fileManager copyItemAtURL: temporaryStorageURL toURL: fileURL error: &error];
+	
+	// Done exporting
+	[self.progressSheetController performSelectorOnMainThread: @selector(endSheet) withObject: nil waitUntilDone: NO];
+
+	[fileManager release];
+	[pool release];
+}
+
+- (BOOL)fileManager:(NSFileManager *)fileManager shouldCopyItemAtURL:(NSURL *)srcURL toURL:(NSURL *)dstURL
+{
+	BOOL isSystemFile = [[FBFileInfo systemFilenames] containsObject: srcURL.lastPathComponent];
+	
+	if (!isSystemFile)
+		self.progressSheetController.value += 1;
+	
+	return !isSystemFile;
 }
 
 #pragma mark -

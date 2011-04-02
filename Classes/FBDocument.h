@@ -99,6 +99,7 @@
 #pragma mark -
 #pragma mark Exporting Movies
 - (void) exportMovieToURL: (NSURL *) fileURL;
+- (void) exportFramesToURL: (NSURL *) fileURL;
 
 #pragma mark -
 #pragma mark Managing the Movie Reel
@@ -172,6 +173,7 @@
 - (IBAction) snapshot: (id) sender;
 - (IBAction) remove: (id) sender;
 - (IBAction) exportMovie: (id) sender;
+- (IBAction) exportFrames: (id) sender;
 
 #pragma mark -
 #pragma mark Applying Artistic Filters
