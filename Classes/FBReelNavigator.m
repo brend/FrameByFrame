@@ -610,6 +610,9 @@
 {
 	[self resizeToFitImages];
 	[self setNeedsDisplay: YES];
+	
+	if (self.selectedIndex != NSNotFound)
+		[self scrollToImage: self.selectedIndex];
 }
 
 #pragma mark -
