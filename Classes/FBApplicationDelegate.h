@@ -22,4 +22,8 @@
 #pragma mark Presenting the Organizer
 - (void) showOrganizer;
 
+#pragma mark -
+#pragma mark Presenting Help
+- (IBAction) showHelp: (id) sender;
+
 @end

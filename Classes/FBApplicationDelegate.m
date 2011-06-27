@@ -46,4 +46,13 @@
 	[organizerController show: nil];
 }
 
+#pragma mark -
+#pragma mark Presenting Help
+- (IBAction) showHelp: (id) sender
+{
+	NSString *helpPath = [[NSBundle mainBundle] pathForResource: @"index" ofType: @"htm" inDirectory: @"Help"];
+	
+	[[NSWorkspace sharedWorkspace] openURL: [NSURL fileURLWithPath: helpPath]];
+}
+
 @end

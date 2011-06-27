@@ -1,0 +1,43 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+<title>Preferences</title>
+</head>
+<body>
+
+<h2>Preferences</h2>
+
+The dialog you will find under "FrameByFrame &gt; Preferences" can be used to adjust an array of settings to make working with FrameByFrame easier.<br>
+This document will explain the existing preferences.
+
+<!--
+<p>
+<center>
+<table><td align="center"><img src="session.jpg"><tr><td align="center">A FrameByFrame session</table>
+</center>
+-->
+
+<p><h4>Key Shortcuts</h4>
+On top of the preferences dialog, there are several views that display the current keyboard shortcuts for certain functions. See <a href="shortcuts.htm">Shortcuts</a> to learn about keyboard commands and their default values.<br>
+To assign a different key as a function's shortcut, click on the box displaying the current key, then press the desired key.
+
+<p><h4>Apple Remote Control Input</h4>
+If this box is checked, FrameByFrame will capture any input by remote controls. You can navigate the picture strip and make snapshots using the buttons of the remote (see <a href="shortcuts.htm">Shortcuts</a> for details).
+If you'd rather use your remote control for other functions, such as media playback control, you can uncheck this box.<br>
+The Apple Remote Control that comes with new Macs is fully supported; other models may work but have not been tested by this developer.
+
+<p><h4>Download News</h4>
+FrameByFrame can download and display news items about new versions of itself. If you want it to do so, check this box. You can download the current news at any time using "FrameByFrame &gt; FrameByFrame News".
+
+<p><h4>Frame Averaging</h4>
+With this slider, you can enable and adjust the so-called "frame averaging" feature. If it is set to "Off", pictures will taken straight from the video input. If it is set to anywhere between "2" and "20",
+FrameByFrame will, once the snapshot function is activated, accumulate the specified number of pictures and produce a new picture from the averaged pixel values. This averaged picture will be placed in the picture strip.<br>
+The purpose of this function is to reduce noise produced by cameras. Be aware that it will take longer to create the picture, depending on the number of frames per second your camera delivers and the processing power of your Mac.
+For example, if your camera delivers 15 frames per second, and you have enabled frame averaing of 20 pictures, it will take better than a second to accumulate the images, and possibly a couple of seconds more to process the them.
+For this reason, you must not make any changes to the scene you are photographing during the process.
+
+<p><h4>Shutter Sound</h4>
+Select a sound effect from this list that will be played as a means of auditorial feedback whenever you take a picture. You may choose one of FrameByFrame's sound effects, a system sound or disable the sound playback.
+
+</body>
+</html>

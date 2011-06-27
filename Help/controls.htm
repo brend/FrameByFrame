@@ -1,0 +1,77 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+<title>Controls and menu commands</title>
+</head>
+<body>
+
+<h2>Controls and Menu Commands</h2>
+
+Below is a picture of a FrameByFrame session in progress. The screen elements will be explained referring to this picture.
+
+<p>
+<center>
+<table><td align="center"><img src="Screenshot-Controls.jpg"><tr><td align="center">A FrameByFrame session</table>
+</center>
+
+<h4>Buttons</h4>
+	<ol>
+		<li><b>Cut</b> - Removes the selected pictures</li>
+		<li><b>Snapshot</b> - Takes a picture and adds it to the movie reel</li>
+		<li><b>Preview</b> - Opens the preview window</li>
+	</ol>
+	
+<h4>General Controls</h4>
+	<ol type="A">
+		<li><b>Frames Per Second</b> - Use this slider to set the number of frames per second of your movie (influences the preview as well as the final movie)</li>
+		<li><b>Onion Skins</b> - Drag this slider to change the number of "onion skins" (the after images you see in the display)</li>
+		<li><b>Source Mix</b> - Determines the mix of camera input / selected picture you see in the display</li>
+		<li><b>Mirroring</b> - Use these buttons to have your pictures flipped horizontally, vertically, or both</li>
+	</ol>
+
+<p><h4>Video input selection</h4>
+The dropdown box on the top left contains all video input devices detected on your Mac. Click it to select a different video input device.<br>
+If you plug in a new device, it might be necessary to restart FrameByFrame in order for it to show up in this list.<br>
+If your device is not detected by the program, visit the <a href="http://webcam-osx.sourceforge.net/">macam project</a> which provides drivers for a wide array of third-party cameras.
+	
+<p><h4>Video input views</h4>
+The two large views in the middle of the window are the video input views. The left view shows the input of the currently selected video input device. The right view also displays this
+input, but overlays it on the picture selected in the picture strip below. This is particularly useful if you want to assess the amount of change between to successive frames.
+For example, depening on your selected frame rate, you might not want to change the posture of a model you are filming too much.<br>
+In the top right corner of the view, there is a segmented control called "Mirror view". If you switch it to "On", the video input will be mirrored vertically and horizontally.
+This comes in handy if you positioned the camera facing the "wrong way", which is sometimes necessary to make sure you can reach around it.
+
+<p><h4>Picture strip</h4>
+All pictures in a movie are presented in the picture strip below the video input views. The final movie will be made of exactly these pictures (minus the labelling).
+Each picture is labelled with a time label that tells you at what point in the movie the picture will occur, e.g. "7.3 sec" means that 7.3 seconds will have passed when this picture is shown.<br>
+Furthermore, the picture strip always displays one picture as <em>selected</em>; this picture will be shaded blue. Whenever you take a new picture, it will be inserted <em>before</em>
+the selected one. That means that you can insert a new sequence of pictures anywhere in the movie by selecting the first picture that is to appear after the sequence, and then taking the
+new pictures one after another, as you usually would.<br>
+Please have a look at <a href="shortcuts.htm">Commands and Shortcuts</a> for information about how to navigate the pictures using mouse, keyboard or remote control.<br>
+
+<p><h4>Frame rate selector</h4>
+To the right of the picture strip there is a slider bar that allows you to set the frame rate for your movie. Possible values range from one to 30 frames per second. The selected frame rate
+applies to the entire movie document. You can change the frame rate at any time and use the movie preview (explained below) to view the results. Note that the time labelling on the pictures
+also changes to reflect any change in frame rates.
+
+<p><h4>Input device controls</h4>
+The four leftmost buttons of the controls on the bottom of the window are used to control the behaviour of camcorders and other devices that support rewinding/fast forwarding/play/pause.
+
+<p><h4>Play button</h4>
+The play button to the right plays a movie preview. Clicking it causes the right one of the video input views to play the movie document at the selected frame rate
+starting with the currently selected image. Use this feature to preview your movie and view your latest changes without needing to export it as a QuickTime movie.
+
+<p><h4>Snapshot button</h4>
+The button showing a photo camera - the so-called "snapshot button" - creates a new picture based on the current video input (seen in the left video input view) and inserts it
+into the movie right before the picture that is selected in the picture strip.<br>
+You can assign a shortcut key combination to the snapshot function using "File > Preferences". It is &#x2423; (<it>Space</it>) by default. 
+
+<p><h4>Cut button</h4>
+The button showing a pair of scissors is used to remove pictures. You may remove one or more pictures by selecting them (Command-Click if you want to select more than one picture; 
+the selected pictures will appear grey) and then pressing the cut button.
+
+<p><h4>See also</h4>
+<a href="shortcuts.htm">Keyboard shortcuts</a>
+
+</body>
+</html>

@@ -50,6 +50,7 @@
 		5FC19C46130C3BC70040C53E /* Icon-Mirror-Horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC19C45130C3BC70040C53E /* Icon-Mirror-Horizontal.png */; };
 		5FC19C48130C456A0040C53E /* Icon-Mirror-Both.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC19C47130C456A0040C53E /* Icon-Mirror-Both.png */; };
 		5FC29A81130805A4005B3EF0 /* NSShadow(SingleLineShadows).m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */; };
+		5FC3578E1361C1E80031278E /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3578D1361C1E80031278E /* Help */; };
 		5FCA063012D8DD8900241581 /* Button-Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA062F12D8DD8900241581 /* Button-Capture.png */; };
 		5FCA064C12D8E1EF00241581 /* Button-Cut.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA064B12D8E1EF00241581 /* Button-Cut.png */; };
 		5FCA066A12D8F3DA00241581 /* Button-Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FCA066912D8F3DA00241581 /* Button-Play.png */; };
@@ -133,6 +134,7 @@
 		5FC19C47130C456A0040C53E /* Icon-Mirror-Both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Mirror-Both.png"; sourceTree = "<group>"; };
 		5FC29A7F130805A4005B3EF0 /* NSShadow(SingleLineShadows).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSShadow(SingleLineShadows).h"; sourceTree = "<group>"; };
 		5FC29A80130805A4005B3EF0 /* NSShadow(SingleLineShadows).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSShadow(SingleLineShadows).m"; sourceTree = "<group>"; };
+		5FC3578D1361C1E80031278E /* Help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Help; sourceTree = "<group>"; };
 		5FCA062F12D8DD8900241581 /* Button-Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Capture.png"; sourceTree = "<group>"; };
 		5FCA064B12D8E1EF00241581 /* Button-Cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Cut.png"; sourceTree = "<group>"; };
 		5FCA066912D8F3DA00241581 /* Button-Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Play.png"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		5F96419F127A12D3009E6FC1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5FC3578D1361C1E80031278E /* Help */,
 				5F7C8ADA12D6708E00CF9497 /* Images */,
 				5F6951C112D91F7000A53C8F /* FrameByFrame.icns */,
 				5FC18E2612E1D5E00096E8CE /* Document.icns */,
@@ -454,6 +457,7 @@
 				5FC19C48130C456A0040C53E /* Icon-Mirror-Both.png in Resources */,
 				5FF2865013243951006202E9 /* Button-RecoverDocument-Alert.png in Resources */,
 				5F2160A8132AD0DB00F4760D /* ButtonBanderole.png in Resources */,
+				5FC3578E1361C1E80031278E /* Help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
