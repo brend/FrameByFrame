@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-		patternImage = [NSImage imageNamed: @"ButtonBanderole.png"];
+		patternImage = [[NSImage imageNamed: @"ButtonBanderole.png"] retain];
     }
     
     return self;
