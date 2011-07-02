@@ -139,7 +139,7 @@
 			[image drawInRect: dest fromRect: NSMakeRect(0, 0, imageSize.width, imageSize.height) operation: NSCompositeSourceOver fraction: 1];
 			
 			// Draw selection/highlight
-			if (i == self.selectedIndex) {
+			if ([self.selectedIndexes containsIndex: i]) {
 				NSRect sr = dest;
 				NSBezierPath *selectionPath = [NSBezierPath bezierPathWithRoundedRect: sr xRadius: 4 yRadius: 4];
 				
