@@ -664,8 +664,14 @@
 	[self.progressSheetController setMaxValue: [[fileManager contentsOfDirectoryAtPath: temporaryStorageURL.path error: NULL] count]];
 	[self.progressSheetController performSelectorOnMainThread: @selector(beginDeterminateSheetModalForWindow:) withObject: self.window waitUntilDone: YES];
 	
-	fileManager.delegate = self;
-	[fileManager copyItemAtURL: temporaryStorageURL toURL: fileURL error: &error];
+	// If file exists at destination, remove it
+	if ([fileManager fileExistsAtPath: fileURL.path])
+		[fileManager removeItemAtURL: fileURL error: &error];
+	
+	if (error == nil) {
+		fileManager.delegate = self;
+		[fileManager copyItemAtURL: temporaryStorageURL toURL: fileURL error: &error];
+	}
 	
 	// Done exporting
 	[self.progressSheetController performSelectorOnMainThread: @selector(endSheet) withObject: nil waitUntilDone: NO];
