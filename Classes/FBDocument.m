@@ -630,8 +630,10 @@
 	FBQuickTimeExporter *exporter = [[FBQuickTimeExporter alloc] initWithReel: self.reel destination: fileURL.path attributes: exportAttributes];
 	NSInteger chunkSize = 10;
 	NSInteger i = 0;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
 	// Show progress sheet
+	[self.progressSheetController setMaxValue: [[fileManager contentsOfDirectoryAtPath: temporaryStorageURL.path error: NULL] count]];
 	[self.progressSheetController performSelectorOnMainThread: @selector(beginDeterminateSheetModalForWindow:) withObject: self.window waitUntilDone: YES];
 	
 	// Add images to the movie, chunk-wise
