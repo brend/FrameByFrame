@@ -592,11 +592,12 @@
 - (IBAction) exportMovie: (id) sender
 {
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
-		
+	
+	[savePanel setAllowedFileTypes: [NSArray arrayWithObject: @"mov"]];
 	[savePanel beginSheetModalForWindow: self.window completionHandler:
 	 ^(NSInteger result) {
 		 if (result == NSFileHandlingPanelOKButton) {
-			 NSString *filename = [savePanel.filename stringByAppendingPathExtension: @"mov"];
+			 NSString *filename = savePanel.filename;
 			 NSURL *fileURL = [NSURL fileURLWithPath: filename];
 			 			 
 			 [NSThread detachNewThreadSelector: @selector(exportMovieToURL:) toTarget: self withObject: fileURL];
