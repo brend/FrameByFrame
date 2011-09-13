@@ -410,6 +410,9 @@
 /* Begin PBXProject section */
 		5F964198127A12D3009E6FC1 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
 			buildConfigurationList = 5F96419B127A12D3009E6FC1 /* Build configuration list for PBXProject "FrameByFrame" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -556,7 +559,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -571,7 +573,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
