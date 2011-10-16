@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10J567</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<int key="IBDocument.SystemTarget">1070</int>
+		<string key="IBDocument.SystemVersion">11C74</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
+		<string key="IBDocument.AppKitVersion">1138.23</string>
+		<string key="IBDocument.HIToolboxVersion">567.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
@@ -15,8 +15,8 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>1305</string>
-				<string>30</string>
+				<string>1938</string>
+				<string>822</string>
 			</object>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
@@ -53,8 +53,8 @@
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>com.apple.QTKitIBPlugin</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+			<string>com.apple.QTKitIBPlugin</string>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.Metadata">
 			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
@@ -76,6 +76,7 @@
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<string key="NSViewClass">View</string>
+				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{668, 520}</string>
 				<object class="NSView" key="NSWindowView" id="568628114">
 					<reference key="NSNextResponder"/>
@@ -88,7 +89,7 @@
 							<string key="NSFrame">{{0, 143}, {668, 77}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="940273296"/>
+							<reference key="NSNextKeyView" ref="487387358"/>
 							<string key="NSClassName">FBBanderoleView</string>
 						</object>
 						<object class="QTCaptureView" id="44639421">
@@ -328,7 +329,7 @@
 											<object class="NSSegmentedControl" id="199229212">
 												<reference key="NSNextResponder" ref="995652149"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{34, 42}, {194, 25}}</string>
+												<string key="NSFrame">{{36, 42}, {190, 25}}</string>
 												<reference key="NSSuperview" ref="995652149"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="531972533"/>
@@ -376,7 +377,7 @@
 															<int key="NSSegmentItemImageScaling">0</int>
 														</object>
 													</object>
-													<int key="NSSegmentStyle">2</int>
+													<int key="NSSegmentStyle">4</int>
 												</object>
 											</object>
 											<object class="NSTextField" id="613404871">
@@ -748,6 +749,7 @@
 																<int key="NSDraggingSourceMaskForNonLocal">0</int>
 																<bool key="NSAllowsTypeSelect">YES</bool>
 																<int key="NSTableViewDraggingDestinationStyle">0</int>
+																<int key="NSTableViewGroupRowStyle">1</int>
 															</object>
 														</object>
 														<string key="NSFrame">{{1, 17}, {226, 95}}</string>
@@ -797,12 +799,11 @@
 												<string key="NSFrame">{{17, 8}, {228, 113}}</string>
 												<reference key="NSSuperview" ref="525052348"/>
 												<reference key="NSNextKeyView" ref="158519939"/>
-												<int key="NSsFlags">562</int>
+												<int key="NSsFlags">133682</int>
 												<reference key="NSVScroller" ref="505232582"/>
 												<reference key="NSHScroller" ref="704911921"/>
 												<reference key="NSContentView" ref="158519939"/>
 												<reference key="NSHeaderClipView" ref="604340418"/>
-												<reference key="NSCornerView" ref="709782193"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 										</object>
@@ -835,6 +836,7 @@
 									<string key="NSFrame">{{177, 6}, {64, 66}}</string>
 									<reference key="NSSuperview" ref="487387358"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="940273296"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="244412705">
 										<int key="NSCellFlags">67239424</int>
@@ -929,7 +931,7 @@
 											<string key="NSFrameSize">{683, 128}</string>
 											<reference key="NSSuperview" ref="405800823"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="141696745"/>
+											<reference key="NSNextKeyView" ref="320935537"/>
 											<string key="NSClassName">FBReelNavigator</string>
 										</object>
 									</object>
@@ -959,7 +961,7 @@
 									<string key="NSFrame">{{1, 129}, {666, 15}}</string>
 									<reference key="NSSuperview" ref="531972533"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="487387358"/>
+									<reference key="NSNextKeyView"/>
 									<bool key="NSEnabled">YES</bool>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="531972533"/>
@@ -970,21 +972,22 @@
 							<string key="NSFrame">{{0, -1}, {668, 145}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="405800823"/>
-							<int key="NSsFlags">162</int>
+							<reference key="NSNextKeyView" ref="141696745"/>
+							<int key="NSsFlags">133282</int>
 							<reference key="NSVScroller" ref="141696745"/>
 							<reference key="NSHScroller" ref="320935537"/>
 							<reference key="NSContentView" ref="405800823"/>
 						</object>
 					</object>
-					<string key="NSFrame">{{7, 11}, {668, 533}}</string>
+					<string key="NSFrameSize">{668, 533}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="44639421"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{668, 542}</string>
-				<string key="NSMaxSize">{1e+13, 1e+13}</string>
+				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
+				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="796877042">
 				<string key="NSClassName">NSApplication</string>
@@ -997,6 +1000,7 @@
 				<string key="NSWindowTitle">Progress Sheet</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
+				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="573755376">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -1090,7 +1094,8 @@
 					<string key="NSFrame">{{7, 11}, {512, 88}}</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
-				<string key="NSMaxSize">{1e+13, 1e+13}</string>
+				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
+				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="838020243">
 				<string key="NSClassName">FBProgressSheetController</string>
@@ -1103,6 +1108,7 @@
 				<string key="NSWindowTitle">Preview</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
+				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{279, 272}</string>
 				<object class="NSView" key="NSWindowView" id="287415488">
 					<nil key="NSNextResponder"/>
@@ -1203,7 +1209,8 @@
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{279, 291}</string>
-				<string key="NSMaxSize">{1e+13, 1e+13}</string>
+				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
+				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="524945253">
 				<string key="NSClassName">FBPreviewController</string>
@@ -1220,14 +1227,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="275939982"/>
-						<reference key="destination" ref="512844837"/>
-					</object>
-					<int key="connectionID">17</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">window</string>
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="275939982"/>
@@ -1241,6 +1240,94 @@
 						<reference key="destination" ref="44639421"/>
 					</object>
 					<int key="connectionID">100022</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">snapshot:</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="4374556"/>
+					</object>
+					<int key="connectionID">100046</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">reelNavigator</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="316292785"/>
+					</object>
+					<int key="connectionID">100062</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">progressSheetController</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="838020243"/>
+					</object>
+					<int key="connectionID">100085</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">remove:</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="605304063"/>
+					</object>
+					<int key="connectionID">100202</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">resolutionLabel</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="630130713"/>
+					</object>
+					<int key="connectionID">100230</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">previewController</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="524945253"/>
+					</object>
+					<int key="connectionID">100241</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreviewWindow:</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="922541627"/>
+					</object>
+					<int key="connectionID">100256</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filterProvider</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="155809055"/>
+					</object>
+					<int key="connectionID">100394</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="275939982"/>
+						<reference key="destination" ref="512844837"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">initialFirstResponder</string>
+						<reference key="source" ref="275939982"/>
+						<reference key="destination" ref="316292785"/>
+					</object>
+					<int key="connectionID">100152</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="44639421"/>
+						<reference key="destination" ref="512844837"/>
+					</object>
+					<int key="connectionID">100049</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1293,22 +1380,6 @@
 					<int key="connectionID">100042</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">snapshot:</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="4374556"/>
-					</object>
-					<int key="connectionID">100046</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="44639421"/>
-						<reference key="destination" ref="512844837"/>
-					</object>
-					<int key="connectionID">100049</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="316292785"/>
@@ -1318,19 +1389,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">reelNavigator</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="316292785"/>
-					</object>
-					<int key="connectionID">100062</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">scrollView</string>
 						<reference key="source" ref="316292785"/>
 						<reference key="destination" ref="531972533"/>
 					</object>
 					<int key="connectionID">100067</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="316292785"/>
+						<reference key="destination" ref="512844837"/>
+					</object>
+					<int key="connectionID">100075</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dragDropBuddy</string>
+						<reference key="source" ref="316292785"/>
+						<reference key="destination" ref="512844837"/>
+					</object>
+					<int key="connectionID">100196</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1347,22 +1426,6 @@
 						</object>
 					</object>
 					<int key="connectionID">100074</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">dataSource</string>
-						<reference key="source" ref="316292785"/>
-						<reference key="destination" ref="512844837"/>
-					</object>
-					<int key="connectionID">100075</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">progressSheetController</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="838020243"/>
-					</object>
-					<int key="connectionID">100085</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1389,36 +1452,37 @@
 					<int key="connectionID">100094</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">initialFirstResponder</string>
-						<reference key="source" ref="275939982"/>
-						<reference key="destination" ref="316292785"/>
-					</object>
-					<int key="connectionID">100152</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">dragDropBuddy</string>
-						<reference key="source" ref="316292785"/>
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: maxFramesPerSecond</string>
+						<reference key="source" ref="903488538"/>
 						<reference key="destination" ref="512844837"/>
+						<object class="NSNibBindingConnector" key="connector" id="679728920">
+							<reference key="NSSource" ref="903488538"/>
+							<reference key="NSDestination" ref="512844837"/>
+							<string key="NSLabel">maxValue: maxFramesPerSecond</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">maxFramesPerSecond</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
 					</object>
-					<int key="connectionID">100196</int>
+					<int key="connectionID">100402</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">remove:</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="605304063"/>
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: framesPerSecond</string>
+						<reference key="source" ref="903488538"/>
+						<reference key="destination" ref="512844837"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="903488538"/>
+							<reference key="NSDestination" ref="512844837"/>
+							<string key="NSLabel">value: framesPerSecond</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">framesPerSecond</string>
+							<reference key="NSPreviousConnector" ref="679728920"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
 					</object>
-					<int key="connectionID">100202</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">resolutionLabel</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="630130713"/>
-					</object>
-					<int key="connectionID">100230</int>
+					<int key="connectionID">100403</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1427,14 +1491,6 @@
 						<reference key="destination" ref="275784131"/>
 					</object>
 					<int key="connectionID">100240</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">previewController</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="524945253"/>
-					</object>
-					<int key="connectionID">100241</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1454,19 +1510,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">showPreviewWindow:</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="922541627"/>
-					</object>
-					<int key="connectionID">100256</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">rewindPreview:</string>
 						<reference key="source" ref="524945253"/>
 						<reference key="destination" ref="539060299"/>
 					</object>
 					<int key="connectionID">100260</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">playButton</string>
+						<reference key="source" ref="524945253"/>
+						<reference key="destination" ref="745180081"/>
+					</object>
+					<int key="connectionID">100277</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1485,14 +1541,6 @@
 					<int key="connectionID">100276</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">playButton</string>
-						<reference key="source" ref="524945253"/>
-						<reference key="destination" ref="745180081"/>
-					</object>
-					<int key="connectionID">100277</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedIndex: mirroring</string>
 						<reference key="source" ref="199229212"/>
@@ -1507,30 +1555,6 @@
 						</object>
 					</object>
 					<int key="connectionID">100282</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">dataSource</string>
-						<reference key="source" ref="542082236"/>
-						<reference key="destination" ref="155809055"/>
-					</object>
-					<int key="connectionID">100382</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="542082236"/>
-						<reference key="destination" ref="155809055"/>
-					</object>
-					<int key="connectionID">100383</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">filterAttributesView</string>
-						<reference key="source" ref="155809055"/>
-						<reference key="destination" ref="542082236"/>
-					</object>
-					<int key="connectionID">100384</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1622,11 +1646,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">filterProvider</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="155809055"/>
+						<string key="label">filterAttributesView</string>
+						<reference key="source" ref="155809055"/>
+						<reference key="destination" ref="542082236"/>
 					</object>
-					<int key="connectionID">100394</int>
+					<int key="connectionID">100384</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1637,57 +1661,20 @@
 					<int key="connectionID">100395</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue1: maxFramesPerSecond</string>
-						<reference key="source" ref="189496207"/>
-						<reference key="destination" ref="512844837"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="189496207"/>
-							<reference key="NSDestination" ref="512844837"/>
-							<string key="NSLabel">displayPatternValue1: maxFramesPerSecond</string>
-							<string key="NSBinding">displayPatternValue1</string>
-							<string key="NSKeyPath">maxFramesPerSecond</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{value1}@ fps</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="542082236"/>
+						<reference key="destination" ref="155809055"/>
 					</object>
-					<int key="connectionID">100401</int>
+					<int key="connectionID">100382</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">maxValue: maxFramesPerSecond</string>
-						<reference key="source" ref="903488538"/>
-						<reference key="destination" ref="512844837"/>
-						<object class="NSNibBindingConnector" key="connector" id="679728920">
-							<reference key="NSSource" ref="903488538"/>
-							<reference key="NSDestination" ref="512844837"/>
-							<string key="NSLabel">maxValue: maxFramesPerSecond</string>
-							<string key="NSBinding">maxValue</string>
-							<string key="NSKeyPath">maxFramesPerSecond</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="542082236"/>
+						<reference key="destination" ref="155809055"/>
 					</object>
-					<int key="connectionID">100402</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: framesPerSecond</string>
-						<reference key="source" ref="903488538"/>
-						<reference key="destination" ref="512844837"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="903488538"/>
-							<reference key="NSDestination" ref="512844837"/>
-							<string key="NSLabel">value: framesPerSecond</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">framesPerSecond</string>
-							<reference key="NSPreviousConnector" ref="679728920"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">100403</int>
+					<int key="connectionID">100383</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1708,6 +1695,26 @@
 						</object>
 					</object>
 					<int key="connectionID">100405</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue1: maxFramesPerSecond</string>
+						<reference key="source" ref="189496207"/>
+						<reference key="destination" ref="512844837"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="189496207"/>
+							<reference key="NSDestination" ref="512844837"/>
+							<string key="NSLabel">displayPatternValue1: maxFramesPerSecond</string>
+							<string key="NSBinding">displayPatternValue1</string>
+							<string key="NSKeyPath">maxFramesPerSecond</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDisplayPattern</string>
+								<string key="NS.object.0">%{value1}@ fps</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">100401</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2410,71 +2417,57 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="NSArray" key="dict.sortedKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>-1.IBPluginDependency</string>
+					<string>-2.IBPluginDependency</string>
 					<string>-3.IBPluginDependency</string>
 					<string>100021.IBPluginDependency</string>
 					<string>100023.IBAttributePlaceholdersKey</string>
 					<string>100023.IBPluginDependency</string>
-					<string>100023.IBViewBoundsToFrameTransform</string>
 					<string>100024.IBPluginDependency</string>
 					<string>100025.IBPluginDependency</string>
 					<string>100026.IBPluginDependency</string>
 					<string>100027.IBPluginDependency</string>
 					<string>100030.IBPluginDependency</string>
-					<string>100030.IBViewBoundsToFrameTransform</string>
 					<string>100031.IBPluginDependency</string>
 					<string>100032.IBPluginDependency</string>
 					<string>100033.IBPluginDependency</string>
 					<string>100034.IBPluginDependency</string>
 					<string>100035.IBPluginDependency</string>
 					<string>100043.IBPluginDependency</string>
-					<string>100043.IBViewBoundsToFrameTransform</string>
 					<string>100044.IBPluginDependency</string>
-					<string>100044.IBViewBoundsToFrameTransform</string>
 					<string>100045.IBPluginDependency</string>
 					<string>100050.IBPluginDependency</string>
 					<string>100063.IBPluginDependency</string>
-					<string>100063.IBViewBoundsToFrameTransform</string>
 					<string>100064.IBPluginDependency</string>
 					<string>100065.IBPluginDependency</string>
 					<string>100068.IBPluginDependency</string>
 					<string>100069.IBPluginDependency</string>
 					<string>100072.IBPluginDependency</string>
-					<string>100072.IBViewBoundsToFrameTransform</string>
 					<string>100073.IBPluginDependency</string>
-					<string>100078.IBEditorWindowLastContentRect</string>
 					<string>100078.IBPluginDependency</string>
 					<string>100078.IBWindowTemplateEditedContentRect</string>
 					<string>100078.NSWindowTemplate.visibleAtLaunch</string>
 					<string>100079.IBPluginDependency</string>
 					<string>100083.IBPluginDependency</string>
 					<string>100089.IBPluginDependency</string>
-					<string>100089.IBViewBoundsToFrameTransform</string>
 					<string>100092.IBPluginDependency</string>
-					<string>100092.IBViewBoundsToFrameTransform</string>
 					<string>100093.IBPluginDependency</string>
 					<string>100116.IBPluginDependency</string>
-					<string>100116.IBViewBoundsToFrameTransform</string>
 					<string>100117.IBPluginDependency</string>
 					<string>100118.IBPluginDependency</string>
 					<string>100119.IBPluginDependency</string>
 					<string>100120.IBPluginDependency</string>
 					<string>100142.IBPluginDependency</string>
-					<string>100142.IBViewBoundsToFrameTransform</string>
 					<string>100143.IBPluginDependency</string>
 					<string>100199.IBPluginDependency</string>
-					<string>100199.IBViewBoundsToFrameTransform</string>
 					<string>100200.IBPluginDependency</string>
 					<string>100216.IBPluginDependency</string>
-					<string>100216.IBViewBoundsToFrameTransform</string>
 					<string>100217.IBPluginDependency</string>
 					<string>100218.IBPluginDependency</string>
-					<string>100218.IBViewBoundsToFrameTransform</string>
 					<string>100219.IBPluginDependency</string>
 					<string>100220.IBPluginDependency</string>
-					<string>100220.IBViewBoundsToFrameTransform</string>
 					<string>100221.IBPluginDependency</string>
 					<string>100224.IBPluginDependency</string>
-					<string>100224.IBViewBoundsToFrameTransform</string>
 					<string>100225.IBPluginDependency</string>
 					<string>100236.IBPluginDependency</string>
 					<string>100236.NSWindowTemplate.visibleAtLaunch</string>
@@ -2487,42 +2480,45 @@
 					<string>100257.IBPluginDependency</string>
 					<string>100258.IBPluginDependency</string>
 					<string>100265.IBPluginDependency</string>
-					<string>100265.IBViewBoundsToFrameTransform</string>
 					<string>100266.IBPluginDependency</string>
-					<string>100266.IBViewBoundsToFrameTransform</string>
 					<string>100267.IBPluginDependency</string>
-					<string>100267.IBViewBoundsToFrameTransform</string>
 					<string>100268.IBPluginDependency</string>
 					<string>100269.IBPluginDependency</string>
 					<string>100270.IBPluginDependency</string>
-					<string>100280.IBNSSegmentedControlTracker.RoundRobinState</string>
-					<string>100280.IBNSSegmentedControlTracker.WasGrowing</string>
+					<string>100279.IBPluginDependency</string>
 					<string>100280.IBPluginDependency</string>
 					<string>100281.IBNSSegmentedControlInspectorSelectedSegmentMetadataKey</string>
 					<string>100281.IBPluginDependency</string>
 					<string>100285.IBPluginDependency</string>
 					<string>100286.IBPluginDependency</string>
+					<string>100287.IBPluginDependency</string>
+					<string>100288.IBPluginDependency</string>
+					<string>100289.IBPluginDependency</string>
+					<string>100290.IBPluginDependency</string>
 					<string>100300.IBPluginDependency</string>
 					<string>100321.IBPluginDependency</string>
 					<string>100322.IBPluginDependency</string>
+					<string>100342.IBPluginDependency</string>
 					<string>100373.IBPluginDependency</string>
 					<string>100374.IBPluginDependency</string>
 					<string>100375.IBPluginDependency</string>
 					<string>100376.IBPluginDependency</string>
 					<string>100377.IBPluginDependency</string>
+					<string>100378.IBPluginDependency</string>
+					<string>100379.IBPluginDependency</string>
+					<string>100380.IBPluginDependency</string>
+					<string>100381.IBPluginDependency</string>
 					<string>100398.IBPluginDependency</string>
 					<string>100399.IBPluginDependency</string>
 					<string>100411.IBPluginDependency</string>
-					<string>5.IBEditorWindowLastContentRect</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBWindowTemplateEditedContentRect</string>
-					<string>5.ImportedFromIB2</string>
-					<string>5.editorWindowContentRectSynchronizationRect</string>
 					<string>6.IBPluginDependency</string>
-					<string>6.ImportedFromIB2</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.QTKitIBPlugin</string>
 					<object class="NSMutableDictionary">
@@ -2534,97 +2530,51 @@
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDyIAAxANAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCmgAAw0YAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AQAAAABDDgAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDggAAwpIAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwyIAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCHAAAwuIAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{595, 923}, {512, 88}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{595, 923}, {512, 88}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBkAAAwvQAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUJEAABCkgAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwycAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBcAAAwwYAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDpYAAwpYAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUGIAABCvAAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUNJAABCxAAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDxwAAwoIAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCtgAAw4UAAA</bytes>
-					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="NO"/>
@@ -2637,24 +2587,24 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCHAAAwuIAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUGIAABCvAAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUNJAABCxAAAA</bytes>
-					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="0"/>
-					<integer value="0"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<integer value="0"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2671,11 +2621,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{487, 530}, {668, 533}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{487, 530}, {668, 533}}</string>
-					<integer value="1"/>
-					<string>{{201, 387}, {507, 413}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<integer value="1"/>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2710,6 +2655,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>exportFrames:</string>
 							<string>exportMovie:</string>
 							<string>remove:</string>
 							<string>showPreviewWindow:</string>
@@ -2718,6 +2664,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -2729,6 +2676,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>exportFrames:</string>
 							<string>exportMovie:</string>
 							<string>remove:</string>
 							<string>showPreviewWindow:</string>
@@ -2737,6 +2685,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">exportFrames:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">exportMovie:</string>
 								<string key="candidateClassName">id</string>
@@ -3122,10 +3074,6 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<integer value="1060" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
 			<integer value="3000" key="NS.object.0"/>
