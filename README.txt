@@ -17,11 +17,7 @@ COMPILING
 
 The code can be compiled using Xcode 3 and above.
 
-
-INFORMATION
-
-Information about FrameByFrame can be found on its home page:
-	http://framebyframeapp.com/
+BUGS
 
 Send bug reports to:
 	waldrumpus@gmail.com
