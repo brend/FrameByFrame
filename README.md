@@ -1,5 +1,7 @@
 # FrameByFrame
 
+![Screenshot of FrameByFrame](https://github.com/brend/FrameByFrame/blob/master/fbf-sample.png)
+
 FrameByFrame is for hobbyists who want to create stop-motion movies.
 The application covers everything from taking pictures with
 a video camera to exporting the finished QuickTime movie.
