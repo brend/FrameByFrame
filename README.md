@@ -8,6 +8,8 @@ a video camera to exporting the finished QuickTime movie.
 
 This is a legacy project, preserved for reasons of education and nostalgia.
 
+FrameByFrame was used by hobbyists and educators around the world in the span between 2010 and 2012.
+
 ## Copying
 
 FrameByFrame is distributed under the GNU General Public License.
